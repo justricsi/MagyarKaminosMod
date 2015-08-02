@@ -5,6 +5,8 @@
 
 #pragma tabsize 0
 
+#define GMN       "MagyarKamionosMód 0.1"
+
 #define WHITE     0xFFFFFFAA
 #define GREY      0xAFAFAFAA
 #define RED       0xFF0000AA
@@ -25,6 +27,10 @@
 #define MAX_VEHICLE 10000
 #define MAX_FUVAR   100000
 
+#define PRESSED(%0) \
+	(((newkeys & (%0)) == (%0)) && ((oldkeys & (%0)) != (%0)))
+#define RELEASED(%0) \
+	(((newkeys & (%0)) != (%0)) && ((oldkeys & (%0)) == (%0)))
 
 new PlayerTimer[MAX_PLAYERS];
 new kapcs, query[2000];
@@ -33,6 +39,7 @@ new AutoCount=0;
 new HazCount=0;
 new SorompoID=0;
 new ConvoyDB=0;
+new RestartTime;
 new Sorompok[MAX_OBJECTS];
 new jatekosMeghalt[MAX_PLAYERS];
 new bool:isinconvoy[MAX_PLAYERS];
@@ -41,9 +48,9 @@ new bool:buntiszabad[MAX_PLAYERS] = true; // trafi
 
 main()
 {
-	print("\n----------------------------------");
-	print("     SzerverP 0.1");
-	print("----------------------------------\n");
+	print("\n-----------------------------------------");
+	print("Szerver elindítva by Justricsi & Devidson");
+	print("-----------------------------------------\n");
 	mysql_log(LOG_ALL, LOG_TYPE_HTML);
 	kapcs = mysql_connect("localhost", "root", "samp", "");
 	if(mysql_errno(kapcs) != 0) printf("MySQL hiba! Hibakód: %d", mysql_errno(kapcs));
@@ -57,13 +64,20 @@ enum eAutoInfo{
 	ID,
 	rszam[8],
 	model,
-	Tulaj,
+	Tulaj[24],
 	Float:X,
 	Float:Y,
 	Float:Z,
 	Float:Angle,
 	color1,
-	color2
+	color2,
+    Float:d,
+    Float:elox1,
+    Float:eloy1,
+    Float:eloz1,
+    Float:ujx2,
+    Float:ujy2,
+    Float:ujz2
 }
 new AutoInfo[50][eAutoInfo];
 
@@ -75,8 +89,12 @@ enum eJatekosInfo {
 	Float:X,
 	Float:Y,
 	Float:Z,
-	buntetes,
-	alevel
+	alevel,
+	ConvoyMunkak,
+	SzereloMunkak,
+	RendorMunkak,
+	BankMoney,
+	buntetes
 }
 new JatekosInfo[MAX_PLAYERS][eJatekosInfo];
 
@@ -158,13 +176,6 @@ new Float:JailSpawnPoints[][4] =
 {198.5, 162.5, 1002.299987793, 269.1425}
 };
 
-new StatStr[][] =
-{
-	"{0FA0D1}Név:{FFFFFF}",
-	"{0FA0D1}Pénz:{FFFFFF}",
-	"{0FA0D1}Szerveren töltött idő{FFFFFF}"
-};
-
 new FuvarStr[][] =
 {
 	"KACC\tAlkatrészek\t{0FA0D1} ",
@@ -177,7 +188,7 @@ public OnGameModeInit()
 		UsePlayerPedAnims();         			//Normál futás
 		DisableInteriorEnterExits(); 			//Interior kikapcs
 		EnableStuntBonusForAll(0);              //ugrató pénz kikapcs
-		SetGameModeText("Kamion0.1");
+		SetGameModeText(GMN);
 
         return 1;
 }
@@ -223,6 +234,7 @@ public OnPlayerConnect(playerid)
 		SetPlayerMapIcon(playerid, 4, 2147.3462,2748.0212,10.8098, 55, 0, MAPICON_GLOBAL);
 		SetPlayerMapIcon(playerid, 5, 1596.6428,2198.7942,10.8044, 55, 0, MAPICON_GLOBAL);
 		SetPlayerMapIcon(playerid, 6, 615.3072,1689.8611,6.9801, 55, 0, MAPICON_GLOBAL);
+		SetPlayerMapIcon(playerid, 7, 2256.7107,2032.0468,11.2071, 45, 0, MAPICON_LOCAL);
 		//Text Labelek
 		Create3DTextLabel("/tankol\n\n450Ft/liter", YELLOW, 2116.1753,919.9009,10.8168, 40.0, 0, 0);
 		Create3DTextLabel("/tankol\n\n450Ft/liter", YELLOW, 2639.0347,1106.4211,10.8145, 40.0, 0, 0);
@@ -235,6 +247,7 @@ public OnPlayerConnect(playerid)
 		vanconvoy[playerid] = false;
 		SetPlayerColor(playerid, YELLOW);
 		PlayerTimer[playerid] = SetTimerEx("PlayedTime", 1000, 1, "%d", playerid);
+		SetTimer("km_counter", 1000, true);
 		return 1;
 }
 
@@ -248,6 +261,21 @@ stock Float:GetPlayerSpeed(playerid, bool:Zasd = true) //km.h
     else Speed = floatsqroot(floatadd(floatpower(SpeedX, 2.0), floatpower(SpeedY, 2.0)));
     Speed = floatround(Speed * 100 * 1.61);
     return Speed;
+}
+
+forward km_counter(i,playerid);
+public km_counter(i,playerid)
+{
+new v = GetPlayerVehicleID(playerid);
+
+    AutoInfo[i][elox1] = AutoInfo[i][ujx2];
+    AutoInfo[i][eloy1] = AutoInfo[i][ujy2];
+    AutoInfo[i][eloz1] = AutoInfo[i][ujz2];
+    GetVehiclePos(v, AutoInfo[i][ujx2], AutoInfo[i][ujy2], AutoInfo[i][ujz2]);
+    AutoInfo[i][elox1] -= AutoInfo[i][ujx2];
+    AutoInfo[i][eloy1] -= AutoInfo[i][ujy2];
+    AutoInfo[i][eloz1] -= AutoInfo[i][ujz2];
+    AutoInfo[i][d] += floatsqroot((AutoInfo[i][elox1]*AutoInfo[i][elox1])+(AutoInfo[i][eloy1]*AutoInfo[i][eloy1])+(AutoInfo[i][eloz1]*AutoInfo[i][eloz1])) / 1000.0;
 }
 
 forward PlayedTime(playerid);
@@ -287,7 +315,8 @@ public OnPlayerDisconnect(playerid, reason)
     GetPlayerPos(playerid, JatekosInfo[playerid][X], JatekosInfo[playerid][Y], JatekosInfo[playerid][Z]);
     JatekosInfo[playerid][Skin] = GetPlayerSkin(playerid);
     JatekosInfo[playerid][Penz] = GetPlayerMoney(playerid);
-    mysql_format(kapcs, query, 384, "UPDATE jatekosok SET Penz='%d',X='%f',Y='%f',Z='%f',skin='%d',alevel='%i' WHERE Nev='%s'", JatekosInfo[playerid][Penz], JatekosInfo[playerid][X], JatekosInfo[playerid][Y], JatekosInfo[playerid][Z],JatekosInfo[playerid][Skin],JatekosInfo[playerid][alevel], JatekosInfo[playerid][Nev]);
+    mysql_format(kapcs, query, 384, "UPDATE jatekosok SET Penz='%d',X='%f',Y='%f',Z='%f',skin='%d',alevel='%i',cmunka='%i',szmunka='%i' WHERE Nev='%s'",
+	JatekosInfo[playerid][Penz], JatekosInfo[playerid][X], JatekosInfo[playerid][Y], JatekosInfo[playerid][Z],JatekosInfo[playerid][Skin],JatekosInfo[playerid][alevel],JatekosInfo[playerid][ConvoyMunkak],JatekosInfo[playerid][SzereloMunkak],JatekosInfo[playerid][Nev]);
     mysql_tquery(kapcs, query);
     return 1;
 }
@@ -319,6 +348,33 @@ public OnPlayerDeath(playerid, killerid, reason)
  	TogglePlayerSpectating(playerid, false);
     return 1;
 }*/
+
+public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
+{
+/*new buntet[128];
+
+	if (PRESSED(KEY_CTRL_BACK))
+	{
+		if(GetPVarInt(playerid,"Frakcio") == RENDOR)
+		{
+		    new Float:Xpos,Float:Ypos,Float:Zpos;
+			for(new i = 0; i <= MAX_PLAYERS; i++)
+			{
+				GetPlayerPos(i, Xpos, Ypos, Zpos);
+				if(IsPlayerInRangeOfPoint(playerid, 4.0, Xpos, Ypos, Zpos))
+				{
+				    format(buntet,sizeof(buntet),"Levetted a büntetést: %dFt-ot",JatekosInfo[i][buntetes]);
+					SendClientMessage(playerid,GREEN,buntet);
+				}else SendClientMessage(playerid,RED,"Nincs a közeledben a játékos!");
+			}
+		}else SendClientMessage(playerid,RED,"Nem vagy rendőr!");
+	}
+	else if (RELEASED(KEY_CTRL_BACK))
+	{
+
+	}*/
+	return 1;
+}
 
 public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
         switch(dialogid) {
@@ -661,7 +717,7 @@ public OnPlayerUpdate(playerid)
 	{
 		if(IsPlayerInRangeOfPoint(playerid, 5.0, KamInfo[i][c_x],KamInfo[i][c_y],KamInfo[i][c_z]))
 		{
-		    if(IsPlayerInAnyVehicle(playerid))
+		    if(IsPlayerInAnyVehicle(playerid) && GetPlayerVehicleSeat(playerid) == 0)
 		    {
 		        if(roundspeed > KamInfo[i][sebesseg] && GetPVarInt(playerid, "Frakcio") != RENDOR)
 		        {
@@ -750,6 +806,7 @@ public OnPlayerEnterCheckpoint(playerid)
 			GameTextForPlayer(playerid, msg1, 3000, 6);
 			SetPVarInt(playerid, "feltoltve", 0);
 	    	DisablePlayerCheckpoint(playerid);
+	    	JatekosInfo[playerid][ConvoyMunkak]++;
 			return 1;
 		}
 		else SendClientMessage(playerid, RED,"Nem ülsz teherautóban!");
@@ -790,10 +847,14 @@ public JatekosBelep(playerid)
         SpawnPlayer(playerid);
         JatekosInfo[playerid][Penz] = cache_get_field_content_int(0, "Penz",kapcs);
         GivePlayerMoney(playerid, JatekosInfo[playerid][Penz]);
-        JatekosInfo[playerid][buntetes] = cache_get_field_content_int(0,"buntetes",kapcs);
 		JatekosInfo[playerid][alevel] = cache_get_field_content_int(0, "alevel",kapcs);
 		JatekosInfo[playerid][db_id] = cache_get_field_content_int(0, "ID",kapcs);
-        SendClientMessage(playerid, LIGHTBLUE, "Üdv újra itt!\nHasználd a /foglalkozas parancsot!");
+		JatekosInfo[playerid][ConvoyMunkak] = cache_get_field_content_int(0, "cmunka",kapcs);
+		JatekosInfo[playerid][SzereloMunkak] = cache_get_field_content_int(0, "szmunka",kapcs);
+		JatekosInfo[playerid][RendorMunkak] = cache_get_field_content_int(0, "rmunka",kapcs);
+		JatekosInfo[playerid][BankMoney] = cache_get_field_content_int(0, "bankmoney",kapcs);
+		JatekosInfo[playerid][buntetes] = cache_get_field_content_int(0, "buntetes",kapcs);
+        SendClientMessage(playerid, GREEN, "Üdv újra itt!\nHasználd a /foglalkozas parancsot!");
         if(JatekosInfo[playerid][buntetes] != 0)
         {
             new buntStr[128];
@@ -806,7 +867,7 @@ public JatekosBelep(playerid)
             SetPlayerColor(playerid, YELLOW);
         }
         buntiszabad[playerid] = true;
-        return 1;
+		return 1;
 }
 forward AutoLoad();
 public AutoLoad()
@@ -881,7 +942,7 @@ public ObjectLoad()
 	return 1;
 }
 
-forward SaveObject();
+/*forward SaveObject();
 public SaveObject()
 {
 	for(new i; i != MAX_OBJECTS; i ++)
@@ -893,7 +954,7 @@ public SaveObject()
 	}
 	print("Minden object mentve!");
 	return 1;
-}//Objektum betöltés vége SQL-ből.
+}//Objektum betöltés vége SQL-ből.*/
 
 forward HazLoad();
 public HazLoad()
@@ -1062,28 +1123,16 @@ CMD:nyit(playerid,params[])
 
 CMD:stat(playerid,params[])
 {
-	/*new string[128],holder[128];
-    format(string, sizeof(string),"{0FA0D1}Név: {FFFFFF}%s\n{0FA0D1}Pénz: {FFFFFF}%d Ft\n{0FA0D1}Fuvarok: {FFFFFF}%d",JatekosInfo[playerid][Nev],JatekosInfo[playerid][Penz]);
-	strcat(holder, string, sizeof(holder));
-	new DialogString[128];
- 	format(DialogString,sizeof DialogString,"%s %s\n%s %dFt\n%s %d:%d:%d\n",
-	StatStr[0],JatekosInfo[playerid][Nev],StatStr[1],JatekosInfo[playerid][Penz],StatStr[2],PlayerTime[playerid][Ora],PlayerTime[playerid][Perc],PlayerTime[playerid][Mp]);*/
-	/*new StatsMsg[1000],TitleMsg[128];
-	format(StatsMsg, 1000, "Kilometers driven: {00FF00}%f{FFFFFF}\n", (APlayerData[playerid][StatsMetersDriven] / 1000));
-	format(StatsMsg, 1000, "%sFinished trucker jobs: {00FF00}%i{FFFFFF}\n", StatsMsg, APlayerData[playerid][StatsTruckerJobs]);
-	format(StatsMsg, 1000, "%sFinished convoy jobs: {00FF00}%i{FFFFFF}\n", StatsMsg, APlayerData[playerid][StatsConvoyJobs]);
-	format(StatsMsg, 1000, "%sFinished busdriver routes: {00FF00}%i{FFFFFF}\n", StatsMsg, APlayerData[playerid][StatsBusDriverJobs]);
-	format(StatsMsg, 1000, "%sFinished pilot jobs: {00FF00}%i{FFFFFF}\n", StatsMsg, APlayerData[playerid][StatsPilotJobs]);
-	format(StatsMsg, 1000, "%sFinished courier jobs: {00FF00}%i{FFFFFF}\n", StatsMsg, APlayerData[playerid][StatsCourierJobs]);
-	format(StatsMsg, 1000, "%sFinished roadworker jobs: {00FF00}%i{FFFFFF}\n", StatsMsg, APlayerData[playerid][StatsRoadworkerJobs]);
-	format(StatsMsg, 1000, "%sFixed vehicles for assistance: {00FF00}%i{FFFFFF}\n", StatsMsg, APlayerData[playerid][StatsAssistance]);
-	format(StatsMsg, 1000, "%sFinished mafia jobs: {00FF00}%i{FFFFFF}\n", StatsMsg, APlayerData[playerid][StatsMafiaJobs]);
-	format(StatsMsg, 1000, "%sDelivered stolen mafia-loads: {00FF00}%i{FFFFFF}\n", StatsMsg, APlayerData[playerid][StatsMafiaStolen]);
-	format(StatsMsg, 1000, "%sFined players: {00FF00}%i{FFFFFF}\n", StatsMsg, APlayerData[playerid][StatsPoliceFined]);
-	format(StatsMsg, 1000, "%sJailed players: {00FF00}%i{FFFFFF}\n", StatsMsg, APlayerData[playerid][StatsPoliceJailed]);
-	format(TitleMsg, 128, "{0FA0D1}Statistics for %s:", JatekosInfo[playerid][Nev]);
-	ShowPlayerDialog(playerid, stat, DIALOG_STYLE_LIST, TitleMsg, StatsMsg, "Ok", "Mégsem");*/
-	return 1;
+	new StatsMsg[1000],TitleMsg[128];
+	format(StatsMsg, 1000, "Levezetett kilóméter:\t {0FA0D1}%.2f KM{FFFFFF}\n",d);
+	format(StatsMsg, 1000, "%sPénzed:\t\t {0FA0D1}%i Ft{FFFFFF}\n", StatsMsg, JatekosInfo[playerid][Penz]);
+	format(StatsMsg, 1000, "%sLeszállított fuvarok:\t {0FA0D1}%i{FFFFFF}\n", StatsMsg,JatekosInfo[playerid][ConvoyMunkak]);
+	format(StatsMsg, 1000, "%sMegjavított járművek:\t {0FA0D1}%i{FFFFFF}\n", StatsMsg,JatekosInfo[playerid][SzereloMunkak]);
+	format(StatsMsg, 1000, "%sÖsszes bünetés:\t {0FA0D1}%i{FFFFFF}\n", StatsMsg,JatekosInfo[playerid][buntetes]);
+	format(StatsMsg, 1000, "%sSzerveren töltött idő:\t {0FA0D1}Nap: %i Óra: %i:%i:%i{FFFFFF}\n", StatsMsg,PlayerTime[playerid][Nap],PlayerTime[playerid][Ora],PlayerTime[playerid][Perc],PlayerTime[playerid][Mp]);
+	format(TitleMsg, 128, "{0FA0D1}Statisztika {FFFFFF}%s:", JatekosInfo[playerid][Nev]);
+	ShowPlayerDialog(playerid, stat, DIALOG_STYLE_LIST, TitleMsg, StatsMsg, "Ok", "");
+	return 1; 
 }
 
 CMD:foglalkozas(playerid,params[])
@@ -1098,7 +1147,6 @@ CMD:felmond(playerid,params[])
     SetPVarInt(playerid, "Frakcio", 0);
 	SendClientMessage(playerid, GREEN, string);
 	SendClientMessage(playerid, ORANGE, "Használd a /foglalkozas parancsot egy új munka elvállalásához!");
-	SetPlayerColor(playerid, YELLOW);
 	return 1;
 }
 
@@ -1186,6 +1234,19 @@ CMD:belep(playerid,params[])
 return 1;
 }
 
+CMD:kilep(playerid,params[])
+{
+	for(new i=0; i<sizeof(HazInfo); i++)
+	{
+		if(IsPlayerInRangeOfPoint(playerid,2,HazInfo[i][h_x],HazInfo[i][h_y],HazInfo[i][h_z]))
+		{
+			SetPlayerPos(playerid,HazInfo[i][h_x],HazInfo[i][h_y],HazInfo[i][h_z]);
+			SetPlayerInterior(playerid, 0);
+		}
+	}
+return 1;
+}
+
 CMD:leakaszt(playerid,params[])
 {
 	if(IsTrailerAttachedToVehicle(GetPlayerVehicleID(playerid)))
@@ -1233,8 +1294,47 @@ CMD:adminlvl(playerid,params[])
 
 CMD:restart(playerid,params[])
 {
+	new Msg[128];
+	
 	if(!isAdmin(playerid,4))return SendClientMessage(playerid,RED,"Nem vagy megfelelő admin szinten!");
-	SendClientMessageToAll(LIGHTBLUE, "RESTART");
+	{
+    	if (sscanf(params, "i", RestartTime))return SendClientMessage(playerid, RED, "Használat: \"/restart <Restartidő (perc)>\"");
+    	format(Msg, 128, "A szerver ujraindul %i perc mulva!", RestartTime);
+		GameTextForAll(Msg, 5000, 3);
+		SendClientMessageToAll(LIGHTBLUE, Msg);
+		SetTimer("Timer_Restart", 1000 * 60, true);
+	}
+	return 1;
+}
+
+forward Timer_Restart();
+public Timer_Restart()
+{
+new Msg[128];
+RestartTime--;
+
+	format(Msg, 128, "A szerver ujraindul %i perc mulva!", RestartTime);
+	GameTextForAll(Msg, 5000, 3);
+	SendClientMessageToAll(LIGHTBLUE, Msg);
+	
+	switch(RestartTime)
+	{
+		case 0:
+		{
+			GameTextForAll("A szerver ujraindul:Mindenkit kirug!", 5000, 3);
+			for(new i=0; i<MAX_PLAYERS; i++)
+			{
+				Kick(i);
+				SetTimer("Timer_Restart_Reboot", 1000 * 5, false);
+			}
+		}
+	}
+return 1;
+}
+
+forward Timer_Restart_Reboot();
+public Timer_Restart_Reboot()
+{
 	SendRconCommand("gmx");
 	return 1;
 }
@@ -1402,7 +1502,7 @@ CMD:konvoly(playerid,params[])
 {
 new str[128];
 ConvoyDB++;
-if(ConvoyDB > MAX_CONVOY)
+if(ConvoyDB <= MAX_CONVOY)
 {
 	if(vanconvoy[playerid] == false)
 	{
@@ -1413,7 +1513,7 @@ if(ConvoyDB > MAX_CONVOY)
 			vanconvoy[playerid] = true;
 			format(str, sizeof(str),"%s elindította a(z) %i. konvolyt! /joinkonvoly",JatekosInfo[playerid][Nev],ConvoyDB);
 			SendClientMessageToAll(YELLOW,str);
-			SetPlayerColor(playerid, ORANGE);
+			SetPlayerColor(playerid, GREEN);
 		}else SendClientMessage(playerid,RED,"Nem vagy kamionos!");
 	}else SendClientMessage(playerid,RED,"Már indítottál egy konvolyt!");
 }else SendClientMessage(playerid,RED,"Nem lehet több konvolyt indítani! Csatlakozz egyhez!");
@@ -1447,7 +1547,7 @@ if(GetPVarInt(playerid,"Frakcio") == KAMIONOS)
 		{
 	        isinconvoy[playerid] = false;
 	        SendClientMessage(playerid,GREEN,"Kiléptél a konvolyból!");
-		}else SendClientMessage(playerid,RED,"Már konvolyba vagy!");
+		}else SendClientMessage(playerid,RED,"Nem vagy konvolyban!");
 	}else SendClientMessage(playerid,RED,"Nincs konvoly nem tudsz csatlakozni!");
 }else SendClientMessage(playerid,RED,"Nem vagy kamionos!");
 return 1;
@@ -1589,6 +1689,7 @@ CMD:javit(playerid)
 						SetVehicleHealth(a, 1000.0);
 						RepairVehicle(a);
 						SendClientMessage(playerid,GREEN, "Autó megjavítva!");
+						JatekosInfo[playerid][SzereloMunkak]++;
 					}
 					//else SendClientMessage(playerid,RED, "Nem vagy kocsi közelében!");
 				}
@@ -1626,7 +1727,7 @@ CMD:lecsuk(playerid,params[])
 {
 	new giveplayerid, Float:pos[3];
 	if(sscanf(params,"i",giveplayerid)) return SendClientMessage(playerid,RED,"Használat: /lecsuk [játékos id]");
-	if(GetPVarInt(playerid,"Frakcio") == RENDOR) return SendClientMessage(playerid,RED,"Nem vagy rendőr te nem csukhatsz le senkit!");
+	if(GetPVarInt(playerid,"Frakcio") != RENDOR) return SendClientMessage(playerid,RED,"Nem vagy rendőr te nem csukhatsz le senkit!");
 	if(!IsPlayerConnected(giveplayerid)) return SendClientMessage(playerid,RED,"A játékos nincs csatlakozva nem tudod lecsukni.");
 	GetPlayerPos(giveplayerid, pos[0], pos[1], pos[2]);
 	if(!IsPlayerInRangeOfPoint(playerid, 2.0, pos[0], pos[1], pos[2])) return SendClientMessage(playerid, RED, "A játékos nincs közeledben!");
