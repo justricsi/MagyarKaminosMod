@@ -15,6 +15,7 @@
 #define BLUE      0x0000FFFF
 #define GREEN     0x33AA33AA
 #define ORANGE    0xFF9900AA
+#define ORANGE    0xFF9900AA
 
 #define SZERELO        100000
 #define RENDOR         100001
