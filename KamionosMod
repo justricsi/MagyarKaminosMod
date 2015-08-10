@@ -44,6 +44,9 @@ new bool:isinconvoy[MAX_PLAYERS];
 new bool:vanconvoy[MAX_PLAYERS];
 new bool:buntiszabad[MAX_PLAYERS] = true; // trafi
 new classenable[MAX_PLAYERS];
+new regiConvoyStat[MAX_PLAYERS] = 0;
+new regiSzereloStat[MAX_PLAYERS] = 0;
+new regiRendorStat[MAX_PLAYERS] = 0;
 
 main()
 {
@@ -319,8 +322,8 @@ public OnPlayerDisconnect(playerid, reason)
     GetPlayerPos(playerid, JatekosInfo[playerid][X], JatekosInfo[playerid][Y], JatekosInfo[playerid][Z]);
     JatekosInfo[playerid][Skin] = GetPlayerSkin(playerid);
     //JatekosInfo[playerid][Penz] = GetPlayerMoney(playerid);
-    mysql_format(kapcs, query, 384, "UPDATE jatekosok SET Penz='%d',X='%f',Y='%f',Z='%f',skin='%d',alevel='%i',cmunka='%i',szmunka='%i' WHERE Nev='%s'",
-	JatekosInfo[playerid][Penz], JatekosInfo[playerid][X], JatekosInfo[playerid][Y], JatekosInfo[playerid][Z],JatekosInfo[playerid][Skin],JatekosInfo[playerid][alevel],JatekosInfo[playerid][ConvoyMunkak],JatekosInfo[playerid][SzereloMunkak],JatekosInfo[playerid][Nev]);
+    mysql_format(kapcs, query, 384, "UPDATE jatekosok SET Penz='%d',X='%f',Y='%f',Z='%f',skin='%d',alevel='%i',cmunka='%i',szmunka='%i',rmunka='%i' WHERE Nev='%s'",
+	JatekosInfo[playerid][Penz], JatekosInfo[playerid][X], JatekosInfo[playerid][Y], JatekosInfo[playerid][Z],JatekosInfo[playerid][Skin],JatekosInfo[playerid][alevel],JatekosInfo[playerid][ConvoyMunkak],JatekosInfo[playerid][SzereloMunkak],JatekosInfo[playerid][RendorMunkak],JatekosInfo[playerid][Nev]);
     mysql_tquery(kapcs, query);
     return 1;
 }
@@ -390,6 +393,7 @@ if (((newkeys & KEY_ACTION) && !(oldkeys & KEY_ACTION)) && (GetPlayerVehicleID(p
 						SendClientMessage(playerid,GREEN,buntet);
 						SendClientMessage(i, ORANGE,"Egy rendőr megbüntetett!");
 						SetPlayerColor(i, YELLOW);
+						JatekosInfo[playerid][RendorMunkak] += 1;
 					}else SendClientMessage(playerid,RED,"Nincs büntetése a játékosnak!");
 				}else SendClientMessage(playerid,RED,"Nincs a közeledben a játékos!");
 			}
@@ -443,6 +447,14 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 new bool: utdijfizet[MAX_PLAYERS] = true;
 public OnPlayerUpdate(playerid)
 {
+	
+	if(regiConvoyStat[playerid] < JatekosInfo[playerid][ConvoyMunkak] || regiSzereloStat[playerid] < JatekosInfo[playerid][SzereloMunkak] || regiRendorStat[playerid] < JatekosInfo[playerid][RendorMunkak])
+	{
+	    SetPlayerScore(playerid, JatekosInfo[playerid][ConvoyMunkak] + JatekosInfo[playerid][SzereloMunkak] + JatekosInfo[playerid][RendorMunkak]);
+        regiConvoyStat[playerid] = JatekosInfo[playerid][ConvoyMunkak];
+        regiSzereloStat[playerid] = JatekosInfo[playerid][SzereloMunkak];
+        regiRendorStat[playerid] = JatekosInfo[playerid][RendorMunkak];
+	}
     /*if(IsPlayerInRangeOfPoint(playerid, 1.0,1736.3951,497.2198,29.1154))
     {
     	MoveObject(Sorompok[2],2279.2000000,611.9000200,11.1000001,1.0+0.0001,0,12.0000000,0);
@@ -699,6 +711,10 @@ public JatekosBelep(playerid)
             SetPlayerColor(playerid, YELLOW);
         }
         buntiszabad[playerid] = true;
+        SetPlayerScore(playerid, JatekosInfo[playerid][ConvoyMunkak] + JatekosInfo[playerid][SzereloMunkak] + JatekosInfo[playerid][RendorMunkak]);
+        regiConvoyStat[playerid] = JatekosInfo[playerid][ConvoyMunkak];
+        regiSzereloStat[playerid] = JatekosInfo[playerid][SzereloMunkak];
+        regiRendorStat[playerid] = JatekosInfo[playerid][RendorMunkak];
 		return 1;
 }
 forward AutoLoad();
@@ -958,8 +974,9 @@ CMD:stat(playerid,params[])
 	new StatsMsg[1000],TitleMsg[128],i;
 	format(StatsMsg, 1000, "Levezetett kilóméter:\t {0FA0D1}%.3f Km{FFFFFF}\n",AutoInfo[i][d]);
 	format(StatsMsg, 1000, "%sPénzed:\t\t {0FA0D1}%i Ft{FFFFFF}\n", StatsMsg, JatekosInfo[playerid][Penz]);
-	format(StatsMsg, 1000, "%sLeszállított fuvarok:\t {0FA0D1}%i{FFFFFF}\n", StatsMsg,JatekosInfo[playerid][ConvoyMunkak]);
-	format(StatsMsg, 1000, "%sMegjavított járművek:\t {0FA0D1}%i{FFFFFF}\n", StatsMsg,JatekosInfo[playerid][SzereloMunkak]);
+	format(StatsMsg, 1000, "%sLeszállított fuvarok:  \t {0FA0D1}%i{FFFFFF}\n", StatsMsg,JatekosInfo[playerid][ConvoyMunkak]);
+	format(StatsMsg, 1000, "%sMegjavított járművek:  \t {0FA0D1}%i{FFFFFF}\n", StatsMsg,JatekosInfo[playerid][SzereloMunkak]);
+	format(StatsMsg, 1000, "%sElkapott játékosok:\t {0FA0D1}%i{FFFFFF}\n", StatsMsg,JatekosInfo[playerid][RendorMunkak]);
 	format(StatsMsg, 1000, "%sÖsszes bünetés:\t {0FA0D1}%i{FFFFFF}\n", StatsMsg,JatekosInfo[playerid][buntetes]);
 	format(StatsMsg, 1000, "%sSzerveren töltött idő:\t {0FA0D1}Nap: %i Óra: %i:%i:%i{FFFFFF}\n", StatsMsg,PlayerTime[playerid][Nap],PlayerTime[playerid][Ora],PlayerTime[playerid][Perc],PlayerTime[playerid][Mp]);
 	format(TitleMsg, 128, "{0FA0D1}Statisztika {FFFFFF}%s:", JatekosInfo[playerid][Nev]);
@@ -1691,7 +1708,7 @@ WithdrawMoney = strval(inputtext);
 		{
 	        JatekosInfo[playerid][BankMoney] -= WithdrawMoney;
 			JatekosInfo[playerid][Penz] += WithdrawMoney;
-			mysql_format(kapcs, query, sizeof(query), "UPDATE jatekosok SET bankmoney = %i WHERE id = %i", JatekosInfo[playerid][BankMoney], JatekosInfo[playerid][db_id]);
+			mysql_format(kapcs, query, sizeof(query), "UPDATE jatekosok SET Penz = %i, bankmoney = %i WHERE id = %i", JatekosInfo[playerid][Penz], JatekosInfo[playerid][BankMoney], JatekosInfo[playerid][db_id]);
 			mysql_tquery(kapcs, query);
 			format(Msg, 128, "{FFFFFF}Kivettél a bankból {0FA0D1}%i Ft-ot", WithdrawMoney);
 			SendClientMessage(playerid, 0xFFFFFFFF, Msg);
@@ -1713,7 +1730,7 @@ DepositMoney = strval(inputtext);
 		{
 	        JatekosInfo[playerid][BankMoney] += DepositMoney;
 			JatekosInfo[playerid][Penz] -= DepositMoney;
-			mysql_format(kapcs, query, sizeof(query), "UPDATE jatekosok SET bankmoney = %i WHERE id = %i", JatekosInfo[playerid][BankMoney], JatekosInfo[playerid][db_id]);
+			mysql_format(kapcs, query, sizeof(query), "UPDATE jatekosok SET Penz = %i, bankmoney = %i WHERE id = %i", JatekosInfo[playerid][Penz], JatekosInfo[playerid][BankMoney], JatekosInfo[playerid][db_id]);
 			mysql_tquery(kapcs, query);
 			format(Msg, 128, "{FFFFFF}Betettél a bankba {0FA0D1}%i Ft-ot", DepositMoney);
 			SendClientMessage(playerid, 0xFFFFFFFF, Msg);
