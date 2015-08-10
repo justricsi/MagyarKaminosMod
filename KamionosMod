@@ -372,19 +372,27 @@ if (((newkeys & KEY_ACTION) && !(oldkeys & KEY_ACTION)) && (GetPlayerVehicleID(p
 	if(GetPVarInt(playerid,"Frakcio") == RENDOR)
 	{
 	    new Float:Xpos,Float:Ypos,Float:Zpos;
-		for(new i = 0; i < MAX_PLAYERS; i++)
+		for(new i = 0; i <= GetPlayerPoolSize(); i++)
 		{
-			if(i == playerid)return SendClientMessage(playerid,RED,"Magadat nem büntetheted meg!");
-			if(JatekosInfo[i][buntetes] == 0)
+			if(i != playerid)
 			{
 				GetPlayerPos(i, Xpos, Ypos, Zpos);
-				if(IsPlayerInRangeOfPoint(i, 4.0, Xpos, Ypos, Zpos))
+				if(IsPlayerInRangeOfPoint(playerid, 4.0, Xpos, Ypos, Zpos))
 				{
-					JatekosInfo[playerid][Penz] += JatekosInfo[i][buntetes];
-				    format(buntet,sizeof(buntet),"Levetted a büntetést: %dFt-ot",JatekosInfo[i][buntetes]);
-					SendClientMessage(playerid,GREEN,buntet);
+				    if(JatekosInfo[i][buntetes] != 0)
+					{
+						JatekosInfo[playerid][Penz] += JatekosInfo[i][buntetes];
+						JatekosInfo[i][Penz] -= JatekosInfo[i][buntetes];
+						format(buntet,sizeof(buntet),"Levetted a büntetést: %i Ft-ot", JatekosInfo[i][buntetes]);
+      					JatekosInfo[i][buntetes] = 0;
+						mysql_format(kapcs, query, sizeof(query), "UPDATE jatekosok SET Penz = %i, buntetes = %i WHERE id = %i", JatekosInfo[i][Penz], JatekosInfo[i][buntetes], JatekosInfo[i][db_id]);
+						mysql_tquery(kapcs, query);
+						SendClientMessage(playerid,GREEN,buntet);
+						SendClientMessage(i, ORANGE,"Egy rendőr megbüntetett!");
+						SetPlayerColor(i, YELLOW);
+					}else SendClientMessage(playerid,RED,"Nincs büntetése a játékosnak!");
 				}else SendClientMessage(playerid,RED,"Nincs a közeledben a játékos!");
-			}else SendClientMessage(playerid,RED,"Nincs büntetése a játékosnak!");
+			}
 		}
 	}else SendClientMessage(playerid,RED,"Nem vagy rendőr!");
 }
@@ -522,13 +530,13 @@ public OnPlayerUpdate(playerid)
 			utdijfizet[playerid] = false;
    		}
     }
-    
+
     if(IsPlayerInRangeOfPoint(playerid,8.0,2257.0000000,2031.3000000,12.6000000))
     {
         MoveObject(Sorompok[10],2257.0000000,2031.3000000,-12.6000000,2.0+0.0001,0,0,0);
         SetTimer("Kapuzar", 3000, false);
 	}
-	
+
 	//speedcam
 	new Float:speed = GetPlayerSpeed(playerid);
 	new roundspeed = floatround(speed);
@@ -565,6 +573,7 @@ public OnPlayerUpdate(playerid)
 					            buntiszabad[playerid] = false;
 					            mysql_format(kapcs, query, sizeof(query), "UPDATE jatekosok SET buntetes = %i WHERE id = %i", JatekosInfo[playerid][buntetes], JatekosInfo[playerid][db_id]);
 								mysql_tquery(kapcs, query);
+								SetPlayerColor(playerid, ORANGE);
 								new rStr[128];
 								for(new j = 0; j < MAX_PLAYERS; j++)
 								{
@@ -588,6 +597,7 @@ public OnPlayerUpdate(playerid)
 					            buntiszabad[playerid] = false;
 					            mysql_format(kapcs, query, sizeof(query), "UPDATE jatekosok SET buntetes = %i WHERE id = %i", JatekosInfo[playerid][buntetes], JatekosInfo[playerid][db_id]);
 								mysql_tquery(kapcs, query);
+								SetPlayerColor(playerid, ORANGE);
 								new rStr[128];
 								for(new j = 0; j < MAX_PLAYERS; j++)
 								{
@@ -652,6 +662,8 @@ public JatekosBeregelt(playerid)
         TogglePlayerSpectating(playerid, false);
         SpawnPlayer(playerid);
         SendClientMessage(playerid, 0xFFFFFFFF, "Jó játékot kívánok!");
+        SendClientMessage(playerid, GREEN, "Használd a /foglalkozas parancsot!");
+        buntiszabad[playerid] = true;
         return 1;
 }
 
@@ -952,7 +964,7 @@ CMD:stat(playerid,params[])
 	format(StatsMsg, 1000, "%sSzerveren töltött idő:\t {0FA0D1}Nap: %i Óra: %i:%i:%i{FFFFFF}\n", StatsMsg,PlayerTime[playerid][Nap],PlayerTime[playerid][Ora],PlayerTime[playerid][Perc],PlayerTime[playerid][Mp]);
 	format(TitleMsg, 128, "{0FA0D1}Statisztika {FFFFFF}%s:", JatekosInfo[playerid][Nev]);
 	ShowPlayerDialog(playerid, stat, DIALOG_STYLE_LIST, TitleMsg, StatsMsg, "Ok", "");
-	return 1; 
+	return 1;
 }
 
 CMD:bank(playerid,params[])
@@ -1142,7 +1154,7 @@ CMD:adminlvl(playerid,params[])
 CMD:restart(playerid,params[])
 {
 	new Msg[128];
-	
+
 	if(!isAdmin(playerid,4))return SendClientMessage(playerid,RED,"Nem vagy megfelelő admin szinten!");
 	{
     	if (sscanf(params, "i", RestartTime))return SendClientMessage(playerid, RED, "Használat: \"/restart <Restartidő (perc)>\"");
@@ -1163,7 +1175,7 @@ RestartTime--;
 	format(Msg, 128, "A szerver ujraindul %i perc mulva!", RestartTime);
 	GameTextForAll(Msg, 5000, 3);
 	SendClientMessageToAll(LIGHTBLUE, Msg);
-	
+
 	switch(RestartTime)
 	{
 		case 0:
