@@ -26,6 +26,7 @@
 #define MAX_CONVOY_TAG 10
 #define MAX_VEHICLE 10000
 #define MAX_FUVAR   100000
+#define FUVMENT 99
 
 //#define PRESSED(%0) \(((newkeys & (%0)) == (%0)) && ((oldkeys & (%0)) != (%0)))
 //#define RELEASED(%0) \(((newkeys & (%0)) != (%0)) && ((oldkeys & (%0)) == (%0)))
@@ -35,6 +36,8 @@ new kapcs, query[2000];
 new ObjektCount=0;
 new AutoCount=0;
 new HazCount=0;
+new kamdb = 0;
+new fuvardb = 0;
 new SorompoID=0;
 new ConvoyDB=0;
 new RestartTime;
@@ -47,6 +50,8 @@ new classenable[MAX_PLAYERS];
 new regiConvoyStat[MAX_PLAYERS] = 0;
 new regiSzereloStat[MAX_PLAYERS] = 0;
 new regiRendorStat[MAX_PLAYERS] = 0;
+new playerBoltElott[MAX_PLAYERS];
+new rakomanyModelid[MAX_PLAYERS][10];
 
 main()
 {
@@ -59,6 +64,7 @@ main()
 	mysql_tquery(kapcs, "SELECT * FROM `objects`","ObjectLoad"); 				//Objektumok betöltése
 	mysql_tquery(kapcs, "SELECT * FROM `autok`","AutoLoad"); 					//Autók betöltése
 	mysql_tquery(kapcs, "SELECT * FROM `scam`","KamLoad"); 					    //Kamerák betöltése
+	mysql_tquery(kapcs, "SELECT * FROM `fuvarok`","FuvarLoad");                      //Fuvarok betöltése
  	mysql_tquery(kapcs, "SELECT H.id, H.tulaj, H.h_x, H.h_y, H.h_z, H.ih_x, H.ih_y, H.ih_z, H.interior, H.ar, H.pickupID, J.nev FROM hazak H JOIN jatekosok J ON H.tulaj = J.ID","HazLoad");
 }
 
@@ -82,7 +88,7 @@ enum eAutoInfo{
     Float:ujy2,
     Float:ujz2
 }
-new AutoInfo[50][eAutoInfo];
+new AutoInfo[MAX_VEHICLES][eAutoInfo];
 
 enum eJatekosInfo {
 	Nev[25],
@@ -144,6 +150,21 @@ enum Kamerak
 }
 new KamInfo[100][Kamerak];
 
+enum Fuvarok
+{
+	id,
+	models,
+	Float:h_x,
+	Float:h_y,
+	Float:h_z,
+	Float:c_x,
+	Float:c_y,
+	Float:c_z,
+	Float:tav
+}
+new FuvarInfo[100][Fuvarok];
+new FuvarSeged[MAX_PLAYERS][100][1];
+
 enum
 {
 	d_reg,
@@ -155,7 +176,8 @@ enum
 	DialogBank,
 	DialogBankDeposit,
 	DialogBankWithdraw,
-	DialogAutoKer
+	DialogAutoKer,
+	DialogMunkak
 } //Dialogok automatikus számozása.
 
 enum ValasztottAutomata
@@ -192,10 +214,12 @@ new FuvarStr[][] =
 
 public OnGameModeInit()
 {
+	ManualVehicleEngineAndLights();
 	UsePlayerPedAnims();         			//Normál futás
 	DisableInteriorEnterExits(); 			//Interior kikapcs
 	EnableStuntBonusForAll(0);              //ugrató pénz kikapcs
 	SetGameModeText(GMN);
+	
 
     return 1;
 }
@@ -235,13 +259,14 @@ public OnPlayerConnect(playerid)
 	    RemoveBuildingForPlayer(playerid,1231,2528.8894,2724.271,10.87956,4.951889);
 
 		//Mapiconok
-		SetPlayerMapIcon(playerid, 1, 2116.1753,919.9009,10.8168, 55, 0, MAPICON_GLOBAL);
-		SetPlayerMapIcon(playerid, 2, 2639.0347,1106.4211,10.8145, 55, 0, MAPICON_GLOBAL);
-		SetPlayerMapIcon(playerid, 3, 2202.4346,2473.9463,10.8035, 55, 0, MAPICON_GLOBAL);
-		SetPlayerMapIcon(playerid, 4, 2147.3462,2748.0212,10.8098, 55, 0, MAPICON_GLOBAL);
-		SetPlayerMapIcon(playerid, 5, 1596.6428,2198.7942,10.8044, 55, 0, MAPICON_GLOBAL);
-		SetPlayerMapIcon(playerid, 6, 615.3072,1689.8611,6.9801, 55, 0, MAPICON_GLOBAL);
+		SetPlayerMapIcon(playerid, 1, 2116.1753,919.9009,10.8168, 56, 0, MAPICON_LOCAL);
+		SetPlayerMapIcon(playerid, 2, 2639.0347,1106.4211,10.8145, 56, 0, MAPICON_LOCAL);
+		SetPlayerMapIcon(playerid, 3, 2202.4346,2473.9463,10.8035, 56, 0, MAPICON_LOCAL);
+		SetPlayerMapIcon(playerid, 4, 2147.3462,2748.0212,10.8098, 56, 0, MAPICON_LOCAL);
+		SetPlayerMapIcon(playerid, 5, 1596.6428,2198.7942,10.8044, 56, 0, MAPICON_LOCAL);
+		SetPlayerMapIcon(playerid, 6, 615.3072,1689.8611,6.9801, 56, 0, MAPICON_LOCAL);
 		SetPlayerMapIcon(playerid, 7, 2256.7107,2032.0468,11.2071, 45, 0, MAPICON_LOCAL);
+		SetPlayerMapIcon(playerid, 8, 1658.5491,2199.5457,10.8203, 55, 0, MAPICON_LOCAL); //Autoshop
 		//Text Labelek
 		Create3DTextLabel("/tankol\n\n450Ft/liter", YELLOW, 2116.1753,919.9009,10.8168, 40.0, 0, 0);
 		Create3DTextLabel("/tankol\n\n450Ft/liter", YELLOW, 2639.0347,1106.4211,10.8145, 40.0, 0, 0);
@@ -249,6 +274,9 @@ public OnPlayerConnect(playerid)
 		Create3DTextLabel("/tankol\n\n450Ft/liter", YELLOW, 2147.3462,2748.0212,10.8098, 40.0, 0, 0);
 		Create3DTextLabel("/tankol\n\n450Ft/liter", YELLOW, 1596.6428,2198.7942,10.8044, 40.0, 0, 0);
 		Create3DTextLabel("/tankol\n\n450Ft/liter", YELLOW, 615.3072,1689.8611,6.9801, 40.0, 0, 0);
+
+        CreatePickup(1274,1,1658.5491,2199.5457,10.8203,-1); // autoshop
+        Create3DTextLabel("[Autó kereskedés]", YELLOW, 1658.5491,2199.5457,11.3, 40.0, 0, 0); //autoshop
 
 		isinconvoy[playerid] = false;
 		vanconvoy[playerid] = false;
@@ -268,6 +296,11 @@ stock Float:GetPlayerSpeed(playerid, bool:Zasd = true) //km.h
     else Speed = floatsqroot(floatadd(floatpower(SpeedX, 2.0), floatpower(SpeedY, 2.0)));
     Speed = floatround(Speed * 100 * 1.61);
     return Speed;
+}
+
+public OnVehicleSpawn( vehicleid )
+{
+    return 1;
 }
 
 forward km_counter(i,playerid);
@@ -319,13 +352,19 @@ public RegEllenorzes(playerid) {
 
 public OnPlayerDisconnect(playerid, reason)
 {
+    JatekosMent(playerid);
+    return 1;
+}
+
+forward JatekosMent(playerid);
+public JatekosMent(playerid)
+{
     GetPlayerPos(playerid, JatekosInfo[playerid][X], JatekosInfo[playerid][Y], JatekosInfo[playerid][Z]);
     JatekosInfo[playerid][Skin] = GetPlayerSkin(playerid);
     //JatekosInfo[playerid][Penz] = GetPlayerMoney(playerid);
-    mysql_format(kapcs, query, 384, "UPDATE jatekosok SET Penz='%d',X='%f',Y='%f',Z='%f',skin='%d',alevel='%i',cmunka='%i',szmunka='%i',rmunka='%i' WHERE Nev='%s'",
-	JatekosInfo[playerid][Penz], JatekosInfo[playerid][X], JatekosInfo[playerid][Y], JatekosInfo[playerid][Z],JatekosInfo[playerid][Skin],JatekosInfo[playerid][alevel],JatekosInfo[playerid][ConvoyMunkak],JatekosInfo[playerid][SzereloMunkak],JatekosInfo[playerid][RendorMunkak],JatekosInfo[playerid][Nev]);
+    mysql_format(kapcs, query, 384, "UPDATE jatekosok SET Penz='%d',X='%f',Y='%f',Z='%f',alevel='%i',cmunka='%i',szmunka='%i',rmunka='%i' WHERE Nev='%s'",
+	JatekosInfo[playerid][Penz], JatekosInfo[playerid][X], JatekosInfo[playerid][Y], JatekosInfo[playerid][Z],JatekosInfo[playerid][alevel],JatekosInfo[playerid][ConvoyMunkak],JatekosInfo[playerid][SzereloMunkak],JatekosInfo[playerid][RendorMunkak],JatekosInfo[playerid][Nev]);
     mysql_tquery(kapcs, query);
-    return 1;
 }
 
 public OnPlayerSpawn(playerid)
@@ -334,8 +373,7 @@ public OnPlayerSpawn(playerid)
 	{
 	    SetPlayerPos(playerid, 1607.2609, 1822.3566, 10.8203); // Replace X, Y, and Z With the Hospital Co-ords.
 	    jatekosMeghalt[playerid] = 0; // This is saying the player is not dead.
-	    //JatekosInfo[playerid][Skin] = cache_get_field_content_int(0, "skin",kapcs);
- 		//SetPlayerSkin(playerid,JatekosInfo[playerid][Skin]);
+ 		SetPlayerSkin(playerid,JatekosInfo[playerid][Skin]);
 	    return 1;
 	}
 	return 1;
@@ -398,24 +436,33 @@ if (((newkeys & KEY_ACTION) && !(oldkeys & KEY_ACTION)) && (GetPlayerVehicleID(p
 				}else SendClientMessage(playerid,RED,"Nincs a közeledben a játékos!");
 			}
 		}
-	}else SendClientMessage(playerid,RED,"Nem vagy rendőr!");
+	}//else SendClientMessage(playerid,RED,"Nem vagy rendőr!");
 }
+
+if ((((newkeys & KEY_SPRINT) && !(oldkeys & KEY_SPRINT)) || ((newkeys & KEY_JUMP) && !(oldkeys & KEY_JUMP))) && (GetPlayerVehicleID(playerid) != 0))
+{
+	new vehID = GetPlayerVehicleID(playerid);
+    new engine, lights, alarm, doors, bonnet, boot, objective;
+	GetVehicleParamsEx(vehID, engine, lights, alarm, doors, bonnet, boot, objective);
+	SetVehicleParamsEx(vehID, VEHICLE_PARAMS_ON, 1, alarm, doors, bonnet, boot, objective);
+}
+
 return 1;
 }
 
-/*public OnPlayerEnterVehicle(playerid, vehicleid)
+public OnPlayerEnterVehicle(playerid, vehicleid)
 {
-     if(strmatch(VehicleInfo[vehicleid][Owner], GetName(playerid)))
-     {
-          return 1;
-     }
-     else
-     {
-          // clear animations, cant be bothered searching it up x))
-     }
-     return 1;
+	return 1;
 }
 
+public OnPlayerExitVehicle(playerid, vehicleid)
+{
+	new engine, lights, alarm, doors, bonnet, boot, objective;
+	GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
+	SetVehicleParamsEx(vehicleid, VEHICLE_PARAMS_OFF, false, alarm, doors, bonnet, boot, objective);
+	return 1;
+}
+/*
 stock strmatch(const String1[], const String2[])
 {
     if ((strcmp(String1, String2, true, strlen(String2)) == 0) && (strlen(String2) == strlen(String1)))
@@ -441,6 +488,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				case DialogBankDeposit: Dialog_BankDeposit(playerid, response, inputtext);
 				case DialogBankWithdraw: Dialog_BankWithdraw(playerid, response, inputtext);
 				case DialogAutoKer: Dialog_DialogAutoKer(playerid, response, listitem);
+				case DialogMunkak: Dialog_Munka(playerid, response, listitem);
         }
         return 0;
 }
@@ -455,10 +503,27 @@ public OnPlayerUpdate(playerid)
         regiSzereloStat[playerid] = JatekosInfo[playerid][SzereloMunkak];
         regiRendorStat[playerid] = JatekosInfo[playerid][RendorMunkak];
 	}
-    /*if(IsPlayerInRangeOfPoint(playerid, 1.0,1736.3951,497.2198,29.1154))
+    if(IsPlayerInRangeOfPoint(playerid, 1.0, 1658.5491, 2199.5457, 10.8203)) //autós bolt
     {
-    	MoveObject(Sorompok[2],2279.2000000,611.9000200,11.1000001,1.0+0.0001,0,12.0000000,0);
-    }*/
+        if(playerBoltElott[playerid] == 0)
+        {
+            playerBoltElott[playerid] = 1;
+            //SendClientMessage(playerid, WHITE, "A bolt előtt vagy!");
+        	new Autoker[256], AutokerCim[128];
+
+			format(AutokerCim, sizeof(AutokerCim), "{FFFFFF}Autó Kereskedés");
+			format(Autoker, sizeof(Autoker), "{FFFFFF}Jármű vásárlás\nJármű eladása");
+
+			ShowPlayerDialog(playerid, DialogAutoKer, DIALOG_STYLE_LIST, AutokerCim, Autoker, "Kiválaszt", "Mégsem");
+        }
+    }
+    else
+    {
+        if(playerBoltElott[playerid] == 1)
+        {
+            playerBoltElott[playerid] = 0;
+        }
+    } // autósbolt vége
     //LS felé
     if(IsPlayerInRangeOfPoint(playerid, 5.0, 1732.1414,483.4149,29.5655) || IsPlayerInRangeOfPoint(playerid, 5.0, 1727.3549,514.2130,28.3112) || IsPlayerInRangeOfPoint(playerid, 5.0, 1742.8572,512.3981,28.1290) || IsPlayerInRangeOfPoint(playerid, 5.0, 1719.5048,490.3605,29.4646)){
         utdijfizet[playerid] = true;
@@ -479,7 +544,8 @@ public OnPlayerUpdate(playerid)
 			MoveObject(Sorompok[4],1734.400024414,491.100006104,-29.299999237,1.0+0.0001,0,0.0000000,339.500000000);
 			SetTimer("Kapuzar", 5000, false);
 			GameTextForPlayer(playerid, "Utdij levonva: 5.000Ft-ot!", 3000, 3);
-			GetPlayerMoney(GivePlayerMoney(playerid, -5000));
+			JatekosInfo[playerid][Penz]-= 5000;
+			//GetPlayerMoney(GivePlayerMoney(playerid, -5000));
 			utdijfizet[playerid] = false;
    		}
     }
@@ -490,7 +556,8 @@ public OnPlayerUpdate(playerid)
 	    	MoveObject(Sorompok[5],1726.800048828,507.799987793,-28.700000763,1.0+0.0001,0,0.0000000,339.500000000);
 	    	SetTimer("Kapuzar", 5000, false);
 	    	GameTextForPlayer(playerid, "Utdij levonva: 5.000Ft!", 3000, 3);
-			GetPlayerMoney(GivePlayerMoney(playerid, -5000));
+            JatekosInfo[playerid][Penz]-= 5000;
+			//GetPlayerMoney(GivePlayerMoney(playerid, -5000));
 			utdijfizet[playerid] = false;
    		}
     }
@@ -502,7 +569,8 @@ public OnPlayerUpdate(playerid)
 	    	MoveObject(Sorompok[6],827.6,698.1,-11.4,1.0+0.0001,0,0.0000000,292);
 	    	SetTimer("Kapuzar", 5000, false);
 	    	GameTextForPlayer(playerid, "Utdij levonva: 5.000Ft!", 3000, 3);
-			GetPlayerMoney(GivePlayerMoney(playerid, -5000));
+	    	JatekosInfo[playerid][Penz]-= 5000;
+			//GetPlayerMoney(GivePlayerMoney(playerid, -5000));
 			utdijfizet[playerid] = false;
    		}
     }
@@ -514,7 +582,8 @@ public OnPlayerUpdate(playerid)
 	    	MoveObject(Sorompok[7],844.2,691.2,-11.4,1.0+0.0001,0,0.0000000,291.995);
 	    	SetTimer("Kapuzar", 5000, false);
 	    	GameTextForPlayer(playerid, "Utdij levonva: 5.000Ft!", 3000, 3);
-			GetPlayerMoney(GivePlayerMoney(playerid, -5000));
+	    	JatekosInfo[playerid][Penz]-= 5000;
+			//GetPlayerMoney(GivePlayerMoney(playerid, -5000));
 			utdijfizet[playerid] = false;
    		}
     }
@@ -526,7 +595,8 @@ public OnPlayerUpdate(playerid)
 	    	MoveObject(Sorompok[8],834,2638.3,-12.1,1.0+0.0001,0,0.0000000,254);
 	    	SetTimer("Kapuzar", 5000, false);
 	    	GameTextForPlayer(playerid, "Utdij levonva: 5.000Ft!", 3000, 3);
-			GetPlayerMoney(GivePlayerMoney(playerid, -5000));
+	    	JatekosInfo[playerid][Penz]-= 5000;
+			//GetPlayerMoney(GivePlayerMoney(playerid, -5000));
 			utdijfizet[playerid] = false;
    		}
     }
@@ -538,7 +608,8 @@ public OnPlayerUpdate(playerid)
 	    	MoveObject(Sorompok[9],842.5,2622.1,-11.6,1.0+0.0001,0,0.0000000,253.998);
 	    	SetTimer("Kapuzar", 5000, false);
 	    	GameTextForPlayer(playerid, "Utdij levonva: 5.000Ft!", 3000, 3);
-			GetPlayerMoney(GivePlayerMoney(playerid, -5000));
+	    	JatekosInfo[playerid][Penz]-= 5000;
+			//GetPlayerMoney(GivePlayerMoney(playerid, -5000));
 			utdijfizet[playerid] = false;
    		}
     }
@@ -586,6 +657,7 @@ public OnPlayerUpdate(playerid)
 					            mysql_format(kapcs, query, sizeof(query), "UPDATE jatekosok SET buntetes = %i WHERE id = %i", JatekosInfo[playerid][buntetes], JatekosInfo[playerid][db_id]);
 								mysql_tquery(kapcs, query);
 								SetPlayerColor(playerid, ORANGE);
+								PlayerPlaySound(playerid, 1132, 0.0, 0.0, 0.0);
 								new rStr[128];
 								for(new j = 0; j < MAX_PLAYERS; j++)
 								{
@@ -610,6 +682,7 @@ public OnPlayerUpdate(playerid)
 					            mysql_format(kapcs, query, sizeof(query), "UPDATE jatekosok SET buntetes = %i WHERE id = %i", JatekosInfo[playerid][buntetes], JatekosInfo[playerid][db_id]);
 								mysql_tquery(kapcs, query);
 								SetPlayerColor(playerid, ORANGE);
+								PlayerPlaySound(playerid, 1132, 0.0, 0.0, 0.0);
 								new rStr[128];
 								for(new j = 0; j < MAX_PLAYERS; j++)
 								{
@@ -649,6 +722,10 @@ public OnPlayerEnterCheckpoint(playerid)
 			SetPVarInt(playerid, "feltoltve", 0);
 	    	DisablePlayerCheckpoint(playerid);
 	    	JatekosInfo[playerid][ConvoyMunkak]++;
+	    	DestroyObject(rakomanyModelid[playerid][0]);
+	    	DestroyObject(rakomanyModelid[playerid][1]);
+	    	DestroyObject(rakomanyModelid[playerid][2]);
+	    	DestroyObject(rakomanyModelid[playerid][3]);
 			return 1;
 		}
 		else SendClientMessage(playerid, RED,"Nem ülsz teherautóban!");
@@ -663,6 +740,25 @@ public OnPlayerEnterCheckpoint(playerid)
     	SendClientMessage(playerid, GREEN, "Odaértél az autómatához, menj oda és töltsd fel! (/automata feltolt)");
 		return 1;
  	}
+ 	
+ 	if(GetPVarInt(playerid, "mcheckp") == 1)
+ 	{
+ 	    DisablePlayerCheckpoint(playerid);
+ 	    SendClientMessage(playerid, GREEN, "Feltöltés!");
+ 	    SetPVarInt(playerid, "mcheckp", 0);
+ 	    TogglePlayerControllable(playerid,0);
+ 	    SetTimerEx("munkafeltolt", 5000, false, "i", playerid);
+ 	}
+ 	
+ 	if(GetPVarInt(playerid, "mcheckp") == 2)
+ 	{
+ 	    DisablePlayerCheckpoint(playerid);
+ 	    SendClientMessage(playerid, GREEN, "Lepakolás!");
+ 	    SetPVarInt(playerid, "mcheckp", 0);
+ 	    TogglePlayerControllable(playerid,0);
+ 	    SetTimerEx("munkalepakol", 5000, false, "i", playerid);
+ 	}
+ 	
 	return 1;
 }
 
@@ -676,6 +772,7 @@ public JatekosBeregelt(playerid)
         SendClientMessage(playerid, 0xFFFFFFFF, "Jó játékot kívánok!");
         SendClientMessage(playerid, GREEN, "Használd a /foglalkozas parancsot!");
         buntiszabad[playerid] = true;
+        playerBoltElott[playerid] = 0;
         return 1;
 }
 
@@ -692,6 +789,7 @@ public JatekosBelep(playerid)
         JatekosInfo[playerid][Penz] = cache_get_field_content_int(0, "Penz",kapcs);
         //GivePlayerMoney(playerid, JatekosInfo[playerid][Penz]);
 		JatekosInfo[playerid][alevel] = cache_get_field_content_int(0, "alevel",kapcs);
+		JatekosInfo[playerid][Skin] = cache_get_field_content_int(0, "skin",kapcs);
 		JatekosInfo[playerid][db_id] = cache_get_field_content_int(0, "ID",kapcs);
 		JatekosInfo[playerid][ConvoyMunkak] = cache_get_field_content_int(0, "cmunka",kapcs);
 		JatekosInfo[playerid][SzereloMunkak] = cache_get_field_content_int(0, "szmunka",kapcs);
@@ -711,6 +809,7 @@ public JatekosBelep(playerid)
             SetPlayerColor(playerid, YELLOW);
         }
         buntiszabad[playerid] = true;
+        playerBoltElott[playerid] = 0;
         SetPlayerScore(playerid, JatekosInfo[playerid][ConvoyMunkak] + JatekosInfo[playerid][SzereloMunkak] + JatekosInfo[playerid][RendorMunkak]);
         regiConvoyStat[playerid] = JatekosInfo[playerid][ConvoyMunkak];
         regiSzereloStat[playerid] = JatekosInfo[playerid][SzereloMunkak];
@@ -720,11 +819,12 @@ public JatekosBelep(playerid)
 forward AutoLoad();
 public AutoLoad()
 {
+	//printf("lekerdezett sorok:%d", cache_get_row_count());
 	if(!cache_get_row_count()) return printf("cache_get_row_count returned false. Nincsennek betöltendő sorok.");
-	 	for(new i, j = cache_get_row_count(); i < j ; i++)
+	 	for(new i = 0; i < cache_get_row_count(); i++)
 		{
 		    new rendszam[8];
-			AutoInfo[i][ID] = AutoCount;
+			//AutoInfo[i][ID] = AutoCount;
 			cache_get_field_content(i, "rszam", rendszam);
 			AutoInfo[i][rszam] = rendszam;
 			AutoInfo[i][model] = cache_get_field_content_int(i,"model",kapcs);
@@ -735,10 +835,12 @@ public AutoLoad()
 			AutoInfo[i][Angle] = cache_get_field_content_float(i,"angle",kapcs);
 			AutoInfo[i][color1] = cache_get_field_content_int(i,"color1",kapcs);
 			AutoInfo[i][color2] = cache_get_field_content_int(i,"color2",kapcs);
-			SetVehicleNumberPlate(CreateVehicle(AutoInfo[i][model],AutoInfo[i][X],AutoInfo[i][Y],AutoInfo[i][Z],AutoInfo[i][Angle],AutoInfo[i][color1],AutoInfo[i][color2],-1), AutoInfo[i][rszam]);
+            AutoInfo[i][ID] = AddStaticVehicleEx(AutoInfo[i][model],AutoInfo[i][X],AutoInfo[i][Y],AutoInfo[i][Z],AutoInfo[i][Angle],AutoInfo[i][color1],AutoInfo[i][color2],-1);
+			SetVehicleNumberPlate(AutoInfo[i][ID], AutoInfo[i][rszam]);
 			AutoCount++;
+			//printf("autok: %d",AutoCount);
 		}
-		printf("%d autó betöltve!", AutoCount);
+    printf("%d autó betöltve!", AutoCount);
 		//SetTimer("AutoSave", 1000, true);
 	return 1;
 }
@@ -874,7 +976,30 @@ public KamLoad()
 			KamInfo[i][c_z] = cache_get_field_content_float(i,"cz",kapcs);
 			KamInfo[i][c_angle] = cache_get_field_content_float(i,"ca",kapcs);
 			KamInfo[i][sebesseg] = cache_get_field_content_int(i,"speed",kapcs);
+			kamdb++;
 		}
+	printf("%d trafipax betöltve!", kamdb);
+return 1;
+}
+
+forward FuvarLoad();
+public FuvarLoad()
+{
+	if(!cache_get_row_count()) return printf("cache_get_row_count returned false. Nincsennek betöltendő sorok.");
+	 	for(new i=0; i < cache_get_row_count(); i++)
+		{
+			FuvarInfo[i][id] = cache_get_field_content_int(i,"id",kapcs);
+			FuvarInfo[i][models] = cache_get_field_content_int(i,"kocsi_model",kapcs);
+			FuvarInfo[i][h_x] = cache_get_field_content_float(i,"h_x",kapcs);
+			FuvarInfo[i][h_y] = cache_get_field_content_float(i,"h_y",kapcs);
+			FuvarInfo[i][h_z] = cache_get_field_content_float(i,"h_z",kapcs);
+			FuvarInfo[i][c_x] = cache_get_field_content_float(i,"c_x",kapcs);
+			FuvarInfo[i][c_y] = cache_get_field_content_float(i,"c_y",kapcs);
+			FuvarInfo[i][c_z] = cache_get_field_content_float(i,"c_z",kapcs);
+			FuvarInfo[i][tav] = cache_get_field_content_float(i,"tavolsag",kapcs);
+			fuvardb++;
+		}
+	printf("%d fuvar betöltve!", fuvardb);
 return 1;
 }
 
@@ -904,7 +1029,7 @@ CMD:kocsi(playerid,params[])
 	new Float:pX,Float:pY,Float:pZ,Float:pR;
 	GetPlayerPos(playerid,pX, pY, pZ);
 	GetPlayerFacingAngle(playerid, pR);
-	SetVehicleNumberPlate(CreateVehicle(mID,pX+4,pY,pZ,pR,12,12,-1), "ADMIN");
+	SetVehicleNumberPlate(CreateVehicle(mID,pX+4,pY,pZ,pR,12,12,-1,1), "ADMIN");
 	AutoCount++;
 	return 1;
 }
@@ -920,8 +1045,31 @@ CMD:kocsiszin(playerid,params[])
 	new Float:pX,Float:pY,Float:pZ,Float:pR;
 	GetPlayerPos(playerid,pX, pY, pZ);
 	GetPlayerFacingAngle(playerid, pR);
-	SetVehicleNumberPlate(CreateVehicle(mID,pX-4,pY-8,pZ,pR,col1,col2,-1), "ADMIN");
+	SetVehicleNumberPlate(CreateVehicle(mID,pX-4,pY-8,pZ,pR,col1,col2,-1,1), "ADMIN");
 	AutoCount++;
+	return 1;
+}
+
+CMD:skocsi(playerid, params[])
+{
+	if(IsPlayerInAnyVehicle(playerid) != 0)
+	{
+		new rendszam[8];
+		new tulajdonos, szin1, szin2;
+		//new string[128];
+		if(sscanf(params, "sddd",rendszam, tulajdonos, szin1, szin2)) return SendClientMessage(playerid, LIGHTBLUE, "Használata: /skocsi [rendszam] [tulaj] [szin1] [szin2]");
+		{
+		    new currentveh = GetPlayerVehicleID(playerid);
+		    new vehModelID = GetVehicleModel(currentveh);
+			new Float:vehx, Float:vehy, Float:vehz, Float:z_rot;
+			GetVehiclePos(currentveh, vehx, vehy, vehz);
+			GetVehicleZAngle(currentveh, z_rot);
+			//format(string, sizeof(string), "A kocsi adatai: rszam: %s, model: %d, tulaj: %d x: %f, y: %f, z: %f, rot: %f, szin1: %d, szin2: %d", rendszam, vehModelID, tulajdonos, vehx, vehy, vehz, z_rot, szin1, szin2);
+	        format(query, sizeof(query), "INSERT INTO `autok` (`id`, `rszam`, `model`, `tulaj`, `x`, `y`, `z`, `angle`,`color1`,`color2`) VALUES (NULL, '%s', '%d', '%d', '%f', '%f', '%f', '%f', '%d', '%d')", rendszam, vehModelID, tulajdonos, vehx, vehy, vehz, z_rot, szin1, szin2);
+			mysql_tquery(kapcs, query);
+			SendClientMessage(playerid, GREEN, "| A kocsi mentve az adatbázisba! |");
+		}
+	}
 	return 1;
 }
 
@@ -936,6 +1084,79 @@ CMD:shaz(playerid, params[])
 		mysql_tquery(kapcs, query);
 		SendClientMessage(playerid, -1, "Elmentve!");
 	}
+	return 1;
+}
+
+CMD:sfuvar(playerid, params[])
+{
+    if(IsPlayerInAnyVehicle(playerid) != 0)
+	{
+		new melyikresz;
+		if(sscanf(params, "i",melyikresz)) return SendClientMessage(playerid, LIGHTBLUE, "Használata: /sfuvar [1 - honnan, 2 - hova(szigorúan betartani! 2-vel adatbázisba ír]");
+		{
+		    new Float:x, Float:y, Float:z;
+		    new currveh = GetPlayerVehicleID(playerid);
+			if(GetVehicleModel(currveh) != 515 && GetVehicleModel(currveh) != 514 && GetVehicleModel(currveh) != 403)
+			{
+			    if(melyikresz == 1)
+			    {
+		    		GetVehiclePos(currveh, x, y, z);
+		    		FuvarInfo[FUVMENT][models] = GetVehicleModel(currveh);
+		    		FuvarInfo[FUVMENT][h_x] = x;
+		    		FuvarInfo[FUVMENT][h_y] = y;
+		    		FuvarInfo[FUVMENT][h_z] = z;
+		    		SendClientMessage(playerid, GREEN, "A kezdőpontok elmentve. Menj a célállomáshoz és használd az | /sfuvar 2 | parancsot!");
+		    		return 1;
+			    }
+				if(melyikresz == 2)
+				{
+				    new currentveh = GetPlayerVehicleID(playerid);
+		    		GetVehiclePos(currentveh, x, y, z);
+		    		FuvarInfo[FUVMENT][c_x] = x;
+		    		FuvarInfo[FUVMENT][c_y] = y;
+		    		FuvarInfo[FUVMENT][c_z] = z;
+		    		FuvarInfo[FUVMENT][tav] = floatsqroot((FuvarInfo[FUVMENT][h_x] - FuvarInfo[FUVMENT][c_x]) * (FuvarInfo[FUVMENT][h_x] - FuvarInfo[FUVMENT][c_x]) + (FuvarInfo[FUVMENT][h_y] - FuvarInfo[FUVMENT][c_y]) * (FuvarInfo[FUVMENT][h_y] - FuvarInfo[FUVMENT][c_y]) + (FuvarInfo[FUVMENT][h_z] - FuvarInfo[FUVMENT][c_z]) * (FuvarInfo[FUVMENT][h_z] - FuvarInfo[FUVMENT][c_z]));
+		    		format(query, sizeof(query), "INSERT INTO `fuvarok` (`id`, `kocsi_model`, `h_x`, `h_y`, `h_z`, `c_x`, `c_y`, `c_z`, `tavolsag`) VALUES (NULL, '%d', '%f', '%f', '%f', '%f', '%f', '%f', '%f')", FuvarInfo[FUVMENT][models], FuvarInfo[FUVMENT][h_x], FuvarInfo[FUVMENT][h_y], FuvarInfo[FUVMENT][h_z], FuvarInfo[FUVMENT][c_x], FuvarInfo[FUVMENT][c_y], FuvarInfo[FUVMENT][c_z], FuvarInfo[FUVMENT][tav]);
+					//printf("%s", query);
+					mysql_tquery(kapcs, query);
+					SendClientMessage(playerid, GREEN, "A fuvar sikeresen elmentve az adatbázisba!");
+					return 1;
+				}
+			}
+			else
+			{
+				if(IsTrailerAttachedToVehicle(currveh))
+				{
+				    new trailerid = GetVehicleTrailer(currveh);
+				    if(melyikresz == 1)
+				    {
+			    		GetVehiclePos(trailerid, x, y, z);
+			    		FuvarInfo[FUVMENT][models] = GetVehicleModel(trailerid);
+			    		FuvarInfo[FUVMENT][h_x] = x;
+			    		FuvarInfo[FUVMENT][h_y] = y;
+			    		FuvarInfo[FUVMENT][h_z] = z;
+			    		SendClientMessage(playerid, GREEN, "A kezdőpontok elmentve. Menj a célállomáshoz és használd az | /sfuvar 2 | parancsot!");
+			    		return 1;
+				    }
+					if(melyikresz == 2)
+					{
+			    		GetVehiclePos(trailerid, x, y, z);
+			    		FuvarInfo[FUVMENT][c_x] = x;
+			    		FuvarInfo[FUVMENT][c_y] = y;
+			    		FuvarInfo[FUVMENT][c_z] = z;
+			    		FuvarInfo[FUVMENT][tav] = floatsqroot((FuvarInfo[FUVMENT][h_x] - FuvarInfo[FUVMENT][c_x]) * (FuvarInfo[FUVMENT][h_x] - FuvarInfo[FUVMENT][c_x]) + (FuvarInfo[FUVMENT][h_y] - FuvarInfo[FUVMENT][c_y]) * (FuvarInfo[FUVMENT][h_y] - FuvarInfo[FUVMENT][c_y]) + (FuvarInfo[FUVMENT][h_z] - FuvarInfo[FUVMENT][c_z]) * (FuvarInfo[FUVMENT][h_z] - FuvarInfo[FUVMENT][c_z]));
+			    		format(query, sizeof(query), "INSERT INTO `fuvarok` (`id`, `kocsi_model`, `h_x`, `h_y`, `h_z`, `c_x`, `c_y`, `c_z`, `tavolsag`) VALUES (NULL, '%d', '%f', '%f', '%f', '%f', '%f', '%f', '%f')", FuvarInfo[FUVMENT][models], FuvarInfo[FUVMENT][h_x], FuvarInfo[FUVMENT][h_y], FuvarInfo[FUVMENT][h_z], FuvarInfo[FUVMENT][c_x], FuvarInfo[FUVMENT][c_y], FuvarInfo[FUVMENT][c_z], FuvarInfo[FUVMENT][tav]);
+						//printf("%s", query);
+						mysql_tquery(kapcs, query);
+						SendClientMessage(playerid, GREEN, "A fuvar sikeresen elmentve az adatbázisba!");
+						return 1;
+					}
+				}
+				else return SendClientMessage(playerid, RED, "Nincs trailer a kamionhoz csatolva!");
+			}
+		}
+	}
+	else return SendClientMessage(playerid, RED, "Kocsiban kell ülnöd!");
 	return 1;
 }
 
@@ -1002,9 +1223,9 @@ CMD:kereskedes(playerid,params[])
 	new Autoker[256], AutokerCim[128];
 
 	format(AutokerCim, sizeof(AutokerCim), "{FFFFFF}Autó Kereskedés");
-	format(Autoker, sizeof(Autoker), "{FFFFFF}Pénzt betesz\n");
+	format(Autoker, sizeof(Autoker), "{FFFFFF}Jármű vásárlás\nJármű eladása");
 
-	ShowPlayerDialog(playerid, DialogAutoKer, DIALOG_STYLE_LIST, AutokerCim, Autoker, "Megvesz", "Mégsem");
+	ShowPlayerDialog(playerid, DialogAutoKer, DIALOG_STYLE_LIST, AutokerCim, Autoker, "Kiválaszt", "Mégsem");
 	return 1;
 }
 
@@ -1174,11 +1395,14 @@ CMD:restart(playerid,params[])
 
 	if(!isAdmin(playerid,4))return SendClientMessage(playerid,RED,"Nem vagy megfelelő admin szinten!");
 	{
-    	if (sscanf(params, "i", RestartTime))return SendClientMessage(playerid, RED, "Használat: \"/restart <Restartidő (perc)>\"");
-    	format(Msg, 128, "A szerver ujraindul %i perc mulva!", RestartTime);
+    	if (sscanf(params, "i", RestartTime))return SendClientMessage(playerid, RED, "Használat: \"/restart <Restartidő (másodperc)>\"");
+		if(RestartTime >= 60)
+			format(Msg, 128, "A szerver ujraindul %.0f perc mulva!", RestartTime/60.0);
+		else
+		    format(Msg, 128, "A szerver ujraindul %d másodperc mulva!", RestartTime);
 		GameTextForAll(Msg, 5000, 3);
 		SendClientMessageToAll(LIGHTBLUE, Msg);
-		SetTimer("Timer_Restart", 1000 * 60, true);
+		SetTimer("Timer_Restart", 1000, true);
 	}
 	return 1;
 }
@@ -1189,21 +1413,28 @@ public Timer_Restart()
 new Msg[128];
 RestartTime--;
 
-	format(Msg, 128, "A szerver ujraindul %i perc mulva!", RestartTime);
-	GameTextForAll(Msg, 5000, 3);
-	SendClientMessageToAll(LIGHTBLUE, Msg);
-
-	switch(RestartTime)
+	if(RestartTime%60 == 0)
 	{
-		case 0:
+	    if(RestartTime != 0)
+			if(RestartTime >= 60)
+				format(Msg, 128, "A szerver ujraindul %.0f perc mulva!", RestartTime/60.0);
+			else
+			    format(Msg, 128, "A szerver ujraindul %d másodperc mulva!", RestartTime);
+		else
+		    format(Msg, 128, "A szerver ujraindul!", RestartTime/60.0);
+		GameTextForAll(Msg, 5000, 3);
+		SendClientMessageToAll(LIGHTBLUE, Msg);
+	}
+	if(RestartTime <= 0)
+	{
+		GameTextForAll("A szerver ujraindul:Mindenkit kirug!", 5000, 3);
+		for(new i=0; i<MAX_PLAYERS; i++)
 		{
-			GameTextForAll("A szerver ujraindul:Mindenkit kirug!", 5000, 3);
-			for(new i=0; i<MAX_PLAYERS; i++)
-			{
-				Kick(i);
-				SetTimer("Timer_Restart_Reboot", 1000 * 5, false);
-			}
+		    JatekosMent(i);
+			//Kick(i);
+			//SetTimer("Timer_Restart_Reboot", 1000 * 5, false);
 		}
+		SendRconCommand("gmx");
 	}
 return 1;
 }
@@ -1357,6 +1588,156 @@ CMD:pwl(playerid,params[])
 	else SendClientMessage(playerid, RED, "Nincs ilyen játékos!");
 	return 1;
 }
+
+CMD:munka(playerid,params[])
+{
+    if(GetPVarInt(playerid,"Frakcio") != 0)
+	{
+	    if(IsPlayerInAnyVehicle(playerid) != 0)
+	    {
+	        new kocsiID = GetPlayerVehicleID(playerid);
+	        if(GetVehicleModel(kocsiID) != 515 && GetVehicleModel(kocsiID) != 514 && GetVehicleModel(kocsiID) != 403)
+			{
+		        new kocsiModel = GetVehicleModel(kocsiID);
+		        new munkak[1000] = "";
+		        new talalt = 0;
+		        new Float:x, Float:y,Float:z;
+		        GetPlayerPos(playerid, x, y, z);
+		        for(new i = 0; i < fuvardb; i++)
+		        {
+		            if(FuvarInfo[i][models] == kocsiModel)
+		            {
+		                if(floatsqroot((x - FuvarInfo[i][h_x]) * (x - FuvarInfo[i][h_x]) + (y - FuvarInfo[i][h_y]) * (y - FuvarInfo[i][h_y]) + (z - FuvarInfo[i][h_z]) * (z - FuvarInfo[i][h_z])) < 600)
+		                {
+			                format(munkak, sizeof(munkak), "%sFuvar %d\n", munkak, i+1);
+			                FuvarSeged[playerid][talalt][0] = FuvarInfo[i][id];
+			                printf("%d", FuvarSeged[playerid][talalt][0]);
+			                talalt++;
+			          	}
+		            }
+		        }
+		        if(talalt != 0)
+		        	ShowPlayerDialog(playerid, DialogMunkak, DIALOG_STYLE_LIST, "A közelben lévő munkák:", munkak, "Ok", "");
+				else return SendClientMessage(playerid, RED, "Nincs a közelben munka! Menj másik területre!");
+			}
+			else
+			{
+			    if(IsTrailerAttachedToVehicle(kocsiID))
+				{
+				    new trailerid = GetVehicleTrailer(kocsiID);
+				    new trailermodel = GetVehicleModel(trailerid);
+				    new munkak[1000] = "";
+			        new talalt = 0;
+			        new Float:x, Float:y,Float:z;
+			        GetPlayerPos(playerid, x, y, z);
+			        for(new i = 0; i < fuvardb; i++)
+			        {
+			            if(FuvarInfo[i][models] == trailermodel)
+			            {
+			                if(floatsqroot((x - FuvarInfo[i][h_x]) * (x - FuvarInfo[i][h_x]) + (y - FuvarInfo[i][h_y]) * (y - FuvarInfo[i][h_y]) + (z - FuvarInfo[i][h_z]) * (z - FuvarInfo[i][h_z])) < 600)
+			                {
+				                format(munkak, sizeof(munkak), "%sFuvar %d\n", munkak, i+1);
+				                FuvarSeged[playerid][talalt][0] = FuvarInfo[i][id];
+				                printf("%d", FuvarSeged[playerid][talalt][0]);
+				                talalt++;
+				          	}
+			            }
+			        }
+			        if(talalt != 0)
+			        	ShowPlayerDialog(playerid, DialogMunkak, DIALOG_STYLE_LIST, "A közelben lévő munkák:", munkak, "Ok", "");
+					else return SendClientMessage(playerid, RED, "Nincs a közelben munka! Menj másik területre!");
+	                }
+				else return SendClientMessage(playerid, RED, "Nincs trailer a kamionhoz csatolva!");
+			}
+	   	}else return SendClientMessage(playerid, RED, "Nem ülsz munkajárműben!");
+	}
+	else return SendClientMessage(playerid, RED, "Még nem választottál munkát!");
+	return 1;
+}
+
+Dialog_Munka(playerid, response, listitem)
+{
+	if(response == 1)
+	{
+	    SendClientMessage(playerid, GREEN, "A fuvar bejelölve a térképen, menj oda és pakold fel az árut!");
+	    for(new i = 0; i < fuvardb; i++)
+	    {
+			if(FuvarInfo[i][id] == FuvarSeged[playerid][listitem][0])
+			{
+	    		SetPlayerCheckpoint(playerid, FuvarInfo[i][h_x], FuvarInfo[i][h_y], FuvarInfo[i][h_z], 3.0);
+	    		SetPVarInt(playerid, "mcheckp",1);
+				SetPVarInt(playerid, "fuvarlistitem", FuvarSeged[playerid][listitem][0]);
+	    	}
+	    }
+	}
+	return 1;
+}
+
+forward munkafeltolt(playerid);
+public munkafeltolt(playerid)
+{
+	new azon = GetPVarInt(playerid, "fuvarlistitem");
+	printf("listitem: %d", azon);
+	new kocsiID = GetPlayerVehicleID(playerid);
+	new modelid = GetVehicleModel(kocsiID);
+    for(new i = 0; i < fuvardb; i++)
+    {
+		if(FuvarInfo[i][id] == azon)
+		{
+    		SetPlayerCheckpoint(playerid, FuvarInfo[i][c_x], FuvarInfo[i][c_y], FuvarInfo[i][c_z], 3.0);
+    		SetPVarInt(playerid, "mcheckp",2);
+    		TogglePlayerControllable(playerid,1);
+    		SendClientMessage(playerid, GREEN, "A célállomás bejelölve a térképen! Menj és szállítsd le az árut!");
+    		if(modelid == 578)
+            {
+                new Float:vehx, Float:vehy, Float:vehz;
+      			GetVehiclePos(kocsiID, vehx, vehy, vehz);
+	            rakomanyModelid[playerid][0] = CreateObject(1421, vehx, vehy, vehz, 0.0, 0.0, 0);
+	            rakomanyModelid[playerid][1] = CreateObject(1421, vehx, vehy, vehz, 0.0, 0.0, 0);
+	            rakomanyModelid[playerid][2] = CreateObject(1421, vehx, vehy, vehz, 0.0, 0.0, 0);
+	            rakomanyModelid[playerid][3] = CreateObject(1421, vehx, vehy, vehz, 0.0, 0.0, 0);
+	            AttachObjectToVehicle(rakomanyModelid[playerid][0], kocsiID, 0.0, 1.7, 0.5, 0.0, 0.0, 0.0);
+	            AttachObjectToVehicle(rakomanyModelid[playerid][1], kocsiID, 0.08, 0.4, 0.5, 0.0, 0.0, 0.1);
+	            AttachObjectToVehicle(rakomanyModelid[playerid][2], kocsiID, 0.04, -0.6, 0.5, 0.0, 0.0, 0.2);
+	            AttachObjectToVehicle(rakomanyModelid[playerid][3], kocsiID, -0.06, -1.7, 0.5, 0.0, 0.0, -0.1);
+            }
+    	}
+    }
+	return 1;
+}
+
+forward munkalepakol(playerid);
+public munkalepakol(playerid)
+{
+    new azon = GetPVarInt(playerid, "fuvarlistitem");
+	new szoveg[128];
+	new kocsiID = GetPlayerVehicleID(playerid);
+	new modelid = GetVehicleModel(kocsiID);
+    for(new i = 0; i < fuvardb; i++)
+    {
+		if(FuvarInfo[i][id] == azon)
+		{
+		    printf("tavolsag: %f, *100: %f", FuvarInfo[i][tav], FuvarInfo[i][tav]*100);
+		    new fizu = floatround(FuvarInfo[i][tav]*100);
+		    printf("fizu: %d", fizu);
+    		TogglePlayerControllable(playerid,1);
+    		SendClientMessage(playerid, GREEN, "Sikeresen leszállítottad az árut!");
+    		JatekosInfo[playerid][Penz] += fizu;
+    		format(szoveg, sizeof(szoveg), "Fizetésed: %d Ft!", fizu);
+    		SendClientMessage(playerid, GREEN, szoveg);
+    		JatekosInfo[playerid][ConvoyMunkak]++;
+    		if(modelid == 578)
+            {
+	    		DestroyObject(rakomanyModelid[playerid][0]);
+		    	DestroyObject(rakomanyModelid[playerid][1]);
+		    	DestroyObject(rakomanyModelid[playerid][2]);
+		    	DestroyObject(rakomanyModelid[playerid][3]);
+	    	}
+    	}
+    }
+	return 1;
+}
+
 // KAMIONOS COMMANDS ============================================================
 CMD:fuvar(playerid,params[])
 {
@@ -1442,7 +1823,7 @@ CMD:automata(playerid,params[]){
 		{
 		    if(!strcmp("megrakod", parancs, true))
 			{
-			    if(GetVehicleModel(veh) == 459)
+			    if(GetVehicleModel(veh) == 440)
 				{
 					if(IsPlayerInRangeOfPoint(playerid,3.0,1627.3813,1022.3831,10.8203))
 					{
@@ -1460,7 +1841,7 @@ CMD:automata(playerid,params[]){
 			}
 			if(!strcmp("munka", parancs, true))
 			{
-			    if(GetVehicleModel(veh) == 459)
+			    if(GetVehicleModel(veh) == 440)
 			    {
 				    if(IsPlayerInRangeOfPoint(playerid,3.0,1627.3813,1022.3831,10.8203))
 					{
@@ -1752,6 +2133,21 @@ switch(listitem)
 		{
 		if(GetPVarInt(playerid, "Feltoltve") == 0)
             {
+                new vehicleid = GetPlayerVehicleID(playerid);
+                new modelid = GetVehicleModel(vehicleid);
+                if(modelid == 578)
+                {
+                    new Float:vehx, Float:vehy, Float:vehz;
+          			GetVehiclePos(vehicleid, vehx, vehy, vehz);
+		            rakomanyModelid[playerid][0] = CreateObject(1421, vehx, vehy, vehz, 0.0, 0.0, 0);
+		            rakomanyModelid[playerid][1] = CreateObject(1421, vehx, vehy, vehz, 0.0, 0.0, 0);
+		            rakomanyModelid[playerid][2] = CreateObject(1421, vehx, vehy, vehz, 0.0, 0.0, 0);
+		            rakomanyModelid[playerid][3] = CreateObject(1421, vehx, vehy, vehz, 0.0, 0.0, 0);
+		            AttachObjectToVehicle(rakomanyModelid[playerid][0], vehicleid, 0.0, 1.7, 0.5, 0.0, 0.0, 0.0);
+		            AttachObjectToVehicle(rakomanyModelid[playerid][1], vehicleid, 0.08, 0.4, 0.5, 0.0, 0.0, 0.1);
+		            AttachObjectToVehicle(rakomanyModelid[playerid][2], vehicleid, 0.04, -0.6, 0.5, 0.0, 0.0, 0.2);
+		            AttachObjectToVehicle(rakomanyModelid[playerid][3], vehicleid, -0.06, -1.7, 0.5, 0.0, 0.0, -0.1);
+                }
 				SendClientMessage(playerid, GREEN, "Kamion feltöltve, viheted!");
 				SetPlayerCheckpoint(playerid,2515.8086,2823.8035,11.4108, 6.0);
 				SetPVarInt(playerid,"Feltoltve",1);
@@ -1765,7 +2161,7 @@ switch(listitem)
 		if(GetPVarInt(playerid, "Feltoltve") == 0)
             {
 				SendClientMessage(playerid, GREEN, "Kamion feltöltve, viheted!");
-				SetPVarInt(playerid,"Feltoltve",1);
+				SetPVarInt(playerid,"Feltoltve",0);
 			}else SendClientMessage(playerid, RED, "Már feltöltötték a kamiont!");
 		}else SendClientMessage(playerid, RED, "Nem dolgozol kamionosként!");
 	}
@@ -1776,7 +2172,7 @@ switch(listitem)
 		if(GetPVarInt(playerid, "Feltoltve") == 0)
             {
 				SendClientMessage(playerid, GREEN, "Kamion feltöltve, viheted!");
-				SetPVarInt(playerid,"Feltoltve",1);
+				SetPVarInt(playerid,"Feltoltve",0);
 			}else SendClientMessage(playerid, RED, "Már feltöltötték a kamiont!");
 		}else SendClientMessage(playerid, RED, "Nem dolgozol kamionosként!");
 	}
@@ -1984,6 +2380,8 @@ return 1;
 
 Dialog_DialogAutoKer(playerid, response, listitem)
 {
-
-return 1;
+	new mess[128]; // csak hogy ne warning-oljon
+	format(mess, sizeof(mess), "%d, %d", response, listitem);
+	SendClientMessage(playerid, WHITE, mess);
+	return 1;
 }
