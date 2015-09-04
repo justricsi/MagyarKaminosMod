@@ -2,6 +2,7 @@
 #include <a_mysql>
 #include <ZCMD>
 #include <sscanf2>
+#include <fixchars.h>
 
 #pragma tabsize 0
 
@@ -54,6 +55,7 @@ new playerBoltElott[MAX_PLAYERS];
 new rakomanyModelid[MAX_PLAYERS][10];
 new vanHaza[MAX_PLAYERS][1];
 new FuvarKiszalltTimerMehet[MAX_PLAYERS][1];
+new MaxFuel = 2400;
 
 // gps
 new Text:gps[MAX_PLAYERS];
@@ -440,6 +442,242 @@ new Float:Zones[][GPSInfo] = {
 new GPS_Spawned[MAX_PLAYERS];
 //gps
 
+enum BuyCars
+{
+	CarName[50],
+	CarModel,
+	Price
+}
+
+new ABuyableVehicles[][BuyCars] =
+{
+	{"Admiral", 445, 50000},
+	{"Alpha",602, 200000},
+	{"Ambulance",416, 150000},
+	{"Andromada", 592, 50000},
+	{"Article Trailer",591, 50000},
+//	{"AT400", VClassPlane, 577, 50000},
+	{"Baggage",485, 50000},
+	{"Baggage Trailer A",606, 50000},
+	{"Baggage Trailer B",607, 50000},
+	{"Bandito",568, 50000},
+	{"Banshee",429, 50000},
+	{"Barracks",433, 50000},
+	{"Beagle",511, 50000},
+	{"Benson",499, 50000},
+	{"Berkley's RC Van", 459, 50000},
+	{"BF Injection",424, 50000},
+	{"BF-400",581, 50000},
+	{"Bike",509, 50000},
+	{"Blade",536, 50000},
+	{"Blista Compact",496, 50000},
+	{"Bloodring Banger",504, 50000},
+	{"BMX",481, 50000},
+	{"Bobcat",422, 50000},
+	{"Boxville 1", 498, 50000},
+	{"Boxville 2",609, 50000},
+	{"Bravura",401, 50000},
+	{"Broadway",575, 50000},
+//	{"Brownstreak (train)", VClassUnique, 538, 50000},
+	{"Buccaneer",518, 50000},
+	{"Buffalo",402, 50000},
+	{"Bullet", 541, 50000},
+	{"Burrito",482, 50000},
+	{"Bus",431, 50000},
+	{"Cabbie",438, 50000},
+	{"Caddy",457, 50000},
+	{"Cadrona",527, 50000},
+	{"Camper",483, 50000},
+	{"Cargo Trailer",435, 50000},
+	{"Cargobob",548, 50000},
+	{"Cement Truck",524, 50000},
+	{"Cheetah",415, 50000},
+	{"Clover",542, 50000},
+	{"Club",589, 50000},
+	{"Coach",437, 50000},
+	{"Coastguard",472, 50000},
+	{"Combine Harvester",532, 50000},
+	{"Comet",480, 50000},
+	{"Cropduster",512, 50000},
+	{"DFT-30", 578, 50000},
+	{"Dinghy",473, 50000},
+	{"Dodo",593, 50000},
+	{"Dozer",486, 50000},
+	{"Dumper",406, 50000},
+	{"Dune",573, 50000},
+	{"Elegant",507, 50000},
+	{"Elegy",562, 50000},
+	{"Emperor",585, 50000},
+	{"Enforcer",427, 50000},
+	{"Esperanto",419, 50000},
+	{"Euros",587, 50000},
+	{"Faggio",462, 50000},
+	{"Farm Trailer",610, 50000},
+	{"FBI Rancher", 490, 50000},
+	{"FBI Truck",528, 50000},
+	{"FCR-900",521, 50000},
+	{"Feltzer",533, 50000},
+	{"Firetruck",407, 50000},
+	{"Firetruck LA", 544, 50000},
+	{"Flash",565, 50000},
+	{"Flatbed",455, 50000},
+	{"Fluids Trailer",584, 50000},
+	{"Forklift",530, 50000},
+	{"Fortune",526, 50000},
+	{"Freeway",463, 50000},
+//	{"Freight (train)", VClassUnique, 537, 50000},
+//	{"Freight Box Trailer (train)", VClassTrailer, 590, 50000},
+//	{"Freight Flat Trailer (train)", VClassTrailer, 569, 50000},
+	{"Glendale",466, 50000},
+	{"Glendale Shit",604, 50000},
+	{"Greenwood",492, 50000},
+	{"Hermes",474, 50000},
+	{"Hotdog",588, 50000},
+	{"Hotknife",434, 50000},
+	{"Hotring Racer 1",494, 50000},
+	{"Hotring Racer 2",502, 50000},
+	{"Hotring Racer 3", 503, 50000},
+	{"HPV1000",523, 50000},
+	{"Hunter",425, 50000},
+	{"Huntley",579, 50000},
+	{"Hustler",545, 50000},
+	{"Hydra",520, 50000},
+	{"Infernus",411, 50000},
+	{"Intruder",546, 50000},
+	{"Jester",559, 50000},
+	{"Jetmax",493, 50000},
+	{"Journey", 508, 50000},
+	{"Kart",571, 50000},
+	{"Landstalker",400, 50000},
+	{"Launch",595, 50000},
+	{"Leviathan",417, 50000},
+	{"Linerunner",403, 50000},
+	{"Majestic",517, 50000},
+	{"Manana",410, 50000},
+	{"Marquis",484, 50000},
+	{"Maverick",487, 50000},
+	{"Merit",551, 50000},
+	{"Mesa",500, 50000},
+	{"Monster",444, 50000},
+	{"Monster A", 556, 50000},
+	{"Monster B",557, 50000},
+	{"Moonbeam",418, 50000},
+	{"Mountain Bike", 510, 50000},
+	{"Mower",572, 50000},
+	{"Mr Whoopee",423, 50000},
+	{"Mule", 414, 50000},
+	{"Nebula",516, 50000},
+	{"Nevada", 553, 50000},
+	{"Newsvan", 582, 50000},
+	{"NRG-500",522, 50000},
+	{"Oceanic", 467, 50000},
+	{"Ore Trailer", 450, 50000},
+	{"Packer", 443, 50000},
+	{"Patriot", 470, 50000},
+	{"PCJ-600", 461, 50000},
+	{"Perenniel", 404, 50000},
+	{"Phoenix", 603, 50000},
+	{"Picador", 600, 50000},
+	{"Pizzaboy", 448, 50000},
+	{"Police Car (LSPD)",596, 50000},
+	{"Police Car (LVPD)", 598, 50000},
+	{"Police Car (SFPD)", 597, 50000},
+	{"Police Maverick", 497, 50000},
+	{"Police Ranger", 599, 50000},
+	{"Pony", 413, 50000},
+	{"Predator",430, 50000},
+	{"Premier", 426, 50000},
+	{"Previon",436, 50000},
+	{"Primo", 547, 50000},
+	{"Quad", 471, 50000},
+	{"Raindance", 563, 50000},
+	{"Rancher 1", 489, 50000},
+	{"Rancher 2", 505, 50000},
+//	{"RC Bandit", VClassRCVehicle, 441, 50000},
+//	{"RC Baron", VClassRCVehicle, 464, 50000},
+//	{"RC Cam", VClassRCVehicle, 594, 50000},
+//	{"RC Goblin", VClassRCVehicle, 501, 50000},
+//	{"RC Raider", VClassRCVehicle, 465, 50000},
+//	{"RC Tiger", VClassRCVehicle, 564, 50000},
+	{"Reefer", 453, 50000},
+	{"Regina",479, 50000},
+	{"Remington",534, 50000},
+	{"Rhino", 432, 50000},
+	{"Roadtrain", 515, 50000},
+	{"Romero",442, 50000},
+	{"Rumpo",440, 50000},
+	{"Rustler",476, 50000},
+	{"Sabre",475, 50000},
+	{"Sadler", 543, 50000},
+	{"Sadler Shit", 605, 50000},
+	{"SAN News Maverick", 488, 50000},
+	{"Sanchez", 468, 50000},
+	{"Sandking",495, 50000},
+	{"Savanna",567, 50000},
+	{"Seasparrow",447, 50000},
+	{"Securicar",428, 50000},
+	{"Sentinel", 405, 50000},
+	{"Shamal",519, 50000},
+	{"Skimmer",460, 50000},
+	{"Slamvan", 535, 50000},
+	{"Solair", 458, 50000},
+	{"Sparrow",469, 50000},
+	{"Speeder", 452, 50000},
+	{"Squallo", 446, 50000},
+	{"Stafford",580, 50000},
+	{"Stallion",439, 50000},
+	{"Stratum",561, 50000},
+//	{"Streak Trailer (train)", VClassTrailer, 570, 50000},
+	{"Stretch",409, 50000},
+	{"Stuntplane",513, 50000},
+	{"Sultan",560, 50000},
+	{"Sunrise", 550, 50000},
+	{"Super GT", 506, 50000},
+	{"S.W.A.T.", 601, 50000},
+	{"Sweeper", 574, 50000},
+	{"Tahoma",  566, 50000},
+	{"Tampa",  549, 50000},
+	{"Tanker", 514, 50000},
+	{"Taxi",  420, 50000},
+	{"Tornado",  576, 50000},
+	{"Towtruck",525, 50000},
+	{"Tractor",531, 50000},
+//	{"Tram", VClassUnique, 449, 50000},
+	{"Trashmaster",408, 50000},
+	{"Tropic",  454, 50000},
+	{"Tug",  583, 50000},
+	{"Tug Stairs Trailer",  608, 50000},
+	{"Turismo", 451, 50000},
+	{"Uranus", 558, 50000},
+	{"Utility Trailer",611, 50000},
+	{"Utility Van",  552, 50000},
+	{"Vincent",540, 50000},
+	{"Virgo",  491, 50000},
+	{"Voodoo",  412, 50000},
+	{"Vortex",  539, 50000},
+	{"Walton",  478, 50000},
+	{"Washington", 421, 50000},
+	{"Wayfarer", 586, 50000},
+	{"Willard",  529, 50000},
+	{"Windsor",  555, 50000},
+    {"Yankee",  456, 50000},
+	{"Yosemite",  554, 50000},
+	{"ZR-350",  477, 50000}
+};
+
+/*VehicleBuyable_GetIndex(vModel)
+{
+	// Loop through all vehicles in the ABuyableVehicles array
+	for (new i; i < sizeof(ABuyableVehicles); i++)
+	{
+	    // Check if the model of the current vehicle is the same as the given model
+		if (ABuyableVehicles[i][CarModel] == vModel)
+		    return i; // Return the index of the array where the carmodel was found
+	}
+
+	return -1;
+}*/
+
 main()
 {
 	print("\n-----------------------------------------");
@@ -451,7 +689,7 @@ main()
 	mysql_tquery(kapcs, "SELECT * FROM `objects`","ObjectLoad"); 				//Objektumok betöltése
 	mysql_tquery(kapcs, "SELECT * FROM `autok`","AutoLoad"); 					//Autók betöltése
 	mysql_tquery(kapcs, "SELECT * FROM `scam`","KamLoad"); 					    //Kamerák betöltése
-	mysql_tquery(kapcs, "SELECT * FROM `fuvarok`","FuvarLoad");                      //Fuvarok betöltése
+	mysql_tquery(kapcs, "SELECT * FROM `fuvarok`","FuvarLoad");                 //Fuvarok betöltése
  	mysql_tquery(kapcs, "SELECT H.id, H.tulaj, H.h_x, H.h_y, H.h_z, H.ih_x, H.ih_y, H.ih_z, H.interior, H.ar, H.pickupID, J.nev FROM hazak H JOIN jatekosok J ON H.tulaj = J.ID","HazLoad");
 }
 
@@ -473,7 +711,15 @@ enum eAutoInfo{
     Float:eloz1,
     Float:ujx2,
     Float:ujy2,
-    Float:ujz2
+    Float:ujz2,
+   	Text:SpeedText,
+	Text:FuelText,
+	Text:StatText,
+	SebessegTimer,
+	BenzinTimer,
+	StatTimer,
+	JatekosSebesseg,
+	Fuel
 }
 new AutoInfo[MAX_VEHICLES][eAutoInfo];
 
@@ -490,7 +736,8 @@ enum eJatekosInfo {
 	SzereloMunkak,
 	RendorMunkak,
 	BankMoney,
-	buntetes
+	buntetes,
+	ElsoTizKocsi
 }
 new JatekosInfo[MAX_PLAYERS][eJatekosInfo];
 
@@ -566,7 +813,8 @@ enum
 	DialogBankDeposit,
 	DialogBankWithdraw,
 	DialogAutoKer,
-	DialogMunkak
+	DialogMunkak,
+	DialogAutok
 } //Dialogok automatikus számozása.
 
 enum ValasztottAutomata
@@ -594,13 +842,6 @@ new Float:JailSpawnPoints[][4] =
 {198.5, 162.5, 1002.299987793, 269.1425}
 };
 
-new FuvarStr[][] =
-{
-	"KACC\tAlkatrészek\t{0FA0D1} ",
-	"Északi-raktár\tVegyes árú\t{0FA0D1} ",
-	"Fort Carson\tFegyverek\t{0FA0D1} "
-};
-
 public OnGameModeInit()
 {
 	ManualVehicleEngineAndLights();
@@ -608,7 +849,7 @@ public OnGameModeInit()
 	DisableInteriorEnterExits(); 			//Interior kikapcs
 	EnableStuntBonusForAll(0);              //ugrató pénz kikapcs
 	SetGameModeText(GMN);
-	
+
 	//gps
 	SetTimer("GPS", 500, 1);
 
@@ -624,6 +865,11 @@ public OnGameModeInit()
 		TextDrawSetProportional(gps[i],1);
 	}
 	//gps
+	
+	for(new i=0; i < MAX_VEHICLES; i++)
+	{
+        AutoInfo[i][Fuel] = MaxFuel;
+	}
     return 1;
 }
 
@@ -669,7 +915,7 @@ public OnPlayerConnect(playerid)
 		SetPlayerMapIcon(playerid, 5, 1596.6428,2198.7942,10.8044, 56, 0, MAPICON_LOCAL);
 		SetPlayerMapIcon(playerid, 6, 615.3072,1689.8611,6.9801, 56, 0, MAPICON_LOCAL);
 		SetPlayerMapIcon(playerid, 7, 2256.7107,2032.0468,11.2071, 45, 0, MAPICON_LOCAL);
-		SetPlayerMapIcon(playerid, 8, 1658.5491,2199.5457,10.8203, 55, 0, MAPICON_LOCAL); //Autoshop
+		SetPlayerMapIcon(playerid, 8, 1658.5491,2199.5457,10.8203, 55, 0, MAPICON_GLOBAL); //Autoshop
 		//Text Labelek
 		Create3DTextLabel("/tankol\n\n450Ft/liter", YELLOW, 2116.1753,919.9009,10.8168, 40.0, 0, 0);
 		Create3DTextLabel("/tankol\n\n450Ft/liter", YELLOW, 2639.0347,1106.4211,10.8145, 40.0, 0, 0);
@@ -858,6 +1104,8 @@ return 1;
 
 public OnPlayerEnterVehicle(playerid, vehicleid)
 {
+	Sebessegmero_Beallitas(playerid);
+    //Sebessegmero_Frissites(playerid);
 	return 1;
 }
 
@@ -866,6 +1114,7 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 	new engine, lights, alarm, doors, bonnet, boot, objective;
 	GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
 	SetVehicleParamsEx(vehicleid, VEHICLE_PARAMS_OFF, false, alarm, doors, bonnet, boot, objective);
+	Sebessegmero_Torles(playerid);
 	return 1;
 }
 /*
@@ -883,25 +1132,26 @@ stock strmatch(const String1[], const String2[])
 
 public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 {
-        switch(dialogid)
-		{
-                case d_reg: Dialog_Regisztracio(playerid, response, inputtext);
-                case d_belep: Dialog_Belepes(playerid, response, inputtext);
-                case automatak:Dialog_Automatas(playerid, response, listitem);
-                case munka: Dialog_Munkak(playerid, response, listitem);
-				case fuvar: Dialog_Fuvar(playerid, response, listitem);
-				case DialogBank: Dialog_BankOptions(playerid, response, listitem);
-				case DialogBankDeposit: Dialog_BankDeposit(playerid, response, inputtext);
-				case DialogBankWithdraw: Dialog_BankWithdraw(playerid, response, inputtext);
-				case DialogAutoKer: Dialog_DialogAutoKer(playerid, response, listitem);
-				case DialogMunkak: Dialog_Munka(playerid, response, listitem);
-        }
-        return 0;
+    switch(dialogid)
+	{
+            case d_reg: Dialog_Regisztracio(playerid, response, inputtext);
+            case d_belep: Dialog_Belepes(playerid, response, inputtext);
+            case automatak:Dialog_Automatas(playerid, response, listitem);
+            case munka: Dialog_Munkak(playerid, response, listitem);
+			case fuvar: Dialog_Fuvar(playerid, response, listitem);
+			case DialogBank: Dialog_BankOptions(playerid, response, listitem);
+			case DialogBankDeposit: Dialog_BankDeposit(playerid, response, inputtext);
+			case DialogBankWithdraw: Dialog_BankWithdraw(playerid, response, inputtext);
+			case DialogAutoKer: Dialog_DialogAutoKer(playerid, response, listitem);
+			case DialogAutok: Dialog_AutoKereskedes(playerid, response, listitem);
+			case DialogMunkak: Dialog_Munka(playerid, response, listitem);
+    }
+    return 0;
 }
 new bool: utdijfizet[MAX_PLAYERS] = true;
 public OnPlayerUpdate(playerid)
 {
-	
+
 	if(regiConvoyStat[playerid] < JatekosInfo[playerid][ConvoyMunkak] || regiSzereloStat[playerid] < JatekosInfo[playerid][SzereloMunkak] || regiRendorStat[playerid] < JatekosInfo[playerid][RendorMunkak])
 	{
 	    SetPlayerScore(playerid, JatekosInfo[playerid][ConvoyMunkak] + JatekosInfo[playerid][SzereloMunkak] + JatekosInfo[playerid][RendorMunkak]);
@@ -918,8 +1168,7 @@ public OnPlayerUpdate(playerid)
         	new Autoker[256], AutokerCim[128];
 
 			format(AutokerCim, sizeof(AutokerCim), "{FFFFFF}Autó Kereskedés");
-			format(Autoker, sizeof(Autoker), "{FFFFFF}Jármű vásárlás\nJármű eladása");
-
+			format(Autoker, sizeof(Autoker), "{FFFFFF}Jármű vásárlás");
 			ShowPlayerDialog(playerid, DialogAutoKer, DIALOG_STYLE_LIST, AutokerCim, Autoker, "Kiválaszt", "Mégsem");
         }
     }
@@ -1107,7 +1356,7 @@ public OnPlayerUpdate(playerid)
 		}
 	}
 	//speedcam vége
-	
+
 	if(GetPVarInt(playerid, "mcheckp") == 1 && FuvarKiszalltTimerMehet[playerid][0] == 1)
  	{
 		if(IsPlayerInAnyVehicle(playerid) == 0)
@@ -1116,7 +1365,7 @@ public OnPlayerUpdate(playerid)
 		    FuvarKiszalltTimerMehet[playerid][0] = 0;
 		}
  	}
- 	
+
  	if(GetPVarInt(playerid, "mcheckp") == 2 && FuvarKiszalltTimerMehet[playerid][0] == 1)
  	{
  	    if(IsPlayerInAnyVehicle(playerid) == 0)
@@ -1164,7 +1413,7 @@ public OnPlayerEnterCheckpoint(playerid)
     	SendClientMessage(playerid, GREEN, "Odaértél az autómatához, menj oda és töltsd fel! (/automata feltolt)");
 		return 1;
  	}
- 	
+
  	if(GetPVarInt(playerid, "mcheckp") == 1)
  	{
  	    if(IsPlayerInAnyVehicle(playerid) != 0)
@@ -1195,7 +1444,7 @@ public OnPlayerEnterCheckpoint(playerid)
 		 	}
  	    }
  	}
- 	
+
  	if(GetPVarInt(playerid, "mcheckp") == 2)
  	{
  	    if(IsPlayerInAnyVehicle(playerid) != 0)
@@ -1226,7 +1475,7 @@ public OnPlayerEnterCheckpoint(playerid)
 		 	}
  	    }
  	}
- 	
+
 	return 1;
 }
 
@@ -1495,8 +1744,29 @@ public Kapuzar()
 	MoveObject(Sorompok[10],2257.0000000,2031.3000000,12.6000000,2.0+0.0001,0,0,0);
 }
 
+/*forward adminok(playerid);
+public adminok(playerid)
+{
+new text[128];
+if(!cache_get_row_count()) return printf("cache_get_row_count returned false. Nincsennek betöltendő sorok.");
+ 	for(new i, j = cache_get_row_count(); i < j ; i++)
+	{
+	    new Valami[128];
+		cache_get_field_content(i,"Nev",Valami);
+		JatekosInfo[i][valami] = Valami;
+	    format(text,sizeof(text),"%s admin",JatekosInfo[i][valami]);
+	    SendClientMessage(playerid,GREEN,text);
+	}
+return 1;
+}*/
+
 //PARANCSOK=========================================================================================
 //===============================EGYÉB GAMEMOD PARANCSOK============================================
+/*CMD:szint(playerid,params[])
+{
+    mysql_tquery(kapcs,"SELECT Nev FROM jatekosok WHERE alevel > 1","adminok");
+    return 1;
+}*/
 CMD:kocsi(playerid,params[])
 {
 	new mID;
@@ -1697,16 +1967,16 @@ CMD:bank(playerid,params[])
 	return 1;
 }
 // EZT IS MEG KELL ÍRNI!--------------------------------------------------------------------------------------------------------------------------------------
-CMD:kereskedes(playerid,params[])
+/*CMD:kereskedes(playerid,params[])
 {
 	new Autoker[256], AutokerCim[128];
 
 	format(AutokerCim, sizeof(AutokerCim), "{FFFFFF}Autó Kereskedés");
-	format(Autoker, sizeof(Autoker), "{FFFFFF}Jármű vásárlás\nJármű eladása");
+	format(Autoker, sizeof(Autoker), "{FFFFFF}Jármű vásárlás\n");
 
 	ShowPlayerDialog(playerid, DialogAutoKer, DIALOG_STYLE_LIST, AutokerCim, Autoker, "Kiválaszt", "Mégsem");
 	return 1;
-}
+}*/
 
 CMD:foglalkozas(playerid,params[])
 {
@@ -2074,7 +2344,7 @@ CMD:pwl(playerid,params[])
 	else SendClientMessage(playerid, RED, "Nincs ilyen játékos!");
 	return 1;
 }
-
+// KAMIONOS COMMANDS ============================================================
 CMD:munka(playerid,params[])
 {
     if(GetPVarInt(playerid,"Frakcio") != 0)
@@ -2296,8 +2566,7 @@ public FuvarKiszallt(playerid, kocsikell)
 	return 1;
 }
 
-// KAMIONOS COMMANDS ============================================================
-CMD:fuvar(playerid,params[])
+/*CMD:fuvar(playerid,params[])
 {
 if(GetPVarInt(playerid,"Frakcio") == KAMIONOS)
 {
@@ -2314,7 +2583,7 @@ if(GetPVarInt(playerid,"Frakcio") == KAMIONOS)
 	}else SendClientMessage(playerid,RED,"Nem vagy a telepen!");
 }else SendClientMessage(playerid,RED,"Nem vagy kamionos!");
 return 1;
-}
+}*/
 
 CMD:konvoly(playerid,params[])
 {
@@ -2935,12 +3204,84 @@ Dialog_Belepes(playerid, response, inputtext[])
     }
 return 1;
 }
-
+//=====================================================AUTÓ KERESKEDÉS===============================================================================
 Dialog_DialogAutoKer(playerid, response, listitem)
 {
-	new mess[128]; // csak hogy ne warning-oljon
-	format(mess, sizeof(mess), "%d, %d", response, listitem);
-	SendClientMessage(playerid, WHITE, mess);
+if(!response) return 1;
+switch(listitem)
+	{
+    case 0:
+	    {
+			CarList_Create(playerid);
+	 	}
+	}
+	return 1;
+}
+
+stock CarList_Create(playerid)
+{
+	// Setup local variables
+	new Counter, CarList[500];
+
+	// Only add 10 cars to the list, starting from the FirstCar
+	for (new i = JatekosInfo[playerid][ElsoTizKocsi]; i < sizeof(ABuyableVehicles); i++)
+	{
+		// Increase a counter (which holds the number of cars that have been added to the list
+		Counter++;
+
+		// Check if the maximum hasn't been reached yet
+		if (Counter <= 10)
+		{
+		    // Add the carname to the list
+		    if (strlen(CarList) == 0) // If this is the start of the list (no cars have been added yet)
+				format(CarList, 500, "%s - {0FA0D1}%d Ft", ABuyableVehicles[i][CarName],ABuyableVehicles[i][Price]); // Add the name of the car at the start of the carlist
+		    else
+				format(CarList, 500, "%s%s%s - {0FA0D1}%d Ft", CarList, "\n", ABuyableVehicles[i][CarName],ABuyableVehicles[i][Price]); // Add the name of the next car to the list on the next line
+		}
+		else
+		{
+		    // Következő 10 kocsi
+			format(CarList, 500, "%s%s%s", CarList, "\n \n", "Következő");
+			break;
+		}
+	}
+	ShowPlayerDialog(playerid, DialogAutok, DIALOG_STYLE_LIST, "AutoKereskedés", CarList, "Megvesz","Mégsem");
+	return 1;
+}
+
+Dialog_AutoKereskedes(playerid, response, listitem)
+{
+new kocsi[500];
+if(!response)
+	{
+        JatekosInfo[playerid][ElsoTizKocsi] =0;
+        return 1;
+	}
+	
+	switch(listitem)
+		{
+	    case 10:
+		    {
+				CarList_Create(playerid);
+				return 1;
+		 	}
+		case 11:
+		    {
+				JatekosInfo[playerid][ElsoTizKocsi] += 10;
+				CarList_Create(playerid);
+			}
+		default:
+		    {
+		        new CarIndex;
+		    	CarIndex = JatekosInfo[playerid][ElsoTizKocsi] + listitem;
+		    	format(kocsi, 128, "{00FF00}Megvetted a(z){FFFF00} %s {00FF00} %d {FFFF00}Ft-ért{00FF00}.", ABuyableVehicles[CarIndex][CarName], ABuyableVehicles[CarIndex][Price]);
+		    	SendClientMessage(playerid, GREEN, kocsi);
+		    	JatekosInfo[playerid][Penz] -= ABuyableVehicles[CarIndex][Price];
+		    	CreateVehicle(ABuyableVehicles[CarIndex][CarModel], 1649.3289,2197.2869,10.5474, 82.2873, -1, -1, -1);
+		    	JatekosInfo[playerid][ElsoTizKocsi] =0;
+		    	
+			}
+		}
 	return 1;
 }
 
@@ -2987,3 +3328,189 @@ stock GetPlayerZone(playerid)
 	return false;
 }
 //gps
+
+//Sebesség mérő
+Sebessegmero_Beallitas(playerid)
+{
+	/*AutoInfo[playerid][FuelText] = TextDrawCreate(460.0, 405.0, " ");
+	AutoInfo[playerid][SpeedText] = TextDrawCreate(460.0, 390.0, " ");*/
+	AutoInfo[playerid][StatText] = TextDrawCreate(519.575622, 357.916748, " ");
+	AutoInfo[playerid][FuelText] = TextDrawCreate(519.575866, 373.166809, " ");
+	AutoInfo[playerid][SpeedText] = TextDrawCreate(519.575866, 388.916595, " ");
+	
+	// Beállítások
+	TextDrawSetShadow(AutoInfo[playerid][StatText], 0);
+    TextDrawUseBox(AutoInfo[playerid][StatText], 1);
+    TextDrawBoxColor(AutoInfo[playerid][StatText], 255);
+    TextDrawAlignment(AutoInfo[playerid][StatText], 1);
+    TextDrawLetterSize(AutoInfo[playerid][StatText], 0.317070, 1.255831);
+	TextDrawTextSize(AutoInfo[playerid][StatText], 628.587646, 0.000000);
+	
+	TextDrawSetShadow(AutoInfo[playerid][SpeedText], 0);
+	TextDrawUseBox(AutoInfo[playerid][SpeedText], 1);
+    TextDrawBoxColor(AutoInfo[playerid][SpeedText], 255);
+    TextDrawAlignment(AutoInfo[playerid][SpeedText], 1);
+    TextDrawLetterSize(AutoInfo[playerid][SpeedText], 0.317070, 1.255831);
+	TextDrawTextSize(AutoInfo[playerid][SpeedText], 628.587646, 0.000000);
+	
+	TextDrawSetShadow(AutoInfo[playerid][FuelText], 0);
+    TextDrawUseBox(AutoInfo[playerid][FuelText], 1);
+    TextDrawBoxColor(AutoInfo[playerid][FuelText], 255);
+    TextDrawAlignment(AutoInfo[playerid][FuelText], 1);
+    TextDrawLetterSize(AutoInfo[playerid][FuelText], 0.317070, 1.255831);
+	TextDrawTextSize(AutoInfo[playerid][FuelText], 628.587646, 0.000000);
+	
+    // Benyomatjuk a textdrawot
+	TextDrawShowForPlayer(playerid, AutoInfo[playerid][SpeedText]);
+	TextDrawShowForPlayer(playerid, AutoInfo[playerid][FuelText]);
+	TextDrawShowForPlayer(playerid, AutoInfo[playerid][StatText]);
+	// Elindítjuk a timert ami frissíti a textdrawot
+	AutoInfo[playerid][BenzinTimer] = SetTimerEx("Sebessegmero_Frissites", 500, true, "i", playerid);
+	AutoInfo[playerid][SebessegTimer] = SetTimerEx("Sebessegmero_Sebesseg", 50, true, "i", playerid);
+	AutoInfo[playerid][StatTimer] = SetTimerEx("Sebessegmero_Stat", 50, true, "i", playerid);
+	return 1;
+}
+
+Sebessegmero_Torles(playerid)
+{
+	// Töröljük a textdrawot
+	TextDrawDestroy(AutoInfo[playerid][SpeedText]);
+	TextDrawDestroy(AutoInfo[playerid][FuelText]);
+	TextDrawDestroy(AutoInfo[playerid][StatText]);
+	// Kikapcsoljuk a timert
+	KillTimer(AutoInfo[playerid][SebessegTimer]);
+	KillTimer(AutoInfo[playerid][BenzinTimer]);
+	KillTimer(AutoInfo[playerid][StatTimer]);
+	// 0-ra csapjuk a sebességet
+	AutoInfo[playerid][JatekosSebesseg] = 0;
+	return 1;
+}
+forward Sebessegmero_Stat(playerid);
+public Sebessegmero_Stat(playerid)
+{
+	new KocsiString[50],Status[20];
+	new Float:vehicleh;
+	new v = GetPlayerVehicleID(playerid);
+ 	GetVehicleHealth(v,vehicleh);
+ 	
+ 	if(v !=0)
+ 	{
+	 	if(vehicleh == 1000)
+		 format(Status, 20, "~g~%s", "Kiváló");
+	 	if(vehicleh < 1000 && vehicleh > 500)
+		 format(Status, 20, "~y~%s", "Jó");
+	 	if(vehicleh < 500 && vehicleh > 250)
+		 format(Status, 20, "~r~%s", "Rossz");
+	    if(vehicleh <= 250)
+		 format(Status, 20, "~r~%s", "Robban!");
+
+	 	format(KocsiString, 50, "~w~Állapot: %s", Status);
+	    TextDrawSetString(AutoInfo[playerid][StatText], KocsiString);
+    }
+    else
+	{
+		TextDrawSetString(AutoInfo[playerid][StatText], " ");
+	}
+	return 1;
+}
+
+forward Sebessegmero_Sebesseg(playerid);
+public Sebessegmero_Sebesseg(playerid)
+{
+	new vid, Float:speedx, Float:speedy, Float:speedz, Float:final_speed, speed_string[50], final_speed_int;
+	
+	vid = GetPlayerVehicleID(playerid);
+
+	if(vid != 0)
+	{
+        GetVehicleVelocity(vid, speedx, speedy, speedz);
+        final_speed = floatsqroot(((speedx * speedx) + (speedy * speedy)) + (speedz * speedz)) * 158.179;
+        final_speed_int = floatround(final_speed, floatround_round); //inté konverteljük a floatot
+        AutoInfo[playerid][JatekosSebesseg] = final_speed_int;
+
+		format(speed_string, 50, "~w~Sebesség: ~b~%i~w~ km/h", final_speed_int);
+		TextDrawSetString(AutoInfo[playerid][SpeedText], speed_string);
+	}
+	else
+	{
+		TextDrawSetString(AutoInfo[playerid][SpeedText], " ");
+		//TextDrawSetString(AutoInfo[playerid][FuelText], " ");
+		AutoInfo[playerid][JatekosSebesseg] = 0;
+	}
+	return 1;
+}
+
+forward Sebessegmero_Frissites(playerid);
+public Sebessegmero_Frissites(playerid)
+{
+	//new vid, Float:speedx, Float:speedy, Float:speedz, Float:final_speed, speed_string[50], final_speed_int, Float:vehiclehealth;
+	new vid;
+	new FuelString[50], FuelStatus[20];
+
+	vid = GetPlayerVehicleID(playerid);
+
+	if(vid != 0)
+	{
+        /*GetVehicleVelocity(vid, speedx, speedy, speedz);
+        final_speed = floatsqroot(((speedx * speedx) + (speedy * speedy)) + (speedz * speedz)) * 158.179;
+        final_speed_int = floatround(final_speed, floatround_round); //inté konverteljük a floatot
+        AutoInfo[playerid][JatekosSebesseg] = final_speed_int;
+
+		format(speed_string, 50, "~w~Sebess3g: ~b~%i~w~ km/h", final_speed_int);
+		TextDrawSetString(AutoInfo[playerid][SpeedText], speed_string);*/
+
+		if (GetPlayerVehicleSeat(playerid) == 0)
+		if ((AutoInfo[playerid][JatekosSebesseg] > 10) && (AutoInfo[vid][Fuel] > 0))
+			AutoInfo[vid][Fuel] = AutoInfo[vid][Fuel] - 1;
+
+        if ((AutoInfo[vid][Fuel] > 0) && (AutoInfo[vid][Fuel] < 100000))
+			format(FuelStatus, 20, "~g~%s~r~%s", "I", "IIIIIIIII");
+
+		if ((AutoInfo[vid][Fuel] >= ((MaxFuel / 10) * 1)) && (AutoInfo[vid][Fuel] < ((MaxFuel / 10) * 2)))
+			format(FuelStatus, 20, "~g~%s~r~%s", "II", "IIIIIIII");
+
+		if ((AutoInfo[vid][Fuel] >= ((MaxFuel / 10) * 2)) && (AutoInfo[vid][Fuel] < ((MaxFuel / 10) * 3)))
+			format(FuelStatus, 20, "~g~%s~r~%s", "III", "IIIIIII");
+
+		if ((AutoInfo[vid][Fuel] >= ((MaxFuel / 10) * 3)) && (AutoInfo[vid][Fuel] < ((MaxFuel / 10) * 4)))
+			format(FuelStatus, 20, "~g~%s~r~%s", "IIII", "IIIIII");
+
+		if ((AutoInfo[vid][Fuel] >= ((MaxFuel / 10) * 4)) && (AutoInfo[vid][Fuel] < ((MaxFuel / 10) * 5)))
+			format(FuelStatus, 20, "~g~%s~r~%s", "IIIII", "IIIII");
+
+		if ((AutoInfo[vid][Fuel] >= ((MaxFuel / 10) * 5)) && (AutoInfo[vid][Fuel] < ((MaxFuel / 10) * 6)))
+			format(FuelStatus, 20, "~g~%s~r~%s", "IIIIII", "IIII");
+
+		if ((AutoInfo[vid][Fuel] >= ((MaxFuel / 10) * 6)) && (AutoInfo[vid][Fuel] < ((MaxFuel / 10) * 7)))
+			format(FuelStatus, 20, "~g~%s~r~%s", "IIIIIII", "III");
+
+		if ((AutoInfo[vid][Fuel] >= ((MaxFuel / 10) * 7)) && (AutoInfo[vid][Fuel] < ((MaxFuel / 10) * 8)))
+			format(FuelStatus, 20, "~g~%s~r~%s", "IIIIIIII", "II");
+
+		if ((AutoInfo[vid][Fuel] >= ((MaxFuel / 10) * 8)) && (AutoInfo[vid][Fuel] < ((MaxFuel / 10) * 9)))
+			format(FuelStatus, 20, "~g~%s~r~%s", "IIIIIIIII", "I");
+
+		if ((AutoInfo[vid][Fuel] >= ((MaxFuel / 10) * 9)) && (AutoInfo[vid][Fuel] <= MaxFuel))
+			format(FuelStatus, 20, "~g~%s", "IIIIIIIIII"); // teli tank
+
+		if (AutoInfo[vid][Fuel] == 0)
+			format(FuelStatus, 20, "~r~%s", "IIIIIIIIII"); // üres tank
+
+        format(FuelString, 50, "~w~Üzemanyag: %s", FuelStatus);
+        TextDrawSetString(AutoInfo[playerid][FuelText], FuelString);
+
+        if(AutoInfo[vid][Fuel] == 0)
+        {
+			new engine,lights,alarm,doors,bonnet,boot,objective;
+			GetVehicleParamsEx(vid, engine, lights, alarm, doors, bonnet, boot, objective);
+			SetVehicleParamsEx(vid, 0, 0, alarm, doors, bonnet, boot, objective);
+		}
+	}
+	else
+	{
+		//TextDrawSetString(AutoInfo[playerid][SpeedText], " ");
+		TextDrawSetString(AutoInfo[playerid][FuelText], " ");
+		//AutoInfo[playerid][JatekosSebesseg] = 0;
+	}
+	return 1;
+}
