@@ -31,7 +31,7 @@
 
 //#define PRESSED(%0) \(((newkeys & (%0)) == (%0)) && ((oldkeys & (%0)) != (%0)))
 //#define RELEASED(%0) \(((newkeys & (%0)) != (%0)) && ((oldkeys & (%0)) == (%0)))
-//Próba a mergre
+//Próba a merge -re
 
 new PlayerTimer[MAX_PLAYERS];
 new kapcs, query[2000];
