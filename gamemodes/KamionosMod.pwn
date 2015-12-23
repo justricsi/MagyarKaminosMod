@@ -2,7 +2,7 @@
 #include <a_mysql>
 #include <ZCMD>
 #include <sscanf2>
-//#include <fixchars.h>
+#include <fixchars.h>
 
 #pragma tabsize 0
 

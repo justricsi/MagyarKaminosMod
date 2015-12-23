@@ -38355,3 +38355,243 @@ v0.3.7, (C)2005-2015 SA-MP Team
 [21:34:58] Incoming connection: 127.0.0.1:56542 id: 0
 [21:34:58] [join] Klucsik_David has joined the server (0:127.0.0.1)
 [21:38:38] [part] Klucsik_David has left the server (0:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:04:16] 
+[11:04:16] Server Plugins
+[11:04:16] --------------
+[11:04:16]  Loading plugin: Whirlpool.dll
+[11:04:16]  
+[11:04:16]  ==================
+[11:04:16]  
+[11:04:16]   Whirlpool loaded
+[11:04:16]  
+[11:04:16]  ==================
+[11:04:16]  
+[11:04:16]   Loaded.
+[11:04:16]  Loading plugin: mysql.dll
+[11:04:16]  >> plugin.mysql: R39-3 successfully loaded.
+[11:04:16]   Loaded.
+[11:04:16]  Loading plugin: sscanf.dll
+[11:04:16] 
+
+[11:04:16]  ===============================
+
+[11:04:16]       sscanf plugin loaded.     
+
+[11:04:16]          Version:  2.8.1        
+
+[11:04:16]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:04:16]  ===============================
+
+[11:04:16]   Loaded.
+[11:04:16]  Loading plugin: streamer.dll
+[11:04:16] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:04:16]   Loaded.
+[11:04:16]  Loading plugin: nativechecker.dll
+[11:04:16]   Loaded.
+[11:04:16]  Loaded 5 plugins.
+
+[11:04:16] I couldn't load any gamemode scripts. Please verify your server.cfg
+[11:04:16] It needs a gamemode0 line at the very least.
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:04:21] 
+[11:04:21] Server Plugins
+[11:04:21] --------------
+[11:04:21]  Loading plugin: Whirlpool.dll
+[11:04:21]  
+[11:04:21]  ==================
+[11:04:21]  
+[11:04:21]   Whirlpool loaded
+[11:04:21]  
+[11:04:21]  ==================
+[11:04:21]  
+[11:04:21]   Loaded.
+[11:04:21]  Loading plugin: mysql.dll
+[11:04:21]  >> plugin.mysql: R39-3 successfully loaded.
+[11:04:21]   Loaded.
+[11:04:21]  Loading plugin: sscanf.dll
+[11:04:21] 
+
+[11:04:21]  ===============================
+
+[11:04:21]       sscanf plugin loaded.     
+
+[11:04:21]          Version:  2.8.1        
+
+[11:04:21]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:04:21]  ===============================
+
+[11:04:21]   Loaded.
+[11:04:21]  Loading plugin: streamer.dll
+[11:04:21] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:04:21]   Loaded.
+[11:04:21]  Loading plugin: nativechecker.dll
+[11:04:21]   Loaded.
+[11:04:21]  Loaded 5 plugins.
+
+[11:04:21] I couldn't load any gamemode scripts. Please verify your server.cfg
+[11:04:21] It needs a gamemode0 line at the very least.
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:05:15] 
+[11:05:15] Server Plugins
+[11:05:15] --------------
+[11:05:15]  Loading plugin: Whirlpool.dll
+[11:05:15]  
+[11:05:15]  ==================
+[11:05:15]  
+[11:05:15]   Whirlpool loaded
+[11:05:15]  
+[11:05:15]  ==================
+[11:05:15]  
+[11:05:15]   Loaded.
+[11:05:15]  Loading plugin: mysql.dll
+[11:05:16]  >> plugin.mysql: R39-3 successfully loaded.
+[11:05:16]   Loaded.
+[11:05:16]  Loading plugin: sscanf.dll
+[11:05:16] 
+
+[11:05:16]  ===============================
+
+[11:05:16]       sscanf plugin loaded.     
+
+[11:05:16]          Version:  2.8.1        
+
+[11:05:16]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:05:16]  ===============================
+
+[11:05:16]   Loaded.
+[11:05:16]  Loading plugin: streamer.dll
+[11:05:16] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:05:16]   Loaded.
+[11:05:16]  Loading plugin: nativechecker.dll
+[11:05:16]   Loaded.
+[11:05:16]  Loaded 5 plugins.
+
+[11:05:16] 
+[11:05:16] Filterscripts
+[11:05:16] ---------------
+[11:05:16]   Loading filterscript 'kSpeedo.amx'...
+[11:05:16] 
+ Justricsi sebessegmero es benzin rendszere
+[11:05:16] 
+ 	---- Betoltve ----
+[11:05:16]   Loading filterscript 'motor.amx'...
+[11:05:16]   Loaded 2 filterscripts.
+
+[11:05:16] 
+-----------------------------------------
+[11:05:16] Szerver elindítva by Justricsi & Devidson
+[11:05:16] -----------------------------------------
+
+[11:05:16] Number of vehicle models: 0
+[11:05:16] 79 objektum betöltve!
+[11:05:16] 11 sorompo betöltve!
+[11:05:16] 80 autó betöltve!
+[11:05:16] 4 trafipax betöltve!
+[11:05:16] 14 fuvar betöltve!
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:06:16] 
+[11:06:16] Server Plugins
+[11:06:16] --------------
+[11:06:16]  Loading plugin: Whirlpool.dll
+[11:06:16]  
+[11:06:16]  ==================
+[11:06:16]  
+[11:06:16]   Whirlpool loaded
+[11:06:16]  
+[11:06:16]  ==================
+[11:06:16]  
+[11:06:16]   Loaded.
+[11:06:16]  Loading plugin: mysql.dll
+[11:06:16]  >> plugin.mysql: R39-3 successfully loaded.
+[11:06:16]   Loaded.
+[11:06:16]  Loading plugin: sscanf.dll
+[11:06:16] 
+
+[11:06:16]  ===============================
+
+[11:06:16]       sscanf plugin loaded.     
+
+[11:06:16]          Version:  2.8.1        
+
+[11:06:16]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:06:16]  ===============================
+
+[11:06:16]   Loaded.
+[11:06:16]  Loading plugin: streamer.dll
+[11:06:16] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:06:16]   Loaded.
+[11:06:16]  Loading plugin: nativechecker.dll
+[11:06:16]   Loaded.
+[11:06:16]  Loaded 5 plugins.
+
+[11:06:16] 
+[11:06:16] Filterscripts
+[11:06:16] ---------------
+[11:06:16]   Loading filterscript 'kSpeedo.amx'...
+[11:06:16] 
+ Justricsi sebessegmero es benzin rendszere
+[11:06:16] 
+ 	---- Betoltve ----
+[11:06:16]   Loading filterscript 'motor.amx'...
+[11:06:16]   Loaded 2 filterscripts.
+
+[11:06:16] 
+-----------------------------------------
+[11:06:16] Szerver elindítva by Justricsi & Devidson
+[11:06:16] -----------------------------------------
+
+[11:06:16] Number of vehicle models: 0
+[11:06:16] 79 objektum betöltve!
+[11:06:16] 11 sorompo betöltve!
+[11:06:16] 80 autó betöltve!
+[11:06:16] 4 trafipax betöltve!
+[11:06:16] 14 fuvar betöltve!
