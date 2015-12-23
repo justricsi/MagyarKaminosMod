@@ -38595,3 +38595,143 @@ v0.3.7, (C)2005-2015 SA-MP Team
 [11:06:16] 80 autó betöltve!
 [11:06:16] 4 trafipax betöltve!
 [11:06:16] 14 fuvar betöltve!
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:10:33] 
+[11:10:33] Server Plugins
+[11:10:33] --------------
+[11:10:33]  Loading plugin: Whirlpool.dll
+[11:10:33]  
+[11:10:33]  ==================
+[11:10:33]  
+[11:10:33]   Whirlpool loaded
+[11:10:33]  
+[11:10:33]  ==================
+[11:10:33]  
+[11:10:33]   Loaded.
+[11:10:33]  Loading plugin: mysql.dll
+[11:10:33]  >> plugin.mysql: R39-3 successfully loaded.
+[11:10:33]   Loaded.
+[11:10:33]  Loading plugin: sscanf.dll
+[11:10:33] 
+
+[11:10:33]  ===============================
+
+[11:10:33]       sscanf plugin loaded.     
+
+[11:10:33]          Version:  2.8.1        
+
+[11:10:33]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:10:33]  ===============================
+
+[11:10:33]   Loaded.
+[11:10:33]  Loading plugin: streamer.dll
+[11:10:33] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:10:33]   Loaded.
+[11:10:33]  Loading plugin: nativechecker.dll
+[11:10:33]   Loaded.
+[11:10:33]  Loaded 5 plugins.
+
+[11:10:33] 
+[11:10:33] Filterscripts
+[11:10:33] ---------------
+[11:10:33]   Loading filterscript 'kSpeedo.amx'...
+[11:10:33] 
+ Justricsi sebessegmero es benzin rendszere
+[11:10:33] 
+ 	---- Betoltve ----
+[11:10:33]   Loading filterscript 'motor.amx'...
+[11:10:33]   Loaded 2 filterscripts.
+
+[11:10:33] 
+-----------------------------------------
+[11:10:33] Szerver elindítva by Justricsi & Devidson
+[11:10:33] -----------------------------------------
+
+[11:10:33] Number of vehicle models: 0
+[11:10:34] 79 objektum betöltve!
+[11:10:34] 11 sorompo betöltve!
+[11:10:34] 80 autó betöltve!
+[11:10:34] 4 trafipax betöltve!
+[11:10:34] 14 fuvar betöltve!
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:10:54] 
+[11:10:54] Server Plugins
+[11:10:54] --------------
+[11:10:54]  Loading plugin: Whirlpool.dll
+[11:10:54]  
+[11:10:54]  ==================
+[11:10:54]  
+[11:10:54]   Whirlpool loaded
+[11:10:54]  
+[11:10:54]  ==================
+[11:10:54]  
+[11:10:54]   Loaded.
+[11:10:54]  Loading plugin: mysql.dll
+[11:10:54]  >> plugin.mysql: R39-3 successfully loaded.
+[11:10:54]   Loaded.
+[11:10:54]  Loading plugin: sscanf.dll
+[11:10:54] 
+
+[11:10:54]  ===============================
+
+[11:10:54]       sscanf plugin loaded.     
+
+[11:10:54]          Version:  2.8.1        
+
+[11:10:54]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:10:54]  ===============================
+
+[11:10:54]   Loaded.
+[11:10:54]  Loading plugin: streamer.dll
+[11:10:54] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:10:54]   Loaded.
+[11:10:54]  Loading plugin: nativechecker.dll
+[11:10:54]   Loaded.
+[11:10:54]  Loaded 5 plugins.
+
+[11:10:55] 
+[11:10:55] Filterscripts
+[11:10:55] ---------------
+[11:10:55]   Loading filterscript 'kSpeedo.amx'...
+[11:10:55] 
+ Justricsi sebessegmero es benzin rendszere
+[11:10:55] 
+ 	---- Betoltve ----
+[11:10:55]   Loading filterscript 'motor.amx'...
+[11:10:55]   Loaded 2 filterscripts.
+
+[11:10:55] 
+-----------------------------------------
+[11:10:55] Szerver elindítva by Justricsi & Devidson
+[11:10:55] -----------------------------------------
+
+[11:10:55] Number of vehicle models: 0
+[11:10:55] 79 objektum betöltve!
+[11:10:55] 11 sorompo betöltve!
+[11:10:55] 80 autó betöltve!
+[11:10:55] 4 trafipax betöltve!
+[11:10:55] 14 fuvar betöltve!
