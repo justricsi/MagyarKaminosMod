@@ -39204,3 +39204,5699 @@ v0.3.7, (C)2005-2015 SA-MP Team
 [18:37:54] [join] devidson has joined the server (1:78.131.75.77)
 [18:56:14] [part] Justricsi has left the server (0:1)
 [18:56:25] [part] devidson has left the server (1:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[09:58:22] filterscripts = ""  (string)
+[09:58:22] 
+[09:58:22] Server Plugins
+[09:58:22] --------------
+[09:58:22]  Loading plugin: Whirlpool.dll
+[09:58:22]  
+[09:58:22]  ==================
+[09:58:22]  
+[09:58:22]   Whirlpool loaded
+[09:58:22]  
+[09:58:22]  ==================
+[09:58:22]  
+[09:58:22]   Loaded.
+[09:58:22]  Loading plugin: mysql.dll
+[09:58:22]  >> plugin.mysql: R39-3 successfully loaded.
+[09:58:22]   Loaded.
+[09:58:22]  Loading plugin: sscanf.dll
+[09:58:22] 
+
+[09:58:22]  ===============================
+
+[09:58:22]       sscanf plugin loaded.     
+
+[09:58:22]          Version:  2.8.1        
+
+[09:58:22]    (c) 2012 Alex "Y_Less" Cole  
+
+[09:58:22]  ===============================
+
+[09:58:22]   Loaded.
+[09:58:22]  Loading plugin: streamer.dll
+[09:58:22] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[09:58:22]   Loaded.
+[09:58:22]  Loading plugin: nativechecker.dll
+[09:58:22]   Loaded.
+[09:58:22]  Loaded 5 plugins.
+
+[09:58:22] 
+[09:58:22] Filterscripts
+[09:58:22] ---------------
+[09:58:22]   Loaded 0 filterscripts.
+
+[09:58:22] Class 0 added
+[09:58:22] 
+----------------------------------
+[09:58:22]  VALAMI
+[09:58:22] ----------------------------------
+
+[09:58:22] Number of vehicle models: 0
+[09:59:24] [connection] 100.66.132.16:52655 requests connection cookie.
+[09:59:25] Incoming connection: 100.66.132.16:52655 id: 0
+[09:59:25] [join] Justricsi has joined the server (0:100.66.132.16)
+[09:59:47] [connection] 78.131.75.77:62556 requests connection cookie.
+[09:59:48] Incoming connection: 78.131.75.77:62556 id: 1
+[09:59:48] [join] devidson has joined the server (1:78.131.75.77)
+[10:05:13] [part] Justricsi has left the server (0:1)
+[10:05:15] [part] devidson has left the server (1:1)
+[10:05:40] [connection] 100.66.132.16:64155 requests connection cookie.
+[10:05:41] Incoming connection: 100.66.132.16:64155 id: 0
+[10:05:41] [join] Justricsi has joined the server (0:100.66.132.16)
+[10:05:42] [connection] 78.131.75.77:56382 requests connection cookie.
+[10:05:43] Incoming connection: 78.131.75.77:56382 id: 1
+[10:05:43] [join] devidson has joined the server (1:78.131.75.77)
+[10:06:47] [part] devidson has left the server (1:1)
+[10:07:04] [part] Justricsi has left the server (0:1)
+[10:07:16] --- Server Shutting Down.
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[10:09:22] filterscripts = ""  (string)
+[10:09:22] 
+[10:09:22] Server Plugins
+[10:09:22] --------------
+[10:09:22]  Loading plugin: Whirlpool.dll
+[10:09:22]  
+[10:09:22]  ==================
+[10:09:22]  
+[10:09:22]   Whirlpool loaded
+[10:09:22]  
+[10:09:22]  ==================
+[10:09:22]  
+[10:09:22]   Loaded.
+[10:09:22]  Loading plugin: mysql.dll
+[10:09:22]  >> plugin.mysql: R39-3 successfully loaded.
+[10:09:22]   Loaded.
+[10:09:22]  Loading plugin: sscanf.dll
+[10:09:22] 
+
+[10:09:22]  ===============================
+
+[10:09:22]       sscanf plugin loaded.     
+
+[10:09:22]          Version:  2.8.1        
+
+[10:09:22]    (c) 2012 Alex "Y_Less" Cole  
+
+[10:09:22]  ===============================
+
+[10:09:22]   Loaded.
+[10:09:22]  Loading plugin: streamer.dll
+[10:09:22] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[10:09:22]   Loaded.
+[10:09:22]  Loading plugin: nativechecker.dll
+[10:09:22]   Loaded.
+[10:09:22]  Loaded 5 plugins.
+
+[10:09:22] 
+[10:09:22] Filterscripts
+[10:09:22] ---------------
+[10:09:22]   Loaded 0 filterscripts.
+
+[10:09:22] 
+----------------------------------
+[10:09:22]  VALAMI
+[10:09:22] ----------------------------------
+
+[10:09:22] Number of vehicle models: 0
+[10:09:46] [connection] 78.131.75.77:55999 requests connection cookie.
+[10:09:47] Incoming connection: 78.131.75.77:55999 id: 0
+[10:09:47] [join] devidson has joined the server (0:78.131.75.77)
+[10:10:40] [connection] 100.66.132.16:59911 requests connection cookie.
+[10:10:41] Incoming connection: 100.66.132.16:59911 id: 1
+[10:10:41] [join] Justricsi has joined the server (1:100.66.132.16)
+[10:11:50] [part] Justricsi has left the server (1:1)
+[10:11:54] [part] devidson has left the server (0:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:04:54] filterscripts = ""  (string)
+[11:04:54] 
+[11:04:54] Server Plugins
+[11:04:54] --------------
+[11:04:54]  Loading plugin: Whirlpool.dll
+[11:04:54]  
+[11:04:54]  ==================
+[11:04:54]  
+[11:04:54]   Whirlpool loaded
+[11:04:54]  
+[11:04:54]  ==================
+[11:04:54]  
+[11:04:54]   Loaded.
+[11:04:54]  Loading plugin: mysql.dll
+[11:04:54]  >> plugin.mysql: R39-3 successfully loaded.
+[11:04:54]   Loaded.
+[11:04:54]  Loading plugin: sscanf.dll
+[11:04:54] 
+
+[11:04:54]  ===============================
+
+[11:04:54]       sscanf plugin loaded.     
+
+[11:04:54]          Version:  2.8.1        
+
+[11:04:54]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:04:54]  ===============================
+
+[11:04:54]   Loaded.
+[11:04:54]  Loading plugin: streamer.dll
+[11:04:54] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:04:54]   Loaded.
+[11:04:54]  Loading plugin: nativechecker.dll
+[11:04:54]   Loaded.
+[11:04:54]  Loaded 5 plugins.
+
+[11:04:54] 
+[11:04:54] Filterscripts
+[11:04:54] ---------------
+[11:04:54]   Loaded 0 filterscripts.
+
+[11:04:54] 
+----------------------------------
+[11:04:54]  VALAMI
+[11:04:54] ----------------------------------
+
+[11:04:54] Number of vehicle models: 0
+[11:05:23] [connection] 78.131.75.77:63880 requests connection cookie.
+[11:05:24] [connection] 100.66.132.16:51709 requests connection cookie.
+[11:05:24] Incoming connection: 78.131.75.77:63880 id: 0
+[11:05:25] [join] devidson has joined the server (0:78.131.75.77)
+[11:05:25] Incoming connection: 100.66.132.16:51709 id: 1
+[11:05:25] [join] Justricsi has joined the server (1:100.66.132.16)
+[11:06:32] [part] devidson has left the server (0:1)
+[11:06:32] [part] Justricsi has left the server (1:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:13:15] filterscripts = ""  (string)
+[11:13:15] 
+[11:13:15] Server Plugins
+[11:13:15] --------------
+[11:13:15]  Loading plugin: Whirlpool.dll
+[11:13:15]  
+[11:13:15]  ==================
+[11:13:15]  
+[11:13:15]   Whirlpool loaded
+[11:13:15]  
+[11:13:15]  ==================
+[11:13:15]  
+[11:13:15]   Loaded.
+[11:13:15]  Loading plugin: mysql.dll
+[11:13:15]  >> plugin.mysql: R39-3 successfully loaded.
+[11:13:15]   Loaded.
+[11:13:15]  Loading plugin: sscanf.dll
+[11:13:15] 
+
+[11:13:15]  ===============================
+
+[11:13:15]       sscanf plugin loaded.     
+
+[11:13:15]          Version:  2.8.1        
+
+[11:13:15]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:13:15]  ===============================
+
+[11:13:15]   Loaded.
+[11:13:15]  Loading plugin: streamer.dll
+[11:13:15] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:13:15]   Loaded.
+[11:13:15]  Loading plugin: nativechecker.dll
+[11:13:15]   Loaded.
+[11:13:15]  Loaded 5 plugins.
+
+[11:13:15] 
+[11:13:15] Filterscripts
+[11:13:15] ---------------
+[11:13:15]   Loaded 0 filterscripts.
+
+[11:13:15] 
+----------------------------------
+[11:13:15]  VALAMI
+[11:13:15] ----------------------------------
+
+[11:13:15] Number of vehicle models: 0
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:14:51] filterscripts = ""  (string)
+[11:14:51] 
+[11:14:51] Server Plugins
+[11:14:51] --------------
+[11:14:51]  Loading plugin: Whirlpool.dll
+[11:14:51]  
+[11:14:51]  ==================
+[11:14:51]  
+[11:14:51]   Whirlpool loaded
+[11:14:51]  
+[11:14:51]  ==================
+[11:14:51]  
+[11:14:51]   Loaded.
+[11:14:51]  Loading plugin: mysql.dll
+[11:14:51]  >> plugin.mysql: R39-3 successfully loaded.
+[11:14:51]   Loaded.
+[11:14:51]  Loading plugin: sscanf.dll
+[11:14:51] 
+
+[11:14:51]  ===============================
+
+[11:14:51]       sscanf plugin loaded.     
+
+[11:14:51]          Version:  2.8.1        
+
+[11:14:51]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:14:51]  ===============================
+
+[11:14:51]   Loaded.
+[11:14:51]  Loading plugin: streamer.dll
+[11:14:51] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:14:51]   Loaded.
+[11:14:51]  Loading plugin: nativechecker.dll
+[11:14:51]   Loaded.
+[11:14:51]  Loaded 5 plugins.
+
+[11:14:51] 
+[11:14:51] Filterscripts
+[11:14:51] ---------------
+[11:14:51]   Loaded 0 filterscripts.
+
+[11:14:51] 
+----------------------------------
+[11:14:51]  VALAMI
+[11:14:51] ----------------------------------
+
+[11:14:51] Number of vehicle models: 0
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:15:50] filterscripts = ""  (string)
+[11:15:50] 
+[11:15:50] Server Plugins
+[11:15:50] --------------
+[11:15:50]  Loading plugin: Whirlpool.dll
+[11:15:50]  
+[11:15:50]  ==================
+[11:15:50]  
+[11:15:50]   Whirlpool loaded
+[11:15:50]  
+[11:15:50]  ==================
+[11:15:50]  
+[11:15:50]   Loaded.
+[11:15:50]  Loading plugin: mysql.dll
+[11:15:50]  >> plugin.mysql: R39-3 successfully loaded.
+[11:15:50]   Loaded.
+[11:15:50]  Loading plugin: sscanf.dll
+[11:15:51] 
+
+[11:15:51]  ===============================
+
+[11:15:51]       sscanf plugin loaded.     
+
+[11:15:51]          Version:  2.8.1        
+
+[11:15:51]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:15:51]  ===============================
+
+[11:15:51]   Loaded.
+[11:15:51]  Loading plugin: streamer.dll
+[11:15:51] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:15:51]   Loaded.
+[11:15:51]  Loading plugin: nativechecker.dll
+[11:15:51]   Loaded.
+[11:15:51]  Loaded 5 plugins.
+
+[11:15:51] 
+[11:15:51] Filterscripts
+[11:15:51] ---------------
+[11:15:51]   Loaded 0 filterscripts.
+
+[11:15:51] 
+----------------------------------
+[11:15:51]  VALAMI
+[11:15:51] ----------------------------------
+
+[11:15:51] Number of vehicle models: 0
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:16:57] filterscripts = ""  (string)
+[11:16:57] 
+[11:16:57] Server Plugins
+[11:16:57] --------------
+[11:16:57]  Loading plugin: Whirlpool.dll
+[11:16:57]  
+[11:16:57]  ==================
+[11:16:57]  
+[11:16:57]   Whirlpool loaded
+[11:16:57]  
+[11:16:57]  ==================
+[11:16:57]  
+[11:16:57]   Loaded.
+[11:16:57]  Loading plugin: mysql.dll
+[11:16:57]  >> plugin.mysql: R39-3 successfully loaded.
+[11:16:57]   Loaded.
+[11:16:57]  Loading plugin: sscanf.dll
+[11:16:57] 
+
+[11:16:57]  ===============================
+
+[11:16:57]       sscanf plugin loaded.     
+
+[11:16:57]          Version:  2.8.1        
+
+[11:16:57]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:16:57]  ===============================
+
+[11:16:57]   Loaded.
+[11:16:57]  Loading plugin: streamer.dll
+[11:16:57] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:16:57]   Loaded.
+[11:16:57]  Loading plugin: nativechecker.dll
+[11:16:57]   Loaded.
+[11:16:57]  Loaded 5 plugins.
+
+[11:16:57] 
+[11:16:57] Filterscripts
+[11:16:57] ---------------
+[11:16:57]   Loaded 0 filterscripts.
+
+[11:16:57] 
+----------------------------------
+[11:16:57]  VALAMI
+[11:16:57] ----------------------------------
+
+[11:16:57] Number of vehicle models: 0
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:17:34] filterscripts = ""  (string)
+[11:17:34] 
+[11:17:34] Server Plugins
+[11:17:34] --------------
+[11:17:34]  Loading plugin: Whirlpool.dll
+[11:17:34]  
+[11:17:34]  ==================
+[11:17:34]  
+[11:17:34]   Whirlpool loaded
+[11:17:34]  
+[11:17:34]  ==================
+[11:17:34]  
+[11:17:34]   Loaded.
+[11:17:34]  Loading plugin: mysql.dll
+[11:17:34]  >> plugin.mysql: R39-3 successfully loaded.
+[11:17:34]   Loaded.
+[11:17:34]  Loading plugin: sscanf.dll
+[11:17:34] 
+
+[11:17:34]  ===============================
+
+[11:17:34]       sscanf plugin loaded.     
+
+[11:17:34]          Version:  2.8.1        
+
+[11:17:34]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:17:34]  ===============================
+
+[11:17:34]   Loaded.
+[11:17:34]  Loading plugin: streamer.dll
+[11:17:34] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:17:34]   Loaded.
+[11:17:34]  Loading plugin: nativechecker.dll
+[11:17:34]   Loaded.
+[11:17:34]  Loaded 5 plugins.
+
+[11:17:34] 
+[11:17:34] Filterscripts
+[11:17:34] ---------------
+[11:17:34]   Loaded 0 filterscripts.
+
+[11:17:34] 
+----------------------------------
+[11:17:34]  VALAMI
+[11:17:34] ----------------------------------
+
+[11:17:34] Number of vehicle models: 0
+[11:17:34] ZoneLoad-ban vagyunk
+[11:17:34] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+Console input: edsfa
+Console input: exit
+[11:18:43] --- Server Shutting Down.
+[11:18:43]  
+[11:18:43]  ====================
+[11:18:43]  
+[11:18:43]   Whirlpool unloaded
+[11:18:43]  
+[11:18:43]  ====================
+[11:18:43]  
+[11:18:43] plugin.mysql: Unloading plugin...
+[11:18:43] plugin.mysql: Plugin unloaded.
+[11:18:43] 
+
+[11:18:43]  ===============================
+
+[11:18:43]      sscanf plugin unloaded.    
+
+[11:18:43]  ===============================
+
+[11:18:43] 
+
+*** Streamer Plugin v2.7.6 by Incognito unloaded ***
+
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:20:11] filterscripts = ""  (string)
+[11:20:11] 
+[11:20:11] Server Plugins
+[11:20:11] --------------
+[11:20:11]  Loading plugin: Whirlpool.dll
+[11:20:11]  
+[11:20:11]  ==================
+[11:20:11]  
+[11:20:11]   Whirlpool loaded
+[11:20:11]  
+[11:20:11]  ==================
+[11:20:11]  
+[11:20:11]   Loaded.
+[11:20:11]  Loading plugin: mysql.dll
+[11:20:11]  >> plugin.mysql: R39-3 successfully loaded.
+[11:20:11]   Loaded.
+[11:20:11]  Loading plugin: sscanf.dll
+[11:20:11] 
+
+[11:20:11]  ===============================
+
+[11:20:11]       sscanf plugin loaded.     
+
+[11:20:11]          Version:  2.8.1        
+
+[11:20:11]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:20:11]  ===============================
+
+[11:20:11]   Loaded.
+[11:20:11]  Loading plugin: streamer.dll
+[11:20:11] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:20:11]   Loaded.
+[11:20:11]  Loading plugin: nativechecker.dll
+[11:20:11]   Loaded.
+[11:20:11]  Loaded 5 plugins.
+
+[11:20:11] 
+[11:20:11] Filterscripts
+[11:20:11] ---------------
+[11:20:11]   Loaded 0 filterscripts.
+
+[11:20:11] 
+----------------------------------
+[11:20:11]  VALAMI
+[11:20:11] ----------------------------------
+
+[11:20:11] Number of vehicle models: 0
+[11:20:11] ZoneLoad-ban vagyunk, 3
+[11:20:11] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:20:43] filterscripts = ""  (string)
+[11:20:43] 
+[11:20:43] Server Plugins
+[11:20:43] --------------
+[11:20:43]  Loading plugin: Whirlpool.dll
+[11:20:43]  
+[11:20:43]  ==================
+[11:20:43]  
+[11:20:43]   Whirlpool loaded
+[11:20:43]  
+[11:20:43]  ==================
+[11:20:43]  
+[11:20:43]   Loaded.
+[11:20:43]  Loading plugin: mysql.dll
+[11:20:43]  >> plugin.mysql: R39-3 successfully loaded.
+[11:20:43]   Loaded.
+[11:20:43]  Loading plugin: sscanf.dll
+[11:20:43] 
+
+[11:20:43]  ===============================
+
+[11:20:43]       sscanf plugin loaded.     
+
+[11:20:43]          Version:  2.8.1        
+
+[11:20:43]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:20:43]  ===============================
+
+[11:20:43]   Loaded.
+[11:20:43]  Loading plugin: streamer.dll
+[11:20:43] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:20:43]   Loaded.
+[11:20:43]  Loading plugin: nativechecker.dll
+[11:20:43]   Loaded.
+[11:20:43]  Loaded 5 plugins.
+
+[11:20:43] 
+[11:20:43] Filterscripts
+[11:20:43] ---------------
+[11:20:43]   Loaded 0 filterscripts.
+
+[11:20:43] 
+----------------------------------
+[11:20:43]  VALAMI
+[11:20:43] ----------------------------------
+
+[11:20:43] Number of vehicle models: 0
+[11:20:43] ZoneLoad-ban vagyunk, 3
+[11:20:43] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:21:46] filterscripts = ""  (string)
+[11:21:46] 
+[11:21:46] Server Plugins
+[11:21:46] --------------
+[11:21:46]  Loading plugin: Whirlpool.dll
+[11:21:46]  
+[11:21:46]  ==================
+[11:21:46]  
+[11:21:46]   Whirlpool loaded
+[11:21:46]  
+[11:21:46]  ==================
+[11:21:46]  
+[11:21:46]   Loaded.
+[11:21:46]  Loading plugin: mysql.dll
+[11:21:46]  >> plugin.mysql: R39-3 successfully loaded.
+[11:21:46]   Loaded.
+[11:21:46]  Loading plugin: sscanf.dll
+[11:21:46] 
+
+[11:21:46]  ===============================
+
+[11:21:46]       sscanf plugin loaded.     
+
+[11:21:46]          Version:  2.8.1        
+
+[11:21:46]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:21:46]  ===============================
+
+[11:21:46]   Loaded.
+[11:21:46]  Loading plugin: streamer.dll
+[11:21:46] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:21:46]   Loaded.
+[11:21:46]  Loading plugin: nativechecker.dll
+[11:21:46]   Loaded.
+[11:21:46]  Loaded 5 plugins.
+
+[11:21:46] 
+[11:21:46] Filterscripts
+[11:21:46] ---------------
+[11:21:46]   Loaded 0 filterscripts.
+
+[11:21:46] 
+----------------------------------
+[11:21:46]  VALAMI
+[11:21:46] ----------------------------------
+
+[11:21:46] Number of vehicle models: 0
+[11:21:46] ZoneLoad-ban vagyunk, 3
+[11:21:46] 0
+[11:21:46] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[11:21:46] 1
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:22:21] filterscripts = ""  (string)
+[11:22:21] 
+[11:22:21] Server Plugins
+[11:22:21] --------------
+[11:22:21]  Loading plugin: Whirlpool.dll
+[11:22:21]  
+[11:22:21]  ==================
+[11:22:21]  
+[11:22:21]   Whirlpool loaded
+[11:22:21]  
+[11:22:21]  ==================
+[11:22:21]  
+[11:22:21]   Loaded.
+[11:22:21]  Loading plugin: mysql.dll
+[11:22:21]  >> plugin.mysql: R39-3 successfully loaded.
+[11:22:21]   Loaded.
+[11:22:21]  Loading plugin: sscanf.dll
+[11:22:21] 
+
+[11:22:21]  ===============================
+
+[11:22:21]       sscanf plugin loaded.     
+
+[11:22:21]          Version:  2.8.1        
+
+[11:22:21]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:22:21]  ===============================
+
+[11:22:21]   Loaded.
+[11:22:21]  Loading plugin: streamer.dll
+[11:22:21] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:22:21]   Loaded.
+[11:22:21]  Loading plugin: nativechecker.dll
+[11:22:21]   Loaded.
+[11:22:21]  Loaded 5 plugins.
+
+[11:22:22] 
+[11:22:22] Filterscripts
+[11:22:22] ---------------
+[11:22:22]   Loaded 0 filterscripts.
+
+[11:22:22] 
+----------------------------------
+[11:22:22]  VALAMI
+[11:22:22] ----------------------------------
+
+[11:22:22] Number of vehicle models: 0
+[11:22:22] ZoneLoad-ban vagyunk, 3
+[11:22:22] 0
+[11:22:22] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[11:22:22] 1
+[11:22:22] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[11:22:22] 2
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:23:18] filterscripts = ""  (string)
+[11:23:18] 
+[11:23:18] Server Plugins
+[11:23:18] --------------
+[11:23:18]  Loading plugin: Whirlpool.dll
+[11:23:18]  
+[11:23:18]  ==================
+[11:23:18]  
+[11:23:18]   Whirlpool loaded
+[11:23:18]  
+[11:23:18]  ==================
+[11:23:18]  
+[11:23:18]   Loaded.
+[11:23:18]  Loading plugin: mysql.dll
+[11:23:18]  >> plugin.mysql: R39-3 successfully loaded.
+[11:23:18]   Loaded.
+[11:23:18]  Loading plugin: sscanf.dll
+[11:23:18] 
+
+[11:23:18]  ===============================
+
+[11:23:18]       sscanf plugin loaded.     
+
+[11:23:18]          Version:  2.8.1        
+
+[11:23:18]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:23:18]  ===============================
+
+[11:23:18]   Loaded.
+[11:23:18]  Loading plugin: streamer.dll
+[11:23:18] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:23:18]   Loaded.
+[11:23:18]  Loading plugin: nativechecker.dll
+[11:23:18]   Loaded.
+[11:23:18]  Loaded 5 plugins.
+
+[11:23:18] 
+[11:23:18] Filterscripts
+[11:23:18] ---------------
+[11:23:18]   Loaded 0 filterscripts.
+
+[11:23:18] 
+----------------------------------
+[11:23:18]  VALAMI
+[11:23:18] ----------------------------------
+
+[11:23:18] Number of vehicle models: 0
+[11:23:18] ZoneLoad-ban vagyunk, 3
+[11:23:18] 0
+[11:23:18] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[11:23:18] 1
+[11:23:18] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[11:23:18] 2
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:23:25] filterscripts = ""  (string)
+[11:23:25] 
+[11:23:25] Server Plugins
+[11:23:25] --------------
+[11:23:25]  Loading plugin: Whirlpool.dll
+[11:23:25]  
+[11:23:25]  ==================
+[11:23:25]  
+[11:23:25]   Whirlpool loaded
+[11:23:25]  
+[11:23:25]  ==================
+[11:23:25]  
+[11:23:25]   Loaded.
+[11:23:25]  Loading plugin: mysql.dll
+[11:23:25]  >> plugin.mysql: R39-3 successfully loaded.
+[11:23:25]   Loaded.
+[11:23:25]  Loading plugin: sscanf.dll
+[11:23:25] 
+
+[11:23:25]  ===============================
+
+[11:23:25]       sscanf plugin loaded.     
+
+[11:23:25]          Version:  2.8.1        
+
+[11:23:25]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:23:25]  ===============================
+
+[11:23:25]   Loaded.
+[11:23:25]  Loading plugin: streamer.dll
+[11:23:25] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:23:25]   Loaded.
+[11:23:25]  Loading plugin: nativechecker.dll
+[11:23:25]   Loaded.
+[11:23:25]  Loaded 5 plugins.
+
+[11:23:25] 
+[11:23:25] Filterscripts
+[11:23:25] ---------------
+[11:23:25]   Loaded 0 filterscripts.
+
+[11:23:25] 
+----------------------------------
+[11:23:25]  VALAMI
+[11:23:25] ----------------------------------
+
+[11:23:25] Number of vehicle models: 0
+[11:23:25] ZoneLoad-ban vagyunk, 3
+[11:23:25] 0
+[11:23:25] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[11:23:25] 1
+[11:23:25] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[11:23:25] 2
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:23:46] filterscripts = ""  (string)
+[11:23:46] 
+[11:23:46] Server Plugins
+[11:23:46] --------------
+[11:23:46]  Loading plugin: Whirlpool.dll
+[11:23:46]  
+[11:23:46]  ==================
+[11:23:46]  
+[11:23:46]   Whirlpool loaded
+[11:23:46]  
+[11:23:46]  ==================
+[11:23:46]  
+[11:23:46]   Loaded.
+[11:23:46]  Loading plugin: mysql.dll
+[11:23:46]  >> plugin.mysql: R39-3 successfully loaded.
+[11:23:46]   Loaded.
+[11:23:46]  Loading plugin: sscanf.dll
+[11:23:46] 
+
+[11:23:46]  ===============================
+
+[11:23:46]       sscanf plugin loaded.     
+
+[11:23:46]          Version:  2.8.1        
+
+[11:23:46]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:23:46]  ===============================
+
+[11:23:46]   Loaded.
+[11:23:46]  Loading plugin: streamer.dll
+[11:23:46] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:23:46]   Loaded.
+[11:23:46]  Loading plugin: nativechecker.dll
+[11:23:46]   Loaded.
+[11:23:46]  Loaded 5 plugins.
+
+[11:23:46] 
+[11:23:46] Filterscripts
+[11:23:46] ---------------
+[11:23:46]   Loaded 0 filterscripts.
+
+[11:23:46] 
+----------------------------------
+[11:23:46]  VALAMI
+[11:23:46] ----------------------------------
+
+[11:23:46] Number of vehicle models: 0
+[11:23:46] ZoneLoad-ban vagyunk, 3
+[11:23:46] 0
+[11:23:46] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[11:23:46] 1
+[11:23:46] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[11:23:46] 2
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:25:46] filterscripts = ""  (string)
+[11:25:46] 
+[11:25:46] Server Plugins
+[11:25:46] --------------
+[11:25:46]  Loading plugin: Whirlpool.dll
+[11:25:46]  
+[11:25:46]  ==================
+[11:25:46]  
+[11:25:46]   Whirlpool loaded
+[11:25:46]  
+[11:25:46]  ==================
+[11:25:46]  
+[11:25:46]   Loaded.
+[11:25:46]  Loading plugin: mysql.dll
+[11:25:46]  >> plugin.mysql: R39-3 successfully loaded.
+[11:25:46]   Loaded.
+[11:25:46]  Loading plugin: sscanf.dll
+[11:25:46] 
+
+[11:25:46]  ===============================
+
+[11:25:46]       sscanf plugin loaded.     
+
+[11:25:46]          Version:  2.8.1        
+
+[11:25:46]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:25:46]  ===============================
+
+[11:25:46]   Loaded.
+[11:25:46]  Loading plugin: streamer.dll
+[11:25:46] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:25:46]   Loaded.
+[11:25:46]  Loading plugin: nativechecker.dll
+[11:25:46]   Loaded.
+[11:25:46]  Loaded 5 plugins.
+
+[11:25:46] 
+[11:25:46] Filterscripts
+[11:25:46] ---------------
+[11:25:46]   Loaded 0 filterscripts.
+
+[11:25:46] 
+----------------------------------
+[11:25:46]  VALAMI
+[11:25:46] ----------------------------------
+
+[11:25:46] Number of vehicle models: 0
+[11:25:46] ZoneLoad-ban vagyunk, 3
+[11:25:46] i = 0
+[11:25:46] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[11:25:46] i = 1
+[11:25:46] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[11:25:46] i = 2
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:27:06] filterscripts = ""  (string)
+[11:27:06] 
+[11:27:06] Server Plugins
+[11:27:06] --------------
+[11:27:06]  Loading plugin: Whirlpool.dll
+[11:27:06]  
+[11:27:06]  ==================
+[11:27:06]  
+[11:27:06]   Whirlpool loaded
+[11:27:06]  
+[11:27:06]  ==================
+[11:27:06]  
+[11:27:06]   Loaded.
+[11:27:06]  Loading plugin: mysql.dll
+[11:27:06]  >> plugin.mysql: R39-3 successfully loaded.
+[11:27:06]   Loaded.
+[11:27:06]  Loading plugin: sscanf.dll
+[11:27:06] 
+
+[11:27:06]  ===============================
+
+[11:27:06]       sscanf plugin loaded.     
+
+[11:27:06]          Version:  2.8.1        
+
+[11:27:06]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:27:06]  ===============================
+
+[11:27:06]   Loaded.
+[11:27:06]  Loading plugin: streamer.dll
+[11:27:06] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:27:06]   Loaded.
+[11:27:06]  Loading plugin: nativechecker.dll
+[11:27:06]   Loaded.
+[11:27:06]  Loaded 5 plugins.
+
+[11:27:06] 
+[11:27:06] Filterscripts
+[11:27:06] ---------------
+[11:27:06]   Loaded 0 filterscripts.
+
+[11:27:06] 
+----------------------------------
+[11:27:06]  VALAMI
+[11:27:06] ----------------------------------
+
+[11:27:06] Number of vehicle models: 0
+[11:27:06] ZoneLoad-ban vagyunk, 3
+[11:27:06] i = 0
+[11:27:06] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[11:27:06] i = 1
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:27:36] filterscripts = ""  (string)
+[11:27:36] 
+[11:27:36] Server Plugins
+[11:27:36] --------------
+[11:27:36]  Loading plugin: Whirlpool.dll
+[11:27:36]  
+[11:27:36]  ==================
+[11:27:36]  
+[11:27:36]   Whirlpool loaded
+[11:27:36]  
+[11:27:36]  ==================
+[11:27:36]  
+[11:27:36]   Loaded.
+[11:27:36]  Loading plugin: mysql.dll
+[11:27:36]  >> plugin.mysql: R39-3 successfully loaded.
+[11:27:36]   Loaded.
+[11:27:36]  Loading plugin: sscanf.dll
+[11:27:36] 
+
+[11:27:36]  ===============================
+
+[11:27:36]       sscanf plugin loaded.     
+
+[11:27:36]          Version:  2.8.1        
+
+[11:27:36]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:27:36]  ===============================
+
+[11:27:36]   Loaded.
+[11:27:36]  Loading plugin: streamer.dll
+[11:27:36] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:27:36]   Loaded.
+[11:27:36]  Loading plugin: nativechecker.dll
+[11:27:36]   Loaded.
+[11:27:36]  Loaded 5 plugins.
+
+[11:27:36] 
+[11:27:36] Filterscripts
+[11:27:36] ---------------
+[11:27:36]   Loaded 0 filterscripts.
+
+[11:27:36] 
+----------------------------------
+[11:27:36]  VALAMI
+[11:27:36] ----------------------------------
+
+[11:27:36] Number of vehicle models: 0
+[11:27:36] ZoneLoad-ban vagyunk, 3
+[11:27:36] i = 0
+[11:27:36] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[11:27:36] i = 1
+[11:27:36] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[11:27:36] i = 2
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:29:13] filterscripts = ""  (string)
+[11:29:13] 
+[11:29:13] Server Plugins
+[11:29:13] --------------
+[11:29:13]  Loading plugin: Whirlpool.dll
+[11:29:13]  
+[11:29:13]  ==================
+[11:29:13]  
+[11:29:13]   Whirlpool loaded
+[11:29:13]  
+[11:29:13]  ==================
+[11:29:13]  
+[11:29:13]   Loaded.
+[11:29:13]  Loading plugin: mysql.dll
+[11:29:13]  >> plugin.mysql: R39-3 successfully loaded.
+[11:29:13]   Loaded.
+[11:29:13]  Loading plugin: sscanf.dll
+[11:29:13] 
+
+[11:29:13]  ===============================
+
+[11:29:13]       sscanf plugin loaded.     
+
+[11:29:13]          Version:  2.8.1        
+
+[11:29:13]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:29:13]  ===============================
+
+[11:29:13]   Loaded.
+[11:29:13]  Loading plugin: streamer.dll
+[11:29:13] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:29:13]   Loaded.
+[11:29:13]  Loading plugin: nativechecker.dll
+[11:29:13]   Loaded.
+[11:29:13]  Loaded 5 plugins.
+
+[11:29:13] 
+[11:29:13] Filterscripts
+[11:29:13] ---------------
+[11:29:13]   Loaded 0 filterscripts.
+
+[11:29:13] 
+----------------------------------
+[11:29:13]  VALAMI
+[11:29:13] ----------------------------------
+
+[11:29:13] Number of vehicle models: 0
+[11:29:13] ZoneLoad-ban vagyunk, 3
+[11:29:13] i = 0
+[11:29:13] anyad: 1
+[11:29:13] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[11:29:13] i = 1
+[11:29:13] anyad: 2
+[11:29:13] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[11:29:13] i = 2
+[11:29:13] anyad: 3
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:30:56] filterscripts = ""  (string)
+[11:30:56] 
+[11:30:56] Server Plugins
+[11:30:56] --------------
+[11:30:56]  Loading plugin: Whirlpool.dll
+[11:30:56]  
+[11:30:56]  ==================
+[11:30:56]  
+[11:30:56]   Whirlpool loaded
+[11:30:56]  
+[11:30:56]  ==================
+[11:30:56]  
+[11:30:56]   Loaded.
+[11:30:56]  Loading plugin: mysql.dll
+[11:30:56]  >> plugin.mysql: R39-3 successfully loaded.
+[11:30:56]   Loaded.
+[11:30:56]  Loading plugin: sscanf.dll
+[11:30:56] 
+
+[11:30:56]  ===============================
+
+[11:30:56]       sscanf plugin loaded.     
+
+[11:30:56]          Version:  2.8.1        
+
+[11:30:56]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:30:56]  ===============================
+
+[11:30:56]   Loaded.
+[11:30:56]  Loading plugin: streamer.dll
+[11:30:56] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:30:56]   Loaded.
+[11:30:56]  Loading plugin: nativechecker.dll
+[11:30:56]   Loaded.
+[11:30:56]  Loaded 5 plugins.
+
+[11:30:56] 
+[11:30:56] Filterscripts
+[11:30:56] ---------------
+[11:30:56]   Loaded 0 filterscripts.
+
+[11:30:56] 
+----------------------------------
+[11:30:56]  VALAMI
+[11:30:56] ----------------------------------
+
+[11:30:56] Number of vehicle models: 0
+[11:30:57] ZoneLoad-ban vagyunk, 3
+[11:30:57] i = 0
+[11:30:57] beolvasott id: 1
+[11:30:57] zoneinfo[i][id] = 0
+[11:30:57] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[11:30:57] i = 1
+[11:30:57] beolvasott id: 2
+[11:30:57] zoneinfo[i][id] = 0
+[11:30:57] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[11:30:57] i = 2
+[11:30:57] beolvasott id: 3
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:31:57] filterscripts = ""  (string)
+[11:31:57] 
+[11:31:57] Server Plugins
+[11:31:57] --------------
+[11:31:57]  Loading plugin: Whirlpool.dll
+[11:31:57]  
+[11:31:57]  ==================
+[11:31:57]  
+[11:31:57]   Whirlpool loaded
+[11:31:57]  
+[11:31:57]  ==================
+[11:31:57]  
+[11:31:57]   Loaded.
+[11:31:57]  Loading plugin: mysql.dll
+[11:31:57]  >> plugin.mysql: R39-3 successfully loaded.
+[11:31:57]   Loaded.
+[11:31:57]  Loading plugin: sscanf.dll
+[11:31:57] 
+
+[11:31:57]  ===============================
+
+[11:31:57]       sscanf plugin loaded.     
+
+[11:31:57]          Version:  2.8.1        
+
+[11:31:57]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:31:57]  ===============================
+
+[11:31:57]   Loaded.
+[11:31:57]  Loading plugin: streamer.dll
+[11:31:57] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:31:57]   Loaded.
+[11:31:57]  Loading plugin: nativechecker.dll
+[11:31:57]   Loaded.
+[11:31:57]  Loaded 5 plugins.
+
+[11:31:57] 
+[11:31:57] Filterscripts
+[11:31:57] ---------------
+[11:31:57]   Loaded 0 filterscripts.
+
+[11:31:57] 
+----------------------------------
+[11:31:57]  VALAMI
+[11:31:57] ----------------------------------
+
+[11:31:57] Number of vehicle models: 0
+[11:31:57] ZoneLoad-ban vagyunk, 3
+[11:31:57] i = 0
+[11:31:57] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[11:31:57] i = 1
+[11:31:57] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[11:31:57] i = 2
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:34:29] filterscripts = ""  (string)
+[11:34:29] 
+[11:34:29] Server Plugins
+[11:34:29] --------------
+[11:34:29]  Loading plugin: Whirlpool.dll
+[11:34:29]  
+[11:34:29]  ==================
+[11:34:29]  
+[11:34:29]   Whirlpool loaded
+[11:34:29]  
+[11:34:29]  ==================
+[11:34:29]  
+[11:34:29]   Loaded.
+[11:34:29]  Loading plugin: mysql.dll
+[11:34:29]  >> plugin.mysql: R39-3 successfully loaded.
+[11:34:29]   Loaded.
+[11:34:29]  Loading plugin: sscanf.dll
+[11:34:29] 
+
+[11:34:29]  ===============================
+
+[11:34:29]       sscanf plugin loaded.     
+
+[11:34:29]          Version:  2.8.1        
+
+[11:34:29]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:34:29]  ===============================
+
+[11:34:29]   Loaded.
+[11:34:29]  Loading plugin: streamer.dll
+[11:34:29] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:34:29]   Loaded.
+[11:34:29]  Loading plugin: nativechecker.dll
+[11:34:29]   Loaded.
+[11:34:29]  Loaded 5 plugins.
+
+[11:34:29] 
+[11:34:29] Filterscripts
+[11:34:29] ---------------
+[11:34:29]   Loaded 0 filterscripts.
+
+[11:34:29] 
+----------------------------------
+[11:34:29]  VALAMI
+[11:34:29] ----------------------------------
+
+[11:34:29] Number of vehicle models: 0
+[11:34:30] ZoneLoad-ban vagyunk, 3
+[11:34:30] i = 0
+[11:34:30] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[11:34:30] i = 1
+[11:34:30] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[11:34:30] i = 2
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:35:46] filterscripts = ""  (string)
+[11:35:46] 
+[11:35:46] Server Plugins
+[11:35:46] --------------
+[11:35:46]  Loading plugin: Whirlpool.dll
+[11:35:46]  
+[11:35:46]  ==================
+[11:35:46]  
+[11:35:46]   Whirlpool loaded
+[11:35:46]  
+[11:35:46]  ==================
+[11:35:46]  
+[11:35:46]   Loaded.
+[11:35:46]  Loading plugin: mysql.dll
+[11:35:46]  >> plugin.mysql: R39-3 successfully loaded.
+[11:35:46]   Loaded.
+[11:35:46]  Loading plugin: sscanf.dll
+[11:35:46] 
+
+[11:35:46]  ===============================
+
+[11:35:46]       sscanf plugin loaded.     
+
+[11:35:46]          Version:  2.8.1        
+
+[11:35:46]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:35:46]  ===============================
+
+[11:35:46]   Loaded.
+[11:35:46]  Loading plugin: streamer.dll
+[11:35:46] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:35:46]   Loaded.
+[11:35:46]  Loading plugin: nativechecker.dll
+[11:35:46]   Loaded.
+[11:35:46]  Loaded 5 plugins.
+
+[11:35:46] 
+[11:35:46] Filterscripts
+[11:35:46] ---------------
+[11:35:46]   Loaded 0 filterscripts.
+
+[11:35:46] 
+----------------------------------
+[11:35:46]  VALAMI
+[11:35:46] ----------------------------------
+
+[11:35:46] Number of vehicle models: 0
+[11:35:46] ZoneLoad-ban vagyunk, 3
+[11:35:46] i = 0
+[11:35:46] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[11:35:46] i = 1
+[11:35:46] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[11:35:46] i = 2
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:38:51] filterscripts = ""  (string)
+[11:38:51] 
+[11:38:51] Server Plugins
+[11:38:51] --------------
+[11:38:51]  Loading plugin: Whirlpool.dll
+[11:38:51]  
+[11:38:51]  ==================
+[11:38:51]  
+[11:38:51]   Whirlpool loaded
+[11:38:51]  
+[11:38:51]  ==================
+[11:38:51]  
+[11:38:51]   Loaded.
+[11:38:51]  Loading plugin: mysql.dll
+[11:38:51]  >> plugin.mysql: R39-3 successfully loaded.
+[11:38:51]   Loaded.
+[11:38:51]  Loading plugin: sscanf.dll
+[11:38:51] 
+
+[11:38:51]  ===============================
+
+[11:38:51]       sscanf plugin loaded.     
+
+[11:38:51]          Version:  2.8.1        
+
+[11:38:51]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:38:51]  ===============================
+
+[11:38:51]   Loaded.
+[11:38:51]  Loading plugin: streamer.dll
+[11:38:51] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:38:51]   Loaded.
+[11:38:51]  Loading plugin: nativechecker.dll
+[11:38:51]   Loaded.
+[11:38:51]  Loaded 5 plugins.
+
+[11:38:51] 
+[11:38:51] Filterscripts
+[11:38:51] ---------------
+[11:38:51]   Loaded 0 filterscripts.
+
+[11:38:51] 
+----------------------------------
+[11:38:51]  VALAMI
+[11:38:51] ----------------------------------
+
+[11:38:51] Number of vehicle models: 0
+[11:38:51] ZoneLoad-ban vagyunk, 3
+[11:38:51] i = 0
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:39:48] filterscripts = ""  (string)
+[11:39:48] 
+[11:39:48] Server Plugins
+[11:39:48] --------------
+[11:39:48]  Loading plugin: Whirlpool.dll
+[11:39:48]  
+[11:39:48]  ==================
+[11:39:48]  
+[11:39:48]   Whirlpool loaded
+[11:39:48]  
+[11:39:48]  ==================
+[11:39:48]  
+[11:39:48]   Loaded.
+[11:39:48]  Loading plugin: mysql.dll
+[11:39:48]  >> plugin.mysql: R39-3 successfully loaded.
+[11:39:48]   Loaded.
+[11:39:48]  Loading plugin: sscanf.dll
+[11:39:48] 
+
+[11:39:48]  ===============================
+
+[11:39:48]       sscanf plugin loaded.     
+
+[11:39:48]          Version:  2.8.1        
+
+[11:39:48]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:39:48]  ===============================
+
+[11:39:48]   Loaded.
+[11:39:48]  Loading plugin: streamer.dll
+[11:39:48] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:39:48]   Loaded.
+[11:39:48]  Loading plugin: nativechecker.dll
+[11:39:48]   Loaded.
+[11:39:48]  Loaded 5 plugins.
+
+[11:39:48] 
+[11:39:48] Filterscripts
+[11:39:48] ---------------
+[11:39:48]   Loaded 0 filterscripts.
+
+[11:39:48] 
+----------------------------------
+[11:39:48]  VALAMI
+[11:39:48] ----------------------------------
+
+[11:39:48] Number of vehicle models: 0
+[11:39:48] ZoneLoad-ban vagyunk, 3
+[11:39:48] i = 0
+[11:39:48] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[11:39:48] i = 1
+[11:39:48] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[11:39:48] i = 2
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:43:25] filterscripts = ""  (string)
+[11:43:25] 
+[11:43:25] Server Plugins
+[11:43:25] --------------
+[11:43:25]  Loading plugin: Whirlpool.dll
+[11:43:25]  
+[11:43:25]  ==================
+[11:43:25]  
+[11:43:25]   Whirlpool loaded
+[11:43:25]  
+[11:43:25]  ==================
+[11:43:25]  
+[11:43:25]   Loaded.
+[11:43:25]  Loading plugin: mysql.dll
+[11:43:25]  >> plugin.mysql: R39-3 successfully loaded.
+[11:43:25]   Loaded.
+[11:43:25]  Loading plugin: sscanf.dll
+[11:43:25] 
+
+[11:43:25]  ===============================
+
+[11:43:25]       sscanf plugin loaded.     
+
+[11:43:25]          Version:  2.8.1        
+
+[11:43:25]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:43:25]  ===============================
+
+[11:43:25]   Loaded.
+[11:43:25]  Loading plugin: streamer.dll
+[11:43:25] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:43:25]   Loaded.
+[11:43:25]  Loading plugin: nativechecker.dll
+[11:43:25]   Loaded.
+[11:43:25]  Loaded 5 plugins.
+
+[11:43:25] 
+[11:43:25] Filterscripts
+[11:43:25] ---------------
+[11:43:25]   Loaded 0 filterscripts.
+
+[11:43:25] 
+----------------------------------
+[11:43:25]  VALAMI
+[11:43:25] ----------------------------------
+
+[11:43:25] Number of vehicle models: 0
+[11:43:25] ZoneLoad-ban vagyunk, 3
+[11:43:25] i = 0
+[11:43:25] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[11:43:25] i = 1
+[11:43:25] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[11:43:25] i = 2
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:53:03] filterscripts = ""  (string)
+[11:53:03] 
+[11:53:03] Server Plugins
+[11:53:03] --------------
+[11:53:03]  Loading plugin: Whirlpool.dll
+[11:53:03]  
+[11:53:03]  ==================
+[11:53:03]  
+[11:53:03]   Whirlpool loaded
+[11:53:03]  
+[11:53:03]  ==================
+[11:53:03]  
+[11:53:03]   Loaded.
+[11:53:03]  Loading plugin: mysql.dll
+[11:53:03]  >> plugin.mysql: R39-3 successfully loaded.
+[11:53:03]   Loaded.
+[11:53:03]  Loading plugin: sscanf.dll
+[11:53:03] 
+
+[11:53:03]  ===============================
+
+[11:53:03]       sscanf plugin loaded.     
+
+[11:53:03]          Version:  2.8.1        
+
+[11:53:03]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:53:03]  ===============================
+
+[11:53:03]   Loaded.
+[11:53:03]  Loading plugin: streamer.dll
+[11:53:03] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:53:03]   Loaded.
+[11:53:03]  Loading plugin: nativechecker.dll
+[11:53:03]   Loaded.
+[11:53:03]  Loaded 5 plugins.
+
+[11:53:03] 
+[11:53:03] Filterscripts
+[11:53:03] ---------------
+[11:53:03]   Loaded 0 filterscripts.
+
+[11:53:03] 
+----------------------------------
+[11:53:03]  VALAMI
+[11:53:03] ----------------------------------
+
+[11:53:03] Number of vehicle models: 0
+[11:53:03] ZoneLoad-ban vagyunk, 3
+[11:53:03] i = 0
+[11:53:03] id megvolt
+[11:53:03] minx megvolt
+[11:53:03] miny megvolt
+[11:53:03] maxx megvolt
+[11:53:03] maxy megvolt
+[11:53:03] zteam megvolt
+[11:53:03] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[11:53:03] i = 1
+[11:53:03] id megvolt
+[11:53:03] minx megvolt
+[11:53:03] miny megvolt
+[11:53:03] maxx megvolt
+[11:53:03] maxy megvolt
+[11:53:03] zteam megvolt
+[11:53:03] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[11:53:03] i = 2
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:53:51] filterscripts = ""  (string)
+[11:53:51] 
+[11:53:51] Server Plugins
+[11:53:51] --------------
+[11:53:51]  Loading plugin: Whirlpool.dll
+[11:53:51]  
+[11:53:51]  ==================
+[11:53:51]  
+[11:53:51]   Whirlpool loaded
+[11:53:51]  
+[11:53:51]  ==================
+[11:53:51]  
+[11:53:51]   Loaded.
+[11:53:51]  Loading plugin: mysql.dll
+[11:53:51]  >> plugin.mysql: R39-3 successfully loaded.
+[11:53:51]   Loaded.
+[11:53:51]  Loading plugin: sscanf.dll
+[11:53:51] 
+
+[11:53:51]  ===============================
+
+[11:53:51]       sscanf plugin loaded.     
+
+[11:53:51]          Version:  2.8.1        
+
+[11:53:51]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:53:51]  ===============================
+
+[11:53:51]   Loaded.
+[11:53:51]  Loading plugin: streamer.dll
+[11:53:51] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:53:51]   Loaded.
+[11:53:51]  Loading plugin: nativechecker.dll
+[11:53:51]   Loaded.
+[11:53:51]  Loaded 5 plugins.
+
+[11:53:51] 
+[11:53:51] Filterscripts
+[11:53:51] ---------------
+[11:53:51]   Loaded 0 filterscripts.
+
+[11:53:51] 
+----------------------------------
+[11:53:51]  VALAMI
+[11:53:51] ----------------------------------
+
+[11:53:51] Number of vehicle models: 0
+[11:53:51] ZoneLoad-ban vagyunk, 3
+[11:53:51] i = 1
+[11:53:51] id megvolt
+[11:53:51] minx megvolt
+[11:53:51] miny megvolt
+[11:53:51] maxx megvolt
+[11:53:51] maxy megvolt
+[11:53:51] zteam megvolt
+[11:53:51] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[11:53:51] i = 2
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:54:32] filterscripts = ""  (string)
+[11:54:32] 
+[11:54:32] Server Plugins
+[11:54:32] --------------
+[11:54:32]  Loading plugin: Whirlpool.dll
+[11:54:32]  
+[11:54:32]  ==================
+[11:54:32]  
+[11:54:32]   Whirlpool loaded
+[11:54:32]  
+[11:54:32]  ==================
+[11:54:32]  
+[11:54:32]   Loaded.
+[11:54:32]  Loading plugin: mysql.dll
+[11:54:32]  >> plugin.mysql: R39-3 successfully loaded.
+[11:54:32]   Loaded.
+[11:54:32]  Loading plugin: sscanf.dll
+[11:54:32] 
+
+[11:54:32]  ===============================
+
+[11:54:32]       sscanf plugin loaded.     
+
+[11:54:32]          Version:  2.8.1        
+
+[11:54:32]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:54:32]  ===============================
+
+[11:54:32]   Loaded.
+[11:54:32]  Loading plugin: streamer.dll
+[11:54:32] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:54:32]   Loaded.
+[11:54:32]  Loading plugin: nativechecker.dll
+[11:54:32]   Loaded.
+[11:54:32]  Loaded 5 plugins.
+
+[11:54:32] 
+[11:54:32] Filterscripts
+[11:54:32] ---------------
+[11:54:32]   Loaded 0 filterscripts.
+
+[11:54:32] 
+----------------------------------
+[11:54:32]  VALAMI
+[11:54:32] ----------------------------------
+
+[11:54:32] Number of vehicle models: 0
+[11:54:32] ZoneLoad-ban vagyunk, 3
+[11:54:32] i = 0
+[11:54:32] id jön
+[11:54:32] id megvolt
+[11:54:32] minx megvolt
+[11:54:32] miny megvolt
+[11:54:32] maxx megvolt
+[11:54:32] maxy megvolt
+[11:54:32] zteam megvolt
+[11:54:32] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[11:54:32] i = 1
+[11:54:32] id jön
+[11:54:32] id megvolt
+[11:54:32] minx megvolt
+[11:54:32] miny megvolt
+[11:54:32] maxx megvolt
+[11:54:32] maxy megvolt
+[11:54:32] zteam megvolt
+[11:54:32] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[11:54:32] i = 2
+[11:54:32] id jön
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:55:57] filterscripts = ""  (string)
+[11:55:57] 
+[11:55:57] Server Plugins
+[11:55:57] --------------
+[11:55:57]  Loading plugin: Whirlpool.dll
+[11:55:57]  
+[11:55:57]  ==================
+[11:55:57]  
+[11:55:57]   Whirlpool loaded
+[11:55:57]  
+[11:55:57]  ==================
+[11:55:57]  
+[11:55:57]   Loaded.
+[11:55:57]  Loading plugin: mysql.dll
+[11:55:57]  >> plugin.mysql: R39-3 successfully loaded.
+[11:55:57]   Loaded.
+[11:55:57]  Loading plugin: sscanf.dll
+[11:55:57] 
+
+[11:55:57]  ===============================
+
+[11:55:57]       sscanf plugin loaded.     
+
+[11:55:57]          Version:  2.8.1        
+
+[11:55:57]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:55:57]  ===============================
+
+[11:55:57]   Loaded.
+[11:55:57]  Loading plugin: streamer.dll
+[11:55:57] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:55:57]   Loaded.
+[11:55:57]  Loading plugin: nativechecker.dll
+[11:55:57]   Loaded.
+[11:55:57]  Loaded 5 plugins.
+
+[11:55:57] 
+[11:55:57] Filterscripts
+[11:55:57] ---------------
+[11:55:57]   Loaded 0 filterscripts.
+
+[11:55:57] 
+----------------------------------
+[11:55:57]  VALAMI
+[11:55:57] ----------------------------------
+
+[11:55:57] Number of vehicle models: 0
+[11:55:57] ZoneLoad-ban vagyunk, 3
+[11:55:57] i = 0
+[11:55:57] id jön
+[11:55:57] id megvolt
+[11:55:57] minx megvolt
+[11:55:57] miny megvolt
+[11:55:57] maxx megvolt
+[11:55:57] maxy megvolt
+[11:55:57] zteam megvolt
+[11:55:57] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[11:55:57] i = 1
+[11:55:57] id jön
+[11:55:57] id megvolt
+[11:55:57] minx megvolt
+[11:55:57] miny megvolt
+[11:55:57] maxx megvolt
+[11:55:57] maxy megvolt
+[11:55:57] zteam megvolt
+[11:55:57] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[11:55:57] i = 2
+[11:55:57] id jön
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:56:55] filterscripts = ""  (string)
+[11:56:55] 
+[11:56:55] Server Plugins
+[11:56:55] --------------
+[11:56:55]  Loading plugin: Whirlpool.dll
+[11:56:55]  
+[11:56:55]  ==================
+[11:56:55]  
+[11:56:55]   Whirlpool loaded
+[11:56:55]  
+[11:56:55]  ==================
+[11:56:55]  
+[11:56:55]   Loaded.
+[11:56:55]  Loading plugin: mysql.dll
+[11:56:55]  >> plugin.mysql: R39-3 successfully loaded.
+[11:56:55]   Loaded.
+[11:56:55]  Loading plugin: sscanf.dll
+[11:56:55] 
+
+[11:56:55]  ===============================
+
+[11:56:55]       sscanf plugin loaded.     
+
+[11:56:55]          Version:  2.8.1        
+
+[11:56:55]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:56:55]  ===============================
+
+[11:56:55]   Loaded.
+[11:56:55]  Loading plugin: streamer.dll
+[11:56:55] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:56:55]   Loaded.
+[11:56:55]  Loading plugin: nativechecker.dll
+[11:56:55]   Loaded.
+[11:56:55]  Loaded 5 plugins.
+
+[11:56:55] 
+[11:56:55] Filterscripts
+[11:56:55] ---------------
+[11:56:55]   Loaded 0 filterscripts.
+
+[11:56:55] 
+----------------------------------
+[11:56:55]  VALAMI
+[11:56:55] ----------------------------------
+
+[11:56:55] Number of vehicle models: 0
+[11:56:55] ZoneLoad-ban vagyunk, 3
+[11:56:55] 2-es sor id-je: 3
+[11:56:55] i = 0
+[11:56:55] id jön
+[11:56:55] id megvolt
+[11:56:55] minx megvolt
+[11:56:55] miny megvolt
+[11:56:55] maxx megvolt
+[11:56:55] maxy megvolt
+[11:56:55] zteam megvolt
+[11:56:55] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[11:56:55] 2-es sor id-je: 3
+[11:56:55] i = 1
+[11:56:55] id jön
+[11:56:55] id megvolt
+[11:56:55] minx megvolt
+[11:56:55] miny megvolt
+[11:56:55] maxx megvolt
+[11:56:55] maxy megvolt
+[11:56:55] zteam megvolt
+[11:56:55] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[11:56:55] 2-es sor id-je: 3
+[11:56:55] i = 2
+[11:56:55] id jön
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:57:24] filterscripts = ""  (string)
+[11:57:24] 
+[11:57:24] Server Plugins
+[11:57:24] --------------
+[11:57:24]  Loading plugin: Whirlpool.dll
+[11:57:24]  
+[11:57:24]  ==================
+[11:57:24]  
+[11:57:24]   Whirlpool loaded
+[11:57:24]  
+[11:57:24]  ==================
+[11:57:24]  
+[11:57:24]   Loaded.
+[11:57:24]  Loading plugin: mysql.dll
+[11:57:24]  >> plugin.mysql: R39-3 successfully loaded.
+[11:57:24]   Loaded.
+[11:57:24]  Loading plugin: sscanf.dll
+[11:57:24] 
+
+[11:57:24]  ===============================
+
+[11:57:24]       sscanf plugin loaded.     
+
+[11:57:24]          Version:  2.8.1        
+
+[11:57:24]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:57:24]  ===============================
+
+[11:57:24]   Loaded.
+[11:57:24]  Loading plugin: streamer.dll
+[11:57:24] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:57:24]   Loaded.
+[11:57:24]  Loading plugin: nativechecker.dll
+[11:57:24]   Loaded.
+[11:57:24]  Loaded 5 plugins.
+
+[11:57:24] 
+[11:57:24] Filterscripts
+[11:57:24] ---------------
+[11:57:24]   Loaded 0 filterscripts.
+
+[11:57:24] 
+----------------------------------
+[11:57:24]  VALAMI
+[11:57:24] ----------------------------------
+
+[11:57:24] Number of vehicle models: 0
+[11:57:25] ZoneLoad-ban vagyunk, 3
+[11:57:25] 2-es sor id-je: 3
+[11:57:25] i = 0
+[11:57:25] id jön
+[11:57:25] id megvolt
+[11:57:25] minx megvolt
+[11:57:25] miny megvolt
+[11:57:25] maxx megvolt
+[11:57:25] maxy megvolt
+[11:57:25] zteam megvolt
+[11:57:25] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[11:57:25] 2-es sor id-je: 3
+[11:57:25] i = 1
+[11:57:25] id jön
+[11:57:25] id megvolt
+[11:57:25] minx megvolt
+[11:57:25] miny megvolt
+[11:57:25] maxx megvolt
+[11:57:25] maxy megvolt
+[11:57:25] zteam megvolt
+[11:57:25] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[11:57:25] 2-es sor id-je: 3
+[11:57:25] i = 2
+[11:57:25] id jön
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[11:57:31] filterscripts = ""  (string)
+[11:57:31] 
+[11:57:31] Server Plugins
+[11:57:31] --------------
+[11:57:31]  Loading plugin: Whirlpool.dll
+[11:57:31]  
+[11:57:31]  ==================
+[11:57:31]  
+[11:57:31]   Whirlpool loaded
+[11:57:31]  
+[11:57:31]  ==================
+[11:57:31]  
+[11:57:31]   Loaded.
+[11:57:31]  Loading plugin: mysql.dll
+[11:57:31]  >> plugin.mysql: R39-3 successfully loaded.
+[11:57:31]   Loaded.
+[11:57:31]  Loading plugin: sscanf.dll
+[11:57:31] 
+
+[11:57:31]  ===============================
+
+[11:57:31]       sscanf plugin loaded.     
+
+[11:57:31]          Version:  2.8.1        
+
+[11:57:31]    (c) 2012 Alex "Y_Less" Cole  
+
+[11:57:31]  ===============================
+
+[11:57:31]   Loaded.
+[11:57:31]  Loading plugin: streamer.dll
+[11:57:31] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[11:57:31]   Loaded.
+[11:57:31]  Loading plugin: nativechecker.dll
+[11:57:31]   Loaded.
+[11:57:31]  Loaded 5 plugins.
+
+[11:57:31] 
+[11:57:31] Filterscripts
+[11:57:31] ---------------
+[11:57:31]   Loaded 0 filterscripts.
+
+[11:57:31] 
+----------------------------------
+[11:57:31]  VALAMI
+[11:57:31] ----------------------------------
+
+[11:57:31] Number of vehicle models: 0
+[11:57:31] ZoneLoad-ban vagyunk, 3
+[11:57:31] 2-es sor id-je: 3
+[11:57:31] i = 0
+[11:57:31] id jön
+[11:57:31] id megvolt
+[11:57:31] minx megvolt
+[11:57:31] miny megvolt
+[11:57:31] maxx megvolt
+[11:57:31] maxy megvolt
+[11:57:31] zteam megvolt
+[11:57:31] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[11:57:31] 2-es sor id-je: 3
+[11:57:31] i = 1
+[11:57:31] id jön
+[11:57:31] id megvolt
+[11:57:31] minx megvolt
+[11:57:31] miny megvolt
+[11:57:31] maxx megvolt
+[11:57:31] maxy megvolt
+[11:57:31] zteam megvolt
+[11:57:31] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[11:57:31] 2-es sor id-je: 3
+[11:57:31] i = 2
+[11:57:31] id jön
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[12:00:58] filterscripts = ""  (string)
+[12:00:58] 
+[12:00:58] Server Plugins
+[12:00:58] --------------
+[12:00:58]  Loading plugin: Whirlpool.dll
+[12:00:58]  
+[12:00:58]  ==================
+[12:00:58]  
+[12:00:58]   Whirlpool loaded
+[12:00:58]  
+[12:00:58]  ==================
+[12:00:58]  
+[12:00:58]   Loaded.
+[12:00:58]  Loading plugin: mysql.dll
+[12:00:58]  >> plugin.mysql: R39-3 successfully loaded.
+[12:00:58]   Loaded.
+[12:00:58]  Loading plugin: sscanf.dll
+[12:00:58] 
+
+[12:00:58]  ===============================
+
+[12:00:58]       sscanf plugin loaded.     
+
+[12:00:58]          Version:  2.8.1        
+
+[12:00:58]    (c) 2012 Alex "Y_Less" Cole  
+
+[12:00:58]  ===============================
+
+[12:00:58]   Loaded.
+[12:00:58]  Loading plugin: streamer.dll
+[12:00:58] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[12:00:58]   Loaded.
+[12:00:58]  Loading plugin: nativechecker.dll
+[12:00:58]   Loaded.
+[12:00:58]  Loaded 5 plugins.
+
+[12:00:58] 
+[12:00:58] Filterscripts
+[12:00:58] ---------------
+[12:00:58]   Loaded 0 filterscripts.
+
+[12:00:58] 
+----------------------------------
+[12:00:58]  VALAMI
+[12:00:58] ----------------------------------
+
+[12:00:58] Number of vehicle models: 0
+[12:00:58] ZoneLoad-ban vagyunk, 3
+[12:00:58] i = 0
+[12:00:58] id jön
+[12:00:58] id megvolt
+[12:00:58] minx megvolt
+[12:00:58] miny megvolt
+[12:00:58] maxx megvolt
+[12:00:58] maxy megvolt
+[12:00:58] zteam megvolt
+[12:00:58] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[12:00:58] i = 1
+[12:00:58] id jön
+[12:00:58] id megvolt
+[12:00:58] minx megvolt
+[12:00:58] miny megvolt
+[12:00:58] maxx megvolt
+[12:00:58] maxy megvolt
+[12:00:58] zteam megvolt
+[12:00:58] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[12:00:58] i = 2
+[12:00:58] id jön
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[12:06:19] filterscripts = ""  (string)
+[12:06:19] 
+[12:06:19] Server Plugins
+[12:06:19] --------------
+[12:06:19]  Loading plugin: Whirlpool.dll
+[12:06:19]  
+[12:06:19]  ==================
+[12:06:19]  
+[12:06:19]   Whirlpool loaded
+[12:06:19]  
+[12:06:19]  ==================
+[12:06:19]  
+[12:06:19]   Loaded.
+[12:06:19]  Loading plugin: mysql.dll
+[12:06:19]  >> plugin.mysql: R39-3 successfully loaded.
+[12:06:19]   Loaded.
+[12:06:19]  Loading plugin: sscanf.dll
+[12:06:19] 
+
+[12:06:19]  ===============================
+
+[12:06:19]       sscanf plugin loaded.     
+
+[12:06:19]          Version:  2.8.1        
+
+[12:06:19]    (c) 2012 Alex "Y_Less" Cole  
+
+[12:06:20]  ===============================
+
+[12:06:20]   Loaded.
+[12:06:20]  Loading plugin: streamer.dll
+[12:06:20] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[12:06:20]   Loaded.
+[12:06:20]  Loading plugin: nativechecker.dll
+[12:06:20]   Loaded.
+[12:06:20]  Loaded 5 plugins.
+
+[12:06:20] 
+[12:06:20] Filterscripts
+[12:06:20] ---------------
+[12:06:20]   Loaded 0 filterscripts.
+
+[12:06:20] 
+----------------------------------
+[12:06:20]  VALAMI
+[12:06:20] ----------------------------------
+
+[12:06:20] Number of vehicle models: 0
+[12:06:20] ZoneLoad-ban vagyunk, 3
+[12:06:20] i = 0
+[12:06:20] id jön
+[12:06:20] id megvolt
+[12:06:20] minx megvolt
+[12:06:20] miny megvolt
+[12:06:20] maxx megvolt
+[12:06:20] maxy megvolt
+[12:06:20] zteam megvolt
+[12:06:20] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[12:06:20] i = 1
+[12:06:20] id jön
+[12:06:20] id megvolt
+[12:06:20] minx megvolt
+[12:06:20] miny megvolt
+[12:06:20] maxx megvolt
+[12:06:20] maxy megvolt
+[12:06:20] zteam megvolt
+[12:06:20] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[12:06:20] i = 2
+[12:06:20] id jön
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[12:08:29] filterscripts = ""  (string)
+[12:08:29] 
+[12:08:29] Server Plugins
+[12:08:29] --------------
+[12:08:29]  Loading plugin: Whirlpool.dll
+[12:08:29]  
+[12:08:29]  ==================
+[12:08:29]  
+[12:08:29]   Whirlpool loaded
+[12:08:29]  
+[12:08:29]  ==================
+[12:08:29]  
+[12:08:29]   Loaded.
+[12:08:29]  Loading plugin: mysql.dll
+[12:08:29]  >> plugin.mysql: R39-3 successfully loaded.
+[12:08:29]   Loaded.
+[12:08:29]  Loading plugin: sscanf.dll
+[12:08:29] 
+
+[12:08:29]  ===============================
+
+[12:08:29]       sscanf plugin loaded.     
+
+[12:08:29]          Version:  2.8.1        
+
+[12:08:29]    (c) 2012 Alex "Y_Less" Cole  
+
+[12:08:29]  ===============================
+
+[12:08:29]   Loaded.
+[12:08:29]  Loading plugin: streamer.dll
+[12:08:29] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[12:08:29]   Loaded.
+[12:08:29]  Loading plugin: nativechecker.dll
+[12:08:29]   Loaded.
+[12:08:29]  Loaded 5 plugins.
+
+[12:08:29] 
+[12:08:29] Filterscripts
+[12:08:29] ---------------
+[12:08:29]   Loaded 0 filterscripts.
+
+[12:08:29] 
+----------------------------------
+[12:08:29]  VALAMI
+[12:08:29] ----------------------------------
+
+[12:08:29] Number of vehicle models: 0
+[12:08:29] ZoneLoad-ban vagyunk, 3
+[12:08:29] i = 0
+[12:08:29] id jön
+[12:08:29] id megvolt
+[12:08:29] minx megvolt
+[12:08:29] miny megvolt
+[12:08:29] maxx megvolt
+[12:08:29] maxy megvolt
+[12:08:29] zteam megvolt
+[12:08:29] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[12:08:29] i = 1
+[12:08:29] id jön
+[12:08:29] id megvolt
+[12:08:29] minx megvolt
+[12:08:29] miny megvolt
+[12:08:29] maxx megvolt
+[12:08:29] maxy megvolt
+[12:08:29] zteam megvolt
+[12:08:29] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[12:08:29] i = 2
+[12:08:29] id jön
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[12:09:32] filterscripts = ""  (string)
+[12:09:32] 
+[12:09:32] Server Plugins
+[12:09:32] --------------
+[12:09:32]  Loading plugin: Whirlpool.dll
+[12:09:32]  
+[12:09:32]  ==================
+[12:09:32]  
+[12:09:32]   Whirlpool loaded
+[12:09:32]  
+[12:09:32]  ==================
+[12:09:32]  
+[12:09:32]   Loaded.
+[12:09:32]  Loading plugin: mysql.dll
+[12:09:32]  >> plugin.mysql: R39-3 successfully loaded.
+[12:09:32]   Loaded.
+[12:09:32]  Loading plugin: sscanf.dll
+[12:09:32] 
+
+[12:09:32]  ===============================
+
+[12:09:32]       sscanf plugin loaded.     
+
+[12:09:32]          Version:  2.8.1        
+
+[12:09:32]    (c) 2012 Alex "Y_Less" Cole  
+
+[12:09:32]  ===============================
+
+[12:09:32]   Loaded.
+[12:09:32]  Loading plugin: streamer.dll
+[12:09:32] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[12:09:32]   Loaded.
+[12:09:32]  Loading plugin: nativechecker.dll
+[12:09:32]   Loaded.
+[12:09:32]  Loaded 5 plugins.
+
+[12:09:32] 
+[12:09:32] Filterscripts
+[12:09:32] ---------------
+[12:09:32]   Loaded 0 filterscripts.
+
+[12:09:32] 
+----------------------------------
+[12:09:32]  VALAMI
+[12:09:32] ----------------------------------
+
+[12:09:32] Number of vehicle models: 0
+[12:09:32] ZoneLoad-ban vagyunk, 3
+[12:09:32] i = 0
+[12:09:32] id jön
+[12:09:32] id megvolt
+[12:09:32] minx megvolt
+[12:09:32] miny megvolt
+[12:09:32] maxx megvolt
+[12:09:32] maxy megvolt
+[12:09:32] zteam megvolt
+[12:09:32] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[12:09:32] i = 1
+[12:09:32] id jön
+[12:09:32] id megvolt
+[12:09:32] minx megvolt
+[12:09:32] miny megvolt
+[12:09:32] maxx megvolt
+[12:09:32] maxy megvolt
+[12:09:32] zteam megvolt
+[12:09:32] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[12:09:32] i = 2
+[12:09:32] id jön
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[12:10:25] filterscripts = ""  (string)
+[12:10:25] 
+[12:10:25] Server Plugins
+[12:10:25] --------------
+[12:10:25]  Loading plugin: Whirlpool.dll
+[12:10:25]  
+[12:10:25]  ==================
+[12:10:25]  
+[12:10:25]   Whirlpool loaded
+[12:10:25]  
+[12:10:25]  ==================
+[12:10:25]  
+[12:10:25]   Loaded.
+[12:10:25]  Loading plugin: mysql.dll
+[12:10:25]  >> plugin.mysql: R39-3 successfully loaded.
+[12:10:25]   Loaded.
+[12:10:25]  Loading plugin: sscanf.dll
+[12:10:25] 
+
+[12:10:25]  ===============================
+
+[12:10:25]       sscanf plugin loaded.     
+
+[12:10:25]          Version:  2.8.1        
+
+[12:10:25]    (c) 2012 Alex "Y_Less" Cole  
+
+[12:10:25]  ===============================
+
+[12:10:25]   Loaded.
+[12:10:25]  Loading plugin: streamer.dll
+[12:10:25] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[12:10:25]   Loaded.
+[12:10:25]  Loading plugin: nativechecker.dll
+[12:10:25]   Loaded.
+[12:10:25]  Loaded 5 plugins.
+
+[12:10:25] 
+[12:10:25] Filterscripts
+[12:10:25] ---------------
+[12:10:25]   Loaded 0 filterscripts.
+
+[12:10:25] 
+----------------------------------
+[12:10:25]  VALAMI
+[12:10:25] ----------------------------------
+
+[12:10:25] Number of vehicle models: 0
+[12:10:25] ZoneLoad-ban vagyunk, 3
+[12:10:25] i = 0
+[12:10:25] id jön
+[12:10:25] id megvolt
+[12:10:25] minx megvolt
+[12:10:25] miny megvolt
+[12:10:25] maxx megvolt
+[12:10:25] maxy megvolt
+[12:10:25] zteam megvolt
+[12:10:25] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[12:10:25] i = 1
+[12:10:25] id jön
+[12:10:25] id megvolt
+[12:10:25] minx megvolt
+[12:10:25] miny megvolt
+[12:10:25] maxx megvolt
+[12:10:25] maxy megvolt
+[12:10:25] zteam megvolt
+[12:10:25] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[12:10:25] betöltött sorok: 2
+[12:10:57] [connection] 78.131.75.77:50607 requests connection cookie.
+[12:10:58] Incoming connection: 78.131.75.77:50607 id: 0
+[12:10:58] [join] devidson has joined the server (0:78.131.75.77)
+[12:11:01] [connection] 100.66.132.16:59627 requests connection cookie.
+[12:11:02] Incoming connection: 100.66.132.16:59627 id: 1
+[12:11:03] [join] Justricsi has joined the server (1:100.66.132.16)
+[12:11:27] [part] Justricsi has left the server (1:1)
+[12:11:35] [part] devidson has left the server (0:1)
+[12:13:42] [connection] 78.131.75.77:49739 requests connection cookie.
+[12:13:43] Incoming connection: 78.131.75.77:49739 id: 0
+[12:13:43] [join] devidson has joined the server (0:78.131.75.77)
+[12:14:04] [part] devidson has left the server (0:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[13:41:56] filterscripts = ""  (string)
+[13:41:56] 
+[13:41:56] Server Plugins
+[13:41:56] --------------
+[13:41:56]  Loading plugin: Whirlpool.dll
+[13:41:56]  
+[13:41:56]  ==================
+[13:41:56]  
+[13:41:56]   Whirlpool loaded
+[13:41:56]  
+[13:41:56]  ==================
+[13:41:56]  
+[13:41:56]   Loaded.
+[13:41:56]  Loading plugin: mysql.dll
+[13:41:56]  >> plugin.mysql: R39-3 successfully loaded.
+[13:41:56]   Loaded.
+[13:41:56]  Loading plugin: sscanf.dll
+[13:41:56] 
+
+[13:41:56]  ===============================
+
+[13:41:56]       sscanf plugin loaded.     
+
+[13:41:56]          Version:  2.8.1        
+
+[13:41:56]    (c) 2012 Alex "Y_Less" Cole  
+
+[13:41:56]  ===============================
+
+[13:41:56]   Loaded.
+[13:41:56]  Loading plugin: streamer.dll
+[13:41:56] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[13:41:56]   Loaded.
+[13:41:56]  Loading plugin: nativechecker.dll
+[13:41:56]   Loaded.
+[13:41:56]  Loaded 5 plugins.
+
+[13:41:56] 
+[13:41:56] Filterscripts
+[13:41:56] ---------------
+[13:41:56]   Loaded 0 filterscripts.
+
+[13:41:56] 
+----------------------------------
+[13:41:56]  VALAMI
+[13:41:56] ----------------------------------
+
+[13:41:56] Number of vehicle models: 0
+[13:41:56] ZoneLoad-ban vagyunk, 3
+[13:41:56] i = 0
+[13:41:56] minx megvolt
+[13:41:56] miny megvolt
+[13:41:56] maxx megvolt
+[13:41:56] maxy megvolt
+[13:41:56] zteam megvolt
+[13:41:56] id jön
+[13:41:56] id megvolt
+[13:41:56] 0, 0.000000, 0.000000, 0.000000, 0.000000, 0
+[13:41:56] i = 1
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[13:42:30] filterscripts = ""  (string)
+[13:42:30] 
+[13:42:30] Server Plugins
+[13:42:30] --------------
+[13:42:30]  Loading plugin: Whirlpool.dll
+[13:42:30]  
+[13:42:30]  ==================
+[13:42:30]  
+[13:42:30]   Whirlpool loaded
+[13:42:30]  
+[13:42:30]  ==================
+[13:42:30]  
+[13:42:30]   Loaded.
+[13:42:30]  Loading plugin: mysql.dll
+[13:42:30]  >> plugin.mysql: R39-3 successfully loaded.
+[13:42:30]   Loaded.
+[13:42:30]  Loading plugin: sscanf.dll
+[13:42:30] 
+
+[13:42:30]  ===============================
+
+[13:42:30]       sscanf plugin loaded.     
+
+[13:42:30]          Version:  2.8.1        
+
+[13:42:30]    (c) 2012 Alex "Y_Less" Cole  
+
+[13:42:30]  ===============================
+
+[13:42:30]   Loaded.
+[13:42:30]  Loading plugin: streamer.dll
+[13:42:30] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[13:42:30]   Loaded.
+[13:42:30]  Loading plugin: nativechecker.dll
+[13:42:30]   Loaded.
+[13:42:30]  Loaded 5 plugins.
+
+[13:42:30] 
+[13:42:30] Filterscripts
+[13:42:30] ---------------
+[13:42:30]   Loaded 0 filterscripts.
+
+[13:42:30] 
+----------------------------------
+[13:42:30]  VALAMI
+[13:42:30] ----------------------------------
+
+[13:42:30] Number of vehicle models: 0
+[13:42:30] ZoneLoad-ban vagyunk, 3
+[13:42:30] i = 0
+[13:42:30] id jön
+[13:42:30] id megvolt
+[13:42:30] minx megvolt
+[13:42:30] miny megvolt
+[13:42:30] maxx megvolt
+[13:42:30] maxy megvolt
+[13:42:30] zteam megvolt
+[13:42:30] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[13:42:30] i = 1
+[13:42:30] id jön
+[13:42:30] id megvolt
+[13:42:30] minx megvolt
+[13:42:30] miny megvolt
+[13:42:30] maxx megvolt
+[13:42:30] maxy megvolt
+[13:42:30] zteam megvolt
+[13:42:30] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[13:42:30] i = 2
+[13:42:30] id jön
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[13:43:58] filterscripts = ""  (string)
+[13:43:58] 
+[13:43:58] Server Plugins
+[13:43:58] --------------
+[13:43:58]  Loading plugin: Whirlpool.dll
+[13:43:58]  
+[13:43:58]  ==================
+[13:43:58]  
+[13:43:58]   Whirlpool loaded
+[13:43:58]  
+[13:43:58]  ==================
+[13:43:58]  
+[13:43:58]   Loaded.
+[13:43:58]  Loading plugin: mysql.dll
+[13:43:58]  >> plugin.mysql: R39-3 successfully loaded.
+[13:43:58]   Loaded.
+[13:43:58]  Loading plugin: sscanf.dll
+[13:43:58] 
+
+[13:43:58]  ===============================
+
+[13:43:58]       sscanf plugin loaded.     
+
+[13:43:58]          Version:  2.8.1        
+
+[13:43:58]    (c) 2012 Alex "Y_Less" Cole  
+
+[13:43:58]  ===============================
+
+[13:43:58]   Loaded.
+[13:43:58]  Loading plugin: streamer.dll
+[13:43:58] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[13:43:58]   Loaded.
+[13:43:58]  Loading plugin: nativechecker.dll
+[13:43:58]   Loaded.
+[13:43:58]  Loaded 5 plugins.
+
+[13:43:58] 
+[13:43:58] Filterscripts
+[13:43:58] ---------------
+[13:43:58]   Loaded 0 filterscripts.
+
+[13:43:58] 
+----------------------------------
+[13:43:58]  VALAMI
+[13:43:58] ----------------------------------
+
+[13:43:58] Number of vehicle models: 0
+[13:43:58] ZoneLoad-ban vagyunk, 3
+[13:43:58] i = 0
+[13:43:58] id jön
+[13:43:58] id megvolt
+[13:43:58] minx megvolt
+[13:43:58] miny megvolt
+[13:43:58] maxx megvolt
+[13:43:58] maxy megvolt
+[13:43:58] zteam megvolt
+[13:43:58] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[13:43:58] i = 1
+[13:43:58] id jön
+[13:43:58] id megvolt
+[13:43:58] minx megvolt
+[13:43:58] miny megvolt
+[13:43:58] maxx megvolt
+[13:43:58] maxy megvolt
+[13:43:58] zteam megvolt
+[13:43:58] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[13:43:58] i = 2
+[13:43:58] id jön
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[13:44:05] filterscripts = ""  (string)
+[13:44:05] 
+[13:44:05] Server Plugins
+[13:44:05] --------------
+[13:44:05]  Loading plugin: Whirlpool.dll
+[13:44:05]  
+[13:44:05]  ==================
+[13:44:05]  
+[13:44:05]   Whirlpool loaded
+[13:44:05]  
+[13:44:05]  ==================
+[13:44:05]  
+[13:44:05]   Loaded.
+[13:44:05]  Loading plugin: mysql.dll
+[13:44:05]  >> plugin.mysql: R39-3 successfully loaded.
+[13:44:05]   Loaded.
+[13:44:05]  Loading plugin: sscanf.dll
+[13:44:05] 
+
+[13:44:05]  ===============================
+
+[13:44:05]       sscanf plugin loaded.     
+
+[13:44:05]          Version:  2.8.1        
+
+[13:44:05]    (c) 2012 Alex "Y_Less" Cole  
+
+[13:44:05]  ===============================
+
+[13:44:05]   Loaded.
+[13:44:05]  Loading plugin: streamer.dll
+[13:44:05] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[13:44:05]   Loaded.
+[13:44:05]  Loading plugin: nativechecker.dll
+[13:44:05]   Loaded.
+[13:44:05]  Loaded 5 plugins.
+
+[13:44:05] 
+[13:44:05] Filterscripts
+[13:44:05] ---------------
+[13:44:05]   Loaded 0 filterscripts.
+
+[13:44:05] 
+----------------------------------
+[13:44:05]  VALAMI
+[13:44:05] ----------------------------------
+
+[13:44:05] Number of vehicle models: 0
+[13:44:05] ZoneLoad-ban vagyunk, 3
+[13:44:05] i = 0
+[13:44:05] id jön
+[13:44:05] id megvolt
+[13:44:05] minx megvolt
+[13:44:05] miny megvolt
+[13:44:05] maxx megvolt
+[13:44:05] maxy megvolt
+[13:44:05] zteam megvolt
+[13:44:05] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[13:44:05] i = 1
+[13:44:05] id jön
+[13:44:05] id megvolt
+[13:44:05] minx megvolt
+[13:44:05] miny megvolt
+[13:44:05] maxx megvolt
+[13:44:05] maxy megvolt
+[13:44:05] zteam megvolt
+[13:44:05] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[13:44:05] i = 2
+[13:44:05] id jön
+[13:45:08] [connection] 78.131.75.77:64906 requests connection cookie.
+[13:45:09] Incoming connection: 78.131.75.77:64906 id: 0
+[13:45:10] [join] devidson has joined the server (0:78.131.75.77)
+[13:45:18] [part] devidson has left the server (0:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[13:45:53] filterscripts = ""  (string)
+[13:45:53] 
+[13:45:53] Server Plugins
+[13:45:53] --------------
+[13:45:53]  Loading plugin: Whirlpool.dll
+[13:45:53]  
+[13:45:53]  ==================
+[13:45:53]  
+[13:45:53]   Whirlpool loaded
+[13:45:53]  
+[13:45:53]  ==================
+[13:45:53]  
+[13:45:53]   Loaded.
+[13:45:53]  Loading plugin: mysql.dll
+[13:45:53]  >> plugin.mysql: R39-3 successfully loaded.
+[13:45:53]   Loaded.
+[13:45:53]  Loading plugin: sscanf.dll
+[13:45:53] 
+
+[13:45:53]  ===============================
+
+[13:45:53]       sscanf plugin loaded.     
+
+[13:45:53]          Version:  2.8.1        
+
+[13:45:53]    (c) 2012 Alex "Y_Less" Cole  
+
+[13:45:53]  ===============================
+
+[13:45:53]   Loaded.
+[13:45:53]  Loading plugin: streamer.dll
+[13:45:53] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[13:45:53]   Loaded.
+[13:45:53]  Loading plugin: nativechecker.dll
+[13:45:53]   Loaded.
+[13:45:53]  Loaded 5 plugins.
+
+[13:45:53] 
+[13:45:53] Filterscripts
+[13:45:53] ---------------
+[13:45:53]   Loaded 0 filterscripts.
+
+[13:45:53] 
+----------------------------------
+[13:45:53]  VALAMI
+[13:45:53] ----------------------------------
+
+[13:45:53] Number of vehicle models: 0
+[13:45:53] ZoneLoad-ban vagyunk, 3
+[13:45:53] i = 0
+[13:45:53] 0, 0.000000, 0.000000, 0.000000, 0.000000, 0
+[13:45:53] i = 1
+[13:45:53] 0, 0.000000, 0.000000, 0.000000, 0.000000, 0
+[13:45:53] i = 2
+[13:45:53] 0, 0.000000, 0.000000, 0.000000, 0.000000, 0
+[13:45:53] betöltött sorok: 3
+[13:46:20] [connection] 78.131.75.77:64908 requests connection cookie.
+[13:46:21] Incoming connection: 78.131.75.77:64908 id: 0
+[13:46:21] [join] devidson has joined the server (0:78.131.75.77)
+[13:46:29] [part] devidson has left the server (0:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[13:46:48] filterscripts = ""  (string)
+[13:46:48] 
+[13:46:48] Server Plugins
+[13:46:48] --------------
+[13:46:48]  Loading plugin: Whirlpool.dll
+[13:46:48]  
+[13:46:48]  ==================
+[13:46:48]  
+[13:46:48]   Whirlpool loaded
+[13:46:48]  
+[13:46:48]  ==================
+[13:46:48]  
+[13:46:48]   Loaded.
+[13:46:48]  Loading plugin: mysql.dll
+[13:46:48]  >> plugin.mysql: R39-3 successfully loaded.
+[13:46:48]   Loaded.
+[13:46:48]  Loading plugin: sscanf.dll
+[13:46:48] 
+
+[13:46:48]  ===============================
+
+[13:46:48]       sscanf plugin loaded.     
+
+[13:46:48]          Version:  2.8.1        
+
+[13:46:48]    (c) 2012 Alex "Y_Less" Cole  
+
+[13:46:48]  ===============================
+
+[13:46:48]   Loaded.
+[13:46:48]  Loading plugin: streamer.dll
+[13:46:48] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[13:46:48]   Loaded.
+[13:46:48]  Loading plugin: nativechecker.dll
+[13:46:48]   Loaded.
+[13:46:48]  Loaded 5 plugins.
+
+[13:46:48] 
+[13:46:48] Filterscripts
+[13:46:48] ---------------
+[13:46:48]   Loaded 0 filterscripts.
+
+[13:46:48] 
+----------------------------------
+[13:46:48]  VALAMI
+[13:46:48] ----------------------------------
+
+[13:46:48] Number of vehicle models: 0
+[13:46:48] ZoneLoad-ban vagyunk, 3
+[13:46:48] i = 0
+[13:46:48] id jön
+[13:46:48] id megvolt
+[13:46:48] 0, 0.000000, 0.000000, 0.000000, 0.000000, 0
+[13:46:48] i = 1
+[13:46:48] id jön
+[13:46:48] id megvolt
+[13:46:48] 0, 0.000000, 0.000000, 0.000000, 0.000000, 0
+[13:46:48] i = 2
+[13:46:48] id jön
+[13:46:48] id megvolt
+[13:46:48] 0, 0.000000, 0.000000, 0.000000, 0.000000, 0
+[13:46:48] betöltött sorok: 3
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[13:47:44] filterscripts = ""  (string)
+[13:47:44] 
+[13:47:44] Server Plugins
+[13:47:44] --------------
+[13:47:44]  Loading plugin: Whirlpool.dll
+[13:47:44]  
+[13:47:44]  ==================
+[13:47:44]  
+[13:47:44]   Whirlpool loaded
+[13:47:44]  
+[13:47:44]  ==================
+[13:47:44]  
+[13:47:44]   Loaded.
+[13:47:44]  Loading plugin: mysql.dll
+[13:47:44]  >> plugin.mysql: R39-3 successfully loaded.
+[13:47:44]   Loaded.
+[13:47:44]  Loading plugin: sscanf.dll
+[13:47:44] 
+
+[13:47:44]  ===============================
+
+[13:47:44]       sscanf plugin loaded.     
+
+[13:47:44]          Version:  2.8.1        
+
+[13:47:44]    (c) 2012 Alex "Y_Less" Cole  
+
+[13:47:44]  ===============================
+
+[13:47:44]   Loaded.
+[13:47:44]  Loading plugin: streamer.dll
+[13:47:44] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[13:47:44]   Loaded.
+[13:47:44]  Loading plugin: nativechecker.dll
+[13:47:44]   Loaded.
+[13:47:44]  Loaded 5 plugins.
+
+[13:47:44] 
+[13:47:44] Filterscripts
+[13:47:44] ---------------
+[13:47:44]   Loaded 0 filterscripts.
+
+[13:47:44] 
+----------------------------------
+[13:47:44]  VALAMI
+[13:47:44] ----------------------------------
+
+[13:47:44] Number of vehicle models: 0
+[13:47:44] ZoneLoad-ban vagyunk, 3
+[13:47:44] i = 0
+[13:47:44] id jön
+[13:47:44] id megvolt
+[13:47:44] minx megvolt
+[13:47:44] 0, 2337.899902, 0.000000, 0.000000, 0.000000, 0
+[13:47:44] i = 1
+[13:47:44] id jön
+[13:47:44] id megvolt
+[13:47:44] minx megvolt
+[13:47:44] 0, 2084.699951, 0.000000, 0.000000, 0.000000, 0
+[13:47:44] i = 2
+[13:47:44] id jön
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[13:48:22] filterscripts = ""  (string)
+[13:48:22] 
+[13:48:22] Server Plugins
+[13:48:22] --------------
+[13:48:22]  Loading plugin: Whirlpool.dll
+[13:48:22]  
+[13:48:22]  ==================
+[13:48:22]  
+[13:48:22]   Whirlpool loaded
+[13:48:22]  
+[13:48:22]  ==================
+[13:48:22]  
+[13:48:22]   Loaded.
+[13:48:22]  Loading plugin: mysql.dll
+[13:48:22]  >> plugin.mysql: R39-3 successfully loaded.
+[13:48:22]   Loaded.
+[13:48:22]  Loading plugin: sscanf.dll
+[13:48:22] 
+
+[13:48:22]  ===============================
+
+[13:48:22]       sscanf plugin loaded.     
+
+[13:48:22]          Version:  2.8.1        
+
+[13:48:22]    (c) 2012 Alex "Y_Less" Cole  
+
+[13:48:22]  ===============================
+
+[13:48:22]   Loaded.
+[13:48:22]  Loading plugin: streamer.dll
+[13:48:22] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[13:48:22]   Loaded.
+[13:48:22]  Loading plugin: nativechecker.dll
+[13:48:22]   Loaded.
+[13:48:22]  Loaded 5 plugins.
+
+[13:48:22] 
+[13:48:22] Filterscripts
+[13:48:22] ---------------
+[13:48:22]   Loaded 0 filterscripts.
+
+[13:48:22] 
+----------------------------------
+[13:48:22]  VALAMI
+[13:48:22] ----------------------------------
+
+[13:48:22] Number of vehicle models: 0
+[13:48:22] ZoneLoad-ban vagyunk, 3
+[13:48:22] i = 0
+[13:48:22] id jön
+[13:48:22] id megvolt
+[13:48:22] zteam megvolt
+[13:48:22] 0, 0.000000, 0.000000, 0.000000, 0.000000, 1
+[13:48:22] i = 1
+[13:48:22] id jön
+[13:48:22] id megvolt
+[13:48:22] zteam megvolt
+[13:48:22] 0, 0.000000, 0.000000, 0.000000, 0.000000, 2
+[13:48:22] i = 2
+[13:48:22] id jön
+[13:48:22] id megvolt
+[13:48:22] zteam megvolt
+[13:48:22] 0, 0.000000, 0.000000, 0.000000, 0.000000, 3
+[13:48:22] betöltött sorok: 3
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[13:49:06] filterscripts = ""  (string)
+[13:49:06] 
+[13:49:06] Server Plugins
+[13:49:06] --------------
+[13:49:06]  Loading plugin: Whirlpool.dll
+[13:49:06]  
+[13:49:06]  ==================
+[13:49:06]  
+[13:49:06]   Whirlpool loaded
+[13:49:06]  
+[13:49:06]  ==================
+[13:49:06]  
+[13:49:06]   Loaded.
+[13:49:06]  Loading plugin: mysql.dll
+[13:49:06]  >> plugin.mysql: R39-3 successfully loaded.
+[13:49:06]   Loaded.
+[13:49:06]  Loading plugin: sscanf.dll
+[13:49:06] 
+
+[13:49:06]  ===============================
+
+[13:49:06]       sscanf plugin loaded.     
+
+[13:49:06]          Version:  2.8.1        
+
+[13:49:06]    (c) 2012 Alex "Y_Less" Cole  
+
+[13:49:06]  ===============================
+
+[13:49:06]   Loaded.
+[13:49:06]  Loading plugin: streamer.dll
+[13:49:06] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[13:49:06]   Loaded.
+[13:49:06]  Loading plugin: nativechecker.dll
+[13:49:06]   Loaded.
+[13:49:06]  Loaded 5 plugins.
+
+[13:49:06] 
+[13:49:06] Filterscripts
+[13:49:06] ---------------
+[13:49:06]   Loaded 0 filterscripts.
+
+[13:49:06] 
+----------------------------------
+[13:49:06]  VALAMI
+[13:49:06] ----------------------------------
+
+[13:49:06] Number of vehicle models: 0
+[13:49:06] ZoneLoad-ban vagyunk, 3
+[13:49:06] i = 0
+[13:49:06] id jön
+[13:49:06] id megvolt
+[13:49:06] zteam megvolt
+[13:49:06] 0, 0.000000, 0.000000, 0.000000, 0.000000, 1
+[13:49:06] i = 1
+[13:49:06] id jön
+[13:49:06] id megvolt
+[13:49:06] zteam megvolt
+[13:49:06] 0, 0.000000, 0.000000, 0.000000, 0.000000, 2
+[13:49:06] i = 2
+[13:49:06] id jön
+[13:49:06] id megvolt
+[13:49:06] zteam megvolt
+[13:49:06] 0, 0.000000, 0.000000, 0.000000, 0.000000, 3
+[13:49:06] betöltött sorok: 3
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[13:49:57] filterscripts = ""  (string)
+[13:49:57] 
+[13:49:57] Server Plugins
+[13:49:57] --------------
+[13:49:57]  Loading plugin: Whirlpool.dll
+[13:49:57]  
+[13:49:57]  ==================
+[13:49:57]  
+[13:49:57]   Whirlpool loaded
+[13:49:57]  
+[13:49:57]  ==================
+[13:49:57]  
+[13:49:57]   Loaded.
+[13:49:57]  Loading plugin: mysql.dll
+[13:49:57]  >> plugin.mysql: R39-3 successfully loaded.
+[13:49:57]   Loaded.
+[13:49:57]  Loading plugin: sscanf.dll
+[13:49:57] 
+
+[13:49:57]  ===============================
+
+[13:49:57]       sscanf plugin loaded.     
+
+[13:49:57]          Version:  2.8.1        
+
+[13:49:57]    (c) 2012 Alex "Y_Less" Cole  
+
+[13:49:57]  ===============================
+
+[13:49:57]   Loaded.
+[13:49:57]  Loading plugin: streamer.dll
+[13:49:57] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[13:49:57]   Loaded.
+[13:49:57]  Loading plugin: nativechecker.dll
+[13:49:57]   Loaded.
+[13:49:57]  Loaded 5 plugins.
+
+[13:49:57] 
+[13:49:57] Filterscripts
+[13:49:57] ---------------
+[13:49:57]   Loaded 0 filterscripts.
+
+[13:49:57] 
+----------------------------------
+[13:49:57]  VALAMI
+[13:49:57] ----------------------------------
+
+[13:49:57] Number of vehicle models: 0
+[13:49:57] ZoneLoad-ban vagyunk, 3
+[13:49:57] i = 0
+[13:49:57] id jön
+[13:49:57] get_int: 1
+[13:49:57] id megvolt
+[13:49:57] zteam megvolt
+[13:49:57] 0, 0.000000, 0.000000, 0.000000, 0.000000, 1
+[13:49:57] i = 1
+[13:49:57] id jön
+[13:49:57] get_int: 2
+[13:49:57] id megvolt
+[13:49:57] zteam megvolt
+[13:49:57] 0, 0.000000, 0.000000, 0.000000, 0.000000, 2
+[13:49:57] i = 2
+[13:49:57] id jön
+[13:49:57] get_int: 3
+[13:49:57] id megvolt
+[13:49:57] zteam megvolt
+[13:49:57] 0, 0.000000, 0.000000, 0.000000, 0.000000, 3
+[13:49:57] betöltött sorok: 3
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[14:03:27] filterscripts = ""  (string)
+[14:03:27] 
+[14:03:27] Server Plugins
+[14:03:27] --------------
+[14:03:27]  Loading plugin: Whirlpool.dll
+[14:03:27]  
+[14:03:27]  ==================
+[14:03:27]  
+[14:03:27]   Whirlpool loaded
+[14:03:27]  
+[14:03:27]  ==================
+[14:03:27]  
+[14:03:27]   Loaded.
+[14:03:27]  Loading plugin: mysql.dll
+[14:03:27]  >> plugin.mysql: R39-3 successfully loaded.
+[14:03:27]   Loaded.
+[14:03:27]  Loading plugin: sscanf.dll
+[14:03:27] 
+
+[14:03:27]  ===============================
+
+[14:03:27]       sscanf plugin loaded.     
+
+[14:03:27]          Version:  2.8.1        
+
+[14:03:27]    (c) 2012 Alex "Y_Less" Cole  
+
+[14:03:27]  ===============================
+
+[14:03:27]   Loaded.
+[14:03:27]  Loading plugin: streamer.dll
+[14:03:27] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[14:03:27]   Loaded.
+[14:03:27]  Loading plugin: nativechecker.dll
+[14:03:27]   Loaded.
+[14:03:27]  Loaded 5 plugins.
+
+[14:03:28] 
+[14:03:28] Filterscripts
+[14:03:28] ---------------
+[14:03:28]   Loaded 0 filterscripts.
+
+[14:03:28] 
+----------------------------------
+[14:03:28]  VALAMI
+[14:03:28] ----------------------------------
+
+[14:03:28] Number of vehicle models: 0
+[14:03:28] ZoneLoad-ban vagyunk, 3
+[14:03:28] i = 0
+[14:03:28] id jön
+[14:03:28] get_int: 1
+[14:03:28] id megvolt
+[14:03:28] zteam megvolt
+[14:03:28] 0, 0.000000, 0.000000, 0.000000, 0.000000, 1
+[14:03:28] i = 1
+[14:03:28] id jön
+[14:03:28] get_int: 2
+[14:03:28] id megvolt
+[14:03:28] zteam megvolt
+[14:03:28] 0, 0.000000, 0.000000, 0.000000, 0.000000, 2
+[14:03:28] i = 2
+[14:03:28] id jön
+[14:03:28] get_int: 3
+[14:03:28] id megvolt
+[14:03:28] zteam megvolt
+[14:03:28] 0, 0.000000, 0.000000, 0.000000, 0.000000, 3
+[14:03:28] betöltött sorok: 3
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[14:04:11] filterscripts = ""  (string)
+[14:04:11] 
+[14:04:11] Server Plugins
+[14:04:11] --------------
+[14:04:11]  Loading plugin: Whirlpool.dll
+[14:04:11]  
+[14:04:11]  ==================
+[14:04:11]  
+[14:04:11]   Whirlpool loaded
+[14:04:11]  
+[14:04:11]  ==================
+[14:04:11]  
+[14:04:11]   Loaded.
+[14:04:11]  Loading plugin: mysql.dll
+[14:04:11]  >> plugin.mysql: R39-3 successfully loaded.
+[14:04:11]   Loaded.
+[14:04:11]  Loading plugin: sscanf.dll
+[14:04:11] 
+
+[14:04:11]  ===============================
+
+[14:04:11]       sscanf plugin loaded.     
+
+[14:04:11]          Version:  2.8.1        
+
+[14:04:11]    (c) 2012 Alex "Y_Less" Cole  
+
+[14:04:11]  ===============================
+
+[14:04:11]   Loaded.
+[14:04:11]  Loading plugin: streamer.dll
+[14:04:11] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[14:04:11]   Loaded.
+[14:04:11]  Loading plugin: nativechecker.dll
+[14:04:11]   Loaded.
+[14:04:11]  Loaded 5 plugins.
+
+[14:04:11] 
+[14:04:11] Filterscripts
+[14:04:11] ---------------
+[14:04:11]   Loaded 0 filterscripts.
+
+[14:04:11] 
+----------------------------------
+[14:04:11]  VALAMI
+[14:04:11] ----------------------------------
+
+[14:04:11] Number of vehicle models: 0
+[14:04:11] ZoneLoad-ban vagyunk, 3
+[14:04:11] minx megvolt
+[14:04:11] miny megvolt
+[14:04:11] maxx megvolt
+[14:04:11] maxy megvolt
+[14:04:11] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 0
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[14:05:55] filterscripts = ""  (string)
+[14:05:55] 
+[14:05:55] Server Plugins
+[14:05:55] --------------
+[14:05:55]  Loading plugin: Whirlpool.dll
+[14:05:55]  
+[14:05:55]  ==================
+[14:05:55]  
+[14:05:55]   Whirlpool loaded
+[14:05:55]  
+[14:05:55]  ==================
+[14:05:55]  
+[14:05:55]   Loaded.
+[14:05:55]  Loading plugin: mysql.dll
+[14:05:55]  >> plugin.mysql: R39-3 successfully loaded.
+[14:05:55]   Loaded.
+[14:05:55]  Loading plugin: sscanf.dll
+[14:05:55] 
+
+[14:05:55]  ===============================
+
+[14:05:55]       sscanf plugin loaded.     
+
+[14:05:55]          Version:  2.8.1        
+
+[14:05:55]    (c) 2012 Alex "Y_Less" Cole  
+
+[14:05:55]  ===============================
+
+[14:05:55]   Loaded.
+[14:05:55]  Loading plugin: streamer.dll
+[14:05:55] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[14:05:55]   Loaded.
+[14:05:55]  Loading plugin: nativechecker.dll
+[14:05:55]   Loaded.
+[14:05:55]  Loaded 5 plugins.
+
+[14:05:55] 
+[14:05:55] Filterscripts
+[14:05:55] ---------------
+[14:05:55]   Loaded 0 filterscripts.
+
+[14:05:55] 
+----------------------------------
+[14:05:55]  VALAMI
+[14:05:55] ----------------------------------
+
+[14:05:55] Number of vehicle models: 0
+[14:05:55] ZoneLoad-ban vagyunk, 3
+[14:05:55] minX: 2337.899902, minY: -1808.839965
+[14:05:55] 0, 0.000000, 0.000000, 0.000000, 0.000000, 0
+[14:05:55] minX: 2084.699951, minY: -1808.839965
+[14:05:55] 0, 0.000000, 0.000000, 0.000000, 0.000000, 0
+[14:05:55] minX: 2590.199951, minY: -1808.839965
+[14:05:55] 0, 0.000000, 0.000000, 0.000000, 0.000000, 0
+[14:05:55] betöltött sorok: 3
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[14:10:22] filterscripts = ""  (string)
+[14:10:22] 
+[14:10:22] Server Plugins
+[14:10:22] --------------
+[14:10:22]  Loading plugin: Whirlpool.dll
+[14:10:22]  
+[14:10:22]  ==================
+[14:10:22]  
+[14:10:22]   Whirlpool loaded
+[14:10:22]  
+[14:10:22]  ==================
+[14:10:22]  
+[14:10:22]   Loaded.
+[14:10:22]  Loading plugin: mysql.dll
+[14:10:22]  >> plugin.mysql: R39-3 successfully loaded.
+[14:10:22]   Loaded.
+[14:10:22]  Loading plugin: sscanf.dll
+[14:10:22] 
+
+[14:10:22]  ===============================
+
+[14:10:22]       sscanf plugin loaded.     
+
+[14:10:22]          Version:  2.8.1        
+
+[14:10:22]    (c) 2012 Alex "Y_Less" Cole  
+
+[14:10:22]  ===============================
+
+[14:10:22]   Loaded.
+[14:10:22]  Loading plugin: streamer.dll
+[14:10:22] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[14:10:22]   Loaded.
+[14:10:22]  Loading plugin: nativechecker.dll
+[14:10:22]   Loaded.
+[14:10:22]  Loaded 5 plugins.
+
+[14:10:22] 
+[14:10:22] Filterscripts
+[14:10:22] ---------------
+[14:10:22]   Loaded 0 filterscripts.
+
+[14:10:22] 
+----------------------------------
+[14:10:22]  VALAMI
+[14:10:22] ----------------------------------
+
+[14:10:22] Number of vehicle models: 0
+[14:10:22] ZoneLoad-ban vagyunk, 3
+[14:10:22] id: 1
+[14:10:22] minX: 2337.899902, minY: -1808.839965
+[14:10:22] maxX: 2590.199951, maxY: -1610.369995
+[14:10:22] team: 1
+[14:10:22] id: 2
+[14:10:22] minX: 2084.699951, minY: -1808.839965
+[14:10:22] maxX: 2337.899902, maxY: -1610.369995
+[14:10:22] team: 2
+[14:10:22] id: 3
+[14:10:22] minX: 2590.199951, minY: -1808.839965
+[14:10:22] maxX: 2842.300048, maxY: -1610.369995
+[14:10:22] team: 3
+[14:10:22] betöltött sorok: 3
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[14:11:26] filterscripts = ""  (string)
+[14:11:26] 
+[14:11:26] Server Plugins
+[14:11:26] --------------
+[14:11:26]  Loading plugin: Whirlpool.dll
+[14:11:26]  
+[14:11:26]  ==================
+[14:11:26]  
+[14:11:26]   Whirlpool loaded
+[14:11:26]  
+[14:11:26]  ==================
+[14:11:26]  
+[14:11:26]   Loaded.
+[14:11:26]  Loading plugin: mysql.dll
+[14:11:26]  >> plugin.mysql: R39-3 successfully loaded.
+[14:11:26]   Loaded.
+[14:11:26]  Loading plugin: sscanf.dll
+[14:11:26] 
+
+[14:11:26]  ===============================
+
+[14:11:26]       sscanf plugin loaded.     
+
+[14:11:26]          Version:  2.8.1        
+
+[14:11:26]    (c) 2012 Alex "Y_Less" Cole  
+
+[14:11:26]  ===============================
+
+[14:11:26]   Loaded.
+[14:11:26]  Loading plugin: streamer.dll
+[14:11:26] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[14:11:26]   Loaded.
+[14:11:26]  Loading plugin: nativechecker.dll
+[14:11:26]   Loaded.
+[14:11:26]  Loaded 5 plugins.
+
+[14:11:26] 
+[14:11:26] Filterscripts
+[14:11:26] ---------------
+[14:11:26]   Loaded 0 filterscripts.
+
+[14:11:26] 
+----------------------------------
+[14:11:26]  VALAMI
+[14:11:26] ----------------------------------
+
+[14:11:26] Number of vehicle models: 0
+[14:11:26] ZoneLoad-ban vagyunk, 3
+[14:11:26] id: 1
+[14:11:26] minX: 2337.899902, minY: -1808.839965
+[14:11:26] maxX: 2590.199951, maxY: -1610.369995
+[14:11:26] team: 1
+[14:11:26] id: 2
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[14:14:26] filterscripts = ""  (string)
+[14:14:26] 
+[14:14:26] Server Plugins
+[14:14:26] --------------
+[14:14:26]  Loading plugin: Whirlpool.dll
+[14:14:26]  
+[14:14:26]  ==================
+[14:14:26]  
+[14:14:26]   Whirlpool loaded
+[14:14:26]  
+[14:14:26]  ==================
+[14:14:26]  
+[14:14:26]   Loaded.
+[14:14:26]  Loading plugin: mysql.dll
+[14:14:26]  >> plugin.mysql: R39-3 successfully loaded.
+[14:14:26]   Loaded.
+[14:14:26]  Loading plugin: sscanf.dll
+[14:14:26] 
+
+[14:14:26]  ===============================
+
+[14:14:26]       sscanf plugin loaded.     
+
+[14:14:26]          Version:  2.8.1        
+
+[14:14:26]    (c) 2012 Alex "Y_Less" Cole  
+
+[14:14:26]  ===============================
+
+[14:14:26]   Loaded.
+[14:14:26]  Loading plugin: streamer.dll
+[14:14:26] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[14:14:26]   Loaded.
+[14:14:26]  Loading plugin: nativechecker.dll
+[14:14:26]   Loaded.
+[14:14:26]  Loaded 5 plugins.
+
+[14:14:26] 
+[14:14:26] Filterscripts
+[14:14:26] ---------------
+[14:14:26]   Loaded 0 filterscripts.
+
+[14:14:26] 
+----------------------------------
+[14:14:26]  VALAMI
+[14:14:26] ----------------------------------
+
+[14:14:26] Number of vehicle models: 0
+[14:14:26] ZoneLoad-ban vagyunk, 3
+[14:14:26] id: 1
+[14:14:26] minX: 2337.899902, minY: -1808.839965
+[14:14:26] maxX: 2590.199951, maxY: -1610.369995
+[14:14:26] team: 1
+[14:14:26] id: 2
+[14:14:26] minX: 2084.699951, minY: -1808.839965
+[14:14:26] maxX: 2337.899902, maxY: -1610.369995
+[14:14:26] team: 2
+[14:14:26] id: 3
+[14:14:26] minX: 2590.199951, minY: -1808.839965
+[14:14:26] maxX: 2842.300048, maxY: -1610.369995
+[14:14:26] team: 3
+[14:14:26] betöltött sorok: 3
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[14:15:06] filterscripts = ""  (string)
+[14:15:06] 
+[14:15:06] Server Plugins
+[14:15:06] --------------
+[14:15:06]  Loading plugin: Whirlpool.dll
+[14:15:06]  
+[14:15:06]  ==================
+[14:15:06]  
+[14:15:06]   Whirlpool loaded
+[14:15:06]  
+[14:15:06]  ==================
+[14:15:06]  
+[14:15:06]   Loaded.
+[14:15:06]  Loading plugin: mysql.dll
+[14:15:06]  >> plugin.mysql: R39-3 successfully loaded.
+[14:15:06]   Loaded.
+[14:15:06]  Loading plugin: sscanf.dll
+[14:15:06] 
+
+[14:15:06]  ===============================
+
+[14:15:06]       sscanf plugin loaded.     
+
+[14:15:06]          Version:  2.8.1        
+
+[14:15:06]    (c) 2012 Alex "Y_Less" Cole  
+
+[14:15:06]  ===============================
+
+[14:15:06]   Loaded.
+[14:15:06]  Loading plugin: streamer.dll
+[14:15:07] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[14:15:07]   Loaded.
+[14:15:07]  Loading plugin: nativechecker.dll
+[14:15:07]   Loaded.
+[14:15:07]  Loaded 5 plugins.
+
+[14:15:07] 
+[14:15:07] Filterscripts
+[14:15:07] ---------------
+[14:15:07]   Loaded 0 filterscripts.
+
+[14:15:07] 
+----------------------------------
+[14:15:07]  VALAMI
+[14:15:07] ----------------------------------
+
+[14:15:07] Number of vehicle models: 0
+[14:15:07] ZoneLoad-ban vagyunk, 3
+[14:15:07] i = 0
+[14:15:07] id jön
+[14:15:07] get_int: 1
+[14:15:07] id megvolt
+[14:15:07] minx megvolt
+[14:15:07] miny megvolt
+[14:15:07] maxx megvolt
+[14:15:07] maxy megvolt
+[14:15:07] zteam megvolt
+[14:15:07] 1, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[14:15:07] i = 1
+[14:15:07] id jön
+[14:15:07] get_int: 2
+[14:15:07] id megvolt
+[14:15:07] minx megvolt
+[14:15:07] miny megvolt
+[14:15:07] maxx megvolt
+[14:15:07] maxy megvolt
+[14:15:07] zteam megvolt
+[14:15:07] 2, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[14:15:07] i = 2
+[14:15:07] id jön
+[14:15:07] get_int: 3
+[14:15:07] id megvolt
+[14:15:07] minx megvolt
+[14:15:07] miny megvolt
+[14:15:07] maxx megvolt
+[14:15:07] maxy megvolt
+[14:15:07] zteam megvolt
+[14:15:07] 3, 2590.199951, -1808.839965, 2842.300048, -1610.369995, 3
+[14:15:07] betöltött sorok: 3
+[14:15:37] [connection] 78.131.75.77:53749 requests connection cookie.
+[14:15:38] Incoming connection: 78.131.75.77:53749 id: 0
+[14:15:38] [join] devidson has joined the server (0:78.131.75.77)
+[14:17:57] [connection] 100.66.132.16:56911 requests connection cookie.
+[14:17:58] Incoming connection: 100.66.132.16:56911 id: 1
+[14:17:58] [join] Justricsi has joined the server (1:100.66.132.16)
+[14:20:32] [part] devidson has left the server (0:1)
+[14:20:33] [part] Justricsi has left the server (1:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[14:22:02] filterscripts = ""  (string)
+[14:22:02] 
+[14:22:02] Server Plugins
+[14:22:02] --------------
+[14:22:02]  Loading plugin: Whirlpool.dll
+[14:22:02]  
+[14:22:02]  ==================
+[14:22:02]  
+[14:22:02]   Whirlpool loaded
+[14:22:02]  
+[14:22:02]  ==================
+[14:22:02]  
+[14:22:02]   Loaded.
+[14:22:02]  Loading plugin: mysql.dll
+[14:22:02]  >> plugin.mysql: R39-3 successfully loaded.
+[14:22:02]   Loaded.
+[14:22:02]  Loading plugin: sscanf.dll
+[14:22:02] 
+
+[14:22:02]  ===============================
+
+[14:22:02]       sscanf plugin loaded.     
+
+[14:22:02]          Version:  2.8.1        
+
+[14:22:02]    (c) 2012 Alex "Y_Less" Cole  
+
+[14:22:02]  ===============================
+
+[14:22:02]   Loaded.
+[14:22:02]  Loading plugin: streamer.dll
+[14:22:02] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[14:22:02]   Loaded.
+[14:22:02]  Loading plugin: nativechecker.dll
+[14:22:02]   Loaded.
+[14:22:02]  Loaded 5 plugins.
+
+[14:22:02] 
+[14:22:02] Filterscripts
+[14:22:02] ---------------
+[14:22:02]   Loaded 0 filterscripts.
+
+[14:22:02] 
+----------------------------------
+[14:22:02]  VALAMI
+[14:22:02] ----------------------------------
+
+[14:22:02] Number of vehicle models: 0
+[14:22:02] ZoneLoad-ban vagyunk, 3
+[14:22:02] i = 0
+[14:22:02] id jön
+[14:22:02] get_int: 1
+[14:22:02] id megvolt
+[14:22:02] minx megvolt
+[14:22:02] miny megvolt
+[14:22:02] maxx megvolt
+[14:22:02] maxy megvolt
+[14:22:02] zteam megvolt
+[14:22:02] 0, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[14:22:02] i = 1
+[14:22:02] id jön
+[14:22:02] get_int: 2
+[14:22:02] id megvolt
+[14:22:02] minx megvolt
+[14:22:02] miny megvolt
+[14:22:02] maxx megvolt
+[14:22:02] maxy megvolt
+[14:22:02] zteam megvolt
+[14:22:02] 0, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[14:22:02] i = 2
+[14:22:02] id jön
+[14:22:02] get_int: 3
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[14:22:16] filterscripts = ""  (string)
+[14:22:16] 
+[14:22:16] Server Plugins
+[14:22:16] --------------
+[14:22:16]  Loading plugin: Whirlpool.dll
+[14:22:16]  
+[14:22:16]  ==================
+[14:22:16]  
+[14:22:16]   Whirlpool loaded
+[14:22:16]  
+[14:22:16]  ==================
+[14:22:16]  
+[14:22:16]   Loaded.
+[14:22:16]  Loading plugin: mysql.dll
+[14:22:16]  >> plugin.mysql: R39-3 successfully loaded.
+[14:22:16]   Loaded.
+[14:22:16]  Loading plugin: sscanf.dll
+[14:22:16] 
+
+[14:22:16]  ===============================
+
+[14:22:16]       sscanf plugin loaded.     
+
+[14:22:16]          Version:  2.8.1        
+
+[14:22:16]    (c) 2012 Alex "Y_Less" Cole  
+
+[14:22:16]  ===============================
+
+[14:22:16]   Loaded.
+[14:22:16]  Loading plugin: streamer.dll
+[14:22:16] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[14:22:16]   Loaded.
+[14:22:16]  Loading plugin: nativechecker.dll
+[14:22:16]   Loaded.
+[14:22:16]  Loaded 5 plugins.
+
+[14:22:16] 
+[14:22:16] Filterscripts
+[14:22:16] ---------------
+[14:22:16]   Loaded 0 filterscripts.
+
+[14:22:16] 
+----------------------------------
+[14:22:16]  VALAMI
+[14:22:16] ----------------------------------
+
+[14:22:16] Number of vehicle models: 0
+[14:22:16] ZoneLoad-ban vagyunk, 3
+[14:22:16] i = 0
+[14:22:16] id jön
+[14:22:16] get_int: 1
+[14:22:16] id megvolt
+[14:22:16] minx megvolt
+[14:22:16] miny megvolt
+[14:22:16] maxx megvolt
+[14:22:16] maxy megvolt
+[14:22:16] zteam megvolt
+[14:22:16] 1, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[14:22:16] i = 1
+[14:22:16] id jön
+[14:22:16] get_int: 2
+[14:22:16] id megvolt
+[14:22:16] minx megvolt
+[14:22:16] miny megvolt
+[14:22:16] maxx megvolt
+[14:22:16] maxy megvolt
+[14:22:16] zteam megvolt
+[14:22:16] 2, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[14:22:16] i = 2
+[14:22:16] id jön
+[14:22:16] get_int: 3
+[14:22:16] id megvolt
+[14:22:16] minx megvolt
+[14:22:16] miny megvolt
+[14:22:16] maxx megvolt
+[14:22:16] maxy megvolt
+[14:22:16] zteam megvolt
+[14:22:16] 3, 2590.199951, -1808.839965, 2842.300048, -1610.369995, 3
+[14:22:16] betöltött sorok: 3
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[14:30:45] filterscripts = ""  (string)
+[14:30:45] 
+[14:30:45] Server Plugins
+[14:30:45] --------------
+[14:30:45]  Loading plugin: Whirlpool.dll
+[14:30:45]  
+[14:30:45]  ==================
+[14:30:45]  
+[14:30:45]   Whirlpool loaded
+[14:30:45]  
+[14:30:45]  ==================
+[14:30:45]  
+[14:30:45]   Loaded.
+[14:30:45]  Loading plugin: mysql.dll
+[14:30:45]  >> plugin.mysql: R39-3 successfully loaded.
+[14:30:45]   Loaded.
+[14:30:45]  Loading plugin: sscanf.dll
+[14:30:45] 
+
+[14:30:45]  ===============================
+
+[14:30:45]       sscanf plugin loaded.     
+
+[14:30:45]          Version:  2.8.1        
+
+[14:30:45]    (c) 2012 Alex "Y_Less" Cole  
+
+[14:30:45]  ===============================
+
+[14:30:45]   Loaded.
+[14:30:45]  Loading plugin: streamer.dll
+[14:30:45] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[14:30:45]   Loaded.
+[14:30:45]  Loading plugin: nativechecker.dll
+[14:30:45]   Loaded.
+[14:30:45]  Loaded 5 plugins.
+
+[14:30:46] 
+[14:30:46] Filterscripts
+[14:30:46] ---------------
+[14:30:46]   Loaded 0 filterscripts.
+
+[14:30:46] 
+----------------------------------
+[14:30:46]  VALAMI
+[14:30:46] ----------------------------------
+
+[14:30:46] Number of vehicle models: 0
+[14:30:46] ZoneLoad-ban vagyunk, 3
+[14:30:46] 1, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[14:30:46] 2, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[14:30:46] 3, 2590.199951, -1808.839965, 2842.300048, -1610.369995, 3
+[14:30:46] betöltött sorok: 3
+[14:31:07] [connection] 100.66.132.16:60206 requests connection cookie.
+[14:31:08] Incoming connection: 100.66.132.16:60206 id: 0
+[14:31:08] [join] Justricsi has joined the server (0:100.66.132.16)
+[14:31:10] [connection] 78.131.75.77:52036 requests connection cookie.
+[14:31:11] Incoming connection: 78.131.75.77:52036 id: 1
+[14:31:12] [join] devidson has joined the server (1:78.131.75.77)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[14:34:54] filterscripts = ""  (string)
+[14:34:54] 
+[14:34:54] Server Plugins
+[14:34:54] --------------
+[14:34:54]  Loading plugin: Whirlpool.dll
+[14:34:54]  
+[14:34:54]  ==================
+[14:34:54]  
+[14:34:54]   Whirlpool loaded
+[14:34:54]  
+[14:34:54]  ==================
+[14:34:54]  
+[14:34:54]   Loaded.
+[14:34:54]  Loading plugin: mysql.dll
+[14:34:54]  >> plugin.mysql: R39-3 successfully loaded.
+[14:34:54]   Loaded.
+[14:34:54]  Loading plugin: sscanf.dll
+[14:34:54] 
+
+[14:34:54]  ===============================
+
+[14:34:54]       sscanf plugin loaded.     
+
+[14:34:54]          Version:  2.8.1        
+
+[14:34:54]    (c) 2012 Alex "Y_Less" Cole  
+
+[14:34:54]  ===============================
+
+[14:34:54]   Loaded.
+[14:34:54]  Loading plugin: streamer.dll
+[14:34:54] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[14:34:54]   Loaded.
+[14:34:54]  Loading plugin: nativechecker.dll
+[14:34:54]   Loaded.
+[14:34:54]  Loaded 5 plugins.
+
+[14:34:54] 
+[14:34:54] Filterscripts
+[14:34:54] ---------------
+[14:34:54]   Loaded 0 filterscripts.
+
+[14:34:54] 
+----------------------------------
+[14:34:54]  VALAMI
+[14:34:54] ----------------------------------
+
+[14:34:54] Number of vehicle models: 0
+[14:34:54] ZoneLoad-ban vagyunk, 3
+[14:34:54] 1, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[14:34:54] 2, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[14:34:54] 3, 2590.199951, -1808.839965, 2842.300048, -1610.369995, 3
+[14:34:54] betöltött sorok: 3
+[14:35:09] [connection] 100.66.132.16:57636 requests connection cookie.
+[14:35:10] Incoming connection: 100.66.132.16:57636 id: 0
+[14:35:10] [join] Justricsi has joined the server (0:100.66.132.16)
+[14:35:13] [connection] 78.131.75.77:56531 requests connection cookie.
+[14:35:14] Incoming connection: 78.131.75.77:56531 id: 1
+[14:35:14] [join] devidson has joined the server (1:78.131.75.77)
+[14:36:45] [part] devidson has left the server (1:1)
+[14:36:46] [part] Justricsi has left the server (0:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[14:55:52] filterscripts = ""  (string)
+[14:55:52] 
+[14:55:52] Server Plugins
+[14:55:52] --------------
+[14:55:52]  Loading plugin: Whirlpool.dll
+[14:55:52]  
+[14:55:52]  ==================
+[14:55:52]  
+[14:55:52]   Whirlpool loaded
+[14:55:52]  
+[14:55:52]  ==================
+[14:55:52]  
+[14:55:52]   Loaded.
+[14:55:52]  Loading plugin: mysql.dll
+[14:55:52]  >> plugin.mysql: R39-3 successfully loaded.
+[14:55:52]   Loaded.
+[14:55:52]  Loading plugin: sscanf.dll
+[14:55:52] 
+
+[14:55:52]  ===============================
+
+[14:55:52]       sscanf plugin loaded.     
+
+[14:55:52]          Version:  2.8.1        
+
+[14:55:52]    (c) 2012 Alex "Y_Less" Cole  
+
+[14:55:52]  ===============================
+
+[14:55:52]   Loaded.
+[14:55:52]  Loading plugin: streamer.dll
+[14:55:52] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[14:55:52]   Loaded.
+[14:55:52]  Loading plugin: nativechecker.dll
+[14:55:52]   Loaded.
+[14:55:52]  Loaded 5 plugins.
+
+[14:55:52] 
+[14:55:52] Filterscripts
+[14:55:52] ---------------
+[14:55:52]   Loaded 0 filterscripts.
+
+[14:55:52] 
+----------------------------------
+[14:55:52]  VALAMI
+[14:55:52] ----------------------------------
+
+[14:55:52] Number of vehicle models: 0
+[14:55:52] ZoneLoad-ban vagyunk, 3
+[14:55:52] 1, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[14:55:52] 2, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[14:55:52] 3, 2590.199951, -1808.839965, 2842.300048, -1610.369995, 3
+[14:55:52] betöltött sorok: 3
+[14:56:16] [connection] 100.66.132.16:61414 requests connection cookie.
+[14:56:17] Incoming connection: 100.66.132.16:61414 id: 0
+[14:56:17] [join] Justricsi has joined the server (0:100.66.132.16)
+[14:56:20] [connection] 78.131.75.77:52473 requests connection cookie.
+[14:56:21] Incoming connection: 78.131.75.77:52473 id: 1
+[14:56:22] [join] devidson has joined the server (1:78.131.75.77)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[14:58:09] filterscripts = ""  (string)
+[14:58:09] 
+[14:58:09] Server Plugins
+[14:58:09] --------------
+[14:58:09]  Loading plugin: Whirlpool.dll
+[14:58:09]  
+[14:58:09]  ==================
+[14:58:09]  
+[14:58:09]   Whirlpool loaded
+[14:58:09]  
+[14:58:09]  ==================
+[14:58:09]  
+[14:58:09]   Loaded.
+[14:58:09]  Loading plugin: mysql.dll
+[14:58:09]  >> plugin.mysql: R39-3 successfully loaded.
+[14:58:09]   Loaded.
+[14:58:09]  Loading plugin: sscanf.dll
+[14:58:09] 
+
+[14:58:09]  ===============================
+
+[14:58:09]       sscanf plugin loaded.     
+
+[14:58:09]          Version:  2.8.1        
+
+[14:58:09]    (c) 2012 Alex "Y_Less" Cole  
+
+[14:58:09]  ===============================
+
+[14:58:09]   Loaded.
+[14:58:09]  Loading plugin: streamer.dll
+[14:58:09] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[14:58:09]   Loaded.
+[14:58:09]  Loading plugin: nativechecker.dll
+[14:58:09]   Loaded.
+[14:58:09]  Loaded 5 plugins.
+
+[14:58:09] 
+[14:58:09] Filterscripts
+[14:58:09] ---------------
+[14:58:09]   Loaded 0 filterscripts.
+
+[14:58:09] 
+----------------------------------
+[14:58:09]  VALAMI
+[14:58:09] ----------------------------------
+
+[14:58:09] Number of vehicle models: 0
+[14:58:09] ZoneLoad-ban vagyunk, 4
+[14:58:09] 1, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[14:58:09] 2, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[14:58:09] 3, 2590.199951, -1808.839965, 2842.300048, -1610.369995, 3
+[14:58:09] 4, 2078.669921, -1215.180053, 2171.439941, 2171.439941, 4
+[14:58:09] betöltött sorok: 4
+[14:58:20] [connection] 78.131.75.77:53356 requests connection cookie.
+[14:58:21] Incoming connection: 78.131.75.77:53356 id: 0
+[14:58:22] [join] devidson has joined the server (0:78.131.75.77)
+[14:58:29] [connection] 100.66.132.16:60662 requests connection cookie.
+[14:58:30] Incoming connection: 100.66.132.16:60662 id: 1
+[14:58:31] [join] Justricsi has joined the server (1:100.66.132.16)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[14:59:58] filterscripts = ""  (string)
+[14:59:58] 
+[14:59:58] Server Plugins
+[14:59:58] --------------
+[14:59:58]  Loading plugin: Whirlpool.dll
+[14:59:58]  
+[14:59:58]  ==================
+[14:59:58]  
+[14:59:58]   Whirlpool loaded
+[14:59:58]  
+[14:59:58]  ==================
+[14:59:58]  
+[14:59:58]   Loaded.
+[14:59:58]  Loading plugin: mysql.dll
+[14:59:58]  >> plugin.mysql: R39-3 successfully loaded.
+[14:59:58]   Loaded.
+[14:59:58]  Loading plugin: sscanf.dll
+[14:59:58] 
+
+[14:59:58]  ===============================
+
+[14:59:58]       sscanf plugin loaded.     
+
+[14:59:58]          Version:  2.8.1        
+
+[14:59:58]    (c) 2012 Alex "Y_Less" Cole  
+
+[14:59:58]  ===============================
+
+[14:59:58]   Loaded.
+[14:59:58]  Loading plugin: streamer.dll
+[14:59:58] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[14:59:58]   Loaded.
+[14:59:58]  Loading plugin: nativechecker.dll
+[14:59:58]   Loaded.
+[14:59:58]  Loaded 5 plugins.
+
+[14:59:58] 
+[14:59:58] Filterscripts
+[14:59:58] ---------------
+[14:59:58]   Loaded 0 filterscripts.
+
+[14:59:58] 
+----------------------------------
+[14:59:58]  VALAMI
+[14:59:58] ----------------------------------
+
+[14:59:58] Number of vehicle models: 0
+[14:59:58] ZoneLoad-ban vagyunk, 3
+[14:59:58] 1, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[14:59:58] 2, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[14:59:58] 3, 2590.199951, -1808.839965, 2842.300048, -1610.369995, 3
+[14:59:58] betöltött sorok: 3
+[15:00:17] [connection] 100.66.132.16:50183 requests connection cookie.
+[15:00:18] Incoming connection: 100.66.132.16:50183 id: 0
+[15:00:19] [join] Justricsi has joined the server (0:100.66.132.16)
+[15:00:22] [connection] 78.131.75.77:64442 requests connection cookie.
+[15:00:23] Incoming connection: 78.131.75.77:64442 id: 1
+[15:00:24] [join] devidson has joined the server (1:78.131.75.77)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[15:01:35] filterscripts = ""  (string)
+[15:01:35] 
+[15:01:35] Server Plugins
+[15:01:35] --------------
+[15:01:35]  Loading plugin: Whirlpool.dll
+[15:01:35]  
+[15:01:35]  ==================
+[15:01:35]  
+[15:01:35]   Whirlpool loaded
+[15:01:35]  
+[15:01:35]  ==================
+[15:01:35]  
+[15:01:35]   Loaded.
+[15:01:35]  Loading plugin: mysql.dll
+[15:01:35]  >> plugin.mysql: R39-3 successfully loaded.
+[15:01:35]   Loaded.
+[15:01:35]  Loading plugin: sscanf.dll
+[15:01:35] 
+
+[15:01:35]  ===============================
+
+[15:01:35]       sscanf plugin loaded.     
+
+[15:01:35]          Version:  2.8.1        
+
+[15:01:35]    (c) 2012 Alex "Y_Less" Cole  
+
+[15:01:35]  ===============================
+
+[15:01:35]   Loaded.
+[15:01:35]  Loading plugin: streamer.dll
+[15:01:35] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[15:01:35]   Loaded.
+[15:01:35]  Loading plugin: nativechecker.dll
+[15:01:35]   Loaded.
+[15:01:35]  Loaded 5 plugins.
+
+[15:01:35] 
+[15:01:35] Filterscripts
+[15:01:35] ---------------
+[15:01:35]   Loaded 0 filterscripts.
+
+[15:01:35] 
+----------------------------------
+[15:01:35]  VALAMI
+[15:01:35] ----------------------------------
+
+[15:01:35] Number of vehicle models: 0
+[15:01:35] ZoneLoad-ban vagyunk, 3
+[15:01:35] 1, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[15:01:35] 2, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[15:01:35] 3, 2590.199951, -1808.839965, 2842.300048, -1610.369995, 3
+[15:01:35] betöltött sorok: 3
+[15:01:38] [connection] 100.66.132.16:57826 requests connection cookie.
+[15:01:39] Incoming connection: 100.66.132.16:57826 id: 0
+[15:01:39] [join] Justricsi has joined the server (0:100.66.132.16)
+[15:01:46] [connection] 78.131.75.77:64443 requests connection cookie.
+[15:01:47] Incoming connection: 78.131.75.77:64443 id: 1
+[15:01:47] [join] devidson has joined the server (1:78.131.75.77)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[15:02:50] filterscripts = ""  (string)
+[15:02:50] 
+[15:02:50] Server Plugins
+[15:02:50] --------------
+[15:02:50]  Loading plugin: Whirlpool.dll
+[15:02:50]  
+[15:02:50]  ==================
+[15:02:50]  
+[15:02:50]   Whirlpool loaded
+[15:02:50]  
+[15:02:50]  ==================
+[15:02:50]  
+[15:02:50]   Loaded.
+[15:02:50]  Loading plugin: mysql.dll
+[15:02:50]  >> plugin.mysql: R39-3 successfully loaded.
+[15:02:50]   Loaded.
+[15:02:50]  Loading plugin: sscanf.dll
+[15:02:50] 
+
+[15:02:50]  ===============================
+
+[15:02:50]       sscanf plugin loaded.     
+
+[15:02:50]          Version:  2.8.1        
+
+[15:02:50]    (c) 2012 Alex "Y_Less" Cole  
+
+[15:02:50]  ===============================
+
+[15:02:50]   Loaded.
+[15:02:50]  Loading plugin: streamer.dll
+[15:02:50] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[15:02:50]   Loaded.
+[15:02:50]  Loading plugin: nativechecker.dll
+[15:02:50]   Loaded.
+[15:02:50]  Loaded 5 plugins.
+
+[15:02:50] 
+[15:02:50] Filterscripts
+[15:02:50] ---------------
+[15:02:50]   Loaded 0 filterscripts.
+
+[15:02:50] 
+----------------------------------
+[15:02:50]  VALAMI
+[15:02:50] ----------------------------------
+
+[15:02:50] Number of vehicle models: 0
+[15:02:50] ZoneLoad-ban vagyunk, 4
+[15:02:50] 1, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[15:02:50] 2, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[15:02:50] 3, 2590.199951, -1808.839965, 2842.300048, -1610.369995, 3
+[15:02:50] 4, 2060.409912, -1253.800048, 1857.810058, -1146.510009, 1
+[15:02:50] betöltött sorok: 4
+[15:02:59] [connection] 78.131.75.77:53256 requests connection cookie.
+[15:03:00] Incoming connection: 78.131.75.77:53256 id: 0
+[15:03:00] [join] devidson has joined the server (0:78.131.75.77)
+[15:03:06] [connection] 100.66.132.16:64815 requests connection cookie.
+[15:03:07] Incoming connection: 100.66.132.16:64815 id: 1
+[15:03:08] [join] Justricsi has joined the server (1:100.66.132.16)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[15:05:06] filterscripts = ""  (string)
+[15:05:06] 
+[15:05:06] Server Plugins
+[15:05:06] --------------
+[15:05:06]  Loading plugin: Whirlpool.dll
+[15:05:06]  
+[15:05:06]  ==================
+[15:05:06]  
+[15:05:06]   Whirlpool loaded
+[15:05:06]  
+[15:05:06]  ==================
+[15:05:06]  
+[15:05:06]   Loaded.
+[15:05:06]  Loading plugin: mysql.dll
+[15:05:06]  >> plugin.mysql: R39-3 successfully loaded.
+[15:05:06]   Loaded.
+[15:05:06]  Loading plugin: sscanf.dll
+[15:05:06] 
+
+[15:05:06]  ===============================
+
+[15:05:06]       sscanf plugin loaded.     
+
+[15:05:06]          Version:  2.8.1        
+
+[15:05:06]    (c) 2012 Alex "Y_Less" Cole  
+
+[15:05:06]  ===============================
+
+[15:05:06]   Loaded.
+[15:05:06]  Loading plugin: streamer.dll
+[15:05:06] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[15:05:06]   Loaded.
+[15:05:06]  Loading plugin: nativechecker.dll
+[15:05:06]   Loaded.
+[15:05:06]  Loaded 5 plugins.
+
+[15:05:06] 
+[15:05:06] Filterscripts
+[15:05:06] ---------------
+[15:05:06]   Loaded 0 filterscripts.
+
+[15:05:06] 
+----------------------------------
+[15:05:06]  VALAMI
+[15:05:06] ----------------------------------
+
+[15:05:06] Number of vehicle models: 0
+[15:05:06] ZoneLoad-ban vagyunk, 4
+[15:05:06] 1, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[15:05:06] 2, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[15:05:06] 3, 2590.199951, -1808.839965, 2842.300048, -1610.369995, 3
+[15:05:06] 4, 2060.409912, -1253.800048, 1857.810058, -1146.510009, 1
+[15:05:06] betöltött sorok: 4
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[15:05:21] filterscripts = ""  (string)
+[15:05:21] 
+[15:05:21] Server Plugins
+[15:05:21] --------------
+[15:05:21]  Loading plugin: Whirlpool.dll
+[15:05:21]  
+[15:05:21]  ==================
+[15:05:21]  
+[15:05:21]   Whirlpool loaded
+[15:05:21]  
+[15:05:21]  ==================
+[15:05:21]  
+[15:05:21]   Loaded.
+[15:05:21]  Loading plugin: mysql.dll
+[15:05:21]  >> plugin.mysql: R39-3 successfully loaded.
+[15:05:21]   Loaded.
+[15:05:21]  Loading plugin: sscanf.dll
+[15:05:21] 
+
+[15:05:21]  ===============================
+
+[15:05:21]       sscanf plugin loaded.     
+
+[15:05:21]          Version:  2.8.1        
+
+[15:05:21]    (c) 2012 Alex "Y_Less" Cole  
+
+[15:05:21]  ===============================
+
+[15:05:21]   Loaded.
+[15:05:21]  Loading plugin: streamer.dll
+[15:05:21] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[15:05:21]   Loaded.
+[15:05:21]  Loading plugin: nativechecker.dll
+[15:05:21]   Loaded.
+[15:05:21]  Loaded 5 plugins.
+
+[15:05:21] 
+[15:05:21] Filterscripts
+[15:05:21] ---------------
+[15:05:21]   Loaded 0 filterscripts.
+
+[15:05:21] 
+----------------------------------
+[15:05:21]  VALAMI
+[15:05:21] ----------------------------------
+
+[15:05:21] Number of vehicle models: 0
+[15:05:21] ZoneLoad-ban vagyunk, 4
+[15:05:21] 1, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[15:05:21] 2, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[15:05:21] 3, 2590.199951, -1808.839965, 2842.300048, -1610.369995, 3
+[15:05:21] 4, 2060.409912, -1253.800048, 1857.810058, -1146.510009, 1
+[15:05:21] betöltött sorok: 4
+[15:05:22] [connection] 100.66.132.16:52879 requests connection cookie.
+[15:05:23] Incoming connection: 100.66.132.16:52879 id: 0
+[15:05:23] [join] Justricsi has joined the server (0:100.66.132.16)
+[15:05:25] [connection] 78.131.75.77:61656 requests connection cookie.
+[15:05:26] Incoming connection: 78.131.75.77:61656 id: 1
+[15:05:26] [join] devidson has joined the server (1:78.131.75.77)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[15:10:14] filterscripts = ""  (string)
+[15:10:14] 
+[15:10:14] Server Plugins
+[15:10:14] --------------
+[15:10:14]  Loading plugin: Whirlpool.dll
+[15:10:14]  
+[15:10:14]  ==================
+[15:10:14]  
+[15:10:14]   Whirlpool loaded
+[15:10:14]  
+[15:10:14]  ==================
+[15:10:14]  
+[15:10:14]   Loaded.
+[15:10:14]  Loading plugin: mysql.dll
+[15:10:14]  >> plugin.mysql: R39-3 successfully loaded.
+[15:10:14]   Loaded.
+[15:10:14]  Loading plugin: sscanf.dll
+[15:10:14] 
+
+[15:10:14]  ===============================
+
+[15:10:14]       sscanf plugin loaded.     
+
+[15:10:14]          Version:  2.8.1        
+
+[15:10:14]    (c) 2012 Alex "Y_Less" Cole  
+
+[15:10:14]  ===============================
+
+[15:10:14]   Loaded.
+[15:10:14]  Loading plugin: streamer.dll
+[15:10:14] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[15:10:14]   Loaded.
+[15:10:14]  Loading plugin: nativechecker.dll
+[15:10:14]   Loaded.
+[15:10:14]  Loaded 5 plugins.
+
+[15:10:14] 
+[15:10:14] Filterscripts
+[15:10:14] ---------------
+[15:10:14]   Loaded 0 filterscripts.
+
+[15:10:14] 
+----------------------------------
+[15:10:14]  VALAMI
+[15:10:14] ----------------------------------
+
+[15:10:14] Number of vehicle models: 0
+[15:10:14] ZoneLoad-ban vagyunk, 4
+[15:10:14] 1, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[15:10:14] 2, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[15:10:14] 3, 2590.199951, -1808.839965, 2842.300048, -1610.369995, 3
+[15:10:14] 4, 2060.409912, -1253.800048, 1857.810058, -1146.510009, 1
+[15:10:14] betöltött sorok: 4
+[15:10:24] [connection] 100.66.132.16:61623 requests connection cookie.
+[15:10:25] Incoming connection: 100.66.132.16:61623 id: 0
+[15:10:25] [join] Justricsi has joined the server (0:100.66.132.16)
+[15:10:56] [connection] 78.131.75.77:59338 requests connection cookie.
+[15:10:57] Incoming connection: 78.131.75.77:59338 id: 1
+[15:10:57] [join] devidson has joined the server (1:78.131.75.77)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[15:21:32] filterscripts = ""  (string)
+[15:21:32] 
+[15:21:32] Server Plugins
+[15:21:32] --------------
+[15:21:32]  Loading plugin: Whirlpool.dll
+[15:21:32]  
+[15:21:32]  ==================
+[15:21:32]  
+[15:21:32]   Whirlpool loaded
+[15:21:32]  
+[15:21:32]  ==================
+[15:21:32]  
+[15:21:32]   Loaded.
+[15:21:32]  Loading plugin: mysql.dll
+[15:21:32]  >> plugin.mysql: R39-3 successfully loaded.
+[15:21:32]   Loaded.
+[15:21:32]  Loading plugin: sscanf.dll
+[15:21:32] 
+
+[15:21:32]  ===============================
+
+[15:21:32]       sscanf plugin loaded.     
+
+[15:21:32]          Version:  2.8.1        
+
+[15:21:32]    (c) 2012 Alex "Y_Less" Cole  
+
+[15:21:32]  ===============================
+
+[15:21:32]   Loaded.
+[15:21:32]  Loading plugin: streamer.dll
+[15:21:32] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[15:21:32]   Loaded.
+[15:21:32]  Loading plugin: nativechecker.dll
+[15:21:32]   Loaded.
+[15:21:32]  Loaded 5 plugins.
+
+[15:21:32] 
+[15:21:32] Filterscripts
+[15:21:32] ---------------
+[15:21:32]   Loaded 0 filterscripts.
+
+[15:21:32] 
+----------------------------------
+[15:21:32]  VALAMI
+[15:21:32] ----------------------------------
+
+[15:21:32] Number of vehicle models: 0
+[15:21:32] ZoneLoad-ban vagyunk, 5
+[15:21:32] 1, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[15:21:32] 2, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[15:21:32] 3, 2590.199951, -1808.839965, 2842.300048, -1610.369995, 3
+[15:21:32] 4, 2060.409912, -1253.800048, 1857.810058, -1146.510009, 1
+[15:21:32] 5, 2279.800048, -1218.910034, 2263.540039, -1208.270019, 2
+[15:21:32] betöltött sorok: 5
+[15:21:48] [connection] 100.66.132.16:50492 requests connection cookie.
+[15:21:49] Incoming connection: 100.66.132.16:50492 id: 0
+[15:21:49] [join] Justricsi has joined the server (0:100.66.132.16)
+[15:21:52] [connection] 78.131.75.77:55550 requests connection cookie.
+[15:21:53] Incoming connection: 78.131.75.77:55550 id: 1
+[15:21:53] [join] devidson has joined the server (1:78.131.75.77)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[15:26:51] filterscripts = ""  (string)
+[15:26:51] 
+[15:26:51] Server Plugins
+[15:26:51] --------------
+[15:26:51]  Loading plugin: Whirlpool.dll
+[15:26:51]  
+[15:26:51]  ==================
+[15:26:51]  
+[15:26:51]   Whirlpool loaded
+[15:26:51]  
+[15:26:51]  ==================
+[15:26:51]  
+[15:26:51]   Loaded.
+[15:26:51]  Loading plugin: mysql.dll
+[15:26:51]  >> plugin.mysql: R39-3 successfully loaded.
+[15:26:51]   Loaded.
+[15:26:51]  Loading plugin: sscanf.dll
+[15:26:51] 
+
+[15:26:51]  ===============================
+
+[15:26:51]       sscanf plugin loaded.     
+
+[15:26:51]          Version:  2.8.1        
+
+[15:26:51]    (c) 2012 Alex "Y_Less" Cole  
+
+[15:26:51]  ===============================
+
+[15:26:51]   Loaded.
+[15:26:51]  Loading plugin: streamer.dll
+[15:26:51] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[15:26:51]   Loaded.
+[15:26:51]  Loading plugin: nativechecker.dll
+[15:26:51]   Loaded.
+[15:26:51]  Loaded 5 plugins.
+
+[15:26:51] 
+[15:26:51] Filterscripts
+[15:26:51] ---------------
+[15:26:51]   Loaded 0 filterscripts.
+
+[15:26:51] 
+----------------------------------
+[15:26:51]  VALAMI
+[15:26:51] ----------------------------------
+
+[15:26:51] Number of vehicle models: 0
+[15:26:51] ZoneLoad-ban vagyunk, 6
+[15:26:51] 1, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[15:26:51] 2, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[15:26:51] 3, 2590.199951, -1808.839965, 2842.300048, -1610.369995, 3
+[15:26:51] 4, 2060.409912, -1253.800048, 1857.810058, -1146.510009, 1
+[15:26:51] 5, 2279.800048, -1218.910034, 2263.540039, -1208.270019, 2
+[15:26:51] 6, 2263.000000, -1163.180053, 2320.050048, -1101.219970, 3
+[15:26:51] betöltött sorok: 6
+[15:27:25] [connection] 78.131.75.77:57608 requests connection cookie.
+[15:27:26] Incoming connection: 78.131.75.77:57608 id: 0
+[15:27:26] [join] devidson has joined the server (0:78.131.75.77)
+[15:27:29] [connection] 100.66.132.16:57064 requests connection cookie.
+[15:27:30] Incoming connection: 100.66.132.16:57064 id: 1
+[15:27:30] [join] Justricsi has joined the server (1:100.66.132.16)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[15:29:06] filterscripts = ""  (string)
+[15:29:06] 
+[15:29:06] Server Plugins
+[15:29:06] --------------
+[15:29:06]  Loading plugin: Whirlpool.dll
+[15:29:06]  
+[15:29:06]  ==================
+[15:29:06]  
+[15:29:06]   Whirlpool loaded
+[15:29:06]  
+[15:29:06]  ==================
+[15:29:06]  
+[15:29:06]   Loaded.
+[15:29:06]  Loading plugin: mysql.dll
+[15:29:06]  >> plugin.mysql: R39-3 successfully loaded.
+[15:29:06]   Loaded.
+[15:29:06]  Loading plugin: sscanf.dll
+[15:29:06] 
+
+[15:29:06]  ===============================
+
+[15:29:06]       sscanf plugin loaded.     
+
+[15:29:06]          Version:  2.8.1        
+
+[15:29:06]    (c) 2012 Alex "Y_Less" Cole  
+
+[15:29:06]  ===============================
+
+[15:29:06]   Loaded.
+[15:29:06]  Loading plugin: streamer.dll
+[15:29:06] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[15:29:06]   Loaded.
+[15:29:06]  Loading plugin: nativechecker.dll
+[15:29:06]   Loaded.
+[15:29:06]  Loaded 5 plugins.
+
+[15:29:07] 
+[15:29:07] Filterscripts
+[15:29:07] ---------------
+[15:29:07]   Loaded 0 filterscripts.
+
+[15:29:07] 
+----------------------------------
+[15:29:07]  VALAMI
+[15:29:07] ----------------------------------
+
+[15:29:07] Number of vehicle models: 0
+[15:29:07] ZoneLoad-ban vagyunk, 4
+[15:29:07] 1, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[15:29:07] 2, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[15:29:07] 3, 2590.199951, -1808.839965, 2842.300048, -1610.369995, 3
+[15:29:07] 4, 2263.000000, -1163.180053, 2320.050048, -1101.219970, 3
+[15:29:07] betöltött sorok: 4
+[15:29:14] [connection] 100.66.132.16:60243 requests connection cookie.
+[15:29:15] Incoming connection: 100.66.132.16:60243 id: 0
+[15:29:16] [join] Justricsi has joined the server (0:100.66.132.16)
+[15:29:52] [connection] 78.131.75.77:63983 requests connection cookie.
+[15:29:53] Incoming connection: 78.131.75.77:63983 id: 1
+[15:29:53] [join] devidson has joined the server (1:78.131.75.77)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[15:32:06] filterscripts = ""  (string)
+[15:32:06] 
+[15:32:06] Server Plugins
+[15:32:06] --------------
+[15:32:06]  Loading plugin: Whirlpool.dll
+[15:32:06]  
+[15:32:06]  ==================
+[15:32:06]  
+[15:32:06]   Whirlpool loaded
+[15:32:06]  
+[15:32:06]  ==================
+[15:32:06]  
+[15:32:06]   Loaded.
+[15:32:06]  Loading plugin: mysql.dll
+[15:32:06]  >> plugin.mysql: R39-3 successfully loaded.
+[15:32:06]   Loaded.
+[15:32:06]  Loading plugin: sscanf.dll
+[15:32:06] 
+
+[15:32:06]  ===============================
+
+[15:32:06]       sscanf plugin loaded.     
+
+[15:32:06]          Version:  2.8.1        
+
+[15:32:06]    (c) 2012 Alex "Y_Less" Cole  
+
+[15:32:06]  ===============================
+
+[15:32:06]   Loaded.
+[15:32:06]  Loading plugin: streamer.dll
+[15:32:06] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[15:32:06]   Loaded.
+[15:32:06]  Loading plugin: nativechecker.dll
+[15:32:06]   Loaded.
+[15:32:06]  Loaded 5 plugins.
+
+[15:32:06] 
+[15:32:06] Filterscripts
+[15:32:06] ---------------
+[15:32:06]   Loaded 0 filterscripts.
+
+[15:32:06] 
+----------------------------------
+[15:32:06]  VALAMI
+[15:32:06] ----------------------------------
+
+[15:32:06] Number of vehicle models: 0
+[15:32:06] ZoneLoad-ban vagyunk, 5
+[15:32:06] 1, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[15:32:06] 2, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[15:32:06] 3, 2590.199951, -1808.839965, 2842.300048, -1610.369995, 3
+[15:32:06] 4, 2263.000000, -1163.180053, 2320.050048, -1101.219970, 3
+[15:32:06] 5, 1857.880004, -1256.709960, 2059.540039, -1139.930053, 3
+[15:32:06] betöltött sorok: 5
+[15:32:22] [connection] 100.66.132.16:64606 requests connection cookie.
+[15:32:23] Incoming connection: 100.66.132.16:64606 id: 0
+[15:32:23] [join] Justricsi has joined the server (0:100.66.132.16)
+[15:32:37] [connection] 78.131.75.77:60321 requests connection cookie.
+[15:32:38] Incoming connection: 78.131.75.77:60321 id: 1
+[15:32:39] [join] devidson has joined the server (1:78.131.75.77)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[15:35:27] filterscripts = ""  (string)
+[15:35:27] 
+[15:35:27] Server Plugins
+[15:35:27] --------------
+[15:35:27]  Loading plugin: Whirlpool.dll
+[15:35:27]  
+[15:35:27]  ==================
+[15:35:27]  
+[15:35:27]   Whirlpool loaded
+[15:35:27]  
+[15:35:27]  ==================
+[15:35:27]  
+[15:35:27]   Loaded.
+[15:35:27]  Loading plugin: mysql.dll
+[15:35:27]  >> plugin.mysql: R39-3 successfully loaded.
+[15:35:27]   Loaded.
+[15:35:27]  Loading plugin: sscanf.dll
+[15:35:27] 
+
+[15:35:27]  ===============================
+
+[15:35:27]       sscanf plugin loaded.     
+
+[15:35:27]          Version:  2.8.1        
+
+[15:35:27]    (c) 2012 Alex "Y_Less" Cole  
+
+[15:35:27]  ===============================
+
+[15:35:27]   Loaded.
+[15:35:27]  Loading plugin: streamer.dll
+[15:35:28] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[15:35:28]   Loaded.
+[15:35:28]  Loading plugin: nativechecker.dll
+[15:35:28]   Loaded.
+[15:35:28]  Loaded 5 plugins.
+
+[15:35:28] 
+[15:35:28] Filterscripts
+[15:35:28] ---------------
+[15:35:28]   Loaded 0 filterscripts.
+
+[15:35:28] 
+----------------------------------
+[15:35:28]  VALAMI
+[15:35:28] ----------------------------------
+
+[15:35:28] Number of vehicle models: 0
+[15:35:28] ZoneLoad-ban vagyunk, 6
+[15:35:28] 1, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[15:35:28] 2, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[15:35:28] 3, 2590.199951, -1808.839965, 2842.300048, -1610.369995, 3
+[15:35:28] 4, 2263.000000, -1163.180053, 2320.050048, -1101.219970, 3
+[15:35:28] 5, 1857.880004, -1256.709960, 2059.540039, -1139.930053, 3
+[15:35:28] 6, 2445.270019, -1438.369995, 2513.370117, -1257.189941, 2
+[15:35:28] betöltött sorok: 6
+[15:35:37] [connection] 100.66.132.16:50550 requests connection cookie.
+[15:35:37] [connection] 78.131.75.77:50180 requests connection cookie.
+[15:35:38] Incoming connection: 100.66.132.16:50550 id: 0
+[15:35:38] [join] Justricsi has joined the server (0:100.66.132.16)
+[15:35:38] Incoming connection: 78.131.75.77:50180 id: 1
+[15:35:38] [join] devidson has joined the server (1:78.131.75.77)
+[15:39:06] [part] devidson has left the server (1:1)
+[15:39:08] [part] Justricsi has left the server (0:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[15:40:10] filterscripts = ""  (string)
+[15:40:10] 
+[15:40:10] Server Plugins
+[15:40:10] --------------
+[15:40:10]  Loading plugin: Whirlpool.dll
+[15:40:10]  
+[15:40:10]  ==================
+[15:40:10]  
+[15:40:10]   Whirlpool loaded
+[15:40:10]  
+[15:40:10]  ==================
+[15:40:10]  
+[15:40:10]   Loaded.
+[15:40:10]  Loading plugin: mysql.dll
+[15:40:10]  >> plugin.mysql: R39-3 successfully loaded.
+[15:40:10]   Loaded.
+[15:40:10]  Loading plugin: sscanf.dll
+[15:40:10] 
+
+[15:40:10]  ===============================
+
+[15:40:10]       sscanf plugin loaded.     
+
+[15:40:10]          Version:  2.8.1        
+
+[15:40:10]    (c) 2012 Alex "Y_Less" Cole  
+
+[15:40:10]  ===============================
+
+[15:40:10]   Loaded.
+[15:40:10]  Loading plugin: streamer.dll
+[15:40:10] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[15:40:10]   Loaded.
+[15:40:10]  Loading plugin: nativechecker.dll
+[15:40:10]   Loaded.
+[15:40:10]  Loaded 5 plugins.
+
+[15:40:10] 
+[15:40:10] Filterscripts
+[15:40:10] ---------------
+[15:40:10]   Loaded 0 filterscripts.
+
+[15:40:10] 
+----------------------------------
+[15:40:10]  VALAMI
+[15:40:10] ----------------------------------
+
+[15:40:10] Number of vehicle models: 0
+[15:40:10] ZoneLoad-ban vagyunk, 6
+[15:40:10] 1, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[15:40:10] 2, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[15:40:11] 3, 2590.199951, -1808.839965, 2842.300048, -1610.369995, 3
+[15:40:11] 4, 2263.000000, -1163.180053, 2320.050048, -1101.219970, 3
+[15:40:11] 5, 1857.880004, -1256.709960, 2059.540039, -1139.930053, 3
+[15:40:11] 6, 2445.270019, -1438.369995, 2513.370117, -1257.189941, 2
+[15:40:11] betöltött sorok: 6
+[15:40:32] [connection] 100.66.132.16:52013 requests connection cookie.
+[15:40:33] Incoming connection: 100.66.132.16:52013 id: 0
+[15:40:33] [join] Justricsi has joined the server (0:100.66.132.16)
+[15:40:35] [connection] 78.131.75.77:56335 requests connection cookie.
+[15:40:36] Incoming connection: 78.131.75.77:56335 id: 1
+[15:40:36] [join] devidson has joined the server (1:78.131.75.77)
+[15:42:00] [part] Justricsi has left the server (0:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[16:02:47] filterscripts = ""  (string)
+[16:02:47] 
+[16:02:47] Server Plugins
+[16:02:47] --------------
+[16:02:47]  Loading plugin: Whirlpool.dll
+[16:02:47]  
+[16:02:47]  ==================
+[16:02:47]  
+[16:02:47]   Whirlpool loaded
+[16:02:47]  
+[16:02:47]  ==================
+[16:02:47]  
+[16:02:47]   Loaded.
+[16:02:47]  Loading plugin: mysql.dll
+[16:02:47]  >> plugin.mysql: R39-3 successfully loaded.
+[16:02:47]   Loaded.
+[16:02:47]  Loading plugin: sscanf.dll
+[16:02:47] 
+
+[16:02:47]  ===============================
+
+[16:02:47]       sscanf plugin loaded.     
+
+[16:02:47]          Version:  2.8.1        
+
+[16:02:47]    (c) 2012 Alex "Y_Less" Cole  
+
+[16:02:47]  ===============================
+
+[16:02:47]   Loaded.
+[16:02:47]  Loading plugin: streamer.dll
+[16:02:47] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[16:02:47]   Loaded.
+[16:02:47]  Loading plugin: nativechecker.dll
+[16:02:47]   Loaded.
+[16:02:47]  Loaded 5 plugins.
+
+[16:02:47] 
+[16:02:47] Filterscripts
+[16:02:47] ---------------
+[16:02:47]   Loaded 0 filterscripts.
+
+[16:02:47] 
+----------------------------------
+[16:02:47]  VALAMI
+[16:02:47] ----------------------------------
+
+[16:02:47] Number of vehicle models: 0
+[16:02:47] ZoneLoad-ban vagyunk, 6
+[16:02:47] 1, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[16:02:47] 2, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[16:02:47] 3, 2590.199951, -1808.839965, 2842.300048, -1610.369995, 3
+[16:02:47] 4, 2263.000000, -1163.180053, 2320.050048, -1101.219970, 3
+[16:02:47] 5, 1857.880004, -1256.709960, 2059.540039, -1139.930053, 3
+[16:02:47] 6, 2445.270019, -1438.369995, 2513.370117, -1257.189941, 2
+[16:02:47] betöltött sorok: 6
+[16:03:14] [connection] 78.131.75.77:62142 requests connection cookie.
+[16:03:15] Incoming connection: 78.131.75.77:62142 id: 0
+[16:03:15] [join] devidson has joined the server (0:78.131.75.77)
+[16:03:16] [connection] 100.66.132.16:60203 requests connection cookie.
+[16:03:17] Incoming connection: 100.66.132.16:60203 id: 1
+[16:03:18] [join] Justricsi has joined the server (1:100.66.132.16)
+[16:06:12] [part] devidson has left the server (0:1)
+[16:06:14] [part] Justricsi has left the server (1:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[16:14:45] filterscripts = ""  (string)
+[16:14:45] 
+[16:14:45] Server Plugins
+[16:14:45] --------------
+[16:14:45]  Loading plugin: Whirlpool.dll
+[16:14:45]  
+[16:14:45]  ==================
+[16:14:45]  
+[16:14:45]   Whirlpool loaded
+[16:14:45]  
+[16:14:45]  ==================
+[16:14:45]  
+[16:14:45]   Loaded.
+[16:14:45]  Loading plugin: mysql.dll
+[16:14:45]  >> plugin.mysql: R39-3 successfully loaded.
+[16:14:45]   Loaded.
+[16:14:45]  Loading plugin: sscanf.dll
+[16:14:45] 
+
+[16:14:45]  ===============================
+
+[16:14:45]       sscanf plugin loaded.     
+
+[16:14:45]          Version:  2.8.1        
+
+[16:14:45]    (c) 2012 Alex "Y_Less" Cole  
+
+[16:14:45]  ===============================
+
+[16:14:45]   Loaded.
+[16:14:45]  Loading plugin: streamer.dll
+[16:14:45] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[16:14:45]   Loaded.
+[16:14:45]  Loading plugin: nativechecker.dll
+[16:14:45]   Loaded.
+[16:14:45]  Loaded 5 plugins.
+
+[16:14:46] 
+[16:14:46] Filterscripts
+[16:14:46] ---------------
+[16:14:46]   Loaded 0 filterscripts.
+
+[16:14:46] 
+----------------------------------
+[16:14:46]  VALAMI
+[16:14:46] ----------------------------------
+
+[16:14:46] Number of vehicle models: 0
+[16:14:46] ZoneLoad-ban vagyunk, 6
+[16:14:46] 1, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[16:14:46] 2, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[16:14:46] 3, 2590.199951, -1808.839965, 2842.300048, -1610.369995, 3
+[16:14:46] 4, 2263.000000, -1163.180053, 2320.050048, -1101.219970, 3
+[16:14:46] 5, 1857.880004, -1256.709960, 2059.540039, -1139.930053, 3
+[16:14:46] 6, 2445.270019, -1438.369995, 2513.370117, -1257.189941, 2
+[16:14:46] betöltött sorok: 6
+[16:15:05] [connection] 100.66.132.16:49367 requests connection cookie.
+[16:15:06] Incoming connection: 100.66.132.16:49367 id: 0
+[16:15:06] [join] Justricsi has joined the server (0:100.66.132.16)
+[16:15:08] [connection] 78.131.75.77:52533 requests connection cookie.
+[16:15:09] Incoming connection: 78.131.75.77:52533 id: 1
+[16:15:09] [join] devidson has joined the server (1:78.131.75.77)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[16:21:14] filterscripts = ""  (string)
+[16:21:14] 
+[16:21:14] Server Plugins
+[16:21:14] --------------
+[16:21:14]  Loading plugin: Whirlpool.dll
+[16:21:14]  
+[16:21:14]  ==================
+[16:21:14]  
+[16:21:14]   Whirlpool loaded
+[16:21:14]  
+[16:21:14]  ==================
+[16:21:14]  
+[16:21:14]   Loaded.
+[16:21:14]  Loading plugin: mysql.dll
+[16:21:14]  >> plugin.mysql: R39-3 successfully loaded.
+[16:21:14]   Loaded.
+[16:21:14]  Loading plugin: sscanf.dll
+[16:21:14] 
+
+[16:21:14]  ===============================
+
+[16:21:14]       sscanf plugin loaded.     
+
+[16:21:14]          Version:  2.8.1        
+
+[16:21:14]    (c) 2012 Alex "Y_Less" Cole  
+
+[16:21:14]  ===============================
+
+[16:21:14]   Loaded.
+[16:21:14]  Loading plugin: streamer.dll
+[16:21:14] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[16:21:14]   Loaded.
+[16:21:14]  Loading plugin: nativechecker.dll
+[16:21:14]   Loaded.
+[16:21:14]  Loaded 5 plugins.
+
+[16:21:15] 
+[16:21:15] Filterscripts
+[16:21:15] ---------------
+[16:21:15]   Loaded 0 filterscripts.
+
+[16:21:15] 
+----------------------------------
+[16:21:15]  VALAMI
+[16:21:15] ----------------------------------
+
+[16:21:15] Number of vehicle models: 0
+[16:21:15] ZoneLoad-ban vagyunk, 6
+[16:21:15] 1, 2337.899902, -1808.839965, 2590.199951, -1610.369995, 1
+[16:21:15] 2, 2084.699951, -1808.839965, 2337.899902, -1610.369995, 2
+[16:21:15] 3, 2590.199951, -1808.839965, 2842.300048, -1610.369995, 3
+[16:21:15] 4, 2263.000000, -1163.180053, 2320.050048, -1101.219970, 3
+[16:21:15] 5, 1857.880004, -1256.709960, 2059.540039, -1139.930053, 3
+[16:21:15] 6, 2445.270019, -1438.369995, 2513.370117, -1257.189941, 2
+[16:21:15] betöltött sorok: 6
+[16:21:22] [connection] 100.66.132.16:65021 requests connection cookie.
+[16:21:24] Incoming connection: 100.66.132.16:65021 id: 0
+[16:21:24] [join] Justricsi has joined the server (0:100.66.132.16)
+[16:21:25] [connection] 78.131.75.77:54163 requests connection cookie.
+[16:21:26] Incoming connection: 78.131.75.77:54163 id: 1
+[16:21:26] [join] devidson has joined the server (1:78.131.75.77)
+[16:25:04] [part] Justricsi has left the server (0:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[16:25:24] filterscripts = ""  (string)
+[16:25:24] 
+[16:25:24] Server Plugins
+[16:25:24] --------------
+[16:25:24]  Loading plugin: Whirlpool.dll
+[16:25:24]  
+[16:25:24]  ==================
+[16:25:24]  
+[16:25:24]   Whirlpool loaded
+[16:25:24]  
+[16:25:24]  ==================
+[16:25:24]  
+[16:25:24]   Loaded.
+[16:25:24]  Loading plugin: mysql.dll
+[16:25:25]  >> plugin.mysql: R39-3 successfully loaded.
+[16:25:25]   Loaded.
+[16:25:25]  Loading plugin: sscanf.dll
+[16:25:25] 
+
+[16:25:25]  ===============================
+
+[16:25:25]       sscanf plugin loaded.     
+
+[16:25:25]          Version:  2.8.1        
+
+[16:25:25]    (c) 2012 Alex "Y_Less" Cole  
+
+[16:25:25]  ===============================
+
+[16:25:25]   Loaded.
+[16:25:25]  Loading plugin: streamer.dll
+[16:25:25] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[16:25:25]   Loaded.
+[16:25:25]  Loading plugin: nativechecker.dll
+[16:25:25]   Loaded.
+[16:25:25]  Loaded 5 plugins.
+
+[16:25:25] 
+[16:25:25] Filterscripts
+[16:25:25] ---------------
+[16:25:25]   Loaded 0 filterscripts.
+
+[16:25:25] 
+----------------------------------
+[16:25:25]  VALAMI
+[16:25:25] ----------------------------------
+
+[16:25:25] Number of vehicle models: 0
+[16:25:25] ZoneLoad-ban vagyunk, 0
+[16:25:25] cache_get_row_count returned false. Nincsennek betöltendõ sorok.
+[16:25:45] [connection] 78.131.75.77:59155 requests connection cookie.
+[16:25:46] Incoming connection: 78.131.75.77:59155 id: 0
+[16:25:46] [join] devidson has joined the server (0:78.131.75.77)
+[16:25:54] [connection] 100.66.132.16:55585 requests connection cookie.
+[16:25:55] Incoming connection: 100.66.132.16:55585 id: 1
+[16:25:56] [join] Justricsi has joined the server (1:100.66.132.16)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[16:52:34] filterscripts = ""  (string)
+[16:52:34] 
+[16:52:34] Server Plugins
+[16:52:34] --------------
+[16:52:34]  Loading plugin: Whirlpool.dll
+[16:52:34]  
+[16:52:34]  ==================
+[16:52:34]  
+[16:52:34]   Whirlpool loaded
+[16:52:34]  
+[16:52:34]  ==================
+[16:52:34]  
+[16:52:34]   Loaded.
+[16:52:34]  Loading plugin: mysql.dll
+[16:52:35]  >> plugin.mysql: R39-3 successfully loaded.
+[16:52:35]   Loaded.
+[16:52:35]  Loading plugin: sscanf.dll
+[16:52:35] 
+
+[16:52:35]  ===============================
+
+[16:52:35]       sscanf plugin loaded.     
+
+[16:52:35]          Version:  2.8.1        
+
+[16:52:35]    (c) 2012 Alex "Y_Less" Cole  
+
+[16:52:35]  ===============================
+
+[16:52:35]   Loaded.
+[16:52:35]  Loading plugin: streamer.dll
+[16:52:35] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[16:52:35]   Loaded.
+[16:52:35]  Loading plugin: nativechecker.dll
+[16:52:35]   Loaded.
+[16:52:35]  Loaded 5 plugins.
+
+[16:52:35] 
+[16:52:35] Filterscripts
+[16:52:35] ---------------
+[16:52:35]   Loaded 0 filterscripts.
+
+[16:52:35] 
+----------------------------------
+[16:52:35]  VALAMI
+[16:52:35] ----------------------------------
+
+[16:52:35] Number of vehicle models: 0
+[16:52:35] ZoneLoad-ban vagyunk, 6
+[16:52:35] 1, 1089.010009, -2115.570068, 1253.680053, -1965.170043, 1
+[16:52:35] 2, 2213.780029, -109.388000, 2577.689941, 196.378997, 2
+[16:52:35] 3, 78.475601, -205.718994, 340.161987, 82.644897, 3
+[16:52:35] 4, 803.671020, -1389.900024, 1054.250000, -1145.489990, 4
+[16:52:35] 5, 2374.270019, -2696.600097, 2809.629882, -2330.669921, 5
+[16:52:35] 6, 154.397003, -1967.239990, 1011.010009, -1818.949951, 6
+[16:52:35] betöltött sorok: 6
+[16:52:53] [connection] 78.131.75.77:61474 requests connection cookie.
+[16:52:54] Incoming connection: 78.131.75.77:61474 id: 0
+[16:52:54] [join] devidson has joined the server (0:78.131.75.77)
+[16:52:55] [connection] 100.66.132.16:61844 requests connection cookie.
+[16:52:56] Incoming connection: 100.66.132.16:61844 id: 1
+[16:52:56] [join] Justricsi has joined the server (1:100.66.132.16)
+[17:06:00] [part] Justricsi has left the server (1:1)
+[17:06:18] [part] devidson has left the server (0:1)

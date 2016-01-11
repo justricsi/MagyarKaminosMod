@@ -2,28 +2,37 @@
 // uncomment the line below if you want to write a filterscript
 //#define FILTERSCRIPT
 #include <a_samp>
+#include <a_mysql>
 #include <ZCMD>
 #include <sscanf2>
-//#include <fixchars.h>
-#include <a_mysql>
+#include <fixchars.h>
 
 #pragma tabsize 0
 //---------------------SZÍNEK DEFINIÁLÁSA---------------------------------------
 #define feher 0xFFFFFFFF
 #define orange 0xFF8000FF
 #define zold 0x1BA901FF
+#define kek 0x0000FFFF
+#define vkek 0x01F8FEFF
+#define vbarna 0xBE7C41FF
 
 //---------------------EGYÉB DEFINEOK-------------------------------------------
-#define TAKEOVER_TIME 120 // mennyi idõ kell az elfoglaláshoz
+#define TAKEOVER_TIME 5 // mennyi ido kell az elfoglaláshoz
 #define MIN_DEATHS_TO_START_WAR 1 // minimum ennyi embert kell kinyírni hogy beinduljon a csata
+#define MAX_ZONE 100
 
-#define TEAM_GROVE 1
-#define TEAM_BALLAS 2
-#define TEAM_VAGOS 3
+//------------------------CSAPAT DEFINIÁLÁS-------------------------------------
+#define TEAM_HUN 1
+#define TEAM_GRE 2
+#define TEAM_ITA 3
+#define TEAM_RUS 4
+#define TEAM_KIN 5
+#define TEAM_KAM 6
 
 //--------------------FORWARDOK-------------------------------------------------
 forward RegEllenorzes(playerid);
 forward ZoneTimer();
+forward ZoneLoad();
 
 #if defined FILTERSCRIPT
 
@@ -54,18 +63,35 @@ enum JatekosInfo {
 	Penz,
 	Pont,
 	Skin,
-	alevel
+	alevel,
+	teamcolor
 }
 new jInfo[MAX_PLAYERS][JatekosInfo];
 
 enum eZone
 {
+	zId,
 	Float:zMinX,
 	Float:zMinY,
 	Float:zMaxX,
 	Float:zMaxY,
 	zTeam
 }
+new ZoneInfo[MAX_ZONE][eZone];
+new SaveZone[1][eZone];
+
+enum Object
+{
+	id,
+	modelID,
+	Float:xCor,
+	Float:yCor,
+	Float:zCor,
+    Float:rxCor,
+    Float:ryCor,
+    Float:rzCor
+}
+new Objektumok[MAX_OBJECTS][Object];
 
 /*new Teams[] = {
 	TEAM_GROVE,
@@ -73,20 +99,20 @@ enum eZone
 	TEAM_VAGOS
 };*/
 
-new ZoneInfo[][eZone] = {
-	{2337.9004,-1808.8383,2590.2043,-1610.3673,TEAM_GROVE},
-	{2084.7,-1808.8383,2337.9004,-1610.3673,TEAM_BALLAS},
-	{2590.2043,-1808.8383,2842.3,-1610.3673,TEAM_VAGOS}
-};
-new ZoneID[sizeof(ZoneInfo)];
+
 
 //---------------------GLOBÁLIS VÁLTOZÓK----------------------------------------
 new kapcs, query[2000];
 new Text:TDEditor_TD[11];
+new zoneDb = 0;
 new AutoCount = 0;
-new ZoneAttacker[sizeof(ZoneInfo)] = {-1, ...};
-new ZoneAttackTime[sizeof(ZoneInfo)];
-new ZoneDeaths[sizeof(ZoneInfo)];
+new ZoneID[MAX_ZONE];
+new ZoneAttacker[MAX_ZONE] = {-1, ...};
+new ZoneAttackTime[MAX_ZONE];
+new ZoneDeaths[MAX_ZONE];
+new gTeam[MAX_PLAYERS];
+new ObjektCount=0;
+
 
 main()
 {
@@ -104,34 +130,121 @@ public OnGameModeInit()
 	EnableStuntBonusForAll(0);              //ugrató pénz kikapcs
 	SetGameModeText("ZoneWars");
 	
-	mysql_log(LOG_ALL, LOG_TYPE_HTML);
+	// Player Classes
+    AddPlayerClass(72,2004.5212,-1183.4020,20.0234,325.7480,24,1500,27,1500,16,2); //magyar
+    AddPlayerClass(48,2004.5212,-1183.4020,20.0234,325.7480,24,1500,27,1500,16,2); // görög
+    AddPlayerClass(46,2004.5212,-1183.4020,20.0234,325.7480,24,1500,27,1500,16,2); //olasz
+    AddPlayerClass(112,2224.2893,-1337.3351,23.9825,81.0793,24,1500,27,1500,16,2); // orosz
+    AddPlayerClass(117,2224.2893,-1337.3351,23.9825,81.0793,24,1500,27,1500,16,2); // kínaiak
+    AddPlayerClass(142,2224.2893,-1337.3351,23.9825,81.0793,24,1500,27,1500,16,2); // kameruniak
+    /*AddPlayerClass(108,2215.1963,-1164.0492,25.7266,270.5322,24,1500,27,1500,16,2); // Jefferson Vagos spawn
+    AddPlayerClass(109,2215.1963,-1164.0492,25.7266,270.5322,24,1500,27,1500,16,2); // Jefferson Vagos spawn
+    AddPlayerClass(110,2215.1963,-1164.0492,25.7266,270.5322,24,1500,27,1500,16,2); // Jefferson Vagos spawn*/
+
+    mysql_log(LOG_ALL, LOG_TYPE_HTML);
 	kapcs = mysql_connect("localhost", "root", "zone", "");
 	if(mysql_errno(kapcs) != 0) printf("MySQL hiba! Hibakód: %d", mysql_errno(kapcs));
-	
-	for(new i=0; i < sizeof(ZoneInfo); i++)
-	{
-		ZoneID[i] = GangZoneCreate(ZoneInfo[i][zMinX], ZoneInfo[i][zMinY], ZoneInfo[i][zMaxX], ZoneInfo[i][zMaxY]);
-	}
-	
+
+	mysql_tquery(kapcs, "SELECT * FROM zones", "ZoneLoad");
+
 	SetTimer("ZoneTimer", 1000, true);
 	return 1;
 }
 
 public OnGameModeExit()
 {
+    mysql_close(kapcs);
 	return 1;
 }
 
 public OnPlayerRequestClass(playerid, classid)
 {
-	SpawnPlayer(playerid);
+	//SpawnPlayer(playerid);
+	SetPlayerCameraPos(playerid, 2220.9197,-1164.0920,25.7331);
+    SetPlayerCameraLookAt(playerid, 2215.1963,-1164.0492,25.7266);
+    SetPlayerPos(playerid, 2215.1963,-1164.0492,25.7266);
+    SetPlayerFacingAngle(playerid, 270.5322);
+    ApplyAnimation(playerid,"DANCING","DAN_LOOP_A",4.0,1,0,0,0,-1);
+    PlayerPlaySound(playerid, 1183, 0.0, 0.0, 0.0);
+    SetPlayerTeamFromClass(playerid, classid);
 	return 1;
+}
+
+SetPlayerTeamFromClass(playerid, classid)
+{
+switch (classid) {
+        case 0: {
+                gTeam[playerid] = TEAM_HUN;
+                GameTextForPlayer(playerid,"~w~Magyarok",3000,6);
+        }
+        case 1: {
+                gTeam[playerid] = TEAM_GRE;
+                GameTextForPlayer(playerid,"~w~Görögök",3000,6);
+        }
+        case 2: {
+                gTeam[playerid] = TEAM_ITA;
+                GameTextForPlayer(playerid,"~w~Olaszok",3000,6);
+        }
+        case 3: {
+                gTeam[playerid] = TEAM_RUS;
+                GameTextForPlayer(playerid,"~w~Oroszok",3000,6);
+        }
+        case 4: {
+                gTeam[playerid] = TEAM_KIN;
+                GameTextForPlayer(playerid,"~w~Kínaiak",3000,6);
+        }
+        case 5: {
+                gTeam[playerid] = TEAM_KAM;
+                GameTextForPlayer(playerid,"~w~Kameruniak",3000,6);
+        }
+}
+return 1;
+}
+
+SetPlayerToTeamColor(playerid)
+{
+        if (gTeam[playerid] == TEAM_HUN)
+        {
+                SetPlayerColor(playerid, 0x00FF0088);
+                SetPlayerTeam(playerid, TEAM_HUN);
+				jInfo[playerid][teamcolor] = TEAM_HUN;
+        }
+        else if (gTeam[playerid] == TEAM_GRE)
+        {
+                SetPlayerColor(playerid, 0xFF00FF88);
+                SetPlayerTeam(playerid, TEAM_GRE);
+                jInfo[playerid][teamcolor] = TEAM_GRE;
+        }
+        else if (gTeam[playerid] == TEAM_ITA)
+        {
+                SetPlayerColor(playerid, 0xFFFF0088);
+                SetPlayerTeam(playerid, TEAM_ITA);
+                jInfo[playerid][teamcolor] = TEAM_ITA;
+        }
+        else if (gTeam[playerid] == TEAM_RUS)
+        {
+                SetPlayerColor(playerid, 0x0000FF88);
+                SetPlayerTeam(playerid, TEAM_RUS);
+                jInfo[playerid][teamcolor] = TEAM_RUS;
+        }
+        else if (gTeam[playerid] == TEAM_KIN)
+        {
+                SetPlayerColor(playerid, 0x01F8FE88);
+                SetPlayerTeam(playerid, TEAM_KIN);
+                jInfo[playerid][teamcolor] = TEAM_KIN;
+        }
+        else if (gTeam[playerid] == TEAM_KAM)
+        {
+                SetPlayerColor(playerid, 0xBE7C4188);
+                SetPlayerTeam(playerid, TEAM_KAM);
+                jInfo[playerid][teamcolor] = TEAM_KAM;
+        }
 }
 
 public OnPlayerConnect(playerid)
 {
-	//TextDrawok(playerid); //Csapatválasztó textdrawok
-	
+	//TextDrawok(playerid);//Csapatválasztó textdrawok
+
 	TogglePlayerSpectating(playerid, true);
     for(new a; JatekosInfo:a < JatekosInfo; a++) jInfo[playerid][JatekosInfo:a] = 0;    //Nullázzuk az enumjait
     GetPlayerName(playerid, jInfo[playerid][Nev], 25);                                  //Lekérjük a nevét.
@@ -140,6 +253,52 @@ public OnPlayerConnect(playerid)
     mysql_format(kapcs, query, 256, "SELECT ID,NEV FROM jatekosok WHERE NEV='%e' LIMIT 1", jInfo[playerid][Nev]);
     mysql_tquery(kapcs, query, "RegEllenorzes", "d", playerid);
 
+	return 1;
+}
+
+public ZoneLoad()
+{
+	printf("ZoneLoad-ban vagyunk, %d", cache_get_row_count());
+    if(!cache_get_row_count()) return printf("cache_get_row_count returned false. Nincsennek betöltendõ sorok.");
+	 	for(new i = 0; i < cache_get_row_count(); i++)
+		{
+			ZoneInfo[i][zId] = cache_get_field_content_int(i,"id",kapcs);
+		    ZoneInfo[i][zMinX] = cache_get_field_content_float(i,"minX",kapcs);
+		    ZoneInfo[i][zMinY] = cache_get_field_content_float(i,"minY",kapcs);
+		    ZoneInfo[i][zMaxX] = cache_get_field_content_float(i,"maxX",kapcs);
+			ZoneInfo[i][zMaxY] = cache_get_field_content_float(i,"maxY",kapcs);
+			ZoneInfo[i][zTeam] = cache_get_field_content_int(i,"team",kapcs);
+			
+			zoneDb++;
+			printf("%d, %f, %f, %f, %f, %d", ZoneInfo[i][zId], ZoneInfo[i][zMinX], ZoneInfo[i][zMinY], ZoneInfo[i][zMaxX], ZoneInfo[i][zMaxY], ZoneInfo[i][zTeam]);
+			ZoneID[i] = GangZoneCreate(ZoneInfo[i][zMinX], ZoneInfo[i][zMinY], ZoneInfo[i][zMaxX], ZoneInfo[i][zMaxY]);
+		}
+	printf("betöltött sorok: %d", zoneDb);
+	/*for(new i=0; i < zoneDb; i++)
+	{
+		ZoneID[i] = GangZoneCreate(ZoneInfo[i][zMinX], ZoneInfo[i][zMinY], ZoneInfo[i][zMaxX], ZoneInfo[i][zMaxY]);
+	}*/
+	return 1;
+}
+
+forward ObjectLoad();
+public ObjectLoad()
+{
+	if(!cache_get_row_count()) return printf("cache_get_row_count returned false. Nincsennek betöltendõ sorok.");
+	 	for(new i, j = cache_get_row_count(); i < j ; i++)
+		{
+			Objektumok[i][id] = ObjektCount;
+			Objektumok[i][modelID] = cache_get_field_content_int(i,"modelid",kapcs);
+		    Objektumok[i][xCor] = cache_get_field_content_float(i,"x",kapcs);
+		    Objektumok[i][yCor] = cache_get_field_content_float(i,"y",kapcs);
+		    Objektumok[i][zCor] = cache_get_field_content_float(i,"z",kapcs);
+		    Objektumok[i][rxCor] = cache_get_field_content_float(i,"rx",kapcs);
+		    Objektumok[i][ryCor] = cache_get_field_content_float(i,"ry",kapcs);
+		    Objektumok[i][rzCor] = cache_get_field_content_float(i,"rz",kapcs);
+
+			CreateObject(Objektumok[i][modelID], Objektumok[i][xCor], Objektumok[i][yCor], Objektumok[i][zCor], Objektumok[i][rxCor], Objektumok[i][ryCor], Objektumok[i][rzCor]);
+	        ObjektCount ++;
+		}
 	return 1;
 }
 
@@ -160,8 +319,10 @@ public OnPlayerDisconnect(playerid, reason)
 
 public OnPlayerSpawn(playerid)
 {
+    PlayerPlaySound( playerid, 1188, 0.0, 0.0, 0.0 );
+    SetPlayerToTeamColor(playerid);
 	//Itt mutatjuk a gangzonokat a játékosoknak valamint villogást is itt lehet beállítani
-	for(new i=0; i < sizeof(ZoneInfo); i++)
+	for(new i=0; i < zoneDb; i++)
 	{
 		GangZoneShowForPlayer(playerid, ZoneID[i], GetTeamZoneColor(ZoneInfo[i][zTeam]));
 		if(ZoneAttacker[i] != -1) GangZoneFlashForPlayer(playerid, ZoneID[i], GetTeamZoneColor(ZoneAttacker[i]));
@@ -171,6 +332,10 @@ public OnPlayerSpawn(playerid)
 
 public OnPlayerDeath(playerid, killerid, reason)
 {
+	if(killerid != INVALID_PLAYER_ID){
+	    getPont(killerid);
+	    SendDeathMessage(killerid, playerid, reason);
+	}
 	if(IsPlayerConnected(killerid) && GetPlayerTeam(playerid) != GetPlayerTeam(killerid)) // not a suicide or team kill
 	{
 		new zoneid = GetPlayerZone(playerid);
@@ -333,8 +498,9 @@ public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart)
 {
     if(issuerid != INVALID_PLAYER_ID && bodypart == 9)
     {
-        // One shot to the head to kill with sniper rifle
+		getPont(issuerid);
         SetPlayerHealth(playerid, 0.0);
+        SendClientMessage(issuerid,zold,"Fejbelõtted. Kiváló találat! +1 pont");
     }
     return 1;
 }
@@ -354,13 +520,19 @@ public OnPlayerClickPlayer(playerid, clickedplayerid, source)
 	return 1;
 }
 
+forward getPont(playerid);
+public getPont(playerid){
+	jInfo[playerid][Pont]++;
+	SetPlayerScore(playerid, GetPlayerScore(playerid) + 1);
+}
+
 forward JatekosBeregelt(playerid);
 public JatekosBeregelt(playerid)
 {
     TogglePlayerSpectating(playerid, false);
     SendClientMessage(playerid, zold, "Sikeresen regisztráltál!");
     SetSpawnInfo(playerid,0,0,2529.7461,-1736.1093,13.0943,0, 0, 0, 0, 0, 0, 0);
-    SpawnPlayer(playerid);
+    //SpawnPlayer(playerid);
     return 1;
 }
 
@@ -371,17 +543,19 @@ public JatekosBelep(playerid)
     if(sorok_szama == 0) return ShowPlayerDialog(playerid, d_belep, DIALOG_STYLE_PASSWORD, "Bejelentkezés", "{FFFFFF}Üdv a szerveren!\nKérlek add meg a jelszavad, amivel regisztráltált!\n\n{FF0000}Hibás jelszó!", "Belép", "Kilép");
     //Az elobb, ha hibás volt a jelszó visszatértünk volna, szóval innenztol ami lefut kód, az már jó jelszóval fut le:
     TogglePlayerSpectating(playerid, false);
-    SetSpawnInfo(playerid,0,0,2529.7461,-1736.1093,13.0943,0, 0, 0, 0, 0, 0, 0);
-    SpawnPlayer(playerid);
+    //SetSpawnInfo(playerid,0,0,2529.7461,-1736.1093,13.0943,0, 0, 0, 0, 0, 0, 0);
+    //SpawnPlayer(playerid);
     SendClientMessage(playerid, zold, "Sikeresen bejelentkeztél!");
 	jInfo[playerid][Penz] = cache_get_field_content_int(0, "PENZ",kapcs);
     jInfo[playerid][Pont] = cache_get_field_content_int(0, "PONT",kapcs);
+	SetPlayerScore(playerid, jInfo[playerid][Pont]);
+	GivePlayerMoney(playerid, jInfo[playerid][Penz]);
     return 1;
 }
 
 public ZoneTimer()
 {
-	for(new i=0; i < sizeof(ZoneInfo); i++) // loop all zones
+	for(new i=0; i < zoneDb; i++) // loop all zones
 	{
 		if(ZoneAttacker[i] != -1) // zone is being attacked
 		{
@@ -414,7 +588,7 @@ stock IsPlayerInZone(playerid, zoneid)
 
 stock GetPlayerZone(playerid)
 {
-	for(new i=0; i < sizeof(ZoneInfo); i++)
+	for(new i=0; i < zoneDb; i++)
 	{
 		if(IsPlayerInZone(playerid, i))
 		{
@@ -441,10 +615,13 @@ stock GetTeamZoneColor(teamid)
 {
 	switch(teamid)
 	{
-		//A színek végén a 88-as az átlátszóságot jelenti, ez csökkenthetõ ha mégkisebb számot írunk
-		case TEAM_GROVE: return 0x00FF0088;
-		case TEAM_BALLAS: return 0xFF00FF88;
-		case TEAM_VAGOS: return 0xFFFF0088;
+		//A színek végén a 88-as az átlátszóságot jelenti, ez csökkentheto ha mégkisebb számot írunk
+		case TEAM_HUN: return 0x00FF0088;
+		case TEAM_GRE: return 0xFF00FF88;
+		case TEAM_ITA: return 0xFFFF0088;
+		case TEAM_RUS: return 0x0000FF88;
+		case TEAM_KIN: return 0x01F8FE88;
+		case TEAM_KAM: return 0xBE7C4188;
 	}
 	return -1;
 }
@@ -607,7 +784,7 @@ stock TextDrawok(playerid)
 	TextDrawSetProportional(TDEditor_TD[10], 1);
 	TextDrawSetShadow(TDEditor_TD[10], 0);
 	TextDrawSetSelectable(TDEditor_TD[10], true);
-	
+
 	for(new i = 0; i<= 11; i++)
 	{
 		TextDrawShowForPlayer(playerid,TDEditor_TD[i]);
@@ -620,7 +797,7 @@ Dialog_Regisztracio(playerid, response, inputtext[])
 {
 	{
         if(!response) return Kick(playerid);
-        if(strlen(inputtext) < 5 || strlen(inputtext) > 32) return ShowPlayerDialog(playerid, d_reg, DIALOG_STYLE_PASSWORD, "Regisztráció", "{FFFFFF}Üdv a szerveren!\nMég nem regisztráltál!\nKérlek adj meg egy megjegyezhetõ és erõs jelszót!\n\n{FF0000}Jelszavadnak 5-32 karakter között kell lennie!", "Regisztrál", "Kilép");
+        if(strlen(inputtext) < 5 || strlen(inputtext) > 32) return ShowPlayerDialog(playerid, d_reg, DIALOG_STYLE_PASSWORD, "Regisztráció", "{FFFFFF}Üdv a szerveren!\nMég nem regisztráltál!\nKérlek adj meg egy megjegyezheto és eros jelszót!\n\n{FF0000}Jelszavadnak 5-32 karakter között kell lennie!", "Regisztrál", "Kilép");
         mysql_format(kapcs, query, 256, "INSERT INTO jatekosok (NEV,JELSZO,PENZ,PONT) VALUES ('%e',SHA1('%e'),'0','0')", jInfo[playerid][Nev], inputtext);
         mysql_tquery(kapcs, query, "JatekosBeregelt", "d", playerid);
     }
@@ -648,10 +825,10 @@ CMD:kocsi(playerid,params[])
 	new Float:pX,Float:pY,Float:pZ,Float:pR;
 	GetPlayerPos(playerid,pX, pY, pZ);
 	GetPlayerFacingAngle(playerid, pR);
-	
+
 	format(buffer, sizeof(buffer),"ZÓNA-%d",random(10));
 	SetVehicleNumberPlate(AddStaticVehicleEx(mID,pX+4,pY,pZ,pR,140,140,-1,0),buffer);
-	
+
 	AutoCount++;
 	return 1;
 }
@@ -676,7 +853,7 @@ CMD:tp(playerid,params[])
 CMD:pteam(playerid,params[])
 {
 	new teamNumber, pID;
-	if(sscanf(params, "ii", pID, teamNumber)) return SendClientMessage(playerid, orange, "Használat: /pteam [playerid] [teamnumber]");
+	if(sscanf(params, "ii", pID, teamNumber)) return SendClientMessage(playerid, orange, "Használat: /pteam [playerid] [1,2,3]");
 	if(IsPlayerConnected(pID))
 	{
 		SetPlayerTeam(pID, teamNumber);
@@ -692,8 +869,33 @@ CMD:pteam(playerid,params[])
 CMD:fegyver(playerid,params[]){
 	new weaponID;
 
-    if(sscanf(params,"i",weaponID)) return SendClientMessage(playerid,orange,"HasznÃ¡lat /fegyver [id]");
+    if(sscanf(params,"i",weaponID)) return SendClientMessage(playerid,orange,"HasznA!lat /fegyver [id]");
     if(weaponID<0 || weaponID>47) return SendClientMessage(playerid,orange,"1-47-ig vannak csak fegyverek!");
 	GivePlayerWeapon(playerid, weaponID, 64);
 	return 1;
 }
+
+CMD:szone(playerid,params[]){
+	new melyik;
+	new melyikteam;
+    if(sscanf(params,"ii",melyik, melyikteam)) return SendClientMessage(playerid,orange,"Használat /szone [1 - min, 2 - max] [melyik team]");
+    {
+        if(melyik == 1) {
+            new Float:x, Float:y, Float:z;
+    		GetPlayerPos(playerid, x, y, z);
+    		SaveZone[0][zMinX] = x;
+    		SaveZone[0][zMinY] = y;
+        }
+        if(melyik == 2) {
+        	new Float:x, Float:y, Float:z;
+    		GetPlayerPos(playerid, x, y, z);
+    		SaveZone[0][zMaxX] = x;
+    		SaveZone[0][zMaxY] = y;
+    		format(query, sizeof(query), "INSERT INTO zones VALUES ('','%f','%f','%f','%f','%d')", SaveZone[0][zMinX], SaveZone[0][zMinY], SaveZone[0][zMaxX], SaveZone[0][zMaxY], melyikteam);
+    		mysql_tquery(kapcs, query);
+    		SendClientMessage(playerid, zold, "A zóna sikeresen elmentve az adatbázisba!");
+        }
+    }
+	return 1;
+}
+
