@@ -1,0 +1,1 @@
+[11:16:57] [ERROR] mysql_tquery - invalid connection handle (id: 0)
