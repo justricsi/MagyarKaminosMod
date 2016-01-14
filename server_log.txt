@@ -44900,3 +44900,1917 @@ v0.3.7, (C)2005-2015 SA-MP Team
 [16:52:56] [join] Justricsi has joined the server (1:100.66.132.16)
 [17:06:00] [part] Justricsi has left the server (1:1)
 [17:06:18] [part] devidson has left the server (0:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[21:11:41] filterscripts = ""  (string)
+[21:11:41] 
+[21:11:41] Server Plugins
+[21:11:41] --------------
+[21:11:41]  Loading plugin: Whirlpool.dll
+[21:11:41]  
+[21:11:41]  ==================
+[21:11:41]  
+[21:11:41]   Whirlpool loaded
+[21:11:41]  
+[21:11:41]  ==================
+[21:11:41]  
+[21:11:41]   Loaded.
+[21:11:41]  Loading plugin: mysql.dll
+[21:11:41]  >> plugin.mysql: R39-3 successfully loaded.
+[21:11:41]   Loaded.
+[21:11:41]  Loading plugin: sscanf.dll
+[21:11:41] 
+
+[21:11:41]  ===============================
+
+[21:11:41]       sscanf plugin loaded.     
+
+[21:11:41]          Version:  2.8.1        
+
+[21:11:41]    (c) 2012 Alex "Y_Less" Cole  
+
+[21:11:41]  ===============================
+
+[21:11:41]   Loaded.
+[21:11:41]  Loading plugin: streamer.dll
+[21:11:41] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[21:11:41]   Loaded.
+[21:11:41]  Loading plugin: nativechecker.dll
+[21:11:41]   Loaded.
+[21:11:41]  Loaded 5 plugins.
+
+[21:11:41] 
+[21:11:41] Filterscripts
+[21:11:41] ---------------
+[21:11:41]   Loaded 0 filterscripts.
+
+[21:11:41] 
+----------------------------------
+[21:11:41]  VALAMI
+[21:11:41] ----------------------------------
+
+[21:11:41] Number of vehicle models: 0
+[21:11:41] ZoneLoad-ban vagyunk, 6
+[21:11:41] 1, 1089.010009, -2115.570068, 1253.680053, -1965.170043, 1
+[21:11:41] 2, 2213.780029, -109.388000, 2577.689941, 196.378997, 2
+[21:11:41] 3, 78.475601, -205.718994, 340.161987, 82.644897, 3
+[21:11:41] 4, 803.671020, -1389.900024, 1054.250000, -1145.489990, 4
+[21:11:41] 5, 2374.270019, -2696.600097, 2809.629882, -2330.669921, 5
+[21:11:41] 6, 154.397003, -1967.239990, 1011.010009, -1818.949951, 6
+[21:11:41] betöltött sorok: 6
+[21:12:09] [connection] 78.131.75.77:49177 requests connection cookie.
+[21:12:10] Incoming connection: 78.131.75.77:49177 id: 0
+[21:12:10] [join] devidson has joined the server (0:78.131.75.77)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[21:19:56] filterscripts = ""  (string)
+[21:19:56] 
+[21:19:56] Server Plugins
+[21:19:56] --------------
+[21:19:56]  Loading plugin: Whirlpool.dll
+[21:19:56]  
+[21:19:56]  ==================
+[21:19:56]  
+[21:19:56]   Whirlpool loaded
+[21:19:56]  
+[21:19:56]  ==================
+[21:19:56]  
+[21:19:56]   Loaded.
+[21:19:56]  Loading plugin: mysql.dll
+[21:19:56]  >> plugin.mysql: R39-3 successfully loaded.
+[21:19:56]   Loaded.
+[21:19:56]  Loading plugin: sscanf.dll
+[21:19:56] 
+
+[21:19:56]  ===============================
+
+[21:19:56]       sscanf plugin loaded.     
+
+[21:19:56]          Version:  2.8.1        
+
+[21:19:56]    (c) 2012 Alex "Y_Less" Cole  
+
+[21:19:56]  ===============================
+
+[21:19:56]   Loaded.
+[21:19:56]  Loading plugin: streamer.dll
+[21:19:56] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[21:19:56]   Loaded.
+[21:19:56]  Loading plugin: nativechecker.dll
+[21:19:56]   Loaded.
+[21:19:56]  Loaded 5 plugins.
+
+[21:19:56] 
+[21:19:56] Filterscripts
+[21:19:56] ---------------
+[21:19:56]   Loaded 0 filterscripts.
+
+[21:19:56] 
+----------------------------------
+[21:19:56]  VALAMI
+[21:19:56] ----------------------------------
+
+[21:19:56] Number of vehicle models: 0
+[21:19:56] ZoneLoad-ban vagyunk, 7
+[21:19:56] 1, 1089.010009, -2115.570068, 1253.680053, -1965.170043, 1
+[21:19:56] 2, 2213.780029, -109.388000, 2577.689941, 196.378997, 2
+[21:19:56] 3, 78.475601, -205.718994, 340.161987, 82.644897, 3
+[21:19:56] 4, 803.671020, -1389.900024, 1054.250000, -1145.489990, 4
+[21:19:56] 5, 2374.270019, -2696.600097, 2809.629882, -2330.669921, 5
+[21:19:56] 6, 154.397003, -1967.239990, 1011.010009, -1818.949951, 6
+[21:19:56] 7, 2060.139892, -1097.810058, 2170.429931, -1005.859985, 1
+[21:19:56] betöltött sorok: 7
+[21:19:56] [connection] 78.131.75.77:57751 requests connection cookie.
+[21:19:57] Incoming connection: 78.131.75.77:57751 id: 0
+[21:19:58] [join] devidson has joined the server (0:78.131.75.77)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[21:21:56] filterscripts = ""  (string)
+[21:21:56] 
+[21:21:56] Server Plugins
+[21:21:56] --------------
+[21:21:56]  Loading plugin: Whirlpool.dll
+[21:21:56]  
+[21:21:56]  ==================
+[21:21:56]  
+[21:21:56]   Whirlpool loaded
+[21:21:56]  
+[21:21:56]  ==================
+[21:21:56]  
+[21:21:56]   Loaded.
+[21:21:56]  Loading plugin: mysql.dll
+[21:21:56]  >> plugin.mysql: R39-3 successfully loaded.
+[21:21:56]   Loaded.
+[21:21:56]  Loading plugin: sscanf.dll
+[21:21:56] 
+
+[21:21:56]  ===============================
+
+[21:21:56]       sscanf plugin loaded.     
+
+[21:21:56]          Version:  2.8.1        
+
+[21:21:56]    (c) 2012 Alex "Y_Less" Cole  
+
+[21:21:56]  ===============================
+
+[21:21:56]   Loaded.
+[21:21:56]  Loading plugin: streamer.dll
+[21:21:56] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[21:21:56]   Loaded.
+[21:21:56]  Loading plugin: nativechecker.dll
+[21:21:56]   Loaded.
+[21:21:56]  Loaded 5 plugins.
+
+[21:21:56] 
+[21:21:56] Filterscripts
+[21:21:56] ---------------
+[21:21:56]   Loaded 0 filterscripts.
+
+[21:21:56] 
+----------------------------------
+[21:21:56]  VALAMI
+[21:21:56] ----------------------------------
+
+[21:21:56] Number of vehicle models: 0
+[21:21:56] ZoneLoad-ban vagyunk, 6
+[21:21:56] 1, 1089.010009, -2115.570068, 1253.680053, -1965.170043, 1
+[21:21:56] 2, 2213.780029, -109.388000, 2577.689941, 196.378997, 2
+[21:21:56] 3, 78.475601, -205.718994, 340.161987, 82.644897, 3
+[21:21:56] 4, 803.671020, -1389.900024, 1054.250000, -1145.489990, 4
+[21:21:56] 5, 2374.270019, -2696.600097, 2809.629882, -2330.669921, 5
+[21:21:56] 6, 154.397003, -1967.239990, 1011.010009, -1818.949951, 6
+[21:21:56] betöltött sorok: 6
+[21:21:57] [connection] 78.131.75.77:65390 requests connection cookie.
+[21:21:58] Incoming connection: 78.131.75.77:65391 id: 0
+[21:21:58] [join] devidson has joined the server (0:78.131.75.77)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[21:26:01] filterscripts = ""  (string)
+[21:26:01] 
+[21:26:01] Server Plugins
+[21:26:01] --------------
+[21:26:01]  Loading plugin: Whirlpool.dll
+[21:26:01]  
+[21:26:01]  ==================
+[21:26:01]  
+[21:26:01]   Whirlpool loaded
+[21:26:01]  
+[21:26:01]  ==================
+[21:26:01]  
+[21:26:01]   Loaded.
+[21:26:01]  Loading plugin: mysql.dll
+[21:26:01]  >> plugin.mysql: R39-3 successfully loaded.
+[21:26:01]   Loaded.
+[21:26:01]  Loading plugin: sscanf.dll
+[21:26:01] 
+
+[21:26:01]  ===============================
+
+[21:26:01]       sscanf plugin loaded.     
+
+[21:26:01]          Version:  2.8.1        
+
+[21:26:01]    (c) 2012 Alex "Y_Less" Cole  
+
+[21:26:01]  ===============================
+
+[21:26:01]   Loaded.
+[21:26:01]  Loading plugin: streamer.dll
+[21:26:01] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[21:26:01]   Loaded.
+[21:26:01]  Loading plugin: nativechecker.dll
+[21:26:01]   Loaded.
+[21:26:01]  Loaded 5 plugins.
+
+[21:26:01] 
+[21:26:01] Filterscripts
+[21:26:01] ---------------
+[21:26:01]   Loaded 0 filterscripts.
+
+[21:26:01] 
+----------------------------------
+[21:26:01]  VALAMI
+[21:26:01] ----------------------------------
+
+[21:26:01] Number of vehicle models: 0
+[21:26:01] ZoneLoad-ban vagyunk, 7
+[21:26:01] 1, 1089.010009, -2115.570068, 1253.680053, -1965.170043, 1
+[21:26:01] 2, 2213.780029, -109.388000, 2577.689941, 196.378997, 2
+[21:26:01] 3, 78.475601, -205.718994, 340.161987, 82.644897, 3
+[21:26:01] 4, 803.671020, -1389.900024, 1054.250000, -1145.489990, 4
+[21:26:01] 5, 2374.270019, -2696.600097, 2809.629882, -2330.669921, 5
+[21:26:01] 6, 154.397003, -1967.239990, 1011.010009, -1818.949951, 6
+[21:26:01] 7, 1982.510009, -1178.770019, 2069.229980, -1123.020019, 3
+[21:26:01] betöltött sorok: 7
+[21:26:23] [connection] 78.131.75.77:57294 requests connection cookie.
+[21:26:24] Incoming connection: 78.131.75.77:57294 id: 0
+[21:26:25] [join] devidson has joined the server (0:78.131.75.77)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[21:28:49] filterscripts = ""  (string)
+[21:28:49] 
+[21:28:49] Server Plugins
+[21:28:49] --------------
+[21:28:49]  Loading plugin: Whirlpool.dll
+[21:28:49]  
+[21:28:49]  ==================
+[21:28:49]  
+[21:28:49]   Whirlpool loaded
+[21:28:49]  
+[21:28:49]  ==================
+[21:28:49]  
+[21:28:49]   Loaded.
+[21:28:49]  Loading plugin: mysql.dll
+[21:28:49]  >> plugin.mysql: R39-3 successfully loaded.
+[21:28:49]   Loaded.
+[21:28:49]  Loading plugin: sscanf.dll
+[21:28:49] 
+
+[21:28:49]  ===============================
+
+[21:28:49]       sscanf plugin loaded.     
+
+[21:28:49]          Version:  2.8.1        
+
+[21:28:49]    (c) 2012 Alex "Y_Less" Cole  
+
+[21:28:49]  ===============================
+
+[21:28:49]   Loaded.
+[21:28:49]  Loading plugin: streamer.dll
+[21:28:49] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[21:28:49]   Loaded.
+[21:28:49]  Loading plugin: nativechecker.dll
+[21:28:49]   Loaded.
+[21:28:49]  Loaded 5 plugins.
+
+[21:28:49] 
+[21:28:49] Filterscripts
+[21:28:49] ---------------
+[21:28:49]   Loaded 0 filterscripts.
+
+[21:28:49] 
+----------------------------------
+[21:28:49]  VALAMI
+[21:28:49] ----------------------------------
+
+[21:28:49] Number of vehicle models: 0
+[21:28:49] ZoneLoad-ban vagyunk, 6
+[21:28:49] 1, 1089.010009, -2115.570068, 1253.680053, -1965.170043, 1
+[21:28:49] 2, 2213.780029, -109.388000, 2577.689941, 196.378997, 2
+[21:28:49] 3, 78.475601, -205.718994, 340.161987, 82.644897, 3
+[21:28:49] 4, 803.671020, -1389.900024, 1054.250000, -1145.489990, 4
+[21:28:49] 5, 2374.270019, -2696.600097, 2809.629882, -2330.669921, 5
+[21:28:49] 6, 154.397003, -1967.239990, 1011.010009, -1818.949951, 6
+[21:28:49] betöltött sorok: 6
+[21:28:57] [connection] 78.131.75.77:56140 requests connection cookie.
+[21:28:58] Incoming connection: 78.131.75.77:56140 id: 0
+[21:28:58] [join] devidson has joined the server (0:78.131.75.77)
+[21:29:15] [connection] 100.66.132.16:57875 requests connection cookie.
+[21:29:16] Incoming connection: 100.66.132.16:57875 id: 1
+[21:29:16] [join] Justricsi has joined the server (1:100.66.132.16)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[21:42:36] filterscripts = ""  (string)
+[21:42:36] 
+[21:42:36] Server Plugins
+[21:42:36] --------------
+[21:42:36]  Loading plugin: Whirlpool.dll
+[21:42:36]  
+[21:42:36]  ==================
+[21:42:36]  
+[21:42:36]   Whirlpool loaded
+[21:42:36]  
+[21:42:36]  ==================
+[21:42:36]  
+[21:42:36]   Loaded.
+[21:42:36]  Loading plugin: mysql.dll
+[21:42:36]  >> plugin.mysql: R39-3 successfully loaded.
+[21:42:36]   Loaded.
+[21:42:36]  Loading plugin: sscanf.dll
+[21:42:36] 
+
+[21:42:36]  ===============================
+
+[21:42:36]       sscanf plugin loaded.     
+
+[21:42:36]          Version:  2.8.1        
+
+[21:42:36]    (c) 2012 Alex "Y_Less" Cole  
+
+[21:42:36]  ===============================
+
+[21:42:36]   Loaded.
+[21:42:36]  Loading plugin: streamer.dll
+[21:42:36] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[21:42:36]   Loaded.
+[21:42:36]  Loading plugin: nativechecker.dll
+[21:42:36]   Loaded.
+[21:42:36]  Loaded 5 plugins.
+
+[21:42:36] 
+[21:42:36] Filterscripts
+[21:42:36] ---------------
+[21:42:36]   Loaded 0 filterscripts.
+
+[21:42:36] 
+----------------------------------
+[21:42:36]  VALAMI
+[21:42:36] ----------------------------------
+
+[21:42:36] Number of vehicle models: 0
+[21:42:36] ZoneLoad-ban vagyunk, 8
+[21:42:36] 1, 1089.010009, -2115.570068, 1253.680053, -1965.170043, 1
+[21:42:36] 2, 2213.780029, -109.388000, 2577.689941, 196.378997, 2
+[21:42:36] 3, 78.475601, -205.718994, 340.161987, 82.644897, 3
+[21:42:36] 4, 803.671020, -1389.900024, 1054.250000, -1145.489990, 4
+[21:42:36] 5, 2374.270019, -2696.600097, 2809.629882, -2330.669921, 5
+[21:42:36] 6, 154.397003, -1967.239990, 1011.010009, -1818.949951, 6
+[21:42:36] 7, 1984.030029, -1179.500000, 2068.719970, -1134.400024, 1
+[21:42:36] 8, 1242.739990, -2049.510009, 1283.619995, -2002.989990, 1
+[21:42:36] betöltött sorok: 8
+[21:42:46] [connection] 78.131.75.77:65510 requests connection cookie.
+[21:42:47] Incoming connection: 78.131.75.77:65510 id: 0
+[21:42:47] [join] devidson has joined the server (0:78.131.75.77)
+[21:42:49] [connection] 100.66.132.16:62764 requests connection cookie.
+[21:42:50] Incoming connection: 100.66.132.16:62764 id: 1
+[21:42:50] [join] Justricsi has joined the server (1:100.66.132.16)
+[21:43:40] zonedb: 9
+[21:43:40] 9, 1998.450317, -1237.245971, 2067.721191, -1179.364501, 1
+[21:49:02] [part] devidson has left the server (0:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[22:37:41] filterscripts = ""  (string)
+[22:37:41] 
+[22:37:41] Server Plugins
+[22:37:41] --------------
+[22:37:41]  Loading plugin: Whirlpool.dll
+[22:37:41]  
+[22:37:41]  ==================
+[22:37:41]  
+[22:37:41]   Whirlpool loaded
+[22:37:41]  
+[22:37:41]  ==================
+[22:37:41]  
+[22:37:41]   Loaded.
+[22:37:41]  Loading plugin: mysql.dll
+[22:37:41]  >> plugin.mysql: R39-3 successfully loaded.
+[22:37:41]   Loaded.
+[22:37:41]  Loading plugin: sscanf.dll
+[22:37:41] 
+
+[22:37:41]  ===============================
+
+[22:37:41]       sscanf plugin loaded.     
+
+[22:37:41]          Version:  2.8.1        
+
+[22:37:41]    (c) 2012 Alex "Y_Less" Cole  
+
+[22:37:41]  ===============================
+
+[22:37:41]   Loaded.
+[22:37:41]  Loading plugin: streamer.dll
+[22:37:41] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[22:37:41]   Loaded.
+[22:37:41]  Loading plugin: nativechecker.dll
+[22:37:41]   Loaded.
+[22:37:41]  Loaded 5 plugins.
+
+[22:37:41] 
+[22:37:41] Filterscripts
+[22:37:41] ---------------
+[22:37:41]   Loaded 0 filterscripts.
+
+[22:37:41] 
+----------------------------------
+[22:37:41]  VALAMI
+[22:37:41] ----------------------------------
+
+[22:37:41] Number of vehicle models: 0
+[22:37:41] ZoneLoad-ban vagyunk, 9
+[22:37:41] 1, 1089.010009, -2115.570068, 1253.680053, -1965.170043, 1
+[22:37:41] 2, 2213.780029, -109.388000, 2577.689941, 196.378997, 2
+[22:37:41] 3, 78.475601, -205.718994, 340.161987, 82.644897, 3
+[22:37:41] 4, 803.671020, -1389.900024, 1054.250000, -1145.489990, 4
+[22:37:41] 5, 2374.270019, -2696.600097, 2809.629882, -2330.669921, 5
+[22:37:41] 6, 154.397003, -1967.239990, 1011.010009, -1818.949951, 6
+[22:37:41] 7, 1984.030029, -1179.500000, 2068.719970, -1134.400024, 1
+[22:37:41] 8, 1242.739990, -2049.510009, 1283.619995, -2002.989990, 1
+[22:37:41] 9, 1998.449951, -1237.250000, 2067.719970, -1179.359985, 1
+[22:37:41] betöltött sorok: 9
+[22:38:03] [connection] 78.131.75.77:57857 requests connection cookie.
+[22:38:04] Incoming connection: 78.131.75.77:57857 id: 0
+[22:38:04] [join] devidson has joined the server (0:78.131.75.77)
+[22:38:43] [connection] 100.66.132.16:53701 requests connection cookie.
+[22:38:44] Incoming connection: 100.66.132.16:53701 id: 1
+[22:38:45] [join] Justricsi has joined the server (1:100.66.132.16)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[22:41:10] filterscripts = ""  (string)
+[22:41:10] 
+[22:41:10] Server Plugins
+[22:41:10] --------------
+[22:41:10]  Loading plugin: Whirlpool.dll
+[22:41:10]  
+[22:41:10]  ==================
+[22:41:10]  
+[22:41:10]   Whirlpool loaded
+[22:41:10]  
+[22:41:10]  ==================
+[22:41:10]  
+[22:41:10]   Loaded.
+[22:41:10]  Loading plugin: mysql.dll
+[22:41:10]  >> plugin.mysql: R39-3 successfully loaded.
+[22:41:10]   Loaded.
+[22:41:10]  Loading plugin: sscanf.dll
+[22:41:10] 
+
+[22:41:10]  ===============================
+
+[22:41:10]       sscanf plugin loaded.     
+
+[22:41:10]          Version:  2.8.1        
+
+[22:41:10]    (c) 2012 Alex "Y_Less" Cole  
+
+[22:41:10]  ===============================
+
+[22:41:10]   Loaded.
+[22:41:10]  Loading plugin: streamer.dll
+[22:41:10] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[22:41:10]   Loaded.
+[22:41:10]  Loading plugin: nativechecker.dll
+[22:41:10]   Loaded.
+[22:41:10]  Loaded 5 plugins.
+
+[22:41:10] 
+[22:41:10] Filterscripts
+[22:41:10] ---------------
+[22:41:10]   Loaded 0 filterscripts.
+
+[22:41:10] 
+----------------------------------
+[22:41:10]  VALAMI
+[22:41:10] ----------------------------------
+
+[22:41:10] Number of vehicle models: 0
+[22:41:10] ZoneLoad-ban vagyunk, 9
+[22:41:10] 1, 1089.010009, -2115.570068, 1253.680053, -1965.170043, 1
+[22:41:10] 2, 2213.780029, -109.388000, 2577.689941, 196.378997, 2
+[22:41:10] 3, 78.475601, -205.718994, 340.161987, 82.644897, 3
+[22:41:10] 4, 803.671020, -1389.900024, 1054.250000, -1145.489990, 4
+[22:41:10] 5, 2374.270019, -2696.600097, 2809.629882, -2330.669921, 5
+[22:41:10] 6, 154.397003, -1967.239990, 1011.010009, -1818.949951, 6
+[22:41:10] 7, 1984.030029, -1179.500000, 2068.719970, -1134.400024, 1
+[22:41:10] 8, 1242.739990, -2049.510009, 1283.619995, -2002.989990, 1
+[22:41:10] 9, 1998.449951, -1237.250000, 2067.719970, -1179.359985, 1
+[22:41:10] betöltött sorok: 9
+[22:41:20] [connection] 100.66.132.16:62897 requests connection cookie.
+[22:41:21] Incoming connection: 100.66.132.16:62897 id: 0
+[22:41:22] [join] Justricsi has joined the server (0:100.66.132.16)
+[22:41:30] [connection] 78.131.75.77:57571 requests connection cookie.
+[22:41:31] Incoming connection: 78.131.75.77:57571 id: 1
+[22:41:32] [join] devidson has joined the server (1:78.131.75.77)
+[22:47:14] [part] devidson has left the server (1:1)
+[22:47:16] [part] Justricsi has left the server (0:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[08:27:18] filterscripts = ""  (string)
+[08:27:18] 
+[08:27:18] Server Plugins
+[08:27:18] --------------
+[08:27:18]  Loading plugin: Whirlpool.dll
+[08:27:18]  
+[08:27:18]  ==================
+[08:27:18]  
+[08:27:18]   Whirlpool loaded
+[08:27:18]  
+[08:27:18]  ==================
+[08:27:18]  
+[08:27:18]   Loaded.
+[08:27:18]  Loading plugin: mysql.dll
+[08:27:18]  >> plugin.mysql: R39-3 successfully loaded.
+[08:27:18]   Loaded.
+[08:27:18]  Loading plugin: sscanf.dll
+[08:27:18] 
+
+[08:27:18]  ===============================
+
+[08:27:18]       sscanf plugin loaded.     
+
+[08:27:18]          Version:  2.8.1        
+
+[08:27:18]    (c) 2012 Alex "Y_Less" Cole  
+
+[08:27:18]  ===============================
+
+[08:27:18]   Loaded.
+[08:27:18]  Loading plugin: streamer.dll
+[08:27:18] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[08:27:18]   Loaded.
+[08:27:18]  Loading plugin: nativechecker.dll
+[08:27:18]   Loaded.
+[08:27:18]  Loaded 5 plugins.
+
+[08:27:18] 
+[08:27:18] Filterscripts
+[08:27:18] ---------------
+[08:27:18]   Loaded 0 filterscripts.
+
+[08:27:18] 
+----------------------------------
+[08:27:18]  VALAMI
+[08:27:18] ----------------------------------
+
+[08:27:18] Number of vehicle models: 0
+[08:27:18] ZoneLoad-ban vagyunk, 6
+[08:27:18] 1, 1089.010009, -2115.570068, 1253.680053, -1965.170043, 1
+[08:27:18] 2, 2213.780029, -109.388000, 2577.689941, 196.378997, 2
+[08:27:18] 3, 78.475601, -205.718994, 340.161987, 82.644897, 3
+[08:27:18] 4, 803.671020, -1389.900024, 1054.250000, -1145.489990, 4
+[08:27:18] 5, 2374.270019, -2696.600097, 2809.629882, -2330.669921, 5
+[08:27:18] 6, 154.397003, -1967.239990, 1011.010009, -1818.949951, 6
+[08:27:18] betöltött sorok: 6
+[08:27:54] [connection] 78.131.75.77:55470 requests connection cookie.
+[08:27:55] Incoming connection: 78.131.75.77:55470 id: 0
+[08:27:55] [join] devidson has joined the server (0:78.131.75.77)
+[08:28:06] [connection] 100.66.132.16:63607 requests connection cookie.
+[08:28:07] Incoming connection: 100.66.132.16:63607 id: 1
+[08:28:08] [join] Justricsi has joined the server (1:100.66.132.16)
+[08:28:58] zonedb: 6
+[08:28:58] 6, 1986.466552, -1181.347290, 2069.611328, -1131.735595, 1
+[08:30:54] [part] Justricsi has left the server (1:1)
+[08:31:05] [part] devidson has left the server (0:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[09:33:25] filterscripts = ""  (string)
+[09:33:25] 
+[09:33:25] Server Plugins
+[09:33:25] --------------
+[09:33:25]  Loading plugin: Whirlpool.dll
+[09:33:25]  
+[09:33:25]  ==================
+[09:33:25]  
+[09:33:25]   Whirlpool loaded
+[09:33:25]  
+[09:33:25]  ==================
+[09:33:25]  
+[09:33:25]   Loaded.
+[09:33:25]  Loading plugin: mysql.dll
+[09:33:25]  >> plugin.mysql: R39-3 successfully loaded.
+[09:33:25]   Loaded.
+[09:33:25]  Loading plugin: sscanf.dll
+[09:33:25] 
+
+[09:33:25]  ===============================
+
+[09:33:25]       sscanf plugin loaded.     
+
+[09:33:25]          Version:  2.8.1        
+
+[09:33:25]    (c) 2012 Alex "Y_Less" Cole  
+
+[09:33:25]  ===============================
+
+[09:33:25]   Loaded.
+[09:33:25]  Loading plugin: streamer.dll
+[09:33:25] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[09:33:25]   Loaded.
+[09:33:25]  Loading plugin: nativechecker.dll
+[09:33:25]   Loaded.
+[09:33:25]  Loaded 5 plugins.
+
+[09:33:25] 
+[09:33:25] Filterscripts
+[09:33:25] ---------------
+[09:33:25]   Loaded 0 filterscripts.
+
+[09:33:25] 
+----------------------------------
+[09:33:25]  VALAMI
+[09:33:25] ----------------------------------
+
+[09:33:25] Number of vehicle models: 0
+[09:33:25] ZoneLoad-ban vagyunk, 6
+[09:33:25] 1, 1089.010009, -2115.570068, 1253.680053, -1965.170043, 1
+[09:33:25] 2, 2213.780029, -109.388000, 2577.689941, 196.378997, 2
+[09:33:25] 3, 78.475601, -205.718994, 340.161987, 82.644897, 3
+[09:33:25] 4, 803.671020, -1389.900024, 1054.250000, -1145.489990, 4
+[09:33:25] 5, 2374.270019, -2696.600097, 2809.629882, -2330.669921, 5
+[09:33:25] 6, 154.397003, -1967.239990, 1011.010009, -1818.949951, 6
+[09:33:25] betöltött sorok: 6
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[17:18:40] filterscripts = ""  (string)
+[17:18:40] 
+[17:18:40] Server Plugins
+[17:18:40] --------------
+[17:18:40]  Loading plugin: Whirlpool.dll
+[17:18:40]  
+[17:18:40]  ==================
+[17:18:40]  
+[17:18:40]   Whirlpool loaded
+[17:18:40]  
+[17:18:40]  ==================
+[17:18:40]  
+[17:18:40]   Loaded.
+[17:18:40]  Loading plugin: mysql.dll
+[17:18:40]  >> plugin.mysql: R39-3 successfully loaded.
+[17:18:40]   Loaded.
+[17:18:40]  Loading plugin: sscanf.dll
+[17:18:40] 
+
+[17:18:40]  ===============================
+
+[17:18:40]       sscanf plugin loaded.     
+
+[17:18:40]          Version:  2.8.1        
+
+[17:18:40]    (c) 2012 Alex "Y_Less" Cole  
+
+[17:18:40]  ===============================
+
+[17:18:40]   Loaded.
+[17:18:40]  Loading plugin: streamer.dll
+[17:18:40] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[17:18:40]   Loaded.
+[17:18:40]  Loading plugin: nativechecker.dll
+[17:18:40]   Loaded.
+[17:18:40]  Loaded 5 plugins.
+
+[17:18:40] 
+[17:18:40] Filterscripts
+[17:18:40] ---------------
+[17:18:40]   Loaded 0 filterscripts.
+
+[17:18:40] 
+----------------------------------
+[17:18:40]  VALAMI
+[17:18:40] ----------------------------------
+
+[17:18:40] Number of vehicle models: 0
+[17:18:40] ZoneLoad-ban vagyunk, 6
+[17:18:40] 1, 1089.010009, -2115.570068, 1253.680053, -1965.170043, 1
+[17:18:40] 2, 2213.780029, -109.388000, 2577.689941, 196.378997, 2
+[17:18:40] 3, 78.475601, -205.718994, 340.161987, 82.644897, 3
+[17:18:40] 4, 803.671020, -1389.900024, 1054.250000, -1145.489990, 4
+[17:18:40] 5, 2374.270019, -2696.600097, 2809.629882, -2330.669921, 5
+[17:18:40] 6, 154.397003, -1967.239990, 1011.010009, -1818.949951, 6
+[17:18:40] betöltött sorok: 6
+[17:19:44] [connection] 78.131.75.77:63199 requests connection cookie.
+[17:19:45] Incoming connection: 78.131.75.77:63199 id: 0
+[17:19:45] [join] devidson has joined the server (0:78.131.75.77)
+[17:20:55] [connection] 100.66.143.6:54487 requests connection cookie.
+[17:20:56] Incoming connection: 100.66.143.6:54487 id: 1
+[17:20:56] [join] Justricsi has joined the server (1:100.66.143.6)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[17:22:04] filterscripts = ""  (string)
+[17:22:04] 
+[17:22:04] Server Plugins
+[17:22:04] --------------
+[17:22:04]  Loading plugin: Whirlpool.dll
+[17:22:04]  
+[17:22:04]  ==================
+[17:22:04]  
+[17:22:04]   Whirlpool loaded
+[17:22:04]  
+[17:22:04]  ==================
+[17:22:04]  
+[17:22:04]   Loaded.
+[17:22:04]  Loading plugin: mysql.dll
+[17:22:04]  >> plugin.mysql: R39-3 successfully loaded.
+[17:22:04]   Loaded.
+[17:22:04]  Loading plugin: sscanf.dll
+[17:22:04] 
+
+[17:22:04]  ===============================
+
+[17:22:04]       sscanf plugin loaded.     
+
+[17:22:04]          Version:  2.8.1        
+
+[17:22:04]    (c) 2012 Alex "Y_Less" Cole  
+
+[17:22:04]  ===============================
+
+[17:22:04]   Loaded.
+[17:22:04]  Loading plugin: streamer.dll
+[17:22:04] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[17:22:04]   Loaded.
+[17:22:04]  Loading plugin: nativechecker.dll
+[17:22:04]   Loaded.
+[17:22:04]  Loaded 5 plugins.
+
+[17:22:04] 
+[17:22:04] Filterscripts
+[17:22:04] ---------------
+[17:22:04]   Loaded 0 filterscripts.
+
+[17:22:04] 
+----------------------------------
+[17:22:04]  VALAMI
+[17:22:04] ----------------------------------
+
+[17:22:04] Number of vehicle models: 0
+[17:22:04] ZoneLoad-ban vagyunk, 6
+[17:22:04] 1, 1089.010009, -2115.570068, 1253.680053, -1965.170043, 1
+[17:22:04] 2, 2213.780029, -109.388000, 2577.689941, 196.378997, 2
+[17:22:04] 3, 78.475601, -205.718994, 340.161987, 82.644897, 3
+[17:22:04] 4, 803.671020, -1389.900024, 1054.250000, -1145.489990, 4
+[17:22:04] 5, 2374.270019, -2696.600097, 2809.629882, -2330.669921, 5
+[17:22:04] 6, 154.397003, -1967.239990, 1011.010009, -1818.949951, 6
+[17:22:04] betöltött sorok: 6
+[17:22:39] [connection] 100.66.143.6:54489 requests connection cookie.
+[17:22:40] Incoming connection: 100.66.143.6:54489 id: 0
+[17:22:41] [join] Justricsi has joined the server (0:100.66.143.6)
+[17:22:41] cache_get_row_count returned false. Nincsennek betöltendõ sorok.
+[17:22:49] [connection] 78.131.75.77:63106 requests connection cookie.
+[17:22:50] Incoming connection: 78.131.75.77:63106 id: 1
+[17:22:50] [join] devidson has joined the server (1:78.131.75.77)
+[17:22:50] cache_get_row_count returned false. Nincsennek betöltendõ sorok.
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[17:27:03] filterscripts = ""  (string)
+[17:27:03] 
+[17:27:03] Server Plugins
+[17:27:03] --------------
+[17:27:03]  Loading plugin: Whirlpool.dll
+[17:27:03]  
+[17:27:03]  ==================
+[17:27:03]  
+[17:27:03]   Whirlpool loaded
+[17:27:03]  
+[17:27:03]  ==================
+[17:27:03]  
+[17:27:03]   Loaded.
+[17:27:03]  Loading plugin: mysql.dll
+[17:27:03]  >> plugin.mysql: R39-3 successfully loaded.
+[17:27:03]   Loaded.
+[17:27:03]  Loading plugin: sscanf.dll
+[17:27:03] 
+
+[17:27:03]  ===============================
+
+[17:27:03]       sscanf plugin loaded.     
+
+[17:27:03]          Version:  2.8.1        
+
+[17:27:03]    (c) 2012 Alex "Y_Less" Cole  
+
+[17:27:03]  ===============================
+
+[17:27:03]   Loaded.
+[17:27:03]  Loading plugin: streamer.dll
+[17:27:03] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[17:27:03]   Loaded.
+[17:27:03]  Loading plugin: nativechecker.dll
+[17:27:03]   Loaded.
+[17:27:03]  Loaded 5 plugins.
+
+[17:27:03] 
+[17:27:03] Filterscripts
+[17:27:03] ---------------
+[17:27:03]   Loaded 0 filterscripts.
+
+[17:27:03] 
+----------------------------------
+[17:27:03]  VALAMI
+[17:27:03] ----------------------------------
+
+[17:27:03] Number of vehicle models: 0
+[17:27:03] ZoneLoad-ban vagyunk, 6
+[17:27:03] 1, 1089.010009, -2115.570068, 1253.680053, -1965.170043, 1
+[17:27:03] 2, 2213.780029, -109.388000, 2577.689941, 196.378997, 2
+[17:27:03] 3, 78.475601, -205.718994, 340.161987, 82.644897, 3
+[17:27:03] 4, 803.671020, -1389.900024, 1054.250000, -1145.489990, 4
+[17:27:03] 5, 2374.270019, -2696.600097, 2809.629882, -2330.669921, 5
+[17:27:03] 6, 154.397003, -1967.239990, 1011.010009, -1818.949951, 6
+[17:27:03] betöltött sorok: 6
+[17:27:09] [connection] 78.131.75.77:63982 requests connection cookie.
+[17:27:09] [connection] 100.66.143.6:54490 requests connection cookie.
+[17:27:10] Incoming connection: 78.131.75.77:63982 id: 0
+[17:27:10] Incoming connection: 100.66.143.6:54490 id: 1
+[17:27:10] [join] devidson has joined the server (0:78.131.75.77)
+[17:27:10] cache_get_row_count returned false. Nincsennek betöltendõ sorok.
+[17:27:10] [join] Justricsi has joined the server (1:100.66.143.6)
+[17:27:10] cache_get_row_count returned false. Nincsennek betöltendõ sorok.
+[17:27:26] [part] Justricsi has left the server (1:2)
+[17:27:56] [connection] 100.66.143.6:54491 requests connection cookie.
+[17:27:57] Incoming connection: 100.66.143.6:54491 id: 1
+[17:27:57] [join] Justricsi has joined the server (1:100.66.143.6)
+[17:27:57] cache_get_row_count returned false. Nincsennek betöltendõ sorok.
+[17:28:26] [part] Justricsi has left the server (1:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[17:32:19] filterscripts = ""  (string)
+[17:32:19] 
+[17:32:19] Server Plugins
+[17:32:19] --------------
+[17:32:19]  Loading plugin: Whirlpool.dll
+[17:32:19]  
+[17:32:19]  ==================
+[17:32:19]  
+[17:32:19]   Whirlpool loaded
+[17:32:19]  
+[17:32:19]  ==================
+[17:32:19]  
+[17:32:19]   Loaded.
+[17:32:19]  Loading plugin: mysql.dll
+[17:32:19]  >> plugin.mysql: R39-3 successfully loaded.
+[17:32:19]   Loaded.
+[17:32:19]  Loading plugin: sscanf.dll
+[17:32:19] 
+
+[17:32:19]  ===============================
+
+[17:32:19]       sscanf plugin loaded.     
+
+[17:32:19]          Version:  2.8.1        
+
+[17:32:19]    (c) 2012 Alex "Y_Less" Cole  
+
+[17:32:19]  ===============================
+
+[17:32:19]   Loaded.
+[17:32:19]  Loading plugin: streamer.dll
+[17:32:19] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[17:32:19]   Loaded.
+[17:32:19]  Loading plugin: nativechecker.dll
+[17:32:19]   Loaded.
+[17:32:19]  Loaded 5 plugins.
+
+[17:32:19] 
+[17:32:19] Filterscripts
+[17:32:19] ---------------
+[17:32:19]   Loaded 0 filterscripts.
+
+[17:32:19] 
+----------------------------------
+[17:32:19]  VALAMI
+[17:32:19] ----------------------------------
+
+[17:32:19] Number of vehicle models: 0
+[17:32:19] ZoneLoad-ban vagyunk, 6
+[17:32:19] 1, 1089.010009, -2115.570068, 1253.680053, -1965.170043, 1
+[17:32:19] 2, 2213.780029, -109.388000, 2577.689941, 196.378997, 2
+[17:32:19] 3, 78.475601, -205.718994, 340.161987, 82.644897, 3
+[17:32:19] 4, 803.671020, -1389.900024, 1054.250000, -1145.489990, 4
+[17:32:19] 5, 2374.270019, -2696.600097, 2809.629882, -2330.669921, 5
+[17:32:19] 6, 154.397003, -1967.239990, 1011.010009, -1818.949951, 6
+[17:32:19] betöltött sorok: 6
+[17:33:17] [connection] 78.131.75.77:59983 requests connection cookie.
+[17:33:18] Incoming connection: 78.131.75.77:59983 id: 0
+[17:33:18] [join] devidson has joined the server (0:78.131.75.77)
+[17:33:18] cache_get_row_count returned false. Nincsennek betöltendõ sorok.
+[17:33:41] [connection] 100.66.143.6:65207 requests connection cookie.
+[17:33:42] Incoming connection: 100.66.143.6:65207 id: 1
+[17:33:42] [join] Justricsi has joined the server (1:100.66.143.6)
+[17:33:42] cache_get_row_count returned false. Nincsennek betöltendõ sorok.
+[17:33:55] [part] Justricsi has left the server (1:2)
+[17:34:25] [connection] 100.66.143.6:57400 requests connection cookie.
+[17:34:26] Incoming connection: 100.66.143.6:57400 id: 1
+[17:34:26] [join] Justricsi has joined the server (1:100.66.143.6)
+[17:34:26] [part] Justricsi has left the server (1:2)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[18:04:56] filterscripts = ""  (string)
+[18:04:56] 
+[18:04:56] Server Plugins
+[18:04:56] --------------
+[18:04:56]  Loading plugin: Whirlpool.dll
+[18:04:56]  
+[18:04:56]  ==================
+[18:04:56]  
+[18:04:56]   Whirlpool loaded
+[18:04:56]  
+[18:04:56]  ==================
+[18:04:56]  
+[18:04:56]   Loaded.
+[18:04:56]  Loading plugin: mysql.dll
+[18:04:56]  >> plugin.mysql: R39-3 successfully loaded.
+[18:04:56]   Loaded.
+[18:04:56]  Loading plugin: sscanf.dll
+[18:04:56] 
+
+[18:04:56]  ===============================
+
+[18:04:56]       sscanf plugin loaded.     
+
+[18:04:56]          Version:  2.8.1        
+
+[18:04:56]    (c) 2012 Alex "Y_Less" Cole  
+
+[18:04:56]  ===============================
+
+[18:04:56]   Loaded.
+[18:04:56]  Loading plugin: streamer.dll
+[18:04:56] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[18:04:56]   Loaded.
+[18:04:56]  Loading plugin: nativechecker.dll
+[18:04:56]   Loaded.
+[18:04:56]  Loaded 5 plugins.
+
+[18:04:56] 
+[18:04:56] Filterscripts
+[18:04:56] ---------------
+[18:04:56]   Loaded 0 filterscripts.
+
+[18:04:56] 
+----------------------------------
+[18:04:56]  VALAMI
+[18:04:56] ----------------------------------
+
+[18:04:56] Number of vehicle models: 0
+[18:04:56] ZoneLoad-ban vagyunk, 6
+[18:04:56] 1, 1089.010009, -2115.570068, 1253.680053, -1965.170043, 1
+[18:04:56] 2, 2213.780029, -109.388000, 2577.689941, 196.378997, 2
+[18:04:56] 3, 78.475601, -205.718994, 340.161987, 82.644897, 3
+[18:04:56] 4, 803.671020, -1389.900024, 1054.250000, -1145.489990, 4
+[18:04:56] 5, 2374.270019, -2696.600097, 2809.629882, -2330.669921, 5
+[18:04:56] 6, 154.397003, -1967.239990, 1011.010009, -1818.949951, 6
+[18:04:56] betöltött sorok: 6
+[18:05:49] [connection] 78.131.75.77:56400 requests connection cookie.
+[18:05:50] Incoming connection: 78.131.75.77:56400 id: 0
+[18:05:51] [join] devidson has joined the server (0:78.131.75.77)
+[18:05:51] cache_get_row_count returned false. Nincsennek betöltendõ sorok.
+[18:06:08] [connection] 100.66.128.205:52923 requests connection cookie.
+[18:06:09] Incoming connection: 100.66.128.205:52923 id: 1
+[18:06:09] [join] Justrics has joined the server (1:100.66.128.205)
+[18:06:09] cache_get_row_count returned false. Nincsennek betöltendõ sorok.
+[18:07:24] [part] Justrics has left the server (1:1)
+[18:08:34] [part] devidson has left the server (0:1)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[09:43:32] filterscripts = ""  (string)
+[09:43:32] 
+[09:43:32] Server Plugins
+[09:43:32] --------------
+[09:43:32]  Loading plugin: Whirlpool.dll
+[09:43:32]  
+[09:43:32]  ==================
+[09:43:32]  
+[09:43:32]   Whirlpool loaded
+[09:43:32]  
+[09:43:32]  ==================
+[09:43:32]  
+[09:43:32]   Loaded.
+[09:43:32]  Loading plugin: mysql.dll
+[09:43:32]  >> plugin.mysql: R39-3 successfully loaded.
+[09:43:32]   Loaded.
+[09:43:32]  Loading plugin: sscanf.dll
+[09:43:32] 
+
+[09:43:32]  ===============================
+
+[09:43:32]       sscanf plugin loaded.     
+
+[09:43:32]          Version:  2.8.1        
+
+[09:43:32]    (c) 2012 Alex "Y_Less" Cole  
+
+[09:43:32]  ===============================
+
+[09:43:32]   Loaded.
+[09:43:32]  Loading plugin: streamer.dll
+[09:43:37] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[09:43:37]   Loaded.
+[09:43:37]  Loading plugin: nativechecker.dll
+[09:43:37]   Loaded.
+[09:43:37]  Loaded 5 plugins.
+
+[09:43:37] 
+[09:43:37] Filterscripts
+[09:43:37] ---------------
+[09:43:37]   Loaded 0 filterscripts.
+
+[09:43:37] 
+----------------------------------
+[09:43:37]  VALAMI
+[09:43:37] ----------------------------------
+
+[09:43:37] Number of vehicle models: 0
+[09:43:37] ZoneLoad-ban vagyunk, 6
+[09:43:37] 1, 1089.010009, -2115.570068, 1253.680053, -1965.170043, 1
+[09:43:37] 2, 2213.780029, -109.388000, 2577.689941, 196.378997, 2
+[09:43:37] 3, 78.475601, -205.718994, 340.161987, 82.644897, 3
+[09:43:37] 4, 803.671020, -1389.900024, 1054.250000, -1145.489990, 4
+[09:43:37] 5, 2374.270019, -2696.600097, 2809.629882, -2330.669921, 5
+[09:43:37] 6, 154.397003, -1967.239990, 1011.010009, -1818.949951, 6
+[09:43:37] betöltött sorok: 6
+[09:44:15] [connection] 78.131.75.77:54177 requests connection cookie.
+[09:44:16] Incoming connection: 78.131.75.77:54177 id: 0
+[09:44:16] [join] devidson has joined the server (0:78.131.75.77)
+[09:44:16] cache_get_row_count returned false. Nincsennek betöltendõ sorok.
+[09:45:19] [connection] 192.168.1.103:64499 requests connection cookie.
+[09:45:20] Incoming connection: 192.168.1.103:64499 id: 1
+[09:45:20] [join] viviii has joined the server (1:192.168.1.103)
+[09:45:20] cache_get_row_count returned false. Nincsennek betöltendõ sorok.
+[09:46:24] [part] viviii has left the server (1:2)
+[09:47:49] [connection] 192.168.1.103:61453 requests connection cookie.
+[09:47:50] Incoming connection: 192.168.1.103:61453 id: 1
+[09:47:50] [join] viviii has joined the server (1:192.168.1.103)
+[09:47:50] cache_get_row_count returned false. Nincsennek betöltendõ sorok.
+[09:48:10] [part] viviii has left the server (1:2)
+[09:48:39] [connection] 192.168.1.103:56397 requests connection cookie.
+[09:48:40] Incoming connection: 192.168.1.103:56397 id: 1
+[09:48:40] [join] viviii has joined the server (1:192.168.1.103)
+[09:48:40] [part] viviii has left the server (1:2)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[09:50:10] filterscripts = ""  (string)
+[09:50:10] 
+[09:50:10] Server Plugins
+[09:50:10] --------------
+[09:50:10]  Loading plugin: Whirlpool.dll
+[09:50:10]  
+[09:50:10]  ==================
+[09:50:10]  
+[09:50:10]   Whirlpool loaded
+[09:50:10]  
+[09:50:10]  ==================
+[09:50:10]  
+[09:50:10]   Loaded.
+[09:50:10]  Loading plugin: mysql.dll
+[09:50:10]  >> plugin.mysql: R39-3 successfully loaded.
+[09:50:10]   Loaded.
+[09:50:10]  Loading plugin: sscanf.dll
+[09:50:10] 
+
+[09:50:10]  ===============================
+
+[09:50:10]       sscanf plugin loaded.     
+
+[09:50:10]          Version:  2.8.1        
+
+[09:50:10]    (c) 2012 Alex "Y_Less" Cole  
+
+[09:50:10]  ===============================
+
+[09:50:10]   Loaded.
+[09:50:10]  Loading plugin: streamer.dll
+[09:50:10] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[09:50:10]   Loaded.
+[09:50:10]  Loading plugin: nativechecker.dll
+[09:50:10]   Loaded.
+[09:50:10]  Loaded 5 plugins.
+
+[09:50:10] 
+[09:50:10] Filterscripts
+[09:50:10] ---------------
+[09:50:10]   Loaded 0 filterscripts.
+
+[09:50:10] 
+----------------------------------
+[09:50:10]  VALAMI
+[09:50:10] ----------------------------------
+
+[09:50:10] Number of vehicle models: 0
+[09:50:10] ZoneLoad-ban vagyunk, 6
+[09:50:10] 1, 1089.010009, -2115.570068, 1253.680053, -1965.170043, 1
+[09:50:10] 2, 2213.780029, -109.388000, 2577.689941, 196.378997, 2
+[09:50:10] 3, 78.475601, -205.718994, 340.161987, 82.644897, 3
+[09:50:10] 4, 803.671020, -1389.900024, 1054.250000, -1145.489990, 4
+[09:50:10] 5, 2374.270019, -2696.600097, 2809.629882, -2330.669921, 5
+[09:50:10] 6, 154.397003, -1967.239990, 1011.010009, -1818.949951, 6
+[09:50:10] betöltött sorok: 6
+[09:50:25] [connection] 78.131.75.77:61787 requests connection cookie.
+[09:50:26] Incoming connection: 78.131.75.77:61787 id: 0
+[09:50:26] [join] devidson has joined the server (0:78.131.75.77)
+[09:50:26] cache_get_row_count returned false. Nincsennek betöltendõ sorok.
+[09:50:35] [connection] 192.168.1.103:49160 requests connection cookie.
+[09:50:36] Incoming connection: 192.168.1.103:49160 id: 1
+[09:50:36] [join] viviii has joined the server (1:192.168.1.103)
+[09:50:38] [part] viviii has left the server (1:2)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[09:56:52] filterscripts = ""  (string)
+[09:56:52] 
+[09:56:52] Server Plugins
+[09:56:52] --------------
+[09:56:52]  Loading plugin: Whirlpool.dll
+[09:56:52]  
+[09:56:52]  ==================
+[09:56:52]  
+[09:56:52]   Whirlpool loaded
+[09:56:52]  
+[09:56:52]  ==================
+[09:56:52]  
+[09:56:52]   Loaded.
+[09:56:52]  Loading plugin: mysql.dll
+[09:56:52]  >> plugin.mysql: R39-3 successfully loaded.
+[09:56:52]   Loaded.
+[09:56:52]  Loading plugin: sscanf.dll
+[09:56:52] 
+
+[09:56:52]  ===============================
+
+[09:56:52]       sscanf plugin loaded.     
+
+[09:56:52]          Version:  2.8.1        
+
+[09:56:52]    (c) 2012 Alex "Y_Less" Cole  
+
+[09:56:52]  ===============================
+
+[09:56:52]   Loaded.
+[09:56:52]  Loading plugin: streamer.dll
+[09:56:52] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[09:56:52]   Loaded.
+[09:56:52]  Loading plugin: nativechecker.dll
+[09:56:52]   Loaded.
+[09:56:52]  Loaded 5 plugins.
+
+[09:56:53] 
+[09:56:53] Filterscripts
+[09:56:53] ---------------
+[09:56:53]   Loaded 0 filterscripts.
+
+[09:56:53] 
+----------------------------------
+[09:56:53]  VALAMI
+[09:56:53] ----------------------------------
+
+[09:56:53] Number of vehicle models: 0
+[09:56:53] ZoneLoad-ban vagyunk, 6
+[09:56:53] 1, 1089.010009, -2115.570068, 1253.680053, -1965.170043, 1
+[09:56:53] 2, 2213.780029, -109.388000, 2577.689941, 196.378997, 2
+[09:56:53] 3, 78.475601, -205.718994, 340.161987, 82.644897, 3
+[09:56:53] 4, 803.671020, -1389.900024, 1054.250000, -1145.489990, 4
+[09:56:53] 5, 2374.270019, -2696.600097, 2809.629882, -2330.669921, 5
+[09:56:53] 6, 154.397003, -1967.239990, 1011.010009, -1818.949951, 6
+[09:56:53] betöltött sorok: 6
+[09:57:03] [connection] 78.131.75.77:54163 requests connection cookie.
+[09:57:04] Incoming connection: 78.131.75.77:54163 id: 0
+[09:57:04] [join] devidson has joined the server (0:78.131.75.77)
+[09:57:04] cache_get_row_count returned false. Nincsennek betöltendõ sorok.
+[09:57:17] [connection] 192.168.1.103:49622 requests connection cookie.
+[09:57:18] Incoming connection: 192.168.1.103:49622 id: 1
+[09:57:18] [join] viviii has joined the server (1:192.168.1.103)
+[09:57:19] [part] viviii has left the server (1:2)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[09:58:29] filterscripts = ""  (string)
+[09:58:29] 
+[09:58:29] Server Plugins
+[09:58:29] --------------
+[09:58:29]  Loading plugin: Whirlpool.dll
+[09:58:29]  
+[09:58:29]  ==================
+[09:58:29]  
+[09:58:29]   Whirlpool loaded
+[09:58:29]  
+[09:58:29]  ==================
+[09:58:29]  
+[09:58:29]   Loaded.
+[09:58:29]  Loading plugin: mysql.dll
+[09:58:29]  >> plugin.mysql: R39-3 successfully loaded.
+[09:58:29]   Loaded.
+[09:58:29]  Loading plugin: sscanf.dll
+[09:58:29] 
+
+[09:58:29]  ===============================
+
+[09:58:29]       sscanf plugin loaded.     
+
+[09:58:29]          Version:  2.8.1        
+
+[09:58:29]    (c) 2012 Alex "Y_Less" Cole  
+
+[09:58:29]  ===============================
+
+[09:58:29]   Loaded.
+[09:58:29]  Loading plugin: streamer.dll
+[09:58:29] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[09:58:29]   Loaded.
+[09:58:29]  Loading plugin: nativechecker.dll
+[09:58:29]   Loaded.
+[09:58:29]  Loaded 5 plugins.
+
+[09:58:29] 
+[09:58:29] Filterscripts
+[09:58:29] ---------------
+[09:58:29]   Loaded 0 filterscripts.
+
+[09:58:29] 
+----------------------------------
+[09:58:29]  VALAMI
+[09:58:29] ----------------------------------
+
+[09:58:29] Number of vehicle models: 0
+[09:58:29] ZoneLoad-ban vagyunk, 6
+[09:58:29] 1, 1089.010009, -2115.570068, 1253.680053, -1965.170043, 1
+[09:58:29] 2, 2213.780029, -109.388000, 2577.689941, 196.378997, 2
+[09:58:29] 3, 78.475601, -205.718994, 340.161987, 82.644897, 3
+[09:58:29] 4, 803.671020, -1389.900024, 1054.250000, -1145.489990, 4
+[09:58:29] 5, 2374.270019, -2696.600097, 2809.629882, -2330.669921, 5
+[09:58:29] 6, 154.397003, -1967.239990, 1011.010009, -1818.949951, 6
+[09:58:29] betöltött sorok: 6
+[09:58:39] [connection] 78.131.75.77:64513 requests connection cookie.
+[09:58:40] Incoming connection: 78.131.75.77:64513 id: 0
+[09:58:41] [join] devidson has joined the server (0:78.131.75.77)
+[09:58:41] cache_get_row_count returned false. Nincsennek betöltendõ sorok.
+[09:58:48] [connection] 192.168.1.103:52221 requests connection cookie.
+[09:58:49] Incoming connection: 192.168.1.103:52221 id: 1
+[09:58:50] [join] viviii has joined the server (1:192.168.1.103)
+[09:58:51] [part] viviii has left the server (1:2)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[09:59:41] filterscripts = ""  (string)
+[09:59:41] 
+[09:59:41] Server Plugins
+[09:59:41] --------------
+[09:59:41]  Loading plugin: Whirlpool.dll
+[09:59:41]  
+[09:59:41]  ==================
+[09:59:41]  
+[09:59:41]   Whirlpool loaded
+[09:59:41]  
+[09:59:41]  ==================
+[09:59:41]  
+[09:59:41]   Loaded.
+[09:59:41]  Loading plugin: mysql.dll
+[09:59:41]  >> plugin.mysql: R39-3 successfully loaded.
+[09:59:41]   Loaded.
+[09:59:41]  Loading plugin: sscanf.dll
+[09:59:41] 
+
+[09:59:41]  ===============================
+
+[09:59:41]       sscanf plugin loaded.     
+
+[09:59:41]          Version:  2.8.1        
+
+[09:59:41]    (c) 2012 Alex "Y_Less" Cole  
+
+[09:59:41]  ===============================
+
+[09:59:41]   Loaded.
+[09:59:41]  Loading plugin: streamer.dll
+[09:59:41] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[09:59:41]   Loaded.
+[09:59:41]  Loading plugin: nativechecker.dll
+[09:59:41]   Loaded.
+[09:59:41]  Loaded 5 plugins.
+
+[09:59:41] 
+[09:59:41] Filterscripts
+[09:59:41] ---------------
+[09:59:41]   Loaded 0 filterscripts.
+
+[09:59:41] 
+----------------------------------
+[09:59:41]  VALAMI
+[09:59:41] ----------------------------------
+
+[09:59:41] Number of vehicle models: 0
+[09:59:41] ZoneLoad-ban vagyunk, 6
+[09:59:41] 1, 1089.010009, -2115.570068, 1253.680053, -1965.170043, 1
+[09:59:41] 2, 2213.780029, -109.388000, 2577.689941, 196.378997, 2
+[09:59:41] 3, 78.475601, -205.718994, 340.161987, 82.644897, 3
+[09:59:41] 4, 803.671020, -1389.900024, 1054.250000, -1145.489990, 4
+[09:59:41] 5, 2374.270019, -2696.600097, 2809.629882, -2330.669921, 5
+[09:59:41] 6, 154.397003, -1967.239990, 1011.010009, -1818.949951, 6
+[09:59:41] betöltött sorok: 6
+[10:00:05] [connection] 192.168.1.103:61977 requests connection cookie.
+[10:00:06] Incoming connection: 192.168.1.103:61977 id: 0
+[10:00:06] [join] viviii has joined the server (0:192.168.1.103)
+[10:00:07] [part] viviii has left the server (0:2)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[10:02:27] filterscripts = ""  (string)
+[10:02:27] 
+[10:02:27] Server Plugins
+[10:02:27] --------------
+[10:02:27]  Loading plugin: Whirlpool.dll
+[10:02:27]  
+[10:02:27]  ==================
+[10:02:27]  
+[10:02:27]   Whirlpool loaded
+[10:02:27]  
+[10:02:27]  ==================
+[10:02:27]  
+[10:02:27]   Loaded.
+[10:02:27]  Loading plugin: mysql.dll
+[10:02:27]  >> plugin.mysql: R39-3 successfully loaded.
+[10:02:27]   Loaded.
+[10:02:27]  Loading plugin: sscanf.dll
+[10:02:27] 
+
+[10:02:27]  ===============================
+
+[10:02:27]       sscanf plugin loaded.     
+
+[10:02:27]          Version:  2.8.1        
+
+[10:02:27]    (c) 2012 Alex "Y_Less" Cole  
+
+[10:02:27]  ===============================
+
+[10:02:27]   Loaded.
+[10:02:27]  Loading plugin: streamer.dll
+[10:02:27] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[10:02:27]   Loaded.
+[10:02:27]  Loading plugin: nativechecker.dll
+[10:02:27]   Loaded.
+[10:02:27]  Loaded 5 plugins.
+
+[10:02:27] 
+[10:02:27] Filterscripts
+[10:02:27] ---------------
+[10:02:27]   Loaded 0 filterscripts.
+
+[10:02:28] 
+----------------------------------
+[10:02:28]  VALAMI
+[10:02:28] ----------------------------------
+
+[10:02:28] Number of vehicle models: 0
+[10:02:28] ZoneLoad-ban vagyunk, 6
+[10:02:28] 1, 1089.010009, -2115.570068, 1253.680053, -1965.170043, 1
+[10:02:28] 2, 2213.780029, -109.388000, 2577.689941, 196.378997, 2
+[10:02:28] 3, 78.475601, -205.718994, 340.161987, 82.644897, 3
+[10:02:28] 4, 803.671020, -1389.900024, 1054.250000, -1145.489990, 4
+[10:02:28] 5, 2374.270019, -2696.600097, 2809.629882, -2330.669921, 5
+[10:02:28] 6, 154.397003, -1967.239990, 1011.010009, -1818.949951, 6
+[10:02:28] betöltött sorok: 6
+[10:02:29] [connection] 78.131.75.77:63296 requests connection cookie.
+[10:02:30] Incoming connection: 78.131.75.77:63296 id: 0
+[10:02:30] [join] devidson has joined the server (0:78.131.75.77)
+[10:02:30] cache_get_row_count returned false. Nincsennek betöltendõ sorok.
+[10:02:51] [connection] 192.168.1.103:49557 requests connection cookie.
+[10:02:52] Incoming connection: 192.168.1.103:49557 id: 1
+[10:02:53] [join] viviii has joined the server (1:192.168.1.103)
+[10:02:54] [part] viviii has left the server (1:2)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[10:03:41] filterscripts = ""  (string)
+[10:03:41] 
+[10:03:41] Server Plugins
+[10:03:41] --------------
+[10:03:41]  Loading plugin: Whirlpool.dll
+[10:03:41]  
+[10:03:41]  ==================
+[10:03:41]  
+[10:03:41]   Whirlpool loaded
+[10:03:41]  
+[10:03:41]  ==================
+[10:03:41]  
+[10:03:41]   Loaded.
+[10:03:41]  Loading plugin: mysql.dll
+[10:03:41]  >> plugin.mysql: R39-3 successfully loaded.
+[10:03:41]   Loaded.
+[10:03:41]  Loading plugin: sscanf.dll
+[10:03:41] 
+
+[10:03:41]  ===============================
+
+[10:03:41]       sscanf plugin loaded.     
+
+[10:03:41]          Version:  2.8.1        
+
+[10:03:41]    (c) 2012 Alex "Y_Less" Cole  
+
+[10:03:41]  ===============================
+
+[10:03:41]   Loaded.
+[10:03:41]  Loading plugin: streamer.dll
+[10:03:41] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[10:03:41]   Loaded.
+[10:03:41]  Loading plugin: nativechecker.dll
+[10:03:41]   Loaded.
+[10:03:41]  Loaded 5 plugins.
+
+[10:03:41] 
+[10:03:41] Filterscripts
+[10:03:41] ---------------
+[10:03:41]   Loaded 0 filterscripts.
+
+[10:03:41] 
+----------------------------------
+[10:03:41]  VALAMI
+[10:03:41] ----------------------------------
+
+[10:03:41] Number of vehicle models: 0
+[10:03:41] ZoneLoad-ban vagyunk, 6
+[10:03:41] 1, 1089.010009, -2115.570068, 1253.680053, -1965.170043, 1
+[10:03:41] 2, 2213.780029, -109.388000, 2577.689941, 196.378997, 2
+[10:03:41] 3, 78.475601, -205.718994, 340.161987, 82.644897, 3
+[10:03:41] 4, 803.671020, -1389.900024, 1054.250000, -1145.489990, 4
+[10:03:41] 5, 2374.270019, -2696.600097, 2809.629882, -2330.669921, 5
+[10:03:41] 6, 154.397003, -1967.239990, 1011.010009, -1818.949951, 6
+[10:03:41] betöltött sorok: 6
+[10:04:02] [connection] 192.168.1.103:60477 requests connection cookie.
+[10:04:03] Incoming connection: 192.168.1.103:60477 id: 0
+[10:04:03] [join] viviii has joined the server (0:192.168.1.103)
+[10:04:04] [part] viviii has left the server (0:2)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[10:04:55] filterscripts = ""  (string)
+[10:04:55] 
+[10:04:55] Server Plugins
+[10:04:55] --------------
+[10:04:55]  Loading plugin: Whirlpool.dll
+[10:04:55]  
+[10:04:55]  ==================
+[10:04:55]  
+[10:04:55]   Whirlpool loaded
+[10:04:55]  
+[10:04:55]  ==================
+[10:04:55]  
+[10:04:55]   Loaded.
+[10:04:55]  Loading plugin: mysql.dll
+[10:04:55]  >> plugin.mysql: R39-3 successfully loaded.
+[10:04:55]   Loaded.
+[10:04:55]  Loading plugin: sscanf.dll
+[10:04:55] 
+
+[10:04:55]  ===============================
+
+[10:04:55]       sscanf plugin loaded.     
+
+[10:04:55]          Version:  2.8.1        
+
+[10:04:55]    (c) 2012 Alex "Y_Less" Cole  
+
+[10:04:55]  ===============================
+
+[10:04:55]   Loaded.
+[10:04:55]  Loading plugin: streamer.dll
+[10:04:55] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[10:04:55]   Loaded.
+[10:04:55]  Loading plugin: nativechecker.dll
+[10:04:55]   Loaded.
+[10:04:55]  Loaded 5 plugins.
+
+[10:04:55] 
+[10:04:55] Filterscripts
+[10:04:55] ---------------
+[10:04:55]   Loaded 0 filterscripts.
+
+[10:04:55] 
+----------------------------------
+[10:04:55]  VALAMI
+[10:04:55] ----------------------------------
+
+[10:04:55] Number of vehicle models: 0
+[10:04:55] ZoneLoad-ban vagyunk, 6
+[10:04:55] 1, 1089.010009, -2115.570068, 1253.680053, -1965.170043, 1
+[10:04:55] 2, 2213.780029, -109.388000, 2577.689941, 196.378997, 2
+[10:04:55] 3, 78.475601, -205.718994, 340.161987, 82.644897, 3
+[10:04:55] 4, 803.671020, -1389.900024, 1054.250000, -1145.489990, 4
+[10:04:55] 5, 2374.270019, -2696.600097, 2809.629882, -2330.669921, 5
+[10:04:55] 6, 154.397003, -1967.239990, 1011.010009, -1818.949951, 6
+[10:04:55] betöltött sorok: 6
+[10:05:18] [connection] 192.168.1.103:60478 requests connection cookie.
+[10:05:19] Incoming connection: 192.168.1.103:60478 id: 0
+[10:05:19] [join] viviii has joined the server (0:192.168.1.103)
+[10:05:20] [part] viviii has left the server (0:2)
+[10:14:15] [connection] 192.168.1.103:62209 requests connection cookie.
+[10:14:16] Incoming connection: 192.168.1.103:62209 id: 0
+[10:14:16] [join] viviii has joined the server (0:192.168.1.103)
+[10:14:17] [part] viviii has left the server (0:2)
+[10:14:48] [connection] 192.168.1.103:62210 requests connection cookie.
+[10:14:49] Incoming connection: 192.168.1.103:62210 id: 0
+[10:14:50] [join] viviii has joined the server (0:192.168.1.103)
+[10:14:51] [part] viviii has left the server (0:2)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[10:18:15] filterscripts = ""  (string)
+[10:18:15] 
+[10:18:15] Server Plugins
+[10:18:15] --------------
+[10:18:15]  Loading plugin: Whirlpool.dll
+[10:18:15]  
+[10:18:15]  ==================
+[10:18:15]  
+[10:18:15]   Whirlpool loaded
+[10:18:15]  
+[10:18:15]  ==================
+[10:18:15]  
+[10:18:15]   Loaded.
+[10:18:15]  Loading plugin: mysql.dll
+[10:18:15]  >> plugin.mysql: R39-3 successfully loaded.
+[10:18:15]   Loaded.
+[10:18:15]  Loading plugin: sscanf.dll
+[10:18:15] 
+
+[10:18:15]  ===============================
+
+[10:18:15]       sscanf plugin loaded.     
+
+[10:18:16]          Version:  2.8.1        
+
+[10:18:16]    (c) 2012 Alex "Y_Less" Cole  
+
+[10:18:16]  ===============================
+
+[10:18:16]   Loaded.
+[10:18:16]  Loading plugin: streamer.dll
+[10:18:16] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[10:18:16]   Loaded.
+[10:18:16]  Loading plugin: nativechecker.dll
+[10:18:16]   Loaded.
+[10:18:16]  Loaded 5 plugins.
+
+[10:18:16] 
+[10:18:16] Filterscripts
+[10:18:16] ---------------
+[10:18:16]   Loaded 0 filterscripts.
+
+[10:18:16] 
+----------------------------------
+[10:18:16]  VALAMI
+[10:18:16] ----------------------------------
+
+[10:18:16] Number of vehicle models: 0
+[10:18:16] ZoneLoad-ban vagyunk, 6
+[10:18:16] 1, 1089.010009, -2115.570068, 1253.680053, -1965.170043, 1
+[10:18:16] 2, 2213.780029, -109.388000, 2577.689941, 196.378997, 2
+[10:18:16] 3, 78.475601, -205.718994, 340.161987, 82.644897, 3
+[10:18:16] 4, 803.671020, -1389.900024, 1054.250000, -1145.489990, 4
+[10:18:16] 5, 2374.270019, -2696.600097, 2809.629882, -2330.669921, 5
+[10:18:16] 6, 154.397003, -1967.239990, 1011.010009, -1818.949951, 6
+[10:18:16] betöltött sorok: 6
+[10:18:44] [connection] 192.168.1.103:61043 requests connection cookie.
+[10:18:45] Incoming connection: 192.168.1.103:61043 id: 0
+[10:18:45] [join] viviii has joined the server (0:192.168.1.103)
+[10:18:46] [part] viviii has left the server (0:2)
+[10:19:12] [connection] 78.131.75.77:57301 requests connection cookie.
+[10:19:13] Incoming connection: 78.131.75.77:57301 id: 0
+[10:19:13] [join] devidson has joined the server (0:78.131.75.77)
+[10:19:13] cache_get_row_count returned false. Nincsennek betöltendõ sorok.
+[10:19:38] [connection] 192.168.1.103:61627 requests connection cookie.
+[10:19:39] Incoming connection: 192.168.1.103:61627 id: 1
+[10:19:39] [join] viviii has joined the server (1:192.168.1.103)
+[10:19:39] cache_get_row_count returned false. Nincsennek betöltendõ sorok.
+[10:20:17] [part] viviii has left the server (1:2)
+[10:23:20] [connection] 192.168.1.103:61628 requests connection cookie.
+[10:23:21] Incoming connection: 192.168.1.103:61628 id: 1
+[10:23:21] [join] viviii has joined the server (1:192.168.1.103)
+[10:23:21] cache_get_row_count returned false. Nincsennek betöltendõ sorok.
+[10:23:40] [part] viviii has left the server (1:2)
+[10:24:29] [connection] 192.168.1.103:49572 requests connection cookie.
+[10:24:30] Incoming connection: 192.168.1.103:49572 id: 1
+[10:24:31] [join] viviii has joined the server (1:192.168.1.103)
+[10:24:32] [part] viviii has left the server (1:2)
+[10:25:03] [connection] 192.168.1.103:49573 requests connection cookie.
+[10:25:04] Incoming connection: 192.168.1.103:49573 id: 1
+[10:25:04] [join] viviii has joined the server (1:192.168.1.103)
+[10:25:04] cache_get_row_count returned false. Nincsennek betöltendõ sorok.
+[10:27:45] [part] viviii has left the server (1:2)
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[10:42:18] filterscripts = ""  (string)
+[10:42:18] 
+[10:42:18] Server Plugins
+[10:42:18] --------------
+[10:42:18]  Loading plugin: Whirlpool.dll
+[10:42:18]  
+[10:42:18]  ==================
+[10:42:18]  
+[10:42:18]   Whirlpool loaded
+[10:42:18]  
+[10:42:18]  ==================
+[10:42:18]  
+[10:42:18]   Loaded.
+[10:42:18]  Loading plugin: mysql.dll
+[10:42:18]  >> plugin.mysql: R39-3 successfully loaded.
+[10:42:18]   Loaded.
+[10:42:18]  Loading plugin: sscanf.dll
+[10:42:18] 
+
+[10:42:18]  ===============================
+
+[10:42:18]       sscanf plugin loaded.     
+
+[10:42:18]          Version:  2.8.1        
+
+[10:42:18]    (c) 2012 Alex "Y_Less" Cole  
+
+[10:42:18]  ===============================
+
+[10:42:18]   Loaded.
+[10:42:18]  Loading plugin: streamer.dll
+[10:42:18] 
+
+*** Streamer Plugin v2.7.6 by Incognito loaded ***
+
+[10:42:18]   Loaded.
+[10:42:18]  Loading plugin: nativechecker.dll
+[10:42:18]   Loaded.
+[10:42:18]  Loaded 5 plugins.
+
+[10:42:18] 
+[10:42:18] Filterscripts
+[10:42:18] ---------------
+[10:42:18]   Loaded 0 filterscripts.
+
+[10:42:18] 
+----------------------------------
+[10:42:18]  VALAMI
+[10:42:18] ----------------------------------
+
+[10:42:18] Number of vehicle models: 0
+[10:42:18] ZoneLoad-ban vagyunk, 6
+[10:42:18] 1, 1089.010009, -2115.570068, 1253.680053, -1965.170043, 1
+[10:42:18] 2, 2213.780029, -109.388000, 2577.689941, 196.378997, 2
+[10:42:18] 3, 78.475601, -205.718994, 340.161987, 82.644897, 3
+[10:42:18] 4, 803.671020, -1389.900024, 1054.250000, -1145.489990, 4
+[10:42:18] 5, 2374.270019, -2696.600097, 2809.629882, -2330.669921, 5
+[10:42:18] 6, 154.397003, -1967.239990, 1011.010009, -1818.949951, 6
+[10:42:18] betöltött sorok: 6
+[10:43:00] [connection] 78.131.75.77:54394 requests connection cookie.
+[10:43:01] Incoming connection: 78.131.75.77:54394 id: 0
+[10:43:01] [join] devidson has joined the server (0:78.131.75.77)
+[10:43:01] cache_get_row_count returned false. Nincsennek betöltendõ sorok.
+[10:46:11] [part] devidson has left the server (0:1)

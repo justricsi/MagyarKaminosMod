@@ -15,6 +15,8 @@
 #define kek 0x0000FFFF
 #define vkek 0x01F8FEFF
 #define vbarna 0xBE7C41FF
+#define vzold 0x80FF00FF
+#define piros 0xFF0000FF
 
 //---------------------EGYÉB DEFINEOK-------------------------------------------
 #define TAKEOVER_TIME 5 // mennyi ido kell az elfoglaláshoz
@@ -33,6 +35,7 @@
 forward RegEllenorzes(playerid);
 forward ZoneTimer();
 forward ZoneLoad();
+forward GetPlayersOnServer();
 
 #if defined FILTERSCRIPT
 
@@ -55,7 +58,9 @@ public OnFilterScriptExit()
 enum
 {
 	d_reg,
-	d_belep
+	d_belep,
+	d_admin,
+	DIALOG_BAN
 }
 
 enum JatekosInfo {
@@ -64,7 +69,8 @@ enum JatekosInfo {
 	Pont,
 	Skin,
 	alevel,
-	teamcolor
+	teamcolor,
+	warndb
 }
 new jInfo[MAX_PLAYERS][JatekosInfo];
 
@@ -112,6 +118,9 @@ new ZoneAttackTime[MAX_ZONE];
 new ZoneDeaths[MAX_ZONE];
 new gTeam[MAX_PLAYERS];
 new ObjektCount=0;
+new bool:AdminSzolgalat[MAX_PLAYERS];
+new Text3D: asz;
+new bannolvavan[MAX_PLAYERS];
 
 
 main()
@@ -129,14 +138,14 @@ public OnGameModeInit()
 	DisableInteriorEnterExits(); 			//Interior kikapcs
 	EnableStuntBonusForAll(0);              //ugrató pénz kikapcs
 	SetGameModeText("ZoneWars");
-	
+
 	// Player Classes
-    AddPlayerClass(72,2004.5212,-1183.4020,20.0234,325.7480,24,1500,27,1500,16,2); //magyar
-    AddPlayerClass(48,2004.5212,-1183.4020,20.0234,325.7480,24,1500,27,1500,16,2); // görög
-    AddPlayerClass(46,2004.5212,-1183.4020,20.0234,325.7480,24,1500,27,1500,16,2); //olasz
-    AddPlayerClass(112,2224.2893,-1337.3351,23.9825,81.0793,24,1500,27,1500,16,2); // orosz
-    AddPlayerClass(117,2224.2893,-1337.3351,23.9825,81.0793,24,1500,27,1500,16,2); // kínaiak
-    AddPlayerClass(142,2224.2893,-1337.3351,23.9825,81.0793,24,1500,27,1500,16,2); // kameruniak
+    AddPlayerClass(72,1137.1510,-2037.0577,69.0078,270.9954,24,1500,27,1500,16,2); //magyar
+    AddPlayerClass(48,2336.3398,38.8450,26.4813,268.4628,24,1500,27,1500,16,2); // görög
+    AddPlayerClass(46,218.0903,-87.0485,1.5696,313.5960,24,1500,27,1500,16,2); //olasz
+    AddPlayerClass(112,912.1116,-1231.0538,16.9766,8.6328,24,1500,27,1500,16,2); // orosz
+    AddPlayerClass(117,2675.8403,-2453.0208,13.6379,272.1722,24,1500,27,1500,16,2); // kínaiak
+    AddPlayerClass(142,537.7534,-1877.5918,3.8040,341.5533,24,1500,27,1500,16,2); // kameruniak
     /*AddPlayerClass(108,2215.1963,-1164.0492,25.7266,270.5322,24,1500,27,1500,16,2); // Jefferson Vagos spawn
     AddPlayerClass(109,2215.1963,-1164.0492,25.7266,270.5322,24,1500,27,1500,16,2); // Jefferson Vagos spawn
     AddPlayerClass(110,2215.1963,-1164.0492,25.7266,270.5322,24,1500,27,1500,16,2); // Jefferson Vagos spawn*/
@@ -244,7 +253,8 @@ SetPlayerToTeamColor(playerid)
 public OnPlayerConnect(playerid)
 {
 	//TextDrawok(playerid);//Csapatválasztó textdrawok
-
+    MySQL_BanCheck(playerid);
+    if(bannolvavan[playerid] != 1){
 	TogglePlayerSpectating(playerid, true);
     for(new a; JatekosInfo:a < JatekosInfo; a++) jInfo[playerid][JatekosInfo:a] = 0;    //Nullázzuk az enumjait
     GetPlayerName(playerid, jInfo[playerid][Nev], 25);                                  //Lekérjük a nevét.
@@ -252,7 +262,10 @@ public OnPlayerConnect(playerid)
     for(new a; a < strlen(jInfo[playerid][Nev]); a++) if(jInfo[playerid][Nev][a] == '_') jInfo[playerid][Nev][a] = ' ';//Végigfutunk a nevén. Ha az egyik karaktere '_', kicseréli ' '-re.
     mysql_format(kapcs, query, 256, "SELECT ID,NEV FROM jatekosok WHERE NEV='%e' LIMIT 1", jInfo[playerid][Nev]);
     mysql_tquery(kapcs, query, "RegEllenorzes", "d", playerid);
-
+    }
+    else {
+        ShowPlayerDialog(playerid, DIALOG_BAN, DIALOG_STYLE_MSGBOX, "Ban", "Bannolva vagy a szerverrõl!", "Close", "");
+    }
 	return 1;
 }
 
@@ -268,7 +281,7 @@ public ZoneLoad()
 		    ZoneInfo[i][zMaxX] = cache_get_field_content_float(i,"maxX",kapcs);
 			ZoneInfo[i][zMaxY] = cache_get_field_content_float(i,"maxY",kapcs);
 			ZoneInfo[i][zTeam] = cache_get_field_content_int(i,"team",kapcs);
-			
+
 			zoneDb++;
 			printf("%d, %f, %f, %f, %f, %d", ZoneInfo[i][zId], ZoneInfo[i][zMinX], ZoneInfo[i][zMinY], ZoneInfo[i][zMaxX], ZoneInfo[i][zMaxY], ZoneInfo[i][zTeam]);
 			ZoneID[i] = GangZoneCreate(ZoneInfo[i][zMinX], ZoneInfo[i][zMinY], ZoneInfo[i][zMaxX], ZoneInfo[i][zMaxY]);
@@ -543,11 +556,11 @@ public JatekosBelep(playerid)
     if(sorok_szama == 0) return ShowPlayerDialog(playerid, d_belep, DIALOG_STYLE_PASSWORD, "Bejelentkezés", "{FFFFFF}Üdv a szerveren!\nKérlek add meg a jelszavad, amivel regisztráltált!\n\n{FF0000}Hibás jelszó!", "Belép", "Kilép");
     //Az elobb, ha hibás volt a jelszó visszatértünk volna, szóval innenztol ami lefut kód, az már jó jelszóval fut le:
     TogglePlayerSpectating(playerid, false);
-    //SetSpawnInfo(playerid,0,0,2529.7461,-1736.1093,13.0943,0, 0, 0, 0, 0, 0, 0);
-    //SpawnPlayer(playerid);
     SendClientMessage(playerid, zold, "Sikeresen bejelentkeztél!");
 	jInfo[playerid][Penz] = cache_get_field_content_int(0, "PENZ",kapcs);
     jInfo[playerid][Pont] = cache_get_field_content_int(0, "PONT",kapcs);
+    jInfo[playerid][alevel] = cache_get_field_content_int(0, "ADMINLVL",kapcs);
+    jInfo[playerid][warndb] = 0;
 	SetPlayerScore(playerid, jInfo[playerid][Pont]);
 	GivePlayerMoney(playerid, jInfo[playerid][Penz]);
     return 1;
@@ -577,6 +590,16 @@ public ZoneTimer()
 			}
 		}
 	}
+}
+
+public GetPlayersOnServer() {
+ new count;
+ for(new x=0; x< MAX_PLAYERS; x++) { //x = MAX_PLAYERS
+    if(IsPlayerConnected( x )) {
+   count++;
+  }
+ }
+ return count;
 }
 
 stock IsPlayerInZone(playerid, zoneid)
@@ -624,6 +647,36 @@ stock GetTeamZoneColor(teamid)
 		case TEAM_KAM: return 0xBE7C4188;
 	}
 	return -1;
+}
+
+stock MySQL_BanCheck(playerid)
+{
+	new IP[16];
+	GetPlayerIp(playerid, IP, 16);
+	format(query, sizeof(query),"SELECT * FROM `bandata` WHERE(`jatekos`='%s' OR `ip`='%s') AND `bannolva`=1 LIMIT 1", jInfo[playerid][Nev], IP);
+	mysql_query(kapcs, query);
+	bannolvavan[playerid] = 0;
+
+	if(!cache_get_row_count()) return printf("cache_get_row_count returned false. Nincsennek betöltendõ sorok.");
+	 	for(new i; i < cache_get_row_count(); i++)
+		{
+		    TogglePlayerControllable(playerid,0);
+		    bannolvavan[playerid] = 1;
+			new adminname[50], reason[100], eljaroadmin[50], oka[100];
+			cache_get_field_content(0, "admin", eljaroadmin);
+			cache_get_field_content(0, "ok", oka);
+			format(adminname, sizeof(adminname),"Admin: %s", eljaroadmin);
+			format(reason, sizeof(reason),"Reason: %s", oka);
+			SendClientMessage(playerid, piros,"Bannolva vagy a szerverrõl!");
+			SendClientMessage(playerid, piros,"___________________");
+			SendClientMessage(playerid, piros, adminname);
+			SendClientMessage(playerid, piros, reason);
+			SendClientMessage(playerid, piros,"___________________");
+			SendClientMessage(playerid, piros, "Ha jogtalannak érzed a bannt, és igazolni tudod screenshotal, keresd fel a fórumot!");
+			SendClientMessage(playerid, piros, "www.szerverunk.hu");
+			Kick_Player(playerid);
+		}
+  return 0;
 }
 
 stock TextDrawok(playerid)
@@ -815,6 +868,19 @@ Dialog_Belepes(playerid, response, inputtext[])
 return 1;
 }
 
+forward Kick_Player(playerid);
+public Kick_Player(playerid){
+	SetTimerEx("KickTimer", 1000, false, "i", playerid);
+	return 1;
+}
+
+forward KickTimer(playerid);
+public KickTimer(playerid)
+{
+    Kick(playerid);
+    return 1;
+}
+
 //------------------------------PARANCSOK---------------------------------------
 CMD:kocsi(playerid,params[])
 {
@@ -876,26 +942,288 @@ CMD:fegyver(playerid,params[]){
 }
 
 CMD:szone(playerid,params[]){
-	new melyik;
-	new melyikteam;
+ new melyik;
+ new melyikteam;
     if(sscanf(params,"ii",melyik, melyikteam)) return SendClientMessage(playerid,orange,"Használat /szone [1 - min, 2 - max] [melyik team]");
     {
         if(melyik == 1) {
-            new Float:x, Float:y, Float:z;
-    		GetPlayerPos(playerid, x, y, z);
-    		SaveZone[0][zMinX] = x;
-    		SaveZone[0][zMinY] = y;
+			new Float:x, Float:y, Float:z;
+			GetPlayerPos(playerid, x, y, z);
+			SaveZone[0][zMinX] = x;
+			SaveZone[0][zMinY] = y;
+			SendClientMessage(playerid, zold, "A zóna kezdete sikeresen lementve! Menj a másik sarokba és /szone 2 [teamcolor]!");
         }
+
         if(melyik == 2) {
-        	new Float:x, Float:y, Float:z;
-    		GetPlayerPos(playerid, x, y, z);
-    		SaveZone[0][zMaxX] = x;
-    		SaveZone[0][zMaxY] = y;
-    		format(query, sizeof(query), "INSERT INTO zones VALUES ('','%f','%f','%f','%f','%d')", SaveZone[0][zMinX], SaveZone[0][zMinY], SaveZone[0][zMaxX], SaveZone[0][zMaxY], melyikteam);
-    		mysql_tquery(kapcs, query);
-    		SendClientMessage(playerid, zold, "A zóna sikeresen elmentve az adatbázisba!");
+			new Float:x, Float:y, Float:z;
+			GetPlayerPos(playerid, x, y, z);
+			SaveZone[0][zMaxX] = x;
+			SaveZone[0][zMaxY] = y;
+			SaveZone[0][zTeam] = melyikteam;
+			format(query, sizeof(query), "INSERT INTO zones VALUES ('','%f','%f','%f','%f','%d')", SaveZone[0][zMinX], SaveZone[0][zMinY], SaveZone[0][zMaxX], SaveZone[0][zMaxY], melyikteam);
+			mysql_tquery(kapcs, query);
+			SendClientMessage(playerid, zold, "A zóna sikeresen elmentve az adatbázisba!");
+
+			ZoneInfo[zoneDb][zId] = zoneDb;
+			ZoneInfo[zoneDb][zMinX] = SaveZone[0][zMinX];
+			ZoneInfo[zoneDb][zMinY] = SaveZone[0][zMinY];
+			ZoneInfo[zoneDb][zMaxX] = SaveZone[0][zMaxX];
+			ZoneInfo[zoneDb][zMaxY] = SaveZone[0][zMaxY];
+			ZoneInfo[zoneDb][zTeam] = SaveZone[0][zTeam];
+			ZoneID[zoneDb] = GangZoneCreate(SaveZone[0][zMinX], SaveZone[0][zMinY], SaveZone[0][zMaxX], SaveZone[0][zMaxY]);
+			printf("zonedb: %d", zoneDb);
+			printf("%d, %f, %f, %f, %f, %d", ZoneInfo[zoneDb][zId], ZoneInfo[zoneDb][zMinX], ZoneInfo[zoneDb][zMinY], ZoneInfo[zoneDb][zMaxX], ZoneInfo[zoneDb][zMaxY], ZoneInfo[zoneDb][zTeam]);
+
+		for(new i = 0; i < GetPlayersOnServer(); i++){
+			GangZoneShowForPlayer(i, ZoneID[zoneDb], GetTeamZoneColor(ZoneInfo[zoneDb][zTeam]));
+		}
+		zoneDb++;
         }
     }
+ return 1;
+}
+
+//-----------------------------------ADMIN PARANCSOK----------------------------
+CMD:acmd(playerid, params[])
+{
+	new teljes[1024];
+	new str1[512] = "/time [IDÕ] - idõállítás\n/get [ID] -  játékos magadhoz telézése\n/oda [ID] - odateleportálsz valakihez\n/vrespawn - jármûvek újraspawnolása\n/adszolg - adminszolgálat\n/warn [ID] [INDOK] - figyelmeztetés\n/ban [ID] [INDOK] - játékos kitiltása\n/kick [ID] [INDOK] - játékos kirúgása\n/setskin [ID] [SkinID] - kinézet állítás\n/penz [ID] [ÖSSZEG] - pénz állítás\n/idojaras [IdõjárásID] - idõjárás állítás\n/gazdagok - megmutatja a leggazdagabb embereket\n";
+	new str2[512] = "/adminszint [ID] [SZINT] - adminszint állítás\n/healall - mindenkinek az életét feltölti\n/heal [ID] - egy játékos életének feltöltése\n/armour [ID] - páncélzat feltöltése\n/disarm [ID] - játékos lefegyverzése\n/dynamic - dinamikus idõ és idõjárás\n/asz [SZÖVEG] - Fõadmin-chat\n/jail [ID] [PERC] [INDOK] - játékos börtönbe zárása\n/unjail [ID] - játékos kiengedése";
+	if(jInfo[playerid][alevel] == 0) return SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 1]");
+	format(teljes, sizeof(teljes), "%s%s%s", str1, str2);
+	ShowPlayerDialog(playerid, d_admin, DIALOG_STYLE_MSGBOX, "Adminparancsok:", teljes,"Rendben","");
 	return 1;
 }
 
+CMD:adszolg(playerid,params[]){
+	new string[128];
+	if(IsPlayerConnected(playerid))
+	{
+		if(jInfo[playerid][alevel] >0)
+		{
+			if(AdminSzolgalat[playerid] == false)
+			{
+				asz = Create3DTextLabel("Admin Szolgálatban", vkek, 0.0, 0.0, 2.0, 100, 0, 1);
+				Attach3DTextLabelToPlayer(asz, playerid, 0.0, 0.0, 0.4);
+           		ShowNameTags( 0 );
+				format(string,sizeof(string),"[ ! ] Admin, %s szolgálatba lépett!",jInfo[playerid][Nev]);
+				SendClientMessageToAll(vzold,string);
+				AdminSzolgalat[playerid] = true;
+				SetPlayerSkin(playerid, 217);
+			}
+			else if(AdminSzolgalat[playerid] == true)
+			{
+                Delete3DTextLabel(asz);
+		       	ShowNameTags( 1 );
+				format(string, sizeof(string), "[ ! ] Admin %s befejezte a szolgálatot!", jInfo[playerid][Nev]);
+				SendClientMessageToAll(vzold,string);
+				AdminSzolgalat[playerid] = false;
+				//SetPlayerSkin(playerid,)
+			}
+		}else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 1]");
+	}
+return 1;
+}
+
+CMD:adminszint(playerid,params[])
+{
+	if(jInfo[playerid][alevel] > 3)
+	{
+		new pid, level, string[128], nev[128];
+        if(sscanf(params, "ud", pid, level)) return SendClientMessage(playerid, piros, "[ ! ] Használat: /adminszint [ID] [SZINT]");
+        GetPlayerName(pid,nev,sizeof(nev));
+		if(pid == INVALID_PLAYER_ID) return SendClientMessage(playerid, piros, "[ ! ] Nincs ilyen játékos!");
+		if(level > 5) return SendClientMessage(playerid, piros, "[ ! ] Maximum adminszint: 5");
+		if(jInfo[playerid][alevel] == level) return SendClientMessage(playerid, piros, "[ ! ] Már megvan a beírt szint!");
+		format(string,sizeof(string),"[ ! ] Admin %s beállította %s adminszintjét %d-re",jInfo[playerid][Nev],nev,level);
+		SendClientMessageToAll(vzold,string);
+		jInfo[pid][alevel] = level;
+	}
+	else
+	{
+        SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 4]");
+	}
+return 1;
+}
+
+CMD:setskin(playerid, params[])
+{
+    if(jInfo[playerid][alevel] > 0)
+	{
+		new pid, skin, string[128];
+		if(sscanf(params, "ud", pid, skin)) return SendClientMessage(playerid, piros, "[ ! ] Használat: /setskin [ID] [SKINID]");
+		if(pid == INVALID_PLAYER_ID) return SendClientMessage(playerid, piros, "[ ! ] Nincs ilyen játékos!");
+		if(skin < 0 || skin > 299) return SendClientMessage(playerid, piros, "[ ! ] Hibás skinID, 0-299 vannak!");
+		format(string,sizeof(string),"[ ! ] Admin: %s átállította a skined! [Új skin ID: %d]", jInfo[playerid][Nev], skin);
+		SendClientMessage(pid, orange, string);
+		SetPlayerSkin(pid, skin);
+		TogglePlayerControllable(playerid, true);
+    }else{
+		SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 1]");
+	}
+	return 1;
+}
+
+CMD:get(playerid,params[])
+{
+	new pID, str[128];
+	new Float:aX, Float:aY, Float:aZ;
+	if(jInfo[playerid][alevel] > 2)
+	{
+		if(sscanf(params, "i", pID)) return SendClientMessage(playerid, piros, "[ ! ] Használat: /tp [playerid]");
+		if(pID == INVALID_PLAYER_ID) return SendClientMessage(playerid, piros, "[ ! ] Nincs ilyen játékos!");
+		GetPlayerPos(playerid, aX, aY, aZ);
+		SetPlayerPos(pID, aX+0.5, aY+0.5, aZ+0.5);
+		format(str, sizeof(str), "[ ! ] Admin %s magához telepoltárt! ",jInfo[playerid][Nev]);
+		SendClientMessage(pID, zold, str);
+		SetPlayerInterior(pID,0);
+	}else{
+	SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 3]");
+	}
+
+return 1;
+}
+
+CMD:oda(playerid,params[])
+{
+	new pID, str[128];
+	new Float:aX, Float:aY, Float:aZ;
+	if(jInfo[playerid][alevel] > 2)
+	{
+		if(sscanf(params, "i", pID)) return SendClientMessage(playerid, piros, "[ ! ] Használat: /oda [playerid]");
+		if(pID == INVALID_PLAYER_ID) return SendClientMessage(playerid, piros, "[ ! ] Nincs ilyen játékos!");
+		GetPlayerPos(pID, aX, aY, aZ);
+		SetPlayerPos(playerid, aX+0.5, aY+0.5, aZ+0.5);
+		format(str, sizeof(str), "[ ! ] Odamentél %s játékoshoz! ",jInfo[pID][Nev]);
+		SendClientMessage(playerid, zold, str);
+		SetPlayerInterior(playerid,0);
+	}else{
+	SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 3]");
+	}
+
+return 1;
+}
+
+CMD:penz(playerid,params[])
+{
+	new pID, str[128],str1[128], osszeg;
+	if(jInfo[playerid][alevel] > 3)
+	{
+		if(sscanf(params, "ii", pID,osszeg)) return SendClientMessage(playerid, piros, "[ ! ] Használat: /penz [playerid] [összeg]");
+		if(pID == INVALID_PLAYER_ID) return SendClientMessage(playerid, piros, "[ ! ] Nincs ilyen játékos!");
+		if(osszeg < 0)return SendClientMessage(playerid, piros, "[ ! ] Negatív összeget nem lehet megadni!");
+		format(str, sizeof(str), "[ ! ] Admin adott %d Ft-ot! ",osszeg);
+		SendClientMessage(pID, zold, str);
+		format(str, sizeof(str1), "[ ! ] Pénzt adtál %s játékosnak! ",jInfo[pID][Nev]);
+		SendClientMessage(playerid, zold, str1);
+		jInfo[pID][Penz] += osszeg;
+
+	}else{
+	SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 4]");
+	}
+
+return 1;
+}
+
+CMD:time(playerid, params[])
+{
+    if(jInfo[playerid][alevel] > 0)
+	{
+		new time, string[128];
+		if(sscanf(params, "d", time)) return SendClientMessage(playerid, piros, "[ ! ] Használat: /time [ÓRA]");
+		if(time > 24) return SendClientMessage(playerid, piros, "[ ! ] Maximum idõ: 24");
+		format(string,sizeof(string),"[ ! ] Admin: %s átállította az idõt! [Idõ: %d]", jInfo[playerid][Nev], time);
+		SendClientMessageToAll( vzold, string);
+		SetWorldTime(time);
+    }else{
+		SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 1]");
+	}
+	return 1;
+}
+
+CMD:idojaras(playerid, params[])
+{
+    if(jInfo[playerid][alevel] > 0)
+	{
+		new weather, string[128];
+		if(sscanf(params, "d", weather)) return SendClientMessage(playerid, piros, "[ ! ] Használat: /idojaras [IDÕJÁRÁS-ID]");
+		if(weather > 700) return SendClientMessage(playerid, piros, "[ ! ] Maximum idõjárás: 700");
+		format(string,sizeof(string),"[ ! ] Admin: %s átállította az idõjárást! [Idõjárás: %d]", jInfo[playerid][Nev], weather);
+		SendClientMessageToAll(vzold, string);
+		SetWeather(weather);
+    }else{
+		SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 1]");
+	}
+	return 1;
+}
+
+CMD:kick(playerid, params[])
+{
+    if(jInfo[playerid][alevel]  > 4)
+	{
+		new pid, indok[50], string[128];
+		if(sscanf(params, "us[50]", pid, indok)) return SendClientMessage(playerid, piros, "[ ! ] Használat: /kick [ID] [INDOK]");
+		if(pid == INVALID_PLAYER_ID) return SendClientMessage(playerid, piros, "[ ! ] Nincs ilyen játékos!");
+		if(pid == playerid) return SendClientMessage(playerid, piros, "[ ! ] Nem rúghatod ki magad!");
+		format(string,sizeof(string),"[ ! ] Admin: %s kirúgta %s -t![indok: %s]", jInfo[playerid][Nev], jInfo[pid][Nev], indok);
+		SendClientMessageToAll(vzold, string);
+		Kick_Player(pid);
+	}else{
+		SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 4]");
+	}
+	return 1;
+}
+
+CMD:ban(playerid, params[])
+{
+    if(jInfo[playerid][alevel]  > 4)
+	{
+		new pid, indok[50], string[128], ip[16];
+		if(sscanf(params, "us[50]", pid, indok)) return SendClientMessage(playerid, piros, "[ ! ] Használat: /ban [ID] [INDOK]");
+		if(pid == INVALID_PLAYER_ID) return SendClientMessage(playerid, piros, "[ ! ] Nincs ilyen játékos!");
+	    if(pid == playerid) return SendClientMessage(playerid, piros, "[ ! ] Nem bannolhatod ki magad!");
+	    GetPlayerIp(pid, ip, 16);
+	    mysql_format(kapcs, query, 256, "INSERT INTO bandata (id,admin,jatekos,ok,ip,bannolva) VALUES (0, '%s', '%s', '%s', '%s', 1)", jInfo[playerid][Nev], jInfo[pid][Nev], indok, ip);
+        mysql_tquery(kapcs, query);
+
+		format(string,sizeof(string),"[ ! ] Admin: %s kibannolta %s -t![indok: %s]", jInfo[playerid][Nev], jInfo[pid][Nev], indok);
+		SendClientMessageToAll(vzold, string);
+       	Kick_Player(pid);
+    }else{
+		SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 4]");
+	}
+	return 1;
+}
+
+CMD:warn(playerid, params[])
+{
+	new pId, reason[50], str[128];
+	if(sscanf(params, "is[50]", pId, reason)) return SendClientMessage(playerid, piros, "[ ! ] Használat: /warn [ID] [INDOK]");
+	if(pId == INVALID_PLAYER_ID) return SendClientMessage(playerid, piros, "[ ! ] Nincs ilyen játékos!");
+	if(pId == playerid) return SendClientMessage(playerid, piros, "[ ! ] Nem figyelmeztetheted magadat!");
+	jInfo[pId][warndb]++;
+	if(jInfo[pId][warndb] != 3) {
+		format(str, sizeof(str), "[ ! ] Admin: %s figyelmeztette %s -t! [indok: %s] [%d/3]", jInfo[playerid][Nev], jInfo[pId][Nev], reason, jInfo[pId][warndb]);
+		SendClientMessageToAll(vzold, str);
+	} else {
+
+		format(str, sizeof(str), "[ ! ] Admin: %s kirúgta a szerverrõl %s -t! [indok: %s] [Figyelmeztetés: %d/3]", jInfo[playerid][Nev], jInfo[pId][Nev], reason, jInfo[pId][warndb]);
+		SendClientMessageToAll(vzold, str);
+	    Kick_Player(pId);
+	}
+	return 1;
+}
+
+CMD:vrespawn(playerid, params[])
+{
+	return 1;
+}
+
+CMD:ipm(playerid,params[])
+{
+new ip[16],ipstring[128];
+GetPlayerIp(playerid, ip, 16);
+format(ipstring,sizeof(ipstring),"IP cím: %s",ip);
+SendClientMessage(playerid,vzold,ipstring);
+return 1;
+}
