@@ -1,3 +1,3 @@
-# MagyarKaminosMod
+# SAMP - ZoneWar játékmód
 
-Itt lehet zúzatni a kamionos módot!
+Ezen a githubon a ZoneWar fejlesztése történik.
