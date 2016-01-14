@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Hoszt: 127.0.0.1
--- Létrehozás ideje: 2016. Jan 14. 10:55
+-- Létrehozás ideje: 2016. Jan 14. 14:08
 -- Szerver verzió: 5.6.21
 -- PHP verzió: 5.5.19
 
@@ -47,6 +47,33 @@ INSERT INTO `bandata` (`id`, `admin`, `jatekos`, `ok`, `ip`, `bannolva`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Tábla szerkezet ehhez a táblához `cars`
+--
+
+CREATE TABLE IF NOT EXISTS `cars` (
+`id` int(11) NOT NULL,
+  `rendszam` varchar(7) COLLATE utf8_hungarian_ci NOT NULL,
+  `modelid` int(11) NOT NULL,
+  `x` float NOT NULL,
+  `y` float NOT NULL,
+  `z` float NOT NULL,
+  `angle` float NOT NULL,
+  `tulaj` int(11) NOT NULL DEFAULT '0',
+  `col1` int(11) NOT NULL DEFAULT '1',
+  `col2` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+
+--
+-- A tábla adatainak kiíratása `cars`
+--
+
+INSERT INTO `cars` (`id`, `rendszam`, `modelid`, `x`, `y`, `z`, `angle`, `tulaj`, `col1`, `col2`) VALUES
+(1, 'ZW-0001', 470, 1245.75, -2009.06, 59.8211, 270.239, 0, 1, 1),
+(2, 'ZW-0002', 470, 1245.75, -2012.57, 59.8232, 270.465, 0, 1, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Tábla szerkezet ehhez a táblához `jatekosok`
 --
 
@@ -65,9 +92,9 @@ CREATE TABLE IF NOT EXISTS `jatekosok` (
 
 INSERT INTO `jatekosok` (`ID`, `NEV`, `JELSZO`, `PENZ`, `PONT`, `ADMINLVL`) VALUES
 (1, 'Justricsi', '20461e94da17c7d8e3b5244dcbe233f305c72c0d', 0, 30, 5),
-(2, 'devidson', '783bafc3c6c8441d4950330a0842469efe14ac60', 0, 73, 5),
+(2, 'devidson', '783bafc3c6c8441d4950330a0842469efe14ac60', 0, 77, 5),
 (3, 'Justrics', '20461e94da17c7d8e3b5244dcbe233f305c72c0d', 0, 0, 0),
-(4, 'viviii', '783bafc3c6c8441d4950330a0842469efe14ac60', 0, 2, 0);
+(4, 'viviii', '783bafc3c6c8441d4950330a0842469efe14ac60', 0, 5, 0);
 
 -- --------------------------------------------------------
 
@@ -125,6 +152,12 @@ ALTER TABLE `bandata`
  ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `cars`
+--
+ALTER TABLE `cars`
+ ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `jatekosok`
 --
 ALTER TABLE `jatekosok`
@@ -151,6 +184,11 @@ ALTER TABLE `zones`
 --
 ALTER TABLE `bandata`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `cars`
+--
+ALTER TABLE `cars`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `jatekosok`
 --
