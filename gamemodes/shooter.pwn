@@ -72,7 +72,9 @@ enum
 	d_reg,
 	d_belep,
 	d_admin,
-	DIALOG_BAN
+	DIALOG_BAN,
+	DIALOG_SHOP,
+	d_rangok
 }
 
 enum JatekosInfo {
@@ -82,7 +84,8 @@ enum JatekosInfo {
 	Skin,
 	alevel,
 	teamcolor,
-	warndb
+	warndb,
+	helmet
 }
 new jInfo[MAX_PLAYERS][JatekosInfo];
 
@@ -162,7 +165,8 @@ new bannolvavan[MAX_PLAYERS];
 new foglal[MAX_PLAYERS];
 new foglalja[MAX_ZONE];
 new ShopsDb=0;
-new pickupids[MAX_SHOPS];
+new inShop[MAX_PLAYERS];
+new playerSK[MAX_PLAYERS];
 
 main()
 {
@@ -326,7 +330,7 @@ public OnPlayerConnect(playerid)
 public ZoneLoad()
 {
 	printf("ZoneLoad-ban vagyunk, %d", cache_get_row_count());
-    if(!cache_get_row_count()) return printf("cache_get_row_count returned false. Nincsennek betöltendõ sorok.");
+    if(!cache_get_row_count()) return printf("Nincs egy zóna sem az adatbázisban!");
 	 	for(new i = 0; i < cache_get_row_count(); i++)
 		{
 			ZoneInfo[i][zId] = cache_get_field_content_int(i,"id",kapcs);
@@ -353,7 +357,7 @@ public ZoneLoad()
 forward ObjectLoad();
 public ObjectLoad()
 {
-	if(!cache_get_row_count()) return printf("cache_get_row_count returned false. Nincsennek betöltendõ sorok.");
+	if(!cache_get_row_count()) return printf("Nincs egy objektum sem az adatbázisban!");
 	 	for(new i = 0; i < cache_get_row_count(); i++)
 		{
 			Objektumok[i][id] = ObjektCount;
@@ -374,7 +378,7 @@ public ObjectLoad()
 forward AutoLoad();
 public AutoLoad()
 {
-	if(!cache_get_row_count()) return printf("cache_get_row_count returned false. Nincsennek betöltendõ sorok.");
+	if(!cache_get_row_count()) return printf("Nincs egy autó sem az adatbázisban!");
  	for(new i = 0; i < cache_get_row_count(); i++)
 	{
 	    new rendszam[8];
@@ -409,17 +413,17 @@ public AutoLoad()
 forward ShopLoad();
 public ShopLoad()
 {
-	if(!cache_get_row_count()) return printf("cache_get_row_count returned false. Nincsennek betöltendõ sorok.");
+	if(!cache_get_row_count()) return printf("Nincs egy bolt sem az adatbázisban!");
 	 	for(new i = 0; i < cache_get_row_count(); i++)
 		{
-		    Shops[i][id] = cache_get_field_content_int(i,"id",kapcs);
+		    //Shops[i][id] = cache_get_field_content_int(i,"id",kapcs);
 		    Shops[i][xPos] = cache_get_field_content_float(i,"x",kapcs);
 		    Shops[i][yPos] = cache_get_field_content_float(i,"y",kapcs);
 		    Shops[i][zPos] = cache_get_field_content_float(i,"z",kapcs);
 		    Shops[i][pickupId] = cache_get_field_content_int(i,"pickupid",kapcs);
 		    Shops[i][mapiconid] = cache_get_field_content_int(i,"mapiconid",kapcs);
 		    
-		    pickupids[i] = CreatePickup(Shops[i][pickupId], 0, Shops[i][xPos], Shops[i][yPos], Shops[i][zPos], -1);
+		    Shops[i][id] = CreatePickup(Shops[i][pickupId], 1, Shops[i][xPos], Shops[i][yPos], Shops[i][zPos], -1);
 			
 	        ShopsDb++;
 		}
@@ -456,7 +460,22 @@ public OnPlayerSpawn(playerid)
 	{
 	    SetPlayerSkin(playerid, 217);
 	}
+	SetPlayerHealth(playerid, 9999);
+	playerSK[playerid] = 1;
+	jInfo[playerid][helmet] = 0;
+	RemovePlayerAttachedObject(playerid, 2);
+    SendClientMessage(playerid, -1, "| 15 másodpercig védve vagy a támadásoktól. |");
+    SetTimerEx("EndAntiSpawnKill", 15000, false, "i", playerid);
 	return 1;
+}
+
+forward EndAntiSpawnKill(playerid);
+public EndAntiSpawnKill(playerid)
+{
+	playerSK[playerid] = 0;
+    SetPlayerHealth(playerid, 100);
+    SendClientMessage(playerid, -1, "| Lejárt a védelmed. |");
+    return 1;
 }
 
 public OnPlayerDeath(playerid, killerid, reason)
@@ -474,6 +493,8 @@ public OnPlayerDeath(playerid, killerid, reason)
 	    jInfo[playerid][Penz]-=money;
 	    GivePlayerMoney(playerid, -money);
 	    SendDeathMessage(killerid, playerid, reason);
+	    RemovePlayerAttachedObject(playerid, 2);
+	    jInfo[playerid][helmet] = 0;
 	}
 	if(IsPlayerConnected(killerid) && GetPlayerTeam(playerid) != GetPlayerTeam(killerid) && ZoneInfo[GetPlayerZone(playerid)][foglalhato] == 1) // not a suicide or team kill
 	{
@@ -565,6 +586,12 @@ public OnPlayerObjectMoved(playerid, objectid)
 
 public OnPlayerPickUpPickup(playerid, pickupid)
 {
+	for(new i=0;i<ShopsDb;i++){
+	    if(pickupid==Shops[i][id] && inShop[playerid] == 0){
+			inShop[playerid] = 1;
+			ShowPlayerDialog(playerid, DIALOG_SHOP, DIALOG_STYLE_LIST, "Bolt", "Élet\nPáncél\nSisak", "Megvesz", "Mégse");
+	    }
+	}
 	return 1;
 }
 
@@ -658,7 +685,7 @@ stock GetTeamZoneColor(teamid)
 
 public OnPlayerUpdate(playerid)
 {
-	if(GetPlayersInZone(GetPlayerZone(playerid), ZoneInfo[GetPlayerZone(playerid)][zTeam]) == 0 && foglal[playerid] == 0 && foglalja[GetPlayerZone(playerid)] == -1 && ZoneInfo[GetPlayerZone(playerid)][foglalhato] == 1){
+	if(GetPlayersInZone(GetPlayerZone(playerid), ZoneInfo[GetPlayerZone(playerid)][zTeam]) == 0 && foglal[playerid] == 0 && foglalja[GetPlayerZone(playerid)] == -1 && ZoneInfo[GetPlayerZone(playerid)][foglalhato] == 1 && !IsPlayerInAnyVehicle(playerid)){
 	    ZoneDeaths[GetPlayerZone(playerid)] = 0;
 		ZoneAttacker[GetPlayerZone(playerid)] = GetPlayerTeam(playerid);
 		ZoneAttackTime[GetPlayerZone(playerid)] = 0;
@@ -700,10 +727,17 @@ public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart)
     {
 		new pTeam = GetPlayerTeam(playerid), kTeam = GetPlayerTeam(issuerid);
 		if(pTeam != kTeam){
-			getPont(issuerid, 1);
-	        SetPlayerHealth(playerid, 0.0);
-	        SendClientMessage(issuerid,zold,"Fejbelõtted. Kiváló találat! +1 pont");
-	        SendClientMessage(playerid,zold,"Fejbelõttek.");
+		    if(jInfo[playerid][helmet] != 1){
+				if(playerSK[playerid] == 0){
+					getPont(issuerid, 1);
+			        SetPlayerHealth(playerid, 0.0);
+			        SendClientMessage(issuerid,zold,"Fejbelõtted. Kiváló találat! +1 pont");
+			        SendClientMessage(playerid,zold,"Fejbelõttek.");
+		        }
+	        } else {
+	            SendClientMessage(issuerid, feher, "| Nem tudod fejbelõni, mert sisak van a fején! |");
+	            SendClientMessage(playerid, feher, "| A sisak megvédett a fejlövéstõl! |");
+	        }
 		}
     }/*
     else {
@@ -722,6 +756,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	{
         case d_reg: Dialog_Regisztracio(playerid, response, inputtext);
         case d_belep: Dialog_Belepes(playerid, response, inputtext);
+        case DIALOG_SHOP: Dialog_Shopitem(playerid, response, listitem);
     }
 	return 1;
 }
@@ -759,9 +794,12 @@ public JatekosBelep(playerid)
     jInfo[playerid][Pont] = cache_get_field_content_int(0, "PONT",kapcs);
     jInfo[playerid][alevel] = cache_get_field_content_int(0, "ADMINLVL",kapcs);
     jInfo[playerid][warndb] = 0;
+    jInfo[playerid][helmet] = 0;
+    RemovePlayerAttachedObject(playerid, 2);
 	SetPlayerScore(playerid, jInfo[playerid][Pont]);
 	GivePlayerMoney(playerid, jInfo[playerid][Penz]);
 	foglal[playerid] = 0;
+	inShop[playerid] = 0;
 	for(new i=0; i < ShopsDb; i++){
 	    SetPlayerMapIcon(playerid, i, Shops[i][xPos], Shops[i][yPos], Shops[i][zPos], Shops[i][mapiconid], 0, MAPICON_LOCAL);
 	}
@@ -774,7 +812,7 @@ public ZoneTimer()
 	{
 		if(ZoneAttacker[i] != -1) // zone is being attacked
 		{
-			if(GetPlayersInZone(i, ZoneAttacker[i]) >= 1) // there must be at least 1 attacker left
+			if(GetPlayersInZone(i, ZoneAttacker[i]) >= 1 && !IsPlayerInAnyVehicle(foglalja[i])) // there must be at least 1 attacker left
 			{
 				ZoneAttackTime[i]++;
 				if(ZoneAttackTime[i] == TAKEOVER_TIME) // zone has been under attack for enough time and attackers take over the zone
@@ -823,7 +861,7 @@ stock MySQL_BanCheck(playerid)
 	mysql_query(kapcs, query);
 	bannolvavan[playerid] = 0;
 
-	if(!cache_get_row_count()) return printf("cache_get_row_count returned false. Nincsennek betöltendõ sorok.");
+	if(!cache_get_row_count()) return printf("Nincs bann.");
 	 	for(new i; i < cache_get_row_count(); i++)
 		{
 		    TogglePlayerControllable(playerid,0);
@@ -1032,6 +1070,79 @@ Dialog_Belepes(playerid, response, inputtext[])
         mysql_tquery(kapcs, query, "JatekosBelep", "d", playerid);
     }
 return 1;
+}
+
+Dialog_Shopitem(playerid, response, listitem){
+	if(response){
+		switch(listitem){
+		    case 0: {
+		        new Float: health;
+				GetPlayerHealth(playerid, health);
+				if(health == 100){
+				    SetTimerEx("ShopExit", 3000, false, "i", playerid);
+					return SendClientMessage(playerid, piros, "Az életed teljesen fel van töltve!");
+				}
+				new ar = 5000 - floatround(((health / 100) * 5000));
+		        if(GetPlayerMoney(playerid) < ar) return SendClientMessage(playerid, piros, "Nincs rá elég pénzed!");
+		        {
+		            new str[128];
+					SetPlayerHealth(playerid, 100);
+					GivePlayerMoney(playerid, -ar);
+					jInfo[playerid][Penz]-=ar;
+					format(str, sizeof(str), "Sikeresen feltöltötted az életed! Ára: %d$ volt.", ar);
+					SendClientMessage(playerid, zold, str);
+					SetTimerEx("ShopExit", 3000, false, "i", playerid);
+		        }
+		    }
+		    case 1: {
+		        new Float: armour;
+		        GetPlayerArmour(playerid, armour);
+		        if(armour == 100){
+		            SetTimerEx("ShopExit", 3000, false, "i", playerid);
+					return SendClientMessage(playerid, piros, "A páncélod sértetlen!");
+		        }
+				new ar = 5000 - floatround(((armour / 100) * 5000));
+				if(GetPlayerMoney(playerid) < ar) return SendClientMessage(playerid, piros, "Nincs rá elég pénzed!");
+		        {
+		            new str[128];
+					SetPlayerArmour(playerid, 100);
+					GivePlayerMoney(playerid, -ar);
+					jInfo[playerid][Penz]-=ar;
+					format(str, sizeof(str), "Sikeresen vettél egy golyóállómellényt! Ára: %d$ volt.", ar);
+					SendClientMessage(playerid, zold, str);
+					SetTimerEx("ShopExit", 3000, false, "i", playerid);
+		        }
+		    }
+		    case 2: {
+		        new str[128];
+		        new ar = 5000;
+		        if(jInfo[playerid][helmet] != 1){
+		            if(GetPlayerMoney(playerid) < ar) return SendClientMessage(playerid, piros, "Nincs rá elég pénzed!");
+		        	{
+				        format(str, sizeof(str), "Sikeresen vettél egy helmetet! Ára: %d$ volt.", ar);
+		                SendClientMessage(playerid, zold, str);
+		                GivePlayerMoney(playerid, -ar);
+						jInfo[playerid][Penz]-=ar;
+						jInfo[playerid][helmet] = 1;
+						SetPlayerAttachedObject(playerid, 1, 19106, 2, 0.15, -0, 0, 180, 180, 180);
+						SetTimerEx("ShopExit", 3000, false, "i", playerid);
+					}
+                } else {
+                    SendClientMessage(playerid, piros, "Már van sisakod, nem vehetsz mégegyet!");
+                    SetTimerEx("ShopExit", 3000, false, "i", playerid);
+                }
+		    }
+		}
+	}
+	SetTimerEx("ShopExit", 3000, false, "i", playerid);
+	return 1;
+}
+
+forward ShopExit(playerid);
+public ShopExit(playerid){
+	printf("ShopExit playerid: %d", playerid);
+	inShop[playerid] = 0;
+	return 1;
 }
 
 forward Kick_Player(playerid);
@@ -1410,6 +1521,24 @@ CMD:armourall(playerid, params[])
 	return 1;
 }
 
+CMD:helmall(playerid, params[])
+{
+    if(jInfo[playerid][alevel] >= 1)
+	{
+	    new str[128];
+		for(new i = 0; i < MAX_PLAYERS; i++) {
+		    if(jInfo[i][helmet] != 1){
+				SetPlayerAttachedObject(i, 1, 19106, 2, 0.15, -0, 0, 180, 180, 180);
+				jInfo[i][helmet] = 1;
+			}
+		}
+		format(str, sizeof(str), "[ ! ] Admin: %s mindenkinek adott sisakot!", jInfo[playerid][Nev]);
+		SendClientMessageToAll(vzold, str);
+		Hang(1139);
+	}
+	return 1;
+}
+
 CMD:playsound(playerid, params[]){ // Ez csak arra ha valamilyen hangot keresünk
 	new hang;
 	if(sscanf(params, "i", hang)) return SendClientMessage(playerid, piros, "Használat: /playsound [id]");
@@ -1531,5 +1660,13 @@ CMD:sshop(playerid, params[])
 	    mysql_tquery(kapcs, query);
 	    SendClientMessage(playerid, zold, "| A shop mentve az adatbázisba! |");
 	}
+	return 1;
+}
+
+CMD:rangok(playerid,params[]){
+	new masik[1000];
+	new rangok[1000] = "Százados - \t\t200pont\nFõhadnagy - \t\t400pont\nHadnagy - \t\t600pont\nFõtörzszászlós - \t800pont\nTörzszászlós - \t1000pont\nZászlós - \t\t1200pont\nFõtörzsõrmester - \t1400pont\nTörzsõrmester - \t1600pont\nÕrmester - \t\t1800pont\nÕrnagy - \t\t2000pont\nAlezredes - \t2200pont\nEzredes - \t2400pont\nDandártábornok - \t\t2600pont\nVezérõrnagy - \t\t2800pont\nAltábornagy - \t\t3000pont";
+	format(masik,sizeof(masik),"%s",rangok);
+	ShowPlayerDialog(playerid,d_rangok,DIALOG_STYLE_MSGBOX,"Szerveren elérhetõ rangok",masik,"Rendben","");
 	return 1;
 }

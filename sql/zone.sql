@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Hoszt: 127.0.0.1
--- Létrehozás ideje: 2016. Jan 15. 16:21
+-- Létrehozás ideje: 2016. Jan 15. 22:08
 -- Szerver verzió: 5.6.21
 -- PHP verzió: 5.5.19
 
@@ -103,8 +103,8 @@ CREATE TABLE IF NOT EXISTS `jatekosok` (
 --
 
 INSERT INTO `jatekosok` (`ID`, `NEV`, `JELSZO`, `PENZ`, `PONT`, `ADMINLVL`) VALUES
-(1, 'Justricsi', '20461e94da17c7d8e3b5244dcbe233f305c72c0d', 0, 0, 5),
-(2, 'devidson', '783bafc3c6c8441d4950330a0842469efe14ac60', 123450, 109, 5),
+(1, 'Justricsi', '20461e94da17c7d8e3b5244dcbe233f305c72c0d', 68065, 4, 5),
+(2, 'devidson', '783bafc3c6c8441d4950330a0842469efe14ac60', 83812, 120, 5),
 (3, 'Justrics', '20461e94da17c7d8e3b5244dcbe233f305c72c0d', 0, 0, 0),
 (4, 'viviii', '783bafc3c6c8441d4950330a0842469efe14ac60', 123450, 5, 5);
 
@@ -139,14 +139,20 @@ CREATE TABLE IF NOT EXISTS `shops` (
   `z` float NOT NULL,
   `pickupid` int(11) NOT NULL,
   `mapiconid` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- A tábla adatainak kiíratása `shops`
 --
 
 INSERT INTO `shops` (`id`, `x`, `y`, `z`, `pickupid`, `mapiconid`) VALUES
-(1, 1123.74, -2036.99, 69.8862, 1274, 52);
+(1, 1123.74, -2036.99, 69.8862, 1274, 52),
+(2, 2773.81, -2455.57, 13.6371, 1274, 52),
+(3, 2269.59, -75.5542, 26.7724, 1274, 52),
+(4, 207.149, -97.0534, 1.55725, 1274, 52),
+(5, 915.312, -1235.07, 17.2109, 1274, 52),
+(6, 666.679, -1880.26, 5.46, 1274, 52),
+(7, -2198.71, -2387.39, 30.625, 1274, 52);
 
 -- --------------------------------------------------------
 
@@ -276,7 +282,7 @@ MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `shops`
 --
 ALTER TABLE `shops`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `zones`
 --
