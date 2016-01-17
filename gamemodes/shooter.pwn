@@ -140,6 +140,15 @@ enum shop{
 }
 new Shops[MAX_SHOPS][shop];
 
+enum dobject{
+	modelid,
+	Float:fX,
+	Float:fY,
+	Float:fZ,
+	Float:fR
+}
+new DeleteObj[500][dobject];
+
 /*new Teams[] = {
 	TEAM_GROVE,
 	TEAM_BALLAS,
@@ -313,13 +322,14 @@ public OnPlayerConnect(playerid)
 	//TextDrawok(playerid);//Csapatválasztó textdrawok
     MySQL_BanCheck(playerid);
     if(bannolvavan[playerid] != 1){
-	TogglePlayerSpectating(playerid, true);
-    for(new a; JatekosInfo:a < JatekosInfo; a++) jInfo[playerid][JatekosInfo:a] = 0;    //Nullázzuk az enumjait
-    GetPlayerName(playerid, jInfo[playerid][Nev], 25);                                  //Lekérjük a nevét.
-    if(strfind(jInfo[playerid][Nev], "_") == -1)                                        //Nem tartalmaz alsóvonást.
-    for(new a; a < strlen(jInfo[playerid][Nev]); a++) if(jInfo[playerid][Nev][a] == '_') jInfo[playerid][Nev][a] = ' ';//Végigfutunk a nevén. Ha az egyik karaktere '_', kicseréli ' '-re.
-    mysql_format(kapcs, query, 256, "SELECT ID,NEV FROM jatekosok WHERE NEV='%e' LIMIT 1", jInfo[playerid][Nev]);
-    mysql_tquery(kapcs, query, "RegEllenorzes", "d", playerid);
+		TogglePlayerSpectating(playerid, true);
+	    for(new a; JatekosInfo:a < JatekosInfo; a++) jInfo[playerid][JatekosInfo:a] = 0;    //Nullázzuk az enumjait
+	    GetPlayerName(playerid, jInfo[playerid][Nev], 25);                                  //Lekérjük a nevét.
+	    if(strfind(jInfo[playerid][Nev], "_") == -1)                                        //Nem tartalmaz alsóvonást.
+	    for(new a; a < strlen(jInfo[playerid][Nev]); a++) if(jInfo[playerid][Nev][a] == '_') jInfo[playerid][Nev][a] = ' ';//Végigfutunk a nevén. Ha az egyik karaktere '_', kicseréli ' '-re.
+	    mysql_format(kapcs, query, 256, "SELECT ID,NEV FROM jatekosok WHERE NEV='%e' LIMIT 1", jInfo[playerid][Nev]);
+	    mysql_tquery(kapcs, query, "RegEllenorzes", "d", playerid);
+	    mysql_tquery(kapcs, "SELECT * FROM dobjects","DeleteObjects", "d", playerid);
     }
     else {
         ShowPlayerDialog(playerid, DIALOG_BAN, DIALOG_STYLE_MSGBOX, "Ban", "Bannolva vagy a szerverrõl!", "Close", "");
@@ -426,6 +436,22 @@ public ShopLoad()
 		    Shops[i][id] = CreatePickup(Shops[i][pickupId], 1, Shops[i][xPos], Shops[i][yPos], Shops[i][zPos], -1);
 			
 	        ShopsDb++;
+		}
+	return 1;
+}
+
+forward DeleteObjects(playerid);
+public DeleteObjects(playerid){
+    if(!cache_get_row_count()) return printf("Nincs törölendõ object!");
+	 	for(new i = 0; i < cache_get_row_count(); i++)
+		{
+		    DeleteObj[i][modelid] = cache_get_field_content_int(i,"modelid",kapcs);
+		    DeleteObj[i][fX] = cache_get_field_content_int(i,"x",kapcs);
+		    DeleteObj[i][fY] = cache_get_field_content_int(i,"y",kapcs);
+		    DeleteObj[i][fZ] = cache_get_field_content_int(i,"z",kapcs);
+		    DeleteObj[i][fR] = cache_get_field_content_int(i,"r",kapcs);
+		    
+		    RemoveBuildingForPlayer(playerid, DeleteObj[i][modelid], DeleteObj[i][fX], DeleteObj[i][fY], DeleteObj[i][fZ], DeleteObj[i][fR]);
 		}
 	return 1;
 }
@@ -1375,6 +1401,46 @@ CMD:oda(playerid,params[])
 return 1;
 }
 
+CMD:tp(playerid, params[]){
+	new hova[4];
+	if(jInfo[playerid][alevel] > 0)
+	{
+		if(sscanf(params, "s[4]", hova)) return SendClientMessage(playerid, piros, "[ ! ] Használat: /tp [TEAM RÖVIDÍTÉS pl: HUN, ITA, GRE]");
+		for(new i = 0; i < sizeof(hova); i++){
+			hova[i] = toupper(hova[i]);
+		}
+		if(!strcmp("HUN", hova)){
+		    SetPlayerPos(playerid, 1137.1510, -2037.0577, 69.0078);
+		    SetPlayerFacingAngle(playerid, 270.9954);
+		}
+		if(!strcmp("GRE", hova)){
+		    SetPlayerPos(playerid, 2336.3398, 38.8450, 26.4813);
+		    SetPlayerFacingAngle(playerid, 268.4628);
+		}
+		if(!strcmp("ITA", hova)){
+		    SetPlayerPos(playerid, 218.0903, -87.0485, 1.5696);
+		    SetPlayerFacingAngle(playerid, 313.5960);
+		}
+		if(!strcmp("RUS", hova)){
+		    SetPlayerPos(playerid, 912.1116, -1231.0538, 16.9766);
+		    SetPlayerFacingAngle(playerid, 8.6328);
+		}
+		if(!strcmp("KIN", hova)){
+		    SetPlayerPos(playerid, 2675.8403, -2453.0208, 13.6379);
+		    SetPlayerFacingAngle(playerid, 272.1722);
+		}
+		if(!strcmp("KAM", hova)){
+		    SetPlayerPos(playerid, 537.7534, -1877.5918, 3.8040);
+		    SetPlayerFacingAngle(playerid, 341.5533);
+		}
+		if(!strcmp("AUS", hova)){
+		    SetPlayerPos(playerid, -2163.3647, -2387.4873, 30.6250);
+		    SetPlayerFacingAngle(playerid, 149.0301);
+		}
+ 	}
+	return 1;
+}
+
 CMD:penz(playerid,params[])
 {
 	new pID, str[128],str1[128], osszeg;
@@ -1569,14 +1635,17 @@ CMD:vrespawn(playerid, params[])
 }
 
 CMD:fixall(playerid, params[]){
-    for(new i=0; i <= AutoCount;i++)
+	if (jInfo[playerid][alevel] >= 2)
 	{
-	    RepairVehicle(i);
+	    for(new i=0; i <= AutoCount;i++)
+		{
+		    RepairVehicle(i);
+		}
+		new string[128];
+		format(string, sizeof(string), "[ ! ] %s megjavított minden jármûvet!", jInfo[playerid][Nev]);
+		SendClientMessageToAll(vzold, string);
+		Hang(1139);
 	}
-	new string[128];
-	format(string, sizeof(string), "[ ! ] %s megjavított minden jármûvet!", jInfo[playerid][Nev]);
-	SendClientMessageToAll(vzold, string);
-	Hang(1139);
     return 1;
 }
 
@@ -1607,43 +1676,46 @@ return 1;
 
 CMD:skocsi(playerid, params[])
 {
-	if(IsPlayerInAnyVehicle(playerid) != 0)
+    if (jInfo[playerid][alevel] >= 5)
 	{
-		new rendszam[8];
-		new tulajdonos, szin1, szin2;
-		//new string[128];
-		if(sscanf(params, "dd", szin1, szin2)) return SendClientMessage(playerid, piros, "Használata: /skocsi [szin1] [szin2]");
+		if(IsPlayerInAnyVehicle(playerid) != 0)
 		{
-			tulajdonos = 0;
-		    new currentveh = GetPlayerVehicleID(playerid);
-		    new vehModelID = GetVehicleModel(currentveh);
-			new Float:vehx, Float:vehy, Float:vehz, Float:z_rot;
-			GetVehiclePos(currentveh, vehx, vehy, vehz);
-			GetVehicleZAngle(currentveh, z_rot);
-			if(AutoCount < 10)
+			new rendszam[8];
+			new tulajdonos, szin1, szin2;
+			//new string[128];
+			if(sscanf(params, "dd", szin1, szin2)) return SendClientMessage(playerid, piros, "Használata: /skocsi [szin1] [szin2]");
 			{
-			    format(rendszam, sizeof(rendszam), "ZW-000%d", AutoCount);
-				printf("%s", rendszam);
+				tulajdonos = 0;
+			    new currentveh = GetPlayerVehicleID(playerid);
+			    new vehModelID = GetVehicleModel(currentveh);
+				new Float:vehx, Float:vehy, Float:vehz, Float:z_rot;
+				GetVehiclePos(currentveh, vehx, vehy, vehz);
+				GetVehicleZAngle(currentveh, z_rot);
+				if(AutoCount < 10)
+				{
+				    format(rendszam, sizeof(rendszam), "ZW-000%d", AutoCount);
+					printf("%s", rendszam);
+				}
+			 	else if(AutoCount < 100)
+				{
+					format(rendszam, sizeof(rendszam), "ZW-00%d", AutoCount);
+					printf("%s", rendszam);
+				}
+				else if(AutoCount < 1000)
+				{
+				    format(rendszam, sizeof(rendszam), "ZW-0%d", AutoCount);
+					printf("%s", rendszam);
+				}
+				else
+				{
+				    format(rendszam, sizeof(rendszam), "ZW-%d", AutoCount);
+					printf("%s", rendszam);
+				}
+				format(query, sizeof(query), "INSERT INTO `cars` (`id`, `rendszam`, `modelid`, `x`, `y`, `z`, `angle`, `tulaj`, `col1`,`col2`) VALUES (NULL, '%s', '%d', '%f', '%f', '%f', '%f', '%d', '%d', '%d')", rendszam, vehModelID, vehx, vehy, vehz, z_rot, tulajdonos, szin1, szin2);
+				mysql_tquery(kapcs, query);
+				SendClientMessage(playerid, zold, "| A kocsi mentve az adatbázisba! |");
+				AutoCount++;
 			}
-		 	else if(AutoCount < 100)
-			{
-				format(rendszam, sizeof(rendszam), "ZW-00%d", AutoCount);
-				printf("%s", rendszam);
-			}
-			else if(AutoCount < 1000)
-			{
-			    format(rendszam, sizeof(rendszam), "ZW-0%d", AutoCount);
-				printf("%s", rendszam);
-			}
-			else
-			{
-			    format(rendszam, sizeof(rendszam), "ZW-%d", AutoCount);
-				printf("%s", rendszam);
-			}
-			format(query, sizeof(query), "INSERT INTO `cars` (`id`, `rendszam`, `modelid`, `x`, `y`, `z`, `angle`, `tulaj`, `col1`,`col2`) VALUES (NULL, '%s', '%d', '%f', '%f', '%f', '%f', '%d', '%d', '%d')", rendszam, vehModelID, vehx, vehy, vehz, z_rot, tulajdonos, szin1, szin2);
-			mysql_tquery(kapcs, query);
-			SendClientMessage(playerid, zold, "| A kocsi mentve az adatbázisba! |");
-			AutoCount++;
 		}
 	}
 	return 1;
@@ -1651,15 +1723,18 @@ CMD:skocsi(playerid, params[])
 
 CMD:sshop(playerid, params[])
 {
-    new Float:aX, Float:aY, Float:aZ;
-    new pickid, mapid;
-    GetPlayerPos(playerid, aX, aY, aZ);
-    if(sscanf(params, "dd", pickid, mapid)) return SendClientMessage(playerid, piros, "Használata: /sshop [pickupid] [mapiconid]");
+    if (jInfo[playerid][alevel] >= 5)
 	{
-	    format(query, sizeof(query), "INSERT INTO shops VALUES('','%f','%f','%f','%d','%d')", aX, aY, aZ, pickid, mapid);
-	    mysql_tquery(kapcs, query);
-	    SendClientMessage(playerid, zold, "| A shop mentve az adatbázisba! |");
-	}
+	    new Float:aX, Float:aY, Float:aZ;
+	    new pickid, mapid;
+	    GetPlayerPos(playerid, aX, aY, aZ);
+	    if(sscanf(params, "dd", pickid, mapid)) return SendClientMessage(playerid, piros, "Használata: /sshop [pickupid] [mapiconid]");
+		{
+		    format(query, sizeof(query), "INSERT INTO shops VALUES('','%f','%f','%f','%d','%d')", aX, aY, aZ, pickid, mapid);
+		    mysql_tquery(kapcs, query);
+		    SendClientMessage(playerid, zold, "| A shop mentve az adatbázisba! |");
+		}
+ 	}
 	return 1;
 }
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Hoszt: 127.0.0.1
--- Létrehozás ideje: 2016. Jan 15. 22:08
+-- Létrehozás ideje: 2016. Jan 17. 10:46
 -- Szerver verzió: 5.6.21
 -- PHP verzió: 5.5.19
 
@@ -82,6 +82,21 @@ INSERT INTO `cars` (`id`, `rendszam`, `modelid`, `x`, `y`, `z`, `angle`, `tulaj`
 (12, 'ZW-0012', 540, 2500.26, -2581.18, 13.5107, 89.9039, 0, 0, 0),
 (13, 'ZW-0013', 470, -2178.79, -2369.16, 30.615, 53.1454, 0, 1, 1),
 (14, 'ZW-0014', 470, -2176.64, -2366.25, 30.6183, 53.719, 0, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `dobjects`
+--
+
+CREATE TABLE IF NOT EXISTS `dobjects` (
+`id` int(11) NOT NULL,
+  `modelid` int(11) NOT NULL,
+  `x` float NOT NULL,
+  `y` float NOT NULL,
+  `z` float NOT NULL,
+  `r` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -202,7 +217,7 @@ INSERT INTO `zones` (`id`, `minX`, `minY`, `maxX`, `maxY`, `team`, `foglalhato`)
 (25, -604.213, -200.862, -422.992, -36.3615, 3, 1),
 (26, -1127.01, -759.555, -968.651, -596.413, 3, 1),
 (27, -624.157, -563.994, -464.711, -467.151, 3, 1),
-(28, 2421.98, -1040.16, 2609.26, -927.151, 2, 0),
+(28, 2421.98, -1040.16, 2609.26, -927.151, 2, 1),
 (29, 1854.84, 132.682, 1994.51, 188.638, 2, 1),
 (30, 1138.19, 172.825, 1490.8, 399.51, 2, 1),
 (31, 1517.91, -45.2817, 1583.18, 74.0494, 2, 1),
@@ -228,6 +243,12 @@ ALTER TABLE `bandata`
 -- Indexes for table `cars`
 --
 ALTER TABLE `cars`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `dobjects`
+--
+ALTER TABLE `dobjects`
  ADD PRIMARY KEY (`id`);
 
 --
@@ -268,6 +289,11 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 ALTER TABLE `cars`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT for table `dobjects`
+--
+ALTER TABLE `dobjects`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `jatekosok`
 --
