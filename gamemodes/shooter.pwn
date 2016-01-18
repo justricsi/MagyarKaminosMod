@@ -17,6 +17,7 @@
 #define vbarna 0xBE7C41FF
 #define vzold 0x80FF00FF
 #define piros 0xFF0000FF
+#define A_COLOR 0xD279D2FF
 
 //---------------------EGYÉB DEFINEOK-------------------------------------------
 #define TAKEOVER_TIME 15 // mennyi ido kell az elfoglaláshoz
@@ -25,6 +26,7 @@
 #define MAX_SHOPS 50
 
 //------------------------CSAPAT DEFINIÁLÁS-------------------------------------
+#define TEAM_NOT 0
 #define TEAM_HUN 1
 #define TEAM_GRE 2
 #define TEAM_ITA 3
@@ -74,7 +76,8 @@ enum
 	d_admin,
 	DIALOG_BAN,
 	DIALOG_SHOP,
-	d_rangok
+	d_rangok,
+	DIALOG_CMDS
 }
 
 enum JatekosInfo {
@@ -97,7 +100,12 @@ enum eZone
 	Float:zMaxX,
 	Float:zMaxY,
 	zTeam,
-	foglalhato
+	foglalhato,
+	felirat[51],
+	Float:fx,
+	Float:fy,
+	Float:fz,
+	fId
 }
 new ZoneInfo[MAX_ZONE][eZone];
 new SaveZone[1][eZone];
@@ -176,6 +184,12 @@ new foglalja[MAX_ZONE];
 new ShopsDb=0;
 new inShop[MAX_PLAYERS];
 new playerSK[MAX_PLAYERS];
+new Train;
+new TrainUzenet = 0;
+new cargoType[] = {1212,346,1279}; // pénz, fegyver, egyéb
+new cargoes[3];
+new cargoesType[3];
+new inCargo[MAX_PLAYERS];
 
 main()
 {
@@ -212,6 +226,8 @@ public OnGameModeInit()
 	mysql_tquery(kapcs, "SELECT * FROM cars","AutoLoad");
 	mysql_tquery(kapcs, "SELECT * FROM objects","ObjectLoad");
 	mysql_tquery(kapcs, "SELECT * FROM shops","ShopLoad");
+
+    ConnectNPC("[BOT]Train","train_ls");
 
 	SetTimer("ZoneTimer", 1000, true);
 	return 1;
@@ -319,6 +335,10 @@ SetPlayerToTeamColor(playerid)
 
 public OnPlayerConnect(playerid)
 {
+    if(IsPlayerNPC(playerid)) //Checks if the player that just spawned is an NPC.
+    {
+		return 1;
+	}
 	//TextDrawok(playerid);//Csapatválasztó textdrawok
     MySQL_BanCheck(playerid);
     if(bannolvavan[playerid] != 1){
@@ -339,10 +359,11 @@ public OnPlayerConnect(playerid)
 
 public ZoneLoad()
 {
-	printf("ZoneLoad-ban vagyunk, %d", cache_get_row_count());
+	//printf("ZoneLoad-ban vagyunk, %d", cache_get_row_count());
     if(!cache_get_row_count()) return printf("Nincs egy zóna sem az adatbázisban!");
 	 	for(new i = 0; i < cache_get_row_count(); i++)
 		{
+		    new text[51];
 			ZoneInfo[i][zId] = cache_get_field_content_int(i,"id",kapcs);
 		    ZoneInfo[i][zMinX] = cache_get_field_content_float(i,"minX",kapcs);
 		    ZoneInfo[i][zMinY] = cache_get_field_content_float(i,"minY",kapcs);
@@ -350,13 +371,21 @@ public ZoneLoad()
 			ZoneInfo[i][zMaxY] = cache_get_field_content_float(i,"maxY",kapcs);
 			ZoneInfo[i][zTeam] = cache_get_field_content_int(i,"team",kapcs);
 			ZoneInfo[i][foglalhato] = cache_get_field_content_int(i,"foglalhato",kapcs);
+			cache_get_field_content(i, "felirat", text);
+			ZoneInfo[i][felirat] = text;
+			ZoneInfo[i][fx] = cache_get_field_content_float(i,"fX",kapcs);
+			ZoneInfo[i][fy] = cache_get_field_content_float(i,"fY",kapcs);
+			ZoneInfo[i][fz] = cache_get_field_content_float(i,"fZ",kapcs);
 
 			zoneDb++;
-			printf("%d, %f, %f, %f, %f, %d", ZoneInfo[i][zId], ZoneInfo[i][zMinX], ZoneInfo[i][zMinY], ZoneInfo[i][zMaxX], ZoneInfo[i][zMaxY], ZoneInfo[i][zTeam]);
+			//printf("%d, %f, %f, %f, %f, %d, %s", ZoneInfo[i][zId], ZoneInfo[i][zMinX], ZoneInfo[i][zMinY], ZoneInfo[i][zMaxX], ZoneInfo[i][zMaxY], ZoneInfo[i][zTeam], ZoneInfo[i][felirat]);
 			ZoneID[i] = GangZoneCreate(ZoneInfo[i][zMinX], ZoneInfo[i][zMinY], ZoneInfo[i][zMaxX], ZoneInfo[i][zMaxY]);
+			if(ZoneInfo[i][fx] != 0 && ZoneInfo[i][fy] != 0 && ZoneInfo[i][fz] != 0){
+				Create3DTextLabel(ZoneInfo[i][felirat], 0x008080FF, ZoneInfo[i][fx], ZoneInfo[i][fy], ZoneInfo[i][fz], 40.0, 0, 1);
+			}
 			foglalja[ZoneID[i]] = -1;
 		}
-	printf("betöltött sorok: %d", zoneDb);
+	printf("betöltött zónák: %d", zoneDb);
 	/*for(new i=0; i < zoneDb; i++)
 	{
 		ZoneID[i] = GangZoneCreate(ZoneInfo[i][zMinX], ZoneInfo[i][zMinY], ZoneInfo[i][zMaxX], ZoneInfo[i][zMaxY]);
@@ -371,7 +400,7 @@ public ObjectLoad()
 	 	for(new i = 0; i < cache_get_row_count(); i++)
 		{
 			Objektumok[i][id] = ObjektCount;
-			Objektumok[i][modelID] = cache_get_field_content_int(i,"modelid",kapcs);
+			Objektumok[i][modelID] = cache_get_field_content_int(i,"modelID",kapcs);
 		    Objektumok[i][xCor] = cache_get_field_content_float(i,"x",kapcs);
 		    Objektumok[i][yCor] = cache_get_field_content_float(i,"y",kapcs);
 		    Objektumok[i][zCor] = cache_get_field_content_float(i,"z",kapcs);
@@ -380,8 +409,10 @@ public ObjectLoad()
 		    Objektumok[i][rzCor] = cache_get_field_content_float(i,"rz",kapcs);
 
 			CreateObject(Objektumok[i][modelID], Objektumok[i][xCor], Objektumok[i][yCor], Objektumok[i][zCor], Objektumok[i][rxCor], Objektumok[i][ryCor], Objektumok[i][rzCor]);
-	        ObjektCount ++;
+	        ObjektCount++;
+	        printf("%d, %f, %f, %f, %f, %f, %f",Objektumok[i][modelID], Objektumok[i][xCor], Objektumok[i][yCor], Objektumok[i][zCor], Objektumok[i][rxCor], Objektumok[i][ryCor], Objektumok[i][rzCor]);
 		}
+		printf("%d object betöltve!", ObjektCount);
 	return 1;
 }
 
@@ -410,6 +441,10 @@ public AutoLoad()
 		{
 		    CarInfo[i][ID] = AddStaticVehicleEx(CarInfo[i][modelid],CarInfo[i][x],CarInfo[i][y],CarInfo[i][z],CarInfo[i][angle],CarInfo[i][col1],CarInfo[i][col2],-1,0);
 		}*/
+		if(CarInfo[i][modelid]==537){
+		    Train = CarInfo[i][ID];
+		}
+		
 		SetVehicleNumberPlate(CarInfo[i][ID], CarInfo[i][rszam]);
 		AutoCount++;
 		printf("ID: %d, AutoCount: %d",CarInfo[i][ID], AutoCount);
@@ -474,6 +509,18 @@ public OnPlayerDisconnect(playerid, reason)
 
 public OnPlayerSpawn(playerid)
 {
+    if(IsPlayerNPC(playerid)) //Checks if the player that just spawned is an NPC.
+    {
+        new npcname[MAX_PLAYER_NAME];
+        GetPlayerName(playerid, npcname, sizeof(npcname)); //Getting the NPC's name.
+        if(!strcmp(npcname, "[BOT]Train", true)) //Checking if the NPC's name is MyFirstNPC
+        {
+            SetPlayerMarkerForPlayer(playerid, 1, 0x00000000 );
+            PutPlayerInVehicle(playerid, Train, 0); //Putting the NPC into the vehicle we created for it.
+        }
+        return 1;
+    }
+
     PlayerPlaySound( playerid, 1188, 0.0, 0.0, 0.0 );
     SetPlayerToTeamColor(playerid);
 	//Itt mutatjuk a gangzonokat a játékosoknak valamint villogást is itt lehet beállítani
@@ -514,7 +561,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 	    SendClientMessage(killerid, zold, str);
 	    jInfo[killerid][Penz]+=money;
 	    GivePlayerMoney(killerid, money);
-	    format(str,sizeof(str),"%s játékos megölt. Veszteséged: %d$",jInfo[playerid][Nev], money);
+	    format(str,sizeof(str),"%s játékos megölt. Veszteséged: %d$",jInfo[killerid][Nev], money);
 	    SendClientMessage(playerid, orange, str);
 	    jInfo[playerid][Penz]-=money;
 	    GivePlayerMoney(playerid, -money);
@@ -618,6 +665,41 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 			ShowPlayerDialog(playerid, DIALOG_SHOP, DIALOG_STYLE_LIST, "Bolt", "Élet\nPáncél\nSisak", "Megvesz", "Mégse");
 	    }
 	}
+	for(new i = 0; i < 3; i++){
+	    if(ZoneInfo[GetPlayerZone(playerid)][zTeam] == GetPlayerTeam(playerid)){
+		    if(pickupid == cargoes[i]){
+		        if(cargoesType[i] == cargoType[0]) {//pénz
+		            new money = random(15000)+10000;
+		            GivePlayerMoney(playerid, money);
+					jInfo[playerid][Penz] += money;
+					new str[128];
+					format(str, sizeof(str), "%d$ volt a csomagban.", money);
+					SendClientMessage(playerid, vzold, str);
+		        }
+		        else if(cargoesType[i] == cargoType[1]) { //fegyver
+		            new weaponid = random(18)+16;
+		            GivePlayerWeapon(playerid, weaponid, 140);
+		            SendClientMessage(playerid, vzold, "Kaptál egy fegyvert 140 lõszerrel!");
+		        }
+		        else if (cargoesType[i] == cargoType[2]) { //egyéb
+		            SendClientMessage(playerid, vzold, "Egyéb dolgot kaptál!");
+		        }
+	         	DestroyPickup(pickupid);
+		    }
+		} else {
+		    if(inCargo[playerid] == 0) {
+		    	SendClientMessage(playerid, piros, "Nem a Te csapatodé a bázis, ezért nem veheted fel a csomagot!");
+		    	inCargo[playerid] = 1;
+		    	SetTimerEx("InCargoRes", 5000, false, "i", playerid);
+			}
+		}
+	}
+	return 1;
+}
+
+forward InCargoRes(playerid);
+public InCargoRes(playerid){
+    inCargo[playerid] = 0;
 	return 1;
 }
 
@@ -698,6 +780,7 @@ stock GetTeamZoneColor(teamid)
 	switch(teamid)
 	{
 		//A színek végén a 88-as az átlátszóságot jelenti, ez csökkentheto ha mégkisebb számot írunk
+		case TEAM_NOT: return 0xFFFFFF88;
 		case TEAM_HUN: return 0x00FF0088;
 		case TEAM_GRE: return 0xFF00FF88;
 		case TEAM_ITA: return 0xFFFF0088;
@@ -711,6 +794,32 @@ stock GetTeamZoneColor(teamid)
 
 public OnPlayerUpdate(playerid)
 {
+    //if(IsPlayerNPC(playerid)) //Checks if the player that just spawned is an NPC.
+    //{
+        if(IsPlayerInRangeOfPoint(playerid, 7.0, 2765.0864, 311.9946, 9.7014)){
+            if(TrainUzenet == 0){
+				SendClientMessageToAll(vzold, "[ ! ] Két perc múlva vonat érkezik a Vasútállomásra!");
+				TrainUzenet = 1;
+			}
+        }
+        if(IsPlayerInRangeOfPoint(playerid, 7.0, 1697.9894,-1953.9486,13.5469)){
+            if(TrainUzenet == 1){
+				SendClientMessageToAll(vzold, "[ ! ] Vonat érkezett a Vasútállomsra!");
+				new randomnumb = random(3);
+				cargoes[0] = CreatePickup(cargoType[randomnumb], 1, 1725.1725,-1949.4868,14.1172, -1);
+				cargoesType[0] = cargoType[randomnumb];
+				randomnumb = random(2);
+				cargoes[1] = CreatePickup(cargoType[randomnumb], 1, 1734.1632,-1949.6388,14.1172, -1);
+				cargoesType[1] = cargoType[randomnumb];
+				randomnumb = random(2);
+				cargoes[2] = CreatePickup(cargoType[randomnumb], 1, 1743.7703,-1949.4736,14.1172, -1);
+				cargoesType[2] = cargoType[randomnumb];
+				SetTimer("CargoDel", 300000, false);
+				TrainUzenet = 0;
+			}
+        }
+        //return 1;
+	//}
 	if(GetPlayersInZone(GetPlayerZone(playerid), ZoneInfo[GetPlayerZone(playerid)][zTeam]) == 0 && foglal[playerid] == 0 && foglalja[GetPlayerZone(playerid)] == -1 && ZoneInfo[GetPlayerZone(playerid)][foglalhato] == 1 && !IsPlayerInAnyVehicle(playerid)){
 	    ZoneDeaths[GetPlayerZone(playerid)] = 0;
 		ZoneAttacker[GetPlayerZone(playerid)] = GetPlayerTeam(playerid);
@@ -718,6 +827,14 @@ public OnPlayerUpdate(playerid)
 		GangZoneFlashForAll(ZoneID[GetPlayerZone(playerid)], GetTeamZoneColor(ZoneAttacker[GetPlayerZone(playerid)]));
 		foglal[playerid] = 1;
 		foglalja[GetPlayerZone(playerid)] = playerid;
+	}
+	return 1;
+}
+
+forward CargoDel();
+public CargoDel(){
+	for(new i = 0; i < 3; i++){
+        DestroyPickup(cargoes[i]);
 	}
 	return 1;
 }
@@ -748,6 +865,10 @@ public OnPlayerTakeDamage(playerid, issuerid, Float: amount, weaponid, bodypart)
 	    SetPlayerHealth(playerid, 100.0);
 	    SendClientMessage(issuerid,piros,"Ne lõdd az admint!");
 	    return 1;
+	}
+	if(playerSK[playerid] == 1){
+		SetPlayerHealth(playerid, 9999);
+		SendClientMessage(issuerid, piros,"Anti spawn kill védelme van, nem tudod megölni!");
 	}
 	if(issuerid != INVALID_PLAYER_ID && bodypart == 9)
     {
@@ -792,6 +913,20 @@ public OnPlayerClickPlayer(playerid, clickedplayerid, source)
 	return 1;
 }
 
+public OnPlayerCommandText(playerid,cmdtext[])
+{
+  return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
+}
+
+public OnPlayerCommandPerformed(playerid, cmdtext[], success)
+{
+    if(!success)
+    {
+        SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
+    }
+    return 1;
+}
+
 forward getPont(playerid, mennyit);
 public getPont(playerid, mennyit){
 	jInfo[playerid][Pont]++;
@@ -826,8 +961,15 @@ public JatekosBelep(playerid)
 	GivePlayerMoney(playerid, jInfo[playerid][Penz]);
 	foglal[playerid] = 0;
 	inShop[playerid] = 0;
+	inCargo[playerid] = 0;
 	for(new i=0; i < ShopsDb; i++){
 	    SetPlayerMapIcon(playerid, i, Shops[i][xPos], Shops[i][yPos], Shops[i][zPos], Shops[i][mapiconid], 0, MAPICON_LOCAL);
+	}
+	for(new i=0; i < zoneDb; i++){
+	    if(ZoneInfo[i][foglalhato] != 0){
+	        if(ZoneInfo[i][fx] != 0 && ZoneInfo[i][fy] != 0 && ZoneInfo[i][fz] != 0)
+	    		SetPlayerMapIcon(playerid, i, ZoneInfo[i][fx], ZoneInfo[i][fy], ZoneInfo[i][fz], 19, 0, MAPICON_LOCAL);
+	 	}
 	}
     return 1;
 }
@@ -855,6 +997,17 @@ public ZoneTimer()
 					format(str, sizeof(str), "Sikeresen elfoglaltad a bázist! Jutalmad: %d$ és 3 pont", money);
 					getPont(foglalja[i], 3);
 					SendClientMessage(foglalja[i], zold, str);
+					for(new j = 0; j < MAX_PLAYERS; j++){
+					    if(j != foglalja[i]){
+						    if(IsPlayerInZone(j, i) && GetPlayerTeam(j) == GetPlayerTeam(foglalja[i])){
+						        GivePlayerMoney(j,money-200);
+						        jInfo[j][Penz] += money-200;
+						        format(str, sizeof(str), "Segítettél elfoglalni egy bázist! Jutalmad: %d$ és 2 pont", money-200);
+		         				getPont(foglalja[i], 2);
+		         				SendClientMessage(j, zold, str);
+						    }
+					    }
+					}
 					foglalja[i] = -1;
 				}
 			}
@@ -1166,7 +1319,7 @@ Dialog_Shopitem(playerid, response, listitem){
 
 forward ShopExit(playerid);
 public ShopExit(playerid){
-	printf("ShopExit playerid: %d", playerid);
+	//printf("ShopExit playerid: %d", playerid);
 	inShop[playerid] = 0;
 	return 1;
 }
@@ -1184,109 +1337,82 @@ public KickTimer(playerid)
     return 1;
 }
 
-//------------------------------PARANCSOK---------------------------------------
-CMD:kocsi(playerid,params[])
-{
-	new mID,buffer[20];
-	if(sscanf(params,"i",mID)) return SendClientMessage(playerid,orange,"INFO: /kocsi [ID]");
-	if(mID<400 || mID>611) return SendClientMessage(playerid,orange,"400-611-ig vannak csak kocsik!");
-
-	new Float:pX,Float:pY,Float:pZ,Float:pR;
-	GetPlayerPos(playerid,pX, pY, pZ);
-	GetPlayerFacingAngle(playerid, pR);
-
-	format(buffer, sizeof(buffer),"ZÓNA-%d",random(10));
-	SetVehicleNumberPlate(AddStaticVehicleEx(mID,pX+4,pY,pZ,pR,140,140,-1,0),buffer);
-
-	AutoCount++;
-	return 1;
+IsVehicleOccupied(a){
+	for(new i=0; i < MAX_PLAYERS; i++)
+    	if(IsPlayerInVehicle(i, a))
+			return 1;
+	return 0;
 }
 
-CMD:pteam(playerid,params[])
-{
-	new teamNumber, pID;
-	if(sscanf(params, "ii", pID, teamNumber)) return SendClientMessage(playerid, orange, "Használat: /pteam [playerid] [1,2,3]");
-	if(IsPlayerConnected(pID))
-	{
-		SetPlayerTeam(pID, teamNumber);
-		new str[128];
-		format(str, sizeof(str), "A team sikeresen beállítva %s játékosnak! [ID: %d, Team: %d]", jInfo[pID][Nev], pID, teamNumber);
-		SendClientMessage(playerid, zold, str);
-		format(str, sizeof(str), "Beállították a csapatodat! [Csapat: %d]", teamNumber);
-		SendClientMessage(pID, zold, str);
+Hang(hangid){
+	for(new i=0; i < MAX_PLAYERS; i++){
+	    PlayerPlaySound(i, hangid, 0.0, 0.0, 0.0);
 	}
+}
+
+PlayerHang(hangid, playerid){
+	PlayerPlaySound(playerid, hangid, 0.0, 0.0, 0.0);
+}
+
+CheckAdmin(playerid){
+    if(jInfo[playerid][alevel] == 0)
+        return true;
+	else
+	    return false;
+}
+
+//------------------------------PARANCSOK---------------------------------------
+
+CMD:rangok(playerid,params[]){
+	new masik[1000];
+	new rangok[1000] = "Százados - \t\t200pont\nFõhadnagy - \t\t400pont\nHadnagy - \t\t600pont\nFõtörzszászlós - \t800pont\nTörzszászlós - \t1000pont\nZászlós - \t\t1200pont\nFõtörzsõrmester - \t1400pont\nTörzsõrmester - \t1600pont\nÕrmester - \t\t1800pont\nÕrnagy - \t\t2000pont\nAlezredes - \t2200pont\nEzredes - \t2400pont\nDandártábornok - \t\t2600pont\nVezérõrnagy - \t\t2800pont\nAltábornagy - \t\t3000pont";
+	format(masik,sizeof(masik),"%s",rangok);
+	ShowPlayerDialog(playerid,d_rangok,DIALOG_STYLE_MSGBOX,"Szerveren elérhetõ rangok",masik,"Rendben","");
 	return 1;
 }
 
-CMD:fegyver(playerid,params[]){
-	new weaponID;
-
-    if(sscanf(params,"i",weaponID)) return SendClientMessage(playerid,orange,"HasznA!lat /fegyver [id]");
-    if(weaponID<0 || weaponID>47) return SendClientMessage(playerid,orange,"1-47-ig vannak csak fegyverek!");
-	GivePlayerWeapon(playerid, weaponID, 64);
-	return 1;
-}
-
-CMD:szone(playerid,params[]){
- new melyik;
- new melyikteam;
-    if(sscanf(params,"ii",melyik, melyikteam)) return SendClientMessage(playerid,orange,"Használat /szone [1 - min, 2 - max] [melyik team]");
-    {
-        if(melyik == 1) {
-			new Float:x, Float:y, Float:z;
-			GetPlayerPos(playerid, x, y, z);
-			SaveZone[0][zMinX] = x;
-			SaveZone[0][zMinY] = y;
-			SendClientMessage(playerid, zold, "A zóna kezdete sikeresen lementve! Menj a másik sarokba és /szone 2 [teamcolor]!");
-        }
-
-        if(melyik == 2) {
-			new Float:x, Float:y, Float:z;
-			GetPlayerPos(playerid, x, y, z);
-			SaveZone[0][zMaxX] = x;
-			SaveZone[0][zMaxY] = y;
-			SaveZone[0][zTeam] = melyikteam;
-			format(query, sizeof(query), "INSERT INTO zones VALUES ('','%f','%f','%f','%f','%d','1')", SaveZone[0][zMinX], SaveZone[0][zMinY], SaveZone[0][zMaxX], SaveZone[0][zMaxY], melyikteam);
-			mysql_tquery(kapcs, query);
-			SendClientMessage(playerid, zold, "A zóna sikeresen elmentve az adatbázisba!");
-
-			ZoneInfo[zoneDb][zId] = zoneDb;
-			ZoneInfo[zoneDb][zMinX] = SaveZone[0][zMinX];
-			ZoneInfo[zoneDb][zMinY] = SaveZone[0][zMinY];
-			ZoneInfo[zoneDb][zMaxX] = SaveZone[0][zMaxX];
-			ZoneInfo[zoneDb][zMaxY] = SaveZone[0][zMaxY];
-			ZoneInfo[zoneDb][zTeam] = SaveZone[0][zTeam];
-			ZoneID[zoneDb] = GangZoneCreate(SaveZone[0][zMinX], SaveZone[0][zMinY], SaveZone[0][zMaxX], SaveZone[0][zMaxY]);
-			printf("zonedb: %d", zoneDb);
-			printf("%d, %f, %f, %f, %f, %d", ZoneInfo[zoneDb][zId], ZoneInfo[zoneDb][zMinX], ZoneInfo[zoneDb][zMinY], ZoneInfo[zoneDb][zMaxX], ZoneInfo[zoneDb][zMaxY], ZoneInfo[zoneDb][zTeam]);
-
-		for(new i = 0; i < GetPlayersOnServer(); i++){
-			new zoneidija = GangZoneShowForPlayer(i, ZoneID[zoneDb], GetTeamZoneColor(ZoneInfo[zoneDb][zTeam]));
-			foglalja[zoneidija] = -1;
-		}
-		zoneDb++;
-        }
-    }
- return 1;
+CMD:parancsok(playerid, params[]){
+	new full[1024];
+	new str1[512] = "/rangok\tMegmutatja a rangokat\n";
+	new str2[512] = "";
+	format(full, sizeof(full), "%s%s", str1, str2);
+    ShowPlayerDialog(playerid, DIALOG_CMDS, DIALOG_STYLE_MSGBOX, "Parancsok:", full,"Rendben","");
 }
 
 //-----------------------------------ADMIN PARANCSOK----------------------------
 CMD:acmd(playerid, params[])
 {
-	new teljes[1024];
-	new str1[512] = "/time [IDÕ] - idõállítás\n/get [ID] -  játékos magadhoz telézése\n/oda [ID] - odateleportálsz valakihez\n/vrespawn - jármûvek újraspawnolása\n/adszolg - adminszolgálat\n/warn [ID] [INDOK] - figyelmeztetés\n/ban [ID] [INDOK] - játékos kitiltása\n/kick [ID] [INDOK] - játékos kirúgása\n/setskin [ID] [SkinID] - kinézet állítás\n/penz [ID] [ÖSSZEG] - pénz állítás\n/idojaras [IdõjárásID] - idõjárás állítás\n/gazdagok - megmutatja a leggazdagabb embereket\n";
-	new str2[512] = "/adminszint [ID] [SZINT] - adminszint állítás\n/healall - mindenkinek az életét feltölti\n/heal [ID] - egy játékos életének feltöltése\n/armour [ID] - páncélzat feltöltése\n/disarm [ID] - játékos lefegyverzése\n/dynamic - dinamikus idõ és idõjárás\n/asz [SZÖVEG] - Fõadmin-chat\n/jail [ID] [PERC] [INDOK] - játékos börtönbe zárása\n/unjail [ID] - játékos kiengedése";
-	if(jInfo[playerid][alevel] == 0) return SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 1]");
-	format(teljes, sizeof(teljes), "%s%s%s", str1, str2);
-	ShowPlayerDialog(playerid, d_admin, DIALOG_STYLE_MSGBOX, "Adminparancsok:", teljes,"Rendben","");
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
+    if(jInfo[playerid][alevel] > 0)
+	{
+		new teljes[1024];
+		new str1[512] = "/time [IDÕ] - idõállítás\n/get [ID] -  játékos magadhoz telézése\n/oda [ID] - odateleportálsz valakihez\n/vrespawn - jármûvek újraspawnolása\n/adszolg - adminszolgálat\n/warn [ID] [INDOK] - figyelmeztetés\n/ban [ID] [INDOK] - játékos kitiltása\n/kick [ID] [INDOK] - játékos kirúgása\n/setskin [ID] [SkinID] - kinézet állítás\n/penz [ID] [ÖSSZEG] - pénz állítás\n/idojaras [IdõjárásID] - idõjárás állítás\n/gazdagok - megmutatja a leggazdagabb embereket\n";
+		new str2[512] = "/adminszint [ID] [SZINT] - adminszint állítás\n/healall - mindenkinek az életét feltölti\n/heal [ID] - egy játékos életének feltöltése\n/armour [ID] - páncélzat feltöltése\n/disarm [ID] - játékos lefegyverzése\n/dynamic - dinamikus idõ és idõjárás\n/asz [SZÖVEG] - Fõadmin-chat\n/jail [ID] [PERC] [INDOK] - játékos börtönbe zárása\n/unjail [ID] - játékos kiengedése";
+		format(teljes, sizeof(teljes), "%s%s", str1, str2);
+		ShowPlayerDialog(playerid, d_admin, DIALOG_STYLE_MSGBOX, "Adminparancsok:", teljes,"Rendben","");
+	}
+	return 1;
+}
+
+CMD:ac(playerid, params[]){
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
+    if(jInfo[playerid][alevel] > 0)
+	{
+	    new szoveg[128];
+	    if(sscanf(params, "s[128]", szoveg)) return SendClientMessage(playerid, piros, "[ ! ] Használat: /ac [szöveg]");
+	    new str[256];
+	    format(str, sizeof(str), "[ ! ] Admin %s: %s", jInfo[playerid][Nev], szoveg);
+	    SendClientMessageToAll(A_COLOR, str);
+	}
 	return 1;
 }
 
 CMD:adszolg(playerid,params[]){
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
 	new string[128];
 	if(IsPlayerConnected(playerid))
 	{
-		if(jInfo[playerid][alevel] >0)
+		if(jInfo[playerid][alevel] > 0)
 		{
 			if(AdminSzolgalat[playerid] == false)
 			{
@@ -1314,6 +1440,7 @@ return 1;
 
 CMD:adminszint(playerid,params[])
 {
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
 	if(jInfo[playerid][alevel] > 3)
 	{
 		new pid, level, string[128], nev[128];
@@ -1325,16 +1452,54 @@ CMD:adminszint(playerid,params[])
 		format(string,sizeof(string),"[ ! ] Admin %s beállította %s adminszintjét %d-re",jInfo[playerid][Nev],nev,level);
 		SendClientMessageToAll(vzold,string);
 		jInfo[pid][alevel] = level;
-	}
-	else
+	} else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 4]");
+	return 1;
+}
+
+CMD:kocsi(playerid,params[])
+{
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
+    if(jInfo[playerid][alevel] > 3)
 	{
-        SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 4]");
-	}
-return 1;
+		new mID,buffer[20];
+		if(sscanf(params,"i",mID)) return SendClientMessage(playerid,orange,"INFO: /kocsi [ID]");
+		if(mID<400 || mID>611) return SendClientMessage(playerid,orange,"400-611-ig vannak csak kocsik!");
+
+		new Float:pX,Float:pY,Float:pZ,Float:pR;
+		GetPlayerPos(playerid,pX, pY, pZ);
+		GetPlayerFacingAngle(playerid, pR);
+
+		format(buffer, sizeof(buffer),"ZÓNA-%d",random(10));
+		SetVehicleNumberPlate(AddStaticVehicleEx(mID,pX+4,pY,pZ,pR,140,140,-1,0),buffer);
+
+		//AutoCount++;
+	} else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 4]");
+	return 1;
+}
+
+CMD:pteam(playerid,params[])
+{
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
+    if(jInfo[playerid][alevel] > 2)
+	{
+		new teamNumber, pID;
+		if(sscanf(params, "ii", pID, teamNumber)) return SendClientMessage(playerid, orange, "Használat: /pteam [playerid] [1,2,3]");
+		if(IsPlayerConnected(pID))
+		{
+			SetPlayerTeam(pID, teamNumber);
+			new str[128];
+			format(str, sizeof(str), "A team sikeresen beállítva %s játékosnak! [ID: %d, Team: %d]", jInfo[pID][Nev], pID, teamNumber);
+			SendClientMessage(playerid, zold, str);
+			format(str, sizeof(str), "Beállították a csapatodat! [Csapat: %d]", teamNumber);
+			SendClientMessage(pID, zold, str);
+		} else return SendClientMessage(playerid, piros, "[ ! ] Nem online a megadott játékos!");
+	} else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 3]");
+	return 1;
 }
 
 CMD:setskin(playerid, params[])
 {
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
     if(jInfo[playerid][alevel] > 0)
 	{
 		new pid, skin, string[128];
@@ -1345,18 +1510,17 @@ CMD:setskin(playerid, params[])
 		SendClientMessage(pid, orange, string);
 		SetPlayerSkin(pid, skin);
 		TogglePlayerControllable(playerid, true);
-    }else{
-		SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 1]");
-	}
+    }else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 1]");
 	return 1;
 }
 
 CMD:get(playerid,params[])
 {
-	new pID, str[128];
-	new Float:aX, Float:aY, Float:aZ;
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
 	if(jInfo[playerid][alevel] > 2)
 	{
+        new pID, str[128];
+		new Float:aX, Float:aY, Float:aZ;
 		if(sscanf(params, "i", pID)) return SendClientMessage(playerid, piros, "[ ! ] Használat: /get [playerid]");
 		if(pID == INVALID_PLAYER_ID) return SendClientMessage(playerid, piros, "[ ! ] Nincs ilyen játékos!");
 	 	if(!IsPlayerInAnyVehicle(pID))
@@ -1369,83 +1533,123 @@ CMD:get(playerid,params[])
 		}
 		else {
 		    GetPlayerPos(playerid, aX, aY, aZ);
-		    SetVehiclePos(GetPlayerVehicleID(pID), aX+1, aY+1, aZ+1);
+		    SetVehiclePos(GetPlayerVehicleID(pID), aX+2, aY+2, aZ+2);
 		    format(str, sizeof(str), "[ ! ] Admin %s magához telepoltárt! ",jInfo[playerid][Nev]);
 			SendClientMessage(pID, zold, str);
 			SetPlayerInterior(pID,0);
 		}
-	}else{
-	SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 3]");
-	}
-
-return 1;
+	} else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 3]");
+	return 1;
 }
 
 CMD:oda(playerid,params[])
 {
-	new pID, str[128];
-	new Float:aX, Float:aY, Float:aZ;
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
 	if(jInfo[playerid][alevel] > 2)
 	{
+	    new pID, str[128];
+		new Float:aX, Float:aY, Float:aZ;
 		if(sscanf(params, "i", pID)) return SendClientMessage(playerid, piros, "[ ! ] Használat: /oda [playerid]");
 		if(pID == INVALID_PLAYER_ID) return SendClientMessage(playerid, piros, "[ ! ] Nincs ilyen játékos!");
-		GetPlayerPos(pID, aX, aY, aZ);
-		SetPlayerPos(playerid, aX+0.5, aY+0.5, aZ+0.5);
-		format(str, sizeof(str), "[ ! ] Odamentél %s játékoshoz! ",jInfo[pID][Nev]);
-		SendClientMessage(playerid, zold, str);
-		SetPlayerInterior(playerid,0);
-	}else{
-	SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 3]");
-	}
-
-return 1;
+		if(!IsPlayerInAnyVehicle(playerid)){
+			GetPlayerPos(pID, aX, aY, aZ);
+			SetPlayerPos(playerid, aX+0.5, aY+0.5, aZ+0.5);
+			format(str, sizeof(str), "[ ! ] Odamentél %s játékoshoz! ",jInfo[pID][Nev]);
+			SendClientMessage(playerid, zold, str);
+			SetPlayerInterior(playerid,0);
+		} else {
+		    GetPlayerPos(pID, aX, aY, aZ);
+		    SetVehiclePos(GetPlayerVehicleID(playerid), aX+2, aY+2, aZ+2);
+		    format(str, sizeof(str), "[ ! ] Odamentél %s játékoshoz! ",jInfo[pID][Nev]);
+			SendClientMessage(playerid, zold, str);
+			SetPlayerInterior(playerid,0);
+		}
+	} else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 3]");
+	return 1;
 }
 
 CMD:tp(playerid, params[]){
-	new hova[4];
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
 	if(jInfo[playerid][alevel] > 0)
 	{
+		new hova[4];
 		if(sscanf(params, "s[4]", hova)) return SendClientMessage(playerid, piros, "[ ! ] Használat: /tp [TEAM RÖVIDÍTÉS pl: HUN, ITA, GRE]");
 		for(new i = 0; i < sizeof(hova); i++){
 			hova[i] = toupper(hova[i]);
 		}
-		if(!strcmp("HUN", hova)){
-		    SetPlayerPos(playerid, 1137.1510, -2037.0577, 69.0078);
-		    SetPlayerFacingAngle(playerid, 270.9954);
+		if(!IsPlayerInAnyVehicle(playerid)){
+			if(!strcmp("HUN", hova)){
+			    SetPlayerPos(playerid, 1137.1510, -2037.0577, 69.0078);
+			    SetPlayerFacingAngle(playerid, 270.9954);
+			    SetPlayerInterior(playerid,0);
+			}
+			if(!strcmp("GRE", hova)){
+			    SetPlayerPos(playerid, 2336.3398, 38.8450, 26.4813);
+			    SetPlayerFacingAngle(playerid, 268.4628);
+			    SetPlayerInterior(playerid,0);
+			}
+			if(!strcmp("ITA", hova)){
+			    SetPlayerPos(playerid, 218.0903, -87.0485, 1.5696);
+			    SetPlayerFacingAngle(playerid, 313.5960);
+			    SetPlayerInterior(playerid,0);
+			}
+			if(!strcmp("RUS", hova)){
+			    SetPlayerPos(playerid, 912.1116, -1231.0538, 16.9766);
+			    SetPlayerFacingAngle(playerid, 8.6328);
+			    SetPlayerInterior(playerid,0);
+			}
+			if(!strcmp("KIN", hova)){
+			    SetPlayerPos(playerid, 2675.8403, -2453.0208, 13.6379);
+			    SetPlayerFacingAngle(playerid, 272.1722);
+			    SetPlayerInterior(playerid,0);
+			}
+			if(!strcmp("KAM", hova)){
+			    SetPlayerPos(playerid, 537.7534, -1877.5918, 3.8040);
+			    SetPlayerFacingAngle(playerid, 341.5533);
+			    SetPlayerInterior(playerid,0);
+			}
+			if(!strcmp("AUS", hova)){
+			    SetPlayerPos(playerid, -2163.3647, -2387.4873, 30.6250);
+			    SetPlayerFacingAngle(playerid, 149.0301);
+			    SetPlayerInterior(playerid,0);
+			}
+		} else {
+		    if(!strcmp("HUN", hova)){
+		    	SetVehiclePos(GetPlayerVehicleID(playerid), 1137.1510, -2037.0577, 69.0078);
+			}
+			if(!strcmp("GRE", hova)){
+			    SetVehiclePos(GetPlayerVehicleID(playerid), 2336.3398, 38.8450, 26.4813);
+			    SetVehicleZAngle(GetPlayerVehicleID(playerid), 181.0543);
+			}
+			if(!strcmp("ITA", hova)){
+			    SetVehiclePos(GetPlayerVehicleID(playerid), 218.0903, -87.0485, 1.5696);
+			    SetVehicleZAngle(GetPlayerVehicleID(playerid), 309.8417);
+			}
+			if(!strcmp("RUS", hova)){
+			    SetVehiclePos(GetPlayerVehicleID(playerid), 912.1116, -1231.0538, 16.9766);
+			    SetVehicleZAngle(GetPlayerVehicleID(playerid), 268.8889);
+			}
+			if(!strcmp("KIN", hova)){
+			    SetVehiclePos(GetPlayerVehicleID(playerid), 2675.8403, -2453.0208, 13.6379);
+			}
+			if(!strcmp("KAM", hova)){
+			    SetVehiclePos(GetPlayerVehicleID(playerid), 537.7534, -1877.5918, 3.8040);
+			}
+			if(!strcmp("AUS", hova)){
+			    SetVehiclePos(GetPlayerVehicleID(playerid), -2163.3647, -2387.4873, 30.6250);
+			    SetVehicleZAngle(GetPlayerVehicleID(playerid), 231.4317);
+			}
 		}
-		if(!strcmp("GRE", hova)){
-		    SetPlayerPos(playerid, 2336.3398, 38.8450, 26.4813);
-		    SetPlayerFacingAngle(playerid, 268.4628);
-		}
-		if(!strcmp("ITA", hova)){
-		    SetPlayerPos(playerid, 218.0903, -87.0485, 1.5696);
-		    SetPlayerFacingAngle(playerid, 313.5960);
-		}
-		if(!strcmp("RUS", hova)){
-		    SetPlayerPos(playerid, 912.1116, -1231.0538, 16.9766);
-		    SetPlayerFacingAngle(playerid, 8.6328);
-		}
-		if(!strcmp("KIN", hova)){
-		    SetPlayerPos(playerid, 2675.8403, -2453.0208, 13.6379);
-		    SetPlayerFacingAngle(playerid, 272.1722);
-		}
-		if(!strcmp("KAM", hova)){
-		    SetPlayerPos(playerid, 537.7534, -1877.5918, 3.8040);
-		    SetPlayerFacingAngle(playerid, 341.5533);
-		}
-		if(!strcmp("AUS", hova)){
-		    SetPlayerPos(playerid, -2163.3647, -2387.4873, 30.6250);
-		    SetPlayerFacingAngle(playerid, 149.0301);
-		}
- 	}
+ 	} else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 1]");
 	return 1;
 }
 
 CMD:penz(playerid,params[])
 {
-	new pID, str[128],str1[128], osszeg;
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
 	if(jInfo[playerid][alevel] > 3)
 	{
+		new pID, str[128],str1[128], osszeg;
 		if(sscanf(params, "ii", pID,osszeg)) return SendClientMessage(playerid, piros, "[ ! ] Használat: /penz [playerid] [összeg]");
 		if(pID == INVALID_PLAYER_ID) return SendClientMessage(playerid, piros, "[ ! ] Nincs ilyen játékos!");
 		if(osszeg < 0)return SendClientMessage(playerid, piros, "[ ! ] Negatív összeget nem lehet megadni!");
@@ -1455,15 +1659,13 @@ CMD:penz(playerid,params[])
 		SendClientMessage(playerid, zold, str1);
 		jInfo[pID][Penz] += osszeg;
 
-	}else{
-	SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 4]");
-	}
-
-return 1;
+	} else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 4]");
+	return 1;
 }
 
 CMD:time(playerid, params[])
 {
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
     if(jInfo[playerid][alevel] > 0)
 	{
 		new time, string[128];
@@ -1473,14 +1675,13 @@ CMD:time(playerid, params[])
 		SendClientMessageToAll( vzold, string);
 		SetWorldTime(time);
 		Hang(1139);
-    }else{
-		SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 1]");
-	}
+    } else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 1]");
 	return 1;
 }
 
 CMD:idojaras(playerid, params[])
 {
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
     if(jInfo[playerid][alevel] > 0)
 	{
 		new weather, string[128];
@@ -1490,15 +1691,14 @@ CMD:idojaras(playerid, params[])
 		SendClientMessageToAll(vzold, string);
 		SetWeather(weather);
 		Hang(1139);
-    }else{
-		SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 1]");
-	}
+  	} else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 1]");
 	return 1;
 }
 
 CMD:kick(playerid, params[])
 {
-    if(jInfo[playerid][alevel]  > 4)
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
+    if(jInfo[playerid][alevel]  > 1)
 	{
 		new pid, indok[50], string[128];
 		if(sscanf(params, "us[50]", pid, indok)) return SendClientMessage(playerid, piros, "[ ! ] Használat: /kick [ID] [INDOK]");
@@ -1507,15 +1707,14 @@ CMD:kick(playerid, params[])
 		format(string,sizeof(string),"[ ! ] Admin: %s kirúgta %s -t![indok: %s]", jInfo[playerid][Nev], jInfo[pid][Nev], indok);
 		SendClientMessageToAll(vzold, string);
 		Kick_Player(pid);
-	}else{
-		SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 4]");
-	}
+	} else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 2]");
 	return 1;
 }
 
 CMD:ban(playerid, params[])
 {
-    if(jInfo[playerid][alevel]  > 4)
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
+    if(jInfo[playerid][alevel]  > 2)
 	{
 		new pid, indok[50], string[128], ip[16];
 		if(sscanf(params, "us[50]", pid, indok)) return SendClientMessage(playerid, piros, "[ ! ] Használat: /ban [ID] [INDOK]");
@@ -1528,15 +1727,14 @@ CMD:ban(playerid, params[])
 		format(string,sizeof(string),"[ ! ] Admin: %s kibannolta %s -t![indok: %s]", jInfo[playerid][Nev], jInfo[pid][Nev], indok);
 		SendClientMessageToAll(vzold, string);
        	Kick_Player(pid);
-    }else{
-		SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 4]");
-	}
+    } else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 3]");
 	return 1;
 }
 
 CMD:warn(playerid, params[])
 {
-    if(jInfo[playerid][alevel] >= 1)
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
+    if(jInfo[playerid][alevel] > 0)
 	{
 		new pId, reason[50], str[128];
 		if(sscanf(params, "is[50]", pId, reason)) return SendClientMessage(playerid, piros, "[ ! ] Használat: /warn [ID] [INDOK]");
@@ -1553,13 +1751,14 @@ CMD:warn(playerid, params[])
 			SendClientMessageToAll(vzold, str);
 		    Kick_Player(pId);
 		}
-	}
+	} else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 1]");
 	return 1;
 }
 
 CMD:healall(playerid, params[])
 {
-    if(jInfo[playerid][alevel] >= 1)
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
+    if(jInfo[playerid][alevel] > 1)
 	{
 	    new str[128];
 		for(new i = 0; i < MAX_PLAYERS; i++) {
@@ -1568,13 +1767,14 @@ CMD:healall(playerid, params[])
 		format(str, sizeof(str), "[ ! ] Admin: %s meggyógyított minden játékost!", jInfo[playerid][Nev]);
 		SendClientMessageToAll(vzold, str);
 		Hang(1139);
-	}
+	} else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 2]");
 	return 1;
 }
 
 CMD:armourall(playerid, params[])
 {
-    if(jInfo[playerid][alevel] >= 1)
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
+    if(jInfo[playerid][alevel] > 1)
 	{
 	    new str[128];
 		for(new i = 0; i < MAX_PLAYERS; i++) {
@@ -1583,13 +1783,14 @@ CMD:armourall(playerid, params[])
 		format(str, sizeof(str), "[ ! ] Admin: %s mindenkinek adott golyóállómellényt!", jInfo[playerid][Nev]);
 		SendClientMessageToAll(vzold, str);
 		Hang(1139);
-	}
+	} else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 2]");
 	return 1;
 }
 
 CMD:helmall(playerid, params[])
 {
-    if(jInfo[playerid][alevel] >= 1)
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
+    if(jInfo[playerid][alevel] > 1)
 	{
 	    new str[128];
 		for(new i = 0; i < MAX_PLAYERS; i++) {
@@ -1601,43 +1802,63 @@ CMD:helmall(playerid, params[])
 		format(str, sizeof(str), "[ ! ] Admin: %s mindenkinek adott sisakot!", jInfo[playerid][Nev]);
 		SendClientMessageToAll(vzold, str);
 		Hang(1139);
-	}
+	} else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 2]");
+	return 1;
+}
+
+CMD:weaponall(playerid,params[]){
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
+    if(jInfo[playerid][alevel] > 1)
+	{
+		new weaponID;
+	    if(sscanf(params,"i",weaponID)) return SendClientMessage(playerid,orange,"Használat /fegyver [id]");
+	    if(weaponID<0 || weaponID>47) return SendClientMessage(playerid,orange,"1-47-ig vannak csak fegyverek!");
+		GivePlayerWeapon(playerid, weaponID, 64);
+	} else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 2]");
 	return 1;
 }
 
 CMD:playsound(playerid, params[]){ // Ez csak arra ha valamilyen hangot keresünk
-	new hang;
-	if(sscanf(params, "i", hang)) return SendClientMessage(playerid, piros, "Használat: /playsound [id]");
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
+    if(jInfo[playerid][alevel] > 4)
 	{
-	    PlayerPlaySound(playerid, hang, 0.0, 0.0, 0.0);
-	}
+		new hang;
+		if(sscanf(params, "i", hang)) return SendClientMessage(playerid, piros, "Használat: /playsound [id]");
+		{
+		    PlayerPlaySound(playerid, hang, 0.0, 0.0, 0.0);
+		}
+ 	} else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 5]");
 	return 1;
 }
 
 CMD:vrespawn(playerid, params[])
 {
-	if (jInfo[playerid][alevel] >= 2)
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
+	if (jInfo[playerid][alevel] > 1)
 	{
 	    new string[128];
-		for(new i=0; i <= AutoCount;i++)
+		for(new i=0; i <= MAX_VEHICLES;i++)
 		{
 		    if(IsVehicleOccupied(i) == 0)
 		    {
-		        printf("%i", i);
-		        SetVehicleToRespawn(i);
+		        //printf("%i", i);
+		        if(CarInfo[i][modelid] != 537){
+		        	SetVehicleToRespawn(i);
+		        }
 		    }
 		}
 		format(string, sizeof(string), "[ ! ] %s visszatett minden használaton kívüli jármûvet a helyére!", jInfo[playerid][Nev]);
 		SendClientMessageToAll(vzold, string);
 		Hang(1139);
-	}
+	} else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 2]");
 	return 1;
 }
 
 CMD:fixall(playerid, params[]){
-	if (jInfo[playerid][alevel] >= 2)
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
+	if (jInfo[playerid][alevel] > 1)
 	{
-	    for(new i=0; i <= AutoCount;i++)
+	    for(new i=0; i <= MAX_VEHICLES;i++)
 		{
 		    RepairVehicle(i);
 		}
@@ -1645,38 +1866,106 @@ CMD:fixall(playerid, params[]){
 		format(string, sizeof(string), "[ ! ] %s megjavított minden jármûvet!", jInfo[playerid][Nev]);
 		SendClientMessageToAll(vzold, string);
 		Hang(1139);
-	}
+	} else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 2]");
     return 1;
-}
-
-IsVehicleOccupied(a){
-	for(new i=0; i < MAX_PLAYERS; i++)
-    	if(IsPlayerInVehicle(i, a))
-			return 1;
-	return 0;
-}
-
-Hang(hangid){
-	for(new i=0; i < MAX_PLAYERS; i++){
-	    PlayerPlaySound(i, hangid, 0.0, 0.0, 0.0);
-	}
-}
-PlayerHang(hangid, playerid){
-	PlayerPlaySound(playerid, hangid, 0.0, 0.0, 0.0);
 }
 
 CMD:ipm(playerid,params[])
 {
-new ip[16],ipstring[128];
-GetPlayerIp(playerid, ip, 16);
-format(ipstring,sizeof(ipstring),"IP cím: %s",ip);
-SendClientMessage(playerid,vzold,ipstring);
-return 1;
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
+	if (jInfo[playerid][alevel] > 4)
+	{
+		new ip[16],ipstring[128];
+		GetPlayerIp(playerid, ip, 16);
+		format(ipstring,sizeof(ipstring),"IP cím: %s",ip);
+		SendClientMessage(playerid,vzold,ipstring);
+	} else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 5]");
+	return 1;
+}
+
+CMD:getzone(playerid, params[]){
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
+    if (jInfo[playerid][alevel] > 4)
+	{
+	    new str[128];
+	    new Float:aX, Float:aY, Float:aZ;
+	    format(str, sizeof(str), "Zóna id amiben vagy: %d", ZoneInfo[GetPlayerZone(playerid)][zId]);
+	    SendClientMessage(playerid, vzold, str);
+	    GetPlayerPos(playerid, aX, aY, aZ);
+	    format(str, sizeof(str), "Pozíciód: x: %f, y: %f, z: %f", aX, aY, aZ);
+	    SendClientMessage(playerid, vzold, str);
+	} else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 5]");
+	return 1;
+}
+
+CMD:szone(playerid,params[]){
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
+	if(jInfo[playerid][alevel] > 4)
+	{
+		new melyik;
+		new melyikteam;
+	    if(sscanf(params,"ii",melyik, melyikteam)) return SendClientMessage(playerid,orange,"Használat /szone [1 - min, 2 - max] [melyik team]");
+	    {
+	        if(melyik == 1) {
+				new Float:x, Float:y, Float:z;
+				GetPlayerPos(playerid, x, y, z);
+				SaveZone[0][zMinX] = x;
+				SaveZone[0][zMinY] = y;
+				SendClientMessage(playerid, zold, "A zóna kezdete sikeresen lementve! Menj a másik sarokba és /szone 2 [teamcolor]!");
+	        }
+
+	        if(melyik == 2) {
+				new Float:x, Float:y, Float:z;
+				GetPlayerPos(playerid, x, y, z);
+				SaveZone[0][zMaxX] = x;
+				SaveZone[0][zMaxY] = y;
+				SaveZone[0][zTeam] = melyikteam;
+				format(query, sizeof(query), "INSERT INTO zones VALUES ('','%f','%f','%f','%f','%d','1','',0,0,0)", SaveZone[0][zMinX], SaveZone[0][zMinY], SaveZone[0][zMaxX], SaveZone[0][zMaxY], melyikteam);
+				mysql_tquery(kapcs, query);
+				SendClientMessage(playerid, zold, "A zóna sikeresen elmentve az adatbázisba!");
+
+				ZoneInfo[zoneDb][zId] = zoneDb;
+				ZoneInfo[zoneDb][zMinX] = SaveZone[0][zMinX];
+				ZoneInfo[zoneDb][zMinY] = SaveZone[0][zMinY];
+				ZoneInfo[zoneDb][zMaxX] = SaveZone[0][zMaxX];
+				ZoneInfo[zoneDb][zMaxY] = SaveZone[0][zMaxY];
+				ZoneInfo[zoneDb][zTeam] = SaveZone[0][zTeam];
+				ZoneID[zoneDb] = GangZoneCreate(SaveZone[0][zMinX], SaveZone[0][zMinY], SaveZone[0][zMaxX], SaveZone[0][zMaxY]);
+				//printf("zonedb: %d", zoneDb);
+				//printf("%d, %f, %f, %f, %f, %d", ZoneInfo[zoneDb][zId], ZoneInfo[zoneDb][zMinX], ZoneInfo[zoneDb][zMinY], ZoneInfo[zoneDb][zMaxX], ZoneInfo[zoneDb][zMaxY], ZoneInfo[zoneDb][zTeam]);
+
+			for(new i = 0; i < GetPlayersOnServer(); i++){
+				new zoneidija = GangZoneShowForPlayer(i, ZoneID[zoneDb], GetTeamZoneColor(ZoneInfo[zoneDb][zTeam]));
+				foglalja[zoneidija] = -1;
+			}
+			zoneDb++;
+	        }
+	    }
+   } else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 5]");
+ return 1;
+}
+
+CMD:szonetext(playerid, params[]){
+	if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
+    if (jInfo[playerid][alevel] > 4)
+	{
+	    new ftext[50];
+        if(sscanf(params, "s[50]", ftext)) return SendClientMessage(playerid, piros, "[ ! ] Használat: /szonetext [felirat]");
+        new Float:x, Float:y, Float:z;
+		GetPlayerPos(playerid, x, y, z);
+		format(query, sizeof(query), "UPDATE zones SET felirat='%s', fX='%f', fY='%f', fZ='%f' WHERE id='%d'", ftext, x, y, z, ZoneInfo[GetPlayerZone(playerid)][zId]);
+		if(mysql_tquery(kapcs, query) == 1)
+			SendClientMessage(playerid, zold, "[ ! ] A zóna felirata sikeresen mentve az adatbázisba!");
+		else
+		    SendClientMessage(playerid, piros, "[ ! ] Valami hiba történt a zóna feliratának módosításánál!");
+	} else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 5]");
+	return 1;
 }
 
 CMD:skocsi(playerid, params[])
 {
-    if (jInfo[playerid][alevel] >= 5)
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
+    if (jInfo[playerid][alevel] > 4)
 	{
 		if(IsPlayerInAnyVehicle(playerid) != 0)
 		{
@@ -1694,22 +1983,22 @@ CMD:skocsi(playerid, params[])
 				if(AutoCount < 10)
 				{
 				    format(rendszam, sizeof(rendszam), "ZW-000%d", AutoCount);
-					printf("%s", rendszam);
+					//printf("%s", rendszam);
 				}
 			 	else if(AutoCount < 100)
 				{
 					format(rendszam, sizeof(rendszam), "ZW-00%d", AutoCount);
-					printf("%s", rendszam);
+					//printf("%s", rendszam);
 				}
 				else if(AutoCount < 1000)
 				{
 				    format(rendszam, sizeof(rendszam), "ZW-0%d", AutoCount);
-					printf("%s", rendszam);
+					//printf("%s", rendszam);
 				}
 				else
 				{
 				    format(rendszam, sizeof(rendszam), "ZW-%d", AutoCount);
-					printf("%s", rendszam);
+					//printf("%s", rendszam);
 				}
 				format(query, sizeof(query), "INSERT INTO `cars` (`id`, `rendszam`, `modelid`, `x`, `y`, `z`, `angle`, `tulaj`, `col1`,`col2`) VALUES (NULL, '%s', '%d', '%f', '%f', '%f', '%f', '%d', '%d', '%d')", rendszam, vehModelID, vehx, vehy, vehz, z_rot, tulajdonos, szin1, szin2);
 				mysql_tquery(kapcs, query);
@@ -1717,13 +2006,14 @@ CMD:skocsi(playerid, params[])
 				AutoCount++;
 			}
 		}
-	}
+	} else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 5]");
 	return 1;
 }
 
 CMD:sshop(playerid, params[])
 {
-    if (jInfo[playerid][alevel] >= 5)
+    if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
+    if (jInfo[playerid][alevel] > 4)
 	{
 	    new Float:aX, Float:aY, Float:aZ;
 	    new pickid, mapid;
@@ -1734,14 +2024,15 @@ CMD:sshop(playerid, params[])
 		    mysql_tquery(kapcs, query);
 		    SendClientMessage(playerid, zold, "| A shop mentve az adatbázisba! |");
 		}
- 	}
+ 	} else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 5]");
 	return 1;
 }
 
-CMD:rangok(playerid,params[]){
-	new masik[1000];
-	new rangok[1000] = "Százados - \t\t200pont\nFõhadnagy - \t\t400pont\nHadnagy - \t\t600pont\nFõtörzszászlós - \t800pont\nTörzszászlós - \t1000pont\nZászlós - \t\t1200pont\nFõtörzsõrmester - \t1400pont\nTörzsõrmester - \t1600pont\nÕrmester - \t\t1800pont\nÕrnagy - \t\t2000pont\nAlezredes - \t2200pont\nEzredes - \t2400pont\nDandártábornok - \t\t2600pont\nVezérõrnagy - \t\t2800pont\nAltábornagy - \t\t3000pont";
-	format(masik,sizeof(masik),"%s",rangok);
-	ShowPlayerDialog(playerid,d_rangok,DIALOG_STYLE_MSGBOX,"Szerveren elérhetõ rangok",masik,"Rendben","");
+CMD:getvehid(playerid, params[]){
+	printf("%d", GetPlayerVehicleID(playerid));
 	return 1;
+}
+
+CMD:putnpc(playerid, params[]){
+    PutPlayerInVehicle(0, Train, 0);
 }
