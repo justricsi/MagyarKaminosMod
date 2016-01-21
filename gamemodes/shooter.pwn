@@ -50,13 +50,14 @@ forward RegEllenorzes(playerid);
 forward ZoneTimer();
 forward ZoneLoad();
 forward GetPlayersOnServer();
+forward HackTimer();
 
 #if defined FILTERSCRIPT
 
 public OnFilterScriptInit()
 {
 	print("\n--------------------------------------");
-	print(" Blank Filterscript by your name here");
+	print("ZoneWars 0.1");
 	print("--------------------------------------\n");
 	return 1;
 }
@@ -167,7 +168,6 @@ new DeleteObj[500][dobject];
 
 //---------------------GLOBÁLIS VÁLTOZÓK----------------------------------------
 new kapcs, query[2000];
-new Text:TDEditor_TD[11];
 new zoneDb = 0;
 new AutoCount = 0;
 new ZoneID[MAX_ZONE];
@@ -190,11 +190,12 @@ new cargoType[] = {1212,346,1279}; // pénz, fegyver, egyéb
 new cargoes[3];
 new cargoesType[3];
 new inCargo[MAX_PLAYERS];
+new hadkp;
 
 main()
 {
 	print("\n----------------------------------");
-	print(" VALAMI");
+	print("ZoneWars 0.1");
 	print("----------------------------------\n");
 }
 
@@ -228,8 +229,11 @@ public OnGameModeInit()
 	mysql_tquery(kapcs, "SELECT * FROM shops","ShopLoad");
 
     ConnectNPC("[BOT]Train","train_ls");
-
+	cargoes[0] = 100;
+	cargoes[1] = 100;
+	cargoes[2] = 100;
 	SetTimer("ZoneTimer", 1000, true);
+	SetTimer("HackTimer", 60000, true);
 	return 1;
 }
 
@@ -383,9 +387,15 @@ public ZoneLoad()
 			if(ZoneInfo[i][fx] != 0 && ZoneInfo[i][fy] != 0 && ZoneInfo[i][fz] != 0){
 				Create3DTextLabel(ZoneInfo[i][felirat], 0x008080FF, ZoneInfo[i][fx], ZoneInfo[i][fy], ZoneInfo[i][fz], 40.0, 0, 1);
 			}
+			if(!strcmp("Hadászati központ",ZoneInfo[i][felirat]))
+			{
+			    hadkp = i;
+			    //printf("%d", hadkp);
+			}
 			foglalja[ZoneID[i]] = -1;
 		}
-	printf("betöltött zónák: %d", zoneDb);
+    print("\n-----------mySQL------------------");
+	//printf("%d zóna, ", zoneDb);
 	/*for(new i=0; i < zoneDb; i++)
 	{
 		ZoneID[i] = GangZoneCreate(ZoneInfo[i][zMinX], ZoneInfo[i][zMinY], ZoneInfo[i][zMaxX], ZoneInfo[i][zMaxY]);
@@ -410,9 +420,9 @@ public ObjectLoad()
 
 			CreateObject(Objektumok[i][modelID], Objektumok[i][xCor], Objektumok[i][yCor], Objektumok[i][zCor], Objektumok[i][rxCor], Objektumok[i][ryCor], Objektumok[i][rzCor]);
 	        ObjektCount++;
-	        printf("%d, %f, %f, %f, %f, %f, %f",Objektumok[i][modelID], Objektumok[i][xCor], Objektumok[i][yCor], Objektumok[i][zCor], Objektumok[i][rxCor], Objektumok[i][ryCor], Objektumok[i][rzCor]);
+	        //printf("%d, %f, %f, %f, %f, %f, %f",Objektumok[i][modelID], Objektumok[i][xCor], Objektumok[i][yCor], Objektumok[i][zCor], Objektumok[i][rxCor], Objektumok[i][ryCor], Objektumok[i][rzCor]);
 		}
-		printf("%d object betöltve!", ObjektCount);
+		//printf("%d object betöltve!", ObjektCount);
 	return 1;
 }
 
@@ -447,10 +457,10 @@ public AutoLoad()
 		
 		SetVehicleNumberPlate(CarInfo[i][ID], CarInfo[i][rszam]);
 		AutoCount++;
-		printf("ID: %d, AutoCount: %d",CarInfo[i][ID], AutoCount);
+		//printf("ID: %d, AutoCount: %d",CarInfo[i][ID], AutoCount);
 		//printf("autok: %f, %f, %f",CarInfo[i][x],CarInfo[i][y],CarInfo[i][z]);
 	}
-    printf("%d autó betöltve!", AutoCount);
+    //printf("%d autó és ", AutoCount);
 		//SetTimer("AutoSave", 1000, true);
 	return 1;
 }
@@ -472,6 +482,8 @@ public ShopLoad()
 			
 	        ShopsDb++;
 		}
+		printf("%d zóna, %d object, %d autó és %d bolt betöltve!", zoneDb, ObjektCount, AutoCount, ShopsDb);
+		print("----------------------------------\n");
 	return 1;
 }
 
@@ -515,7 +527,7 @@ public OnPlayerSpawn(playerid)
         GetPlayerName(playerid, npcname, sizeof(npcname)); //Getting the NPC's name.
         if(!strcmp(npcname, "[BOT]Train", true)) //Checking if the NPC's name is MyFirstNPC
         {
-            SetPlayerMarkerForPlayer(playerid, 1, 0x00000000 );
+            SetPlayerMarkerForPlayer(playerid, 1, 00); // A 00 eltûnteti a mapmarkerjét a vonatnak.
             PutPlayerInVehicle(playerid, Train, 0); //Putting the NPC into the vehicle we created for it.
         }
         return 1;
@@ -535,10 +547,19 @@ public OnPlayerSpawn(playerid)
 	}
 	SetPlayerHealth(playerid, 9999);
 	playerSK[playerid] = 1;
-	jInfo[playerid][helmet] = 0;
-	RemovePlayerAttachedObject(playerid, 2);
+	if(GetPlayerTeam(playerid) == ZoneInfo[hadkp][zTeam]){
+	    jInfo[playerid][helmet] = 1;
+	    SetPlayerAttachedObject(playerid, 1, 19106, 2, 0.15, -0, 0, 180, 180, 180);
+	    new str[128];
+	    format(str, sizeof(str), "A csapatod bírtokolja a %s bázist, ezért kaptál golyóállómellényt és sisakot!", ZoneInfo[hadkp][felirat]);
+	    SendClientMessage(playerid, vzold, str);
+	}else{
+		jInfo[playerid][helmet] = 0;
+		RemovePlayerAttachedObject(playerid, 2);
+	}
     SendClientMessage(playerid, -1, "| 15 másodpercig védve vagy a támadásoktól. |");
     SetTimerEx("EndAntiSpawnKill", 15000, false, "i", playerid);
+	RankChechk(playerid);
 	return 1;
 }
 
@@ -548,6 +569,9 @@ public EndAntiSpawnKill(playerid)
 	playerSK[playerid] = 0;
     SetPlayerHealth(playerid, 100);
     SendClientMessage(playerid, -1, "| Lejárt a védelmed. |");
+ 	if(GetPlayerTeam(playerid) == ZoneInfo[hadkp][zTeam]){
+		SetPlayerArmour(playerid, 100.0);
+	}
     return 1;
 }
 
@@ -666,33 +690,36 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 	    }
 	}
 	for(new i = 0; i < 3; i++){
-	    if(ZoneInfo[GetPlayerZone(playerid)][zTeam] == GetPlayerTeam(playerid)){
 		    if(pickupid == cargoes[i]){
-		        if(cargoesType[i] == cargoType[0]) {//pénz
-		            new money = random(15000)+10000;
-		            GivePlayerMoney(playerid, money);
-					jInfo[playerid][Penz] += money;
-					new str[128];
-					format(str, sizeof(str), "%d$ volt a csomagban.", money);
-					SendClientMessage(playerid, vzold, str);
-		        }
-		        else if(cargoesType[i] == cargoType[1]) { //fegyver
-		            new weaponid = random(18)+16;
-		            GivePlayerWeapon(playerid, weaponid, 140);
-		            SendClientMessage(playerid, vzold, "Kaptál egy fegyvert 140 lõszerrel!");
-		        }
-		        else if (cargoesType[i] == cargoType[2]) { //egyéb
-		            SendClientMessage(playerid, vzold, "Egyéb dolgot kaptál!");
-		        }
-	         	DestroyPickup(pickupid);
+		        if(ZoneInfo[GetPlayerZone(playerid)][zTeam] == GetPlayerTeam(playerid)){
+			        if(cargoesType[i] == cargoType[0]) {//pénz
+			            new money = random(15000)+10000;
+			            GivePlayerMoney(playerid, money);
+						jInfo[playerid][Penz] += money;
+						new str[128];
+						format(str, sizeof(str), "%d$ volt a csomagban.", money);
+						SendClientMessage(playerid, vzold, str);
+			        }
+			        else if(cargoesType[i] == cargoType[1]) { //fegyver
+			            new weaponid = random(18)+16;
+			            GivePlayerWeapon(playerid, weaponid, 140);
+			            new weaponname[50], str[128];
+			            GetWeaponName(weaponid, weaponname, sizeof(weaponname));
+			            format(str, sizeof(str), "%s fegyvert kaptál 140 lõszerrel!", weaponname);
+			            SendClientMessage(playerid, vzold, str);
+			        }
+			        else if (cargoesType[i] == cargoType[2]) { //egyéb
+			            SendClientMessage(playerid, vzold, "Egyéb dolgot kaptál!");
+			        }
+		         	DestroyPickup(pickupid);
+                } else {
+				    if(inCargo[playerid] == 0) {
+				    	SendClientMessage(playerid, piros, "Nem a Te csapatodé a bázis, ezért nem veheted fel a csomagot!");
+				    	inCargo[playerid] = 1;
+				    	SetTimerEx("InCargoRes", 5000, false, "i", playerid);
+					}
+				}
 		    }
-		} else {
-		    if(inCargo[playerid] == 0) {
-		    	SendClientMessage(playerid, piros, "Nem a Te csapatodé a bázis, ezért nem veheted fel a csomagot!");
-		    	inCargo[playerid] = 1;
-		    	SetTimerEx("InCargoRes", 5000, false, "i", playerid);
-			}
-		}
 	}
 	return 1;
 }
@@ -794,8 +821,8 @@ stock GetTeamZoneColor(teamid)
 
 public OnPlayerUpdate(playerid)
 {
-    //if(IsPlayerNPC(playerid)) //Checks if the player that just spawned is an NPC.
-    //{
+    if(IsPlayerNPC(playerid)) //Checks if the player that just spawned is an NPC.
+    {
         if(IsPlayerInRangeOfPoint(playerid, 7.0, 2765.0864, 311.9946, 9.7014)){
             if(TrainUzenet == 0){
 				SendClientMessageToAll(vzold, "[ ! ] Két perc múlva vonat érkezik a Vasútállomásra!");
@@ -818,8 +845,8 @@ public OnPlayerUpdate(playerid)
 				TrainUzenet = 0;
 			}
         }
-        //return 1;
-	//}
+        return 1;
+	}
 	if(GetPlayersInZone(GetPlayerZone(playerid), ZoneInfo[GetPlayerZone(playerid)][zTeam]) == 0 && foglal[playerid] == 0 && foglalja[GetPlayerZone(playerid)] == -1 && ZoneInfo[GetPlayerZone(playerid)][foglalhato] == 1 && !IsPlayerInAnyVehicle(playerid)){
 	    ZoneDeaths[GetPlayerZone(playerid)] = 0;
 		ZoneAttacker[GetPlayerZone(playerid)] = GetPlayerTeam(playerid);
@@ -911,11 +938,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 public OnPlayerClickPlayer(playerid, clickedplayerid, source)
 {
 	return 1;
-}
-
-public OnPlayerCommandText(playerid,cmdtext[])
-{
-  return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
 }
 
 public OnPlayerCommandPerformed(playerid, cmdtext[], success)
@@ -1022,6 +1044,21 @@ public ZoneTimer()
 	}
 }
 
+public HackTimer(){
+	for(new i = 0; i < MAX_PLAYERS; i++){
+	    if(IsPlayerConnected(i)){
+		    if(GetPlayerTeam(i) == ZoneInfo[hadkp][zTeam]){
+		        new money = 500;
+				GivePlayerMoney(i, money);
+				jInfo[i][Penz]+=money;
+				new str[128];
+				format(str, sizeof(str), "A %s bírtoklásáért hackelési jutalmad: $%d", ZoneInfo[hadkp][felirat], money);
+				SendClientMessage(i, vzold, str);
+		    }
+		}
+	}
+}
+
 public GetPlayersOnServer() {
  new count;
  for(new i=0; i< MAX_PLAYERS; i++) { //x = MAX_PLAYERS
@@ -1060,173 +1097,6 @@ stock MySQL_BanCheck(playerid)
 			Kick_Player(playerid);
 		}
   return 0;
-}
-
-stock TextDrawok(playerid)
-{
-	TDEditor_TD[0] = TextDrawCreate(134.450942, 127.583305, "box");
-	TextDrawLetterSize(TDEditor_TD[0], 0.000000, 25.554901);
-	TextDrawTextSize(TDEditor_TD[0], 226.000000, 0.000000);
-	TextDrawAlignment(TDEditor_TD[0], 1);
-	TextDrawColor(TDEditor_TD[0], -1);
-	TextDrawUseBox(TDEditor_TD[0], 1);
-	TextDrawBoxColor(TDEditor_TD[0], 255);
-	TextDrawSetShadow(TDEditor_TD[0], 0);
-	TextDrawSetOutline(TDEditor_TD[0], 0);
-	TextDrawBackgroundColor(TDEditor_TD[0], 255);
-	TextDrawFont(TDEditor_TD[0], 1);
-	TextDrawSetProportional(TDEditor_TD[0], 1);
-	TextDrawSetShadow(TDEditor_TD[0], 0);
-
-	TDEditor_TD[1] = TextDrawCreate(144.289916, 138.083389, "Magyarok");
-	TextDrawLetterSize(TDEditor_TD[1], 0.400000, 1.600000);
-	TextDrawTextSize(TDEditor_TD[1], 215.000000, 0.000000);
-	TextDrawAlignment(TDEditor_TD[1], 1);
-	TextDrawColor(TDEditor_TD[1], -1);
-	TextDrawUseBox(TDEditor_TD[1], 1);
-	TextDrawBoxColor(TDEditor_TD[1], -16776961);
-	TextDrawSetShadow(TDEditor_TD[1], 0);
-	TextDrawSetOutline(TDEditor_TD[1], 0);
-	TextDrawBackgroundColor(TDEditor_TD[1], 255);
-	TextDrawFont(TDEditor_TD[1], 1);
-	TextDrawSetProportional(TDEditor_TD[1], 1);
-	TextDrawSetShadow(TDEditor_TD[1], 0);
-	TextDrawSetSelectable(TDEditor_TD[1], true);
-
-	TDEditor_TD[2] = TextDrawCreate(144.289916, 164.333358, "Nemetek");
-	TextDrawLetterSize(TDEditor_TD[2], 0.400000, 1.600000);
-	TextDrawTextSize(TDEditor_TD[2], 215.000000, 0.000000);
-	TextDrawAlignment(TDEditor_TD[2], 1);
-	TextDrawColor(TDEditor_TD[2], -1);
-	TextDrawUseBox(TDEditor_TD[2], 1);
-	TextDrawBoxColor(TDEditor_TD[2], -16776961);
-	TextDrawSetShadow(TDEditor_TD[2], 0);
-	TextDrawSetOutline(TDEditor_TD[2], 0);
-	TextDrawBackgroundColor(TDEditor_TD[2], 255);
-	TextDrawFont(TDEditor_TD[2], 1);
-	TextDrawSetProportional(TDEditor_TD[2], 1);
-	TextDrawSetShadow(TDEditor_TD[2], 0);
-	TextDrawSetSelectable(TDEditor_TD[2], true);
-
-	TDEditor_TD[3] = TextDrawCreate(144.289916, 190.000030, "Gorogok");
-	TextDrawLetterSize(TDEditor_TD[3], 0.400000, 1.600000);
-	TextDrawTextSize(TDEditor_TD[3], 215.000000, 0.000000);
-	TextDrawAlignment(TDEditor_TD[3], 1);
-	TextDrawColor(TDEditor_TD[3], -1);
-	TextDrawUseBox(TDEditor_TD[3], 1);
-	TextDrawBoxColor(TDEditor_TD[3], -16776961);
-	TextDrawSetShadow(TDEditor_TD[3], 0);
-	TextDrawSetOutline(TDEditor_TD[3], 0);
-	TextDrawBackgroundColor(TDEditor_TD[3], 255);
-	TextDrawFont(TDEditor_TD[3], 1);
-	TextDrawSetProportional(TDEditor_TD[3], 1);
-	TextDrawSetShadow(TDEditor_TD[3], 0);
-	TextDrawSetSelectable(TDEditor_TD[3], true);
-
-	TDEditor_TD[4] = TextDrawCreate(144.289916, 216.833389, "OLaszok");
-	TextDrawLetterSize(TDEditor_TD[4], 0.400000, 1.600000);
-	TextDrawTextSize(TDEditor_TD[4], 215.000000, 0.000000);
-	TextDrawAlignment(TDEditor_TD[4], 1);
-	TextDrawColor(TDEditor_TD[4], -1);
-	TextDrawUseBox(TDEditor_TD[4], 1);
-	TextDrawBoxColor(TDEditor_TD[4], -16776961);
-	TextDrawSetShadow(TDEditor_TD[4], 0);
-	TextDrawSetOutline(TDEditor_TD[4], 0);
-	TextDrawBackgroundColor(TDEditor_TD[4], 255);
-	TextDrawFont(TDEditor_TD[4], 1);
-	TextDrawSetProportional(TDEditor_TD[4], 1);
-	TextDrawSetShadow(TDEditor_TD[4], 0);
-	TextDrawSetSelectable(TDEditor_TD[4], true);
-
-	TDEditor_TD[5] = TextDrawCreate(233.308822, 128.166671, "box");
-	TextDrawLetterSize(TDEditor_TD[5], 0.000000, 2.035140);
-	TextDrawTextSize(TDEditor_TD[5], 429.000000, 0.000000);
-	TextDrawAlignment(TDEditor_TD[5], 1);
-	TextDrawColor(TDEditor_TD[5], -1);
-	TextDrawUseBox(TDEditor_TD[5], 1);
-	TextDrawBoxColor(TDEditor_TD[5], 255);
-	TextDrawSetShadow(TDEditor_TD[5], 0);
-	TextDrawSetOutline(TDEditor_TD[5], 0);
-	TextDrawBackgroundColor(TDEditor_TD[5], 255);
-	TextDrawFont(TDEditor_TD[5], 1);
-	TextDrawSetProportional(TDEditor_TD[5], 1);
-	TextDrawSetShadow(TDEditor_TD[5], 0);
-
-	TDEditor_TD[6] = TextDrawCreate(256.734924, 130.499984, "Csapat_valaszto");
-	TextDrawLetterSize(TDEditor_TD[6], 0.400000, 1.600000);
-	TextDrawAlignment(TDEditor_TD[6], 1);
-	TextDrawColor(TDEditor_TD[6], -1);
-	TextDrawSetShadow(TDEditor_TD[6], 0);
-	TextDrawSetOutline(TDEditor_TD[6], 0);
-	TextDrawBackgroundColor(TDEditor_TD[6], 255);
-	TextDrawFont(TDEditor_TD[6], 2);
-	TextDrawSetProportional(TDEditor_TD[6], 1);
-	TextDrawSetShadow(TDEditor_TD[6], 0);
-
-	TDEditor_TD[7] = TextDrawCreate(231.266372, 153.833358, "");
-	TextDrawLetterSize(TDEditor_TD[7], 0.000000, 0.000000);
-	TextDrawTextSize(TDEditor_TD[7], 199.000000, 206.000000);
-	TextDrawAlignment(TDEditor_TD[7], 1);
-	TextDrawColor(TDEditor_TD[7], -1);
-	TextDrawSetShadow(TDEditor_TD[7], 0);
-	TextDrawSetOutline(TDEditor_TD[7], 0);
-	TextDrawBackgroundColor(TDEditor_TD[7], 255);
-	TextDrawFont(TDEditor_TD[7], 5);
-	TextDrawSetProportional(TDEditor_TD[7], 0);
-	TextDrawSetShadow(TDEditor_TD[7], 0);
-	TextDrawSetPreviewModel(TDEditor_TD[7], 0);
-	TextDrawSetPreviewRot(TDEditor_TD[7], 0.000000, 0.000000, 0.000000, 1.000000);
-
-	TDEditor_TD[8] = TextDrawCreate(435.710144, 127.583320, "box");
-	TextDrawLetterSize(TDEditor_TD[8], 0.000000, 25.554901);
-	TextDrawTextSize(TDEditor_TD[8], 529.000000, 0.000000);
-	TextDrawAlignment(TDEditor_TD[8], 1);
-	TextDrawColor(TDEditor_TD[8], -1);
-	TextDrawUseBox(TDEditor_TD[8], 1);
-	TextDrawBoxColor(TDEditor_TD[8], 255);
-	TextDrawSetShadow(TDEditor_TD[8], 0);
-	TextDrawSetOutline(TDEditor_TD[8], 0);
-	TextDrawBackgroundColor(TDEditor_TD[8], 255);
-	TextDrawFont(TDEditor_TD[8], 1);
-	TextDrawSetProportional(TDEditor_TD[8], 1);
-	TextDrawSetShadow(TDEditor_TD[8], 0);
-
-	TDEditor_TD[9] = TextDrawCreate(443.675384, 135.750091, "Katona");
-	TextDrawLetterSize(TDEditor_TD[9], 0.400000, 1.600000);
-	TextDrawTextSize(TDEditor_TD[9], 523.000000, 0.000000);
-	TextDrawAlignment(TDEditor_TD[9], 1);
-	TextDrawColor(TDEditor_TD[9], -1);
-	TextDrawUseBox(TDEditor_TD[9], 1);
-	TextDrawBoxColor(TDEditor_TD[9], 11141375);
-	TextDrawSetShadow(TDEditor_TD[9], 0);
-	TextDrawSetOutline(TDEditor_TD[9], 0);
-	TextDrawBackgroundColor(TDEditor_TD[9], 255);
-	TextDrawFont(TDEditor_TD[9], 1);
-	TextDrawSetProportional(TDEditor_TD[9], 1);
-	TextDrawSetShadow(TDEditor_TD[9], 0);
-	TextDrawSetSelectable(TDEditor_TD[9], true);
-
-	TDEditor_TD[10] = TextDrawCreate(443.675445, 161.416732, "Sniper");
-	TextDrawLetterSize(TDEditor_TD[10], 0.400000, 1.600000);
-	TextDrawTextSize(TDEditor_TD[10], 523.000000, 0.000000);
-	TextDrawAlignment(TDEditor_TD[10], 1);
-	TextDrawColor(TDEditor_TD[10], -1);
-	TextDrawUseBox(TDEditor_TD[10], 1);
-	TextDrawBoxColor(TDEditor_TD[10], 11141375);
-	TextDrawSetShadow(TDEditor_TD[10], 0);
-	TextDrawSetOutline(TDEditor_TD[10], 0);
-	TextDrawBackgroundColor(TDEditor_TD[10], 255);
-	TextDrawFont(TDEditor_TD[10], 1);
-	TextDrawSetProportional(TDEditor_TD[10], 1);
-	TextDrawSetShadow(TDEditor_TD[10], 0);
-	TextDrawSetSelectable(TDEditor_TD[10], true);
-
-	for(new i = 0; i<= 11; i++)
-	{
-		TextDrawShowForPlayer(playerid,TDEditor_TD[i]);
-	}
-
-	return 1;
 }
 
 Dialog_Regisztracio(playerid, response, inputtext[])
@@ -1274,6 +1144,9 @@ Dialog_Shopitem(playerid, response, listitem){
 		        }
 		    }
 		    case 1: {
+		        if(playerSK[playerid] == 1){
+		            return SendClientMessage(playerid, piros, "Anti Spawn Kill védelem alatt, nem vehetsz golyóállómellényt!");
+		        }
 		        new Float: armour;
 		        GetPlayerArmour(playerid, armour);
 		        if(armour == 100){
@@ -1361,11 +1234,92 @@ CheckAdmin(playerid){
 	    return false;
 }
 
+stock RankChechk(playerid)
+{
+    if(jInfo[playerid][Pont] > 3000)
+    {
+        new Text3D:label = Create3DTextLabel("Altábornagy",orange, 30.0, 40.0, 50.0, 40.0, 0);
+        Attach3DTextLabelToPlayer(label, playerid, 0.0, 0.0, 0.3);
+	}
+	else if(jInfo[playerid][Pont] > 2800)
+	{
+        new Text3D:label1 = Create3DTextLabel("Vezérõrnagy",orange, 30.0, 40.0, 50.0, 40.0, 0);
+        Attach3DTextLabelToPlayer(label1, playerid, 0.0, 0.0, 0.3);
+	}
+	else if(jInfo[playerid][Pont] > 2600)
+	{
+        new Text3D:label2 = Create3DTextLabel("Dandártábornok",orange, 30.0, 40.0, 50.0, 40.0, 0);
+        Attach3DTextLabelToPlayer(label2, playerid, 0.0, 0.0, 0.3);
+	}
+	else if(jInfo[playerid][Pont] > 2400)
+	{
+        new Text3D:label3 = Create3DTextLabel("Ezredes",orange, 30.0, 40.0, 50.0, 40.0, 0);
+        Attach3DTextLabelToPlayer(label3, playerid, 0.0, 0.0, 0.3);
+	}
+	else if(jInfo[playerid][Pont] > 2200)
+	{
+        new Text3D:label4 = Create3DTextLabel("Alezredes",orange, 30.0, 40.0, 50.0, 40.0, 0);
+        Attach3DTextLabelToPlayer(label4, playerid, 0.0, 0.0, 0.3);
+	}
+	else if(jInfo[playerid][Pont] > 2000)
+	{
+        new Text3D:label5 = Create3DTextLabel("Õrnagy",orange, 30.0, 40.0, 50.0, 40.0, 0);
+        Attach3DTextLabelToPlayer(label5, playerid, 0.0, 0.0, 0.3);
+	}
+	else if(jInfo[playerid][Pont] > 1800)
+	{
+        new Text3D:label6 = Create3DTextLabel("Õrmester",orange, 30.0, 40.0, 50.0, 40.0, 0);
+        Attach3DTextLabelToPlayer(label6, playerid, 0.0, 0.0, 0.3);
+	}
+	else if(jInfo[playerid][Pont] > 1600)
+    {
+        new Text3D:label7 = Create3DTextLabel("Törzsõrmester",orange, 30.0, 40.0, 50.0, 40.0, 0);
+        Attach3DTextLabelToPlayer(label7, playerid, 0.0, 0.0, 0.3);
+	}
+	else if(jInfo[playerid][Pont] > 1400)
+	{
+        new Text3D:label8 = Create3DTextLabel("Fõtörzsõrmester",orange, 30.0, 40.0, 50.0, 40.0, 0);
+        Attach3DTextLabelToPlayer(label8, playerid, 0.0, 0.0, 0.3);
+	}
+	else if(jInfo[playerid][Pont] > 1200)
+	{
+        new Text3D:label9 = Create3DTextLabel("Zászlós",orange, 30.0, 40.0, 50.0, 40.0, 0);
+        Attach3DTextLabelToPlayer(label9, playerid, 0.0, 0.0, 0.3);
+	}
+	else if(jInfo[playerid][Pont] > 1000)
+	{
+        new Text3D:label10 = Create3DTextLabel("Törzszászlós",orange, 30.0, 40.0, 50.0, 40.0, 0);
+        Attach3DTextLabelToPlayer(label10, playerid, 0.0, 0.0, 0.3);
+	}
+	else if(jInfo[playerid][Pont] > 800)
+	{
+        new Text3D:label11 = Create3DTextLabel("Fõtörzszászlós",orange, 30.0, 40.0, 50.0, 40.0, 0);
+        Attach3DTextLabelToPlayer(label11, playerid, 0.0, 0.0, 0.3);
+	}
+	else if(jInfo[playerid][Pont] > 600)
+	{
+        new Text3D:label12 = Create3DTextLabel("Hadnagy",orange, 30.0, 40.0, 50.0, 40.0, 0);
+        Attach3DTextLabelToPlayer(label12, playerid, 0.0, 0.0, 0.3);
+	}
+	else if(jInfo[playerid][Pont] > 400)
+	{
+        new Text3D:label13 = Create3DTextLabel("Fõhadnagy",orange, 30.0, 40.0, 50.0, 40.0, 0);
+        Attach3DTextLabelToPlayer(label13, playerid, 0.0, 0.0, 0.3);
+	}
+	else if(jInfo[playerid][Pont] > 200)
+	{
+        new Text3D:label14 = Create3DTextLabel("Százados",orange, 30.0, 40.0, 50.0, 40.0, 0);
+        Attach3DTextLabelToPlayer(label14, playerid, 0.0, 0.0, 0.3);
+	}
+return 1;
+}
+
+
 //------------------------------PARANCSOK---------------------------------------
 
 CMD:rangok(playerid,params[]){
 	new masik[1000];
-	new rangok[1000] = "Százados - \t\t200pont\nFõhadnagy - \t\t400pont\nHadnagy - \t\t600pont\nFõtörzszászlós - \t800pont\nTörzszászlós - \t1000pont\nZászlós - \t\t1200pont\nFõtörzsõrmester - \t1400pont\nTörzsõrmester - \t1600pont\nÕrmester - \t\t1800pont\nÕrnagy - \t\t2000pont\nAlezredes - \t2200pont\nEzredes - \t2400pont\nDandártábornok - \t\t2600pont\nVezérõrnagy - \t\t2800pont\nAltábornagy - \t\t3000pont";
+	new rangok[1000] = "Százados - \t\t200pont\nFõhadnagy - \t\t400pont\nHadnagy - \t\t600pont\nFõtörzszászlós - \t800pont\nTörzszászlós - \t1000pont\nZászlós - \t\t1200pont\nFõtörzsõrmester - \t1400pont\nTörzsõrmester - \t1600pont\nÕrmester - \t\t1800pont\nÕrnagy - \t\t2000pont\nAlezredes - \t\t2200pont\nEzredes - \t2400pont\nDandártábornok - \t2600pont\nVezérõrnagy - \t\t2800pont\nAltábornagy - \t\t3000pont";
 	format(masik,sizeof(masik),"%s",rangok);
 	ShowPlayerDialog(playerid,d_rangok,DIALOG_STYLE_MSGBOX,"Szerveren elérhetõ rangok",masik,"Rendben","");
 	return 1;
@@ -1386,12 +1340,31 @@ CMD:acmd(playerid, params[])
     if(jInfo[playerid][alevel] > 0)
 	{
 		new teljes[1024];
-		new str1[512] = "/time [IDÕ] - idõállítás\n/get [ID] -  játékos magadhoz telézése\n/oda [ID] - odateleportálsz valakihez\n/vrespawn - jármûvek újraspawnolása\n/adszolg - adminszolgálat\n/warn [ID] [INDOK] - figyelmeztetés\n/ban [ID] [INDOK] - játékos kitiltása\n/kick [ID] [INDOK] - játékos kirúgása\n/setskin [ID] [SkinID] - kinézet állítás\n/penz [ID] [ÖSSZEG] - pénz állítás\n/idojaras [IdõjárásID] - idõjárás állítás\n/gazdagok - megmutatja a leggazdagabb embereket\n";
+		new str1[512] = "/time [IDÕ] - idõállítás\n/get [ID] -  játékos magadhoz telézése\n/oda [ID] - odateleportálsz valakihez\n/vrespawn - jármûvek újraspawnolása\n/adszolg - adminszolgálat\n/warn [ID] [INDOK] - figyelmeztetés\n/ban [ID] [INDOK] - játékos kitiltása\n/kick [ID] [INDOK] - játékos kirúgása\n/setskin [ID] [SkinID] - kinézet állítás\n/penz [ID] [ÖSSZEG] - pénz állítás\n/idojaras [IdõjárásID] - idõjárás állítás\n/pont - pontot lehet állítani\n";
 		new str2[512] = "/adminszint [ID] [SZINT] - adminszint állítás\n/healall - mindenkinek az életét feltölti\n/heal [ID] - egy játékos életének feltöltése\n/armour [ID] - páncélzat feltöltése\n/disarm [ID] - játékos lefegyverzése\n/dynamic - dinamikus idõ és idõjárás\n/asz [SZÖVEG] - Fõadmin-chat\n/jail [ID] [PERC] [INDOK] - játékos börtönbe zárása\n/unjail [ID] - játékos kiengedése";
 		format(teljes, sizeof(teljes), "%s%s", str1, str2);
 		ShowPlayerDialog(playerid, d_admin, DIALOG_STYLE_MSGBOX, "Adminparancsok:", teljes,"Rendben","");
 	}
 	return 1;
+}
+
+CMD:pont(playerid,params[])
+{
+ if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
+ if(jInfo[playerid][alevel] > 1)
+ {
+  new pont,pID;
+  if(sscanf(params,"ii",pID,pont)) return SendClientMessage(playerid, piros, "[ ! ] Használat: /pont [playerid][mennyiség]");
+  if(pID == INVALID_PLAYER_ID) return SendClientMessage(playerid, piros, "[ ! ] Nincs ilyen játékos!");
+  SetPlayerScore(pID, GetPlayerScore(pID)+pont);
+  jInfo[pID][Pont]+=pont;
+  new str[128],str1[128];
+  format(str,sizeof(str),"[ ! ] Admin: %s adott %d pontot!",jInfo[playerid][Nev],pont);
+  SendClientMessage(pID, vzold, str);
+  format(str1,sizeof(str1),"[ ! ] %s játékos pontja beállítva! [Új értéke: %d pont]",jInfo[pID][Nev],jInfo[pID][Pont]);
+  SendClientMessage(playerid, vzold, str1);
+ }else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 2]");
+return 1;
 }
 
 CMD:ac(playerid, params[]){
@@ -1810,10 +1783,17 @@ CMD:weaponall(playerid,params[]){
     if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
     if(jInfo[playerid][alevel] > 1)
 	{
-		new weaponID;
-	    if(sscanf(params,"i",weaponID)) return SendClientMessage(playerid,orange,"Használat /fegyver [id]");
+		new weaponID, ammo;
+	    if(sscanf(params,"ii",weaponID, ammo)) return SendClientMessage(playerid,orange,"Használat /fegyver [id] [ammo]");
 	    if(weaponID<0 || weaponID>47) return SendClientMessage(playerid,orange,"1-47-ig vannak csak fegyverek!");
-		GivePlayerWeapon(playerid, weaponID, 64);
+		for(new i = 0; i < MAX_PLAYERS; i++){
+			GivePlayerWeapon(i, weaponID, ammo);
+		}
+		new str[128], weaponname[50];
+		GetWeaponName(weaponID, weaponname, sizeof(weaponname));
+		format(str, sizeof(str), "[ ! ] Admin: %s mindenkinek adott %s fegyvert, %d lõszerrel!", jInfo[playerid][Nev], weaponname, ammo);
+		SendClientMessageToAll(vzold, str);
+		Hang(1139);
 	} else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 2]");
 	return 1;
 }
@@ -1834,20 +1814,19 @@ CMD:playsound(playerid, params[]){ // Ez csak arra ha valamilyen hangot keresünk
 CMD:vrespawn(playerid, params[])
 {
     if(CheckAdmin(playerid)) return SendClientMessage(playerid, piros, "[ ! ] Ismeretlen parancs! [/parancsok]");
-	if (jInfo[playerid][alevel] > 1)
+    if (jInfo[playerid][alevel] > 1)
 	{
-	    new string[128];
-		for(new i=0; i <= MAX_VEHICLES;i++)
+	    for(new i=0; i <= AutoCount;i++)
 		{
 		    if(IsVehicleOccupied(i) == 0)
 		    {
-		        //printf("%i", i);
 		        if(CarInfo[i][modelid] != 537){
 		        	SetVehicleToRespawn(i);
 		        }
 		    }
 		}
-		format(string, sizeof(string), "[ ! ] %s visszatett minden használaton kívüli jármûvet a helyére!", jInfo[playerid][Nev]);
+		new string[128];
+		format(string, sizeof(string), "[ ! ] Admin: %s visszatett minden használaton kívüli jármûvet a helyére!", jInfo[playerid][Nev]);
 		SendClientMessageToAll(vzold, string);
 		Hang(1139);
 	} else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 2]");
@@ -1863,7 +1842,7 @@ CMD:fixall(playerid, params[]){
 		    RepairVehicle(i);
 		}
 		new string[128];
-		format(string, sizeof(string), "[ ! ] %s megjavított minden jármûvet!", jInfo[playerid][Nev]);
+		format(string, sizeof(string), "[ ! ] Admin: %s megjavított minden jármûvet!", jInfo[playerid][Nev]);
 		SendClientMessageToAll(vzold, string);
 		Hang(1139);
 	} else SendClientMessage(playerid, piros, "[ ! ] Nem használhatod ezt a parancsot! [Min. adminszint: 2]");
@@ -1889,7 +1868,7 @@ CMD:getzone(playerid, params[]){
 	{
 	    new str[128];
 	    new Float:aX, Float:aY, Float:aZ;
-	    format(str, sizeof(str), "Zóna id amiben vagy: %d", ZoneInfo[GetPlayerZone(playerid)][zId]);
+	    format(str, sizeof(str), "Zóna id amiben vagy: %d, Getplayezone: %d", ZoneInfo[GetPlayerZone(playerid)][zId], GetPlayerZone(playerid));
 	    SendClientMessage(playerid, vzold, str);
 	    GetPlayerPos(playerid, aX, aY, aZ);
 	    format(str, sizeof(str), "Pozíciód: x: %f, y: %f, z: %f", aX, aY, aZ);
